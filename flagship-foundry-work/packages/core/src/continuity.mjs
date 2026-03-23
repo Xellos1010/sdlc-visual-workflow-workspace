@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { ensureDir, exists, nowIso, readJson, writeJson, writeText } from './io.mjs';
+import { ensureDir, exists, nowIso, readJson, repoRoot, writeJson, writeText } from './io.mjs';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -317,6 +317,138 @@ export async function updateNextCommands(projectName, commands) {
 
   await writeJson(stateFilePath(projectName), state);
   return state;
+}
+
+/**
+ * Returns the absolute path to the phase-lifecycle.json ontology file.
+ */
+function phaseLifecyclePath() {
+  return path.join(repoRoot, 'ontology', 'phase-lifecycle.json');
+}
+
+/**
+ * Get the policy for the current phase of a project.
+ *
+ * Reads the phase lifecycle ontology and returns the applicable principles,
+ * agents, DoR/DoD, and artifacts for the current phase.
+ *
+ * @param {string} projectName
+ * @returns {Promise<object>} Phase policy object.
+ */
+export async function getPhasePolicy(projectName) {
+  const state = await readState(projectName);
+  const currentPhaseId = state.currentPhase?.id ?? 'discover';
+
+  const lifecycle = await readJson(phaseLifecyclePath());
+  const phaseEntry = (lifecycle.phases ?? []).find((p) => p.id === currentPhaseId);
+
+  if (!phaseEntry) {
+    throw new Error(
+      `Phase "${currentPhaseId}" not found in phase-lifecycle.json.`
+    );
+  }
+
+  return {
+    phase: phaseEntry.id,
+    name: phaseEntry.name,
+    objective: phaseEntry.objective,
+    primaryAgent: phaseEntry.primaryAgent,
+    supportingAgents: phaseEntry.supportingAgents ?? [],
+    principles: phaseEntry.principles ?? [],
+    guardrailPacks: phaseEntry.guardrailPacks ?? [],
+    definitionOfReady: phaseEntry.definitionOfReady ?? [],
+    definitionOfDone: phaseEntry.definitionOfDone ?? [],
+    requiredArtifacts: phaseEntry.requiredArtifacts ?? [],
+    skills: phaseEntry.skills ?? []
+  };
+}
+
+/**
+ * Check compliance of a project against its current phase requirements.
+ *
+ * Compares the current state against the phase's DoR/DoD criteria and
+ * required artifacts.
+ *
+ * @param {string} projectName
+ * @returns {Promise<object>} Compliance report.
+ */
+export async function checkCompliance(projectName) {
+  const state = await readState(projectName);
+  const policy = await getPhasePolicy(projectName);
+
+  const phaseStatus = state.currentPhase?.status ?? 'unknown';
+  const blockers = state.blockedBy ?? [];
+
+  // Parse doneCriteria from state: "[x] criterion" or "[ ] criterion" or plain string.
+  const stateCriteriaMap = new Map();
+  for (const entry of state.doneCriteria ?? []) {
+    const matched = entry.match(/^\[(.)\] (.+)$/);
+    if (matched) {
+      stateCriteriaMap.set(matched[2], matched[1] === 'x');
+    } else {
+      stateCriteriaMap.set(entry, false);
+    }
+  }
+
+  // DoR check — compare phase definitionOfReady against state doneCriteria.
+  const dorCriteria = policy.definitionOfReady.map((criterion) => ({
+    criterion,
+    met: stateCriteriaMap.get(criterion) === true
+  }));
+  const dorMet = dorCriteria.filter((c) => c.met).length;
+
+  // DoD check — compare phase definitionOfDone against state doneCriteria.
+  const dodCriteria = policy.definitionOfDone.map((criterion) => ({
+    criterion,
+    met: stateCriteriaMap.get(criterion) === true
+  }));
+  const dodMet = dodCriteria.filter((c) => c.met).length;
+
+  // Artifact check — compare requiredArtifacts against state artifacts keys.
+  const stateArtifactKeys = Object.keys(state.artifacts ?? {});
+  const missing = policy.requiredArtifacts.filter(
+    (required) => !stateArtifactKeys.includes(required)
+  );
+  const present = policy.requiredArtifacts.filter(
+    (required) => stateArtifactKeys.includes(required)
+  );
+
+  // Overall status.
+  const hasBlockers = blockers.length > 0;
+  const allDodMet = dodMet === policy.definitionOfDone.length;
+  const noMissingArtifacts = missing.length === 0;
+
+  let overallStatus;
+  if (!hasBlockers && allDodMet && noMissingArtifacts) {
+    overallStatus = 'compliant';
+  } else if (dodMet === 0 && present.length === 0) {
+    overallStatus = 'non-compliant';
+  } else {
+    overallStatus = 'partial';
+  }
+
+  return {
+    project: state.project?.name ?? projectName,
+    phase: policy.phase,
+    phaseStatus,
+    dorStatus: {
+      total: dorCriteria.length,
+      met: dorMet,
+      criteria: dorCriteria
+    },
+    dodStatus: {
+      total: dodCriteria.length,
+      met: dodMet,
+      criteria: dodCriteria
+    },
+    artifactStatus: {
+      required: policy.requiredArtifacts,
+      present,
+      missing
+    },
+    blockers,
+    overallStatus
+  };
 }
 
 /**

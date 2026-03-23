@@ -1,0 +1,499 @@
+{
+  "version": "1.0.0",
+  "lifecycleModel": "flagship-foundry-11",
+  "loops": [
+    {
+      "id": "intent-to-architecture",
+      "name": "Intent to Architecture",
+      "phases": ["discover", "define", "visualize", "architect"],
+      "description": "Transform ambiguous intent into clear architectural artifacts"
+    },
+    {
+      "id": "architecture-to-implementation",
+      "name": "Architecture to Implementation",
+      "phases": ["plan", "implement", "verify", "release"],
+      "description": "Execute bounded work orders with independent verification"
+    },
+    {
+      "id": "operate-to-improve",
+      "name": "Operate to Improve",
+      "phases": ["operate", "diagnose", "improve"],
+      "description": "Observe production behavior and feed learnings back"
+    }
+  ],
+  "phases": [
+    {
+      "id": "discover",
+      "name": "Discover",
+      "order": 1,
+      "loop": "intent-to-architecture",
+      "objective": "Clarify user, problem, constraints, risks, and desired outcomes",
+      "primaryAgent": "orchestrator",
+      "supportingAgents": ["context-curator"],
+      "principles": [
+        "artifact-authority",
+        "blast-radius-before-build",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": ["guardrail:workspace-governance"],
+      "definitionOfReady": [
+        "Problem area identified",
+        "Stakeholders or users named",
+        "Initial constraints listed"
+      ],
+      "definitionOfDone": [
+        "Problem statement written and unambiguous",
+        "User or stakeholder map complete",
+        "Constraints documented",
+        "Risks identified",
+        "Glossary started"
+      ],
+      "requiredArtifacts": [
+        "problem-statement",
+        "stakeholder-map",
+        "constraints-list"
+      ],
+      "visualizationTypes": [
+        "system-context-diagram",
+        "capability-map",
+        "domain-map"
+      ],
+      "glossaryCategories": [
+        "system-architecture",
+        "boundaries-and-responsibility"
+      ],
+      "skills": ["/define-intent"],
+      "nextPhase": "define",
+      "previousPhase": null
+    },
+    {
+      "id": "define",
+      "name": "Define",
+      "order": 2,
+      "loop": "intent-to-architecture",
+      "objective": "Establish scope, acceptance criteria, non-goals, and shared glossary",
+      "primaryAgent": "systems-architect",
+      "supportingAgents": ["context-curator"],
+      "principles": [
+        "artifact-authority",
+        "blast-radius-before-build",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": ["guardrail:workspace-governance"],
+      "definitionOfReady": [
+        "Problem statement approved and unambiguous",
+        "Stakeholder map present",
+        "Constraints list present"
+      ],
+      "definitionOfDone": [
+        "Scope document written with explicit in-scope and non-goals sections",
+        "Acceptance criteria written in Given/When/Then format (3-10 statements)",
+        "Glossary contains 5-15 key terms with definitions",
+        "Rollback plan documented",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "scope-document",
+        "acceptance-criteria",
+        "glossary",
+        "rollback-plan"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [
+        "system-architecture",
+        "boundaries-and-responsibility",
+        "data-and-state"
+      ],
+      "skills": ["/define-intent"],
+      "nextPhase": "visualize",
+      "previousPhase": "discover"
+    },
+    {
+      "id": "visualize",
+      "name": "Visualize",
+      "order": 3,
+      "loop": "intent-to-architecture",
+      "objective": "Produce system diagrams, trust boundary views, and data-flow models",
+      "primaryAgent": "systems-architect",
+      "supportingAgents": ["context-curator"],
+      "principles": [
+        "artifact-authority",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": ["guardrail:workspace-governance"],
+      "definitionOfReady": [
+        "Scope document approved",
+        "Acceptance criteria defined",
+        "Glossary present"
+      ],
+      "definitionOfDone": [
+        "C4 Level 1 context diagram produced and saved",
+        "C4 Level 2 container diagram produced and saved",
+        "Trust boundaries annotated on at least one diagram",
+        "Data-flow directions labeled",
+        "External dependencies identified",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "c4-context-diagram",
+        "c4-container-diagram",
+        "trust-boundary-diagram"
+      ],
+      "visualizationTypes": [
+        "system-context",
+        "container",
+        "component",
+        "trust-boundary"
+      ],
+      "glossaryCategories": [
+        "system-architecture",
+        "boundaries-and-responsibility"
+      ],
+      "skills": ["/c4-diagram-generator", "/define-intent"],
+      "nextPhase": "architect",
+      "previousPhase": "define"
+    },
+    {
+      "id": "architect",
+      "name": "Architect",
+      "order": 4,
+      "loop": "intent-to-architecture",
+      "objective": "Define structure, boundaries, contracts, and record key decisions as ADRs",
+      "primaryAgent": "systems-architect",
+      "supportingAgents": ["security-reviewer"],
+      "principles": [
+        "artifact-authority",
+        "independent-verification",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": ["guardrail:workspace-governance"],
+      "definitionOfReady": [
+        "Diagrams produced and approved",
+        "Trust boundaries identified",
+        "External dependencies documented"
+      ],
+      "definitionOfDone": [
+        "At least one ADR written for each significant decision",
+        "Interface definitions and schemas documented",
+        "State models produced for any stateful components",
+        "Security reviewer has signed off on trust boundary model",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "architecture-decision-records",
+        "interface-definitions",
+        "schemas",
+        "state-models"
+      ],
+      "visualizationTypes": [
+        "component",
+        "trust-boundary",
+        "sequence"
+      ],
+      "glossaryCategories": [
+        "system-architecture",
+        "boundaries-and-responsibility",
+        "data-and-state"
+      ],
+      "skills": ["/adr-writer"],
+      "nextPhase": "plan",
+      "previousPhase": "visualize"
+    },
+    {
+      "id": "plan",
+      "name": "Plan",
+      "order": 5,
+      "loop": "architecture-to-implementation",
+      "objective": "Decompose architecture into bounded, independently-verifiable work orders",
+      "primaryAgent": "orchestrator",
+      "supportingAgents": ["systems-architect"],
+      "principles": [
+        "artifact-authority",
+        "blast-radius-before-build",
+        "approval-at-plan-boundary",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": ["guardrail:workspace-governance"],
+      "definitionOfReady": [
+        "ADRs approved",
+        "Contracts and schemas defined",
+        "Acceptance criteria from define phase present"
+      ],
+      "definitionOfDone": [
+        "Work order tree created with one work order per bounded slice",
+        "Each work order has explicit file scope, acceptance criteria, and verification commands",
+        "Task state written to current-task.json",
+        "Verification plan documented",
+        "Human has approved the plan (unless auto-approval policy is active)",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "work-order-tree",
+        "task-state",
+        "verification-plan"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [
+        "system-architecture",
+        "boundaries-and-responsibility"
+      ],
+      "skills": ["/scope-chunker", "/sdlc-phase-router", "/continuity-writer"],
+      "nextPhase": "implement",
+      "previousPhase": "architect"
+    },
+    {
+      "id": "implement",
+      "name": "Implement",
+      "order": 6,
+      "loop": "architecture-to-implementation",
+      "objective": "Transform approved work orders into working code, configuration, and infrastructure within declared scope",
+      "primaryAgent": "builder",
+      "supportingAgents": ["context-curator"],
+      "principles": [
+        "artifact-authority",
+        "blast-radius-before-build",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": [
+        "guardrail:workspace-governance",
+        "guardrail:nx-monorepo",
+        "guardrail:react-vite-ui",
+        "guardrail:chrome-extension-mv3",
+        "guardrail:terminal-agent-adapters"
+      ],
+      "definitionOfReady": [
+        "Work order has explicit file scope",
+        "Acceptance criteria defined and testable",
+        "Contracts and schemas available",
+        "Applicable guardrail packs identified",
+        "Verification commands specified in work order"
+      ],
+      "definitionOfDone": [
+        "All acceptance criteria from work order are met",
+        "Tests added for every new public function or behavior",
+        "All tests passing",
+        "No files modified outside declared file scope",
+        "Verification commands run and passing",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "source-code",
+        "tests",
+        "configuration"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [],
+      "skills": [],
+      "nextPhase": "verify",
+      "previousPhase": "plan"
+    },
+    {
+      "id": "verify",
+      "name": "Verify",
+      "order": 7,
+      "loop": "architecture-to-implementation",
+      "objective": "Independently validate implementation against acceptance criteria and produce evidence bundles",
+      "primaryAgent": "verifier",
+      "supportingAgents": ["security-reviewer", "performance-reviewer"],
+      "principles": [
+        "artifact-authority",
+        "independent-verification",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": [
+        "guardrail:workspace-governance",
+        "guardrail:nx-monorepo",
+        "guardrail:react-vite-ui",
+        "guardrail:chrome-extension-mv3",
+        "guardrail:terminal-agent-adapters"
+      ],
+      "definitionOfReady": [
+        "Implementation marked done by builder",
+        "All acceptance criteria documented",
+        "Verification commands available in task state"
+      ],
+      "definitionOfDone": [
+        "All acceptance criteria independently verified by verifier (not builder)",
+        "Evidence bundle produced with test results",
+        "Security reviewer has signed off on any security-relevant changes",
+        "Performance reviewer has signed off on any performance-relevant changes",
+        "Compliance report produced if applicable",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "evidence-bundle",
+        "test-results",
+        "compliance-report"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [],
+      "skills": ["/nx-verification", "/evidence-collector"],
+      "nextPhase": "release",
+      "previousPhase": "implement"
+    },
+    {
+      "id": "release",
+      "name": "Release",
+      "order": 8,
+      "loop": "architecture-to-implementation",
+      "objective": "Safely promote verified artifacts to production with full handoff documentation",
+      "primaryAgent": "docs-release-agent",
+      "supportingAgents": ["verifier"],
+      "principles": [
+        "artifact-authority",
+        "approval-at-plan-boundary",
+        "independent-verification",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": ["guardrail:workspace-governance"],
+      "definitionOfReady": [
+        "Evidence bundle approved by verifier",
+        "All acceptance criteria passed",
+        "Human approval obtained for production promotion"
+      ],
+      "definitionOfDone": [
+        "Release notes written and saved",
+        "Deployment logs captured",
+        "Handoff documents generated",
+        "Continuity state updated to reflect released version",
+        "Operational runbook updated if applicable"
+      ],
+      "requiredArtifacts": [
+        "release-notes",
+        "deployment-logs",
+        "handoff-document"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [],
+      "skills": ["/handoff-generator", "/continuity-writer"],
+      "nextPhase": "operate",
+      "previousPhase": "verify"
+    },
+    {
+      "id": "operate",
+      "name": "Operate",
+      "order": 9,
+      "loop": "operate-to-improve",
+      "objective": "Observe production system behavior, maintain SLOs, and establish telemetry baselines",
+      "primaryAgent": "orchestrator",
+      "supportingAgents": ["performance-reviewer"],
+      "principles": [
+        "artifact-authority",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": [
+        "guardrail:workspace-governance",
+        "guardrail:telemetry-and-observability"
+      ],
+      "definitionOfReady": [
+        "Release artifacts deployed",
+        "Monitoring and alerting configured",
+        "SLO baselines defined"
+      ],
+      "definitionOfDone": [
+        "Dashboards live and showing baseline signals",
+        "Alerts configured for SLO thresholds",
+        "SLO baseline snapshot recorded",
+        "Runbook written or updated",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "dashboards",
+        "alert-configurations",
+        "slo-baselines",
+        "runbook"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [
+        "observability-and-operations"
+      ],
+      "skills": [],
+      "nextPhase": "diagnose",
+      "previousPhase": "release"
+    },
+    {
+      "id": "diagnose",
+      "name": "Diagnose",
+      "order": 10,
+      "loop": "operate-to-improve",
+      "objective": "Investigate incidents, trace root causes, and document findings for remediation",
+      "primaryAgent": "orchestrator",
+      "supportingAgents": ["verifier", "security-reviewer"],
+      "principles": [
+        "artifact-authority",
+        "fix-memory-compounds",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": [
+        "guardrail:workspace-governance",
+        "guardrail:telemetry-and-observability"
+      ],
+      "definitionOfReady": [
+        "Incident or anomaly identified and recorded",
+        "Telemetry signals available for inspection",
+        "Reproduction steps or evidence captured"
+      ],
+      "definitionOfDone": [
+        "Incident notes written with timeline and impact",
+        "Traces and relevant logs captured",
+        "Root cause analysis documented",
+        "Performance profiles captured if applicable",
+        "Remediation recommendations written",
+        "Continuity state updated"
+      ],
+      "requiredArtifacts": [
+        "incident-notes",
+        "traces",
+        "root-cause-analysis",
+        "performance-profiles"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [
+        "observability-and-operations"
+      ],
+      "skills": ["/evidence-collector"],
+      "nextPhase": "improve",
+      "previousPhase": "operate"
+    },
+    {
+      "id": "improve",
+      "name": "Improve",
+      "order": 11,
+      "loop": "operate-to-improve",
+      "objective": "Convert operational learnings into guardrails, updated ADRs, and training data that compound over time",
+      "primaryAgent": "docs-release-agent",
+      "supportingAgents": ["orchestrator"],
+      "principles": [
+        "artifact-authority",
+        "fix-memory-compounds",
+        "continuity-is-mandatory"
+      ],
+      "guardrailPacks": ["guardrail:workspace-governance"],
+      "definitionOfReady": [
+        "Root cause analysis approved",
+        "Remediation recommendations reviewed by human"
+      ],
+      "definitionOfDone": [
+        "Postmortem document written and saved",
+        "Affected ADRs updated or new ADRs created",
+        "New guardrail rules added to applicable packs where appropriate",
+        "Learning record saved for future training context",
+        "Continuity state updated",
+        "Remediation work orders created in plan phase if code changes are needed"
+      ],
+      "requiredArtifacts": [
+        "postmortem",
+        "adr-updates",
+        "guardrail-updates",
+        "learning-records"
+      ],
+      "visualizationTypes": [],
+      "glossaryCategories": [
+        "observability-and-operations"
+      ],
+      "skills": ["/continuity-writer", "/adr-writer"],
+      "nextPhase": "discover",
+      "previousPhase": "diagnose"
+    }
+  ]
+}

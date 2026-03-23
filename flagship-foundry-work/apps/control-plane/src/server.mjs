@@ -13,7 +13,7 @@ import { analyzeKnowledgeGaps, writeGapReport } from '../../../packages/core/src
 import { buildFocusView, writeFocusView } from '../../../packages/core/src/focus-views.mjs';
 import { scaffoldEnvironment } from '../../../packages/core/src/environment-scaffold.mjs';
 import { assessSystemImpact } from '../../../services/system-orchestrator/index.mjs';
-import { initProject, readState, transitionPhase, addBlocker, resolveBlocker, getResumeChecklist } from '../../../packages/core/src/continuity.mjs';
+import { initProject, readState, transitionPhase, addBlocker, resolveBlocker, getResumeChecklist, getPhasePolicy, checkCompliance } from '../../../packages/core/src/continuity.mjs';
 
 const port = Number(process.env.FLAGSHIP_PORT ?? 4010);
 const serverFile = fileURLToPath(import.meta.url);
@@ -322,6 +322,39 @@ async function handler(request, response) {
     if (request.method === 'GET' && projectResumeMatch) {
       const checklist = await getResumeChecklist(projectResumeMatch[1]);
       sendJson(response, 200, checklist);
+      return;
+    }
+
+    const projectPolicyMatch = pathname.match(/^\/projects\/([^/]+)\/policy$/);
+    if (request.method === 'GET' && projectPolicyMatch) {
+      const policy = await getPhasePolicy(projectPolicyMatch[1]);
+      sendJson(response, 200, policy);
+      return;
+    }
+
+    const projectComplianceMatch = pathname.match(/^\/projects\/([^/]+)\/compliance$/);
+    if (request.method === 'GET' && projectComplianceMatch) {
+      const report = await checkCompliance(projectComplianceMatch[1]);
+      sendJson(response, 200, report);
+      return;
+    }
+
+    // ── Ontology ──
+    if (request.method === 'GET' && pathname === '/ontology/phases') {
+      const data = await readJson(path.join(repoRoot, 'ontology', 'phase-lifecycle.json'));
+      sendJson(response, 200, data);
+      return;
+    }
+
+    if (request.method === 'GET' && pathname === '/ontology/glossary') {
+      const data = await readJson(path.join(repoRoot, 'ontology', 'glossary.json'));
+      sendJson(response, 200, data);
+      return;
+    }
+
+    if (request.method === 'GET' && pathname === '/ontology/principles') {
+      const data = await readJson(path.join(repoRoot, 'ontology', 'principle-catalog.json'));
+      sendJson(response, 200, data);
       return;
     }
 

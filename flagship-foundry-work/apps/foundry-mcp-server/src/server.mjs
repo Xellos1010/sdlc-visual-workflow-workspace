@@ -20,7 +20,7 @@ import { writeFocusView } from "../../../packages/core/src/focus-views.mjs";
 import { ingestKnowledgeSources } from "../../../packages/core/src/knowledge-base.mjs";
 import { createRunForPlan, transitionRun } from "../../../packages/core/src/runs.mjs";
 import { repoRoot, readJson } from "../../../packages/core/src/io.mjs";
-import { initProject, readState, transitionPhase, getResumeChecklist } from "../../../packages/core/src/continuity.mjs";
+import { initProject, readState, transitionPhase, getResumeChecklist, getPhasePolicy, checkCompliance } from "../../../packages/core/src/continuity.mjs";
 
 const server = new Server(
   {
@@ -371,6 +371,28 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           },
           required: ["projectName", "phase"]
         }
+      },
+      {
+        name: "get-phase-policy",
+        description: "Get the policy for the current phase of a project, including principles, agents, DoR/DoD, required artifacts, guardrail packs, and skills",
+        inputSchema: {
+          type: "object",
+          properties: {
+            projectName: { type: "string", description: "Project identifier" }
+          },
+          required: ["projectName"]
+        }
+      },
+      {
+        name: "check-compliance",
+        description: "Check compliance of a project against its current phase requirements, comparing DoR/DoD criteria and required artifacts",
+        inputSchema: {
+          type: "object",
+          properties: {
+            projectName: { type: "string", description: "Project identifier" }
+          },
+          required: ["projectName"]
+        }
       }
     ]
   };
@@ -616,6 +638,26 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     try {
       const state = await transitionPhase(projectName, phase, notes || '');
       return { content: [{ type: "text", text: JSON.stringify(state, null, 2) }] };
+    } catch (err) {
+      return { content: [{ type: "text", text: `Error: ${err.message}` }], isError: true };
+    }
+  }
+
+  if (name === "get-phase-policy") {
+    const { projectName } = args;
+    try {
+      const policy = await getPhasePolicy(projectName);
+      return { content: [{ type: "text", text: JSON.stringify(policy, null, 2) }] };
+    } catch (err) {
+      return { content: [{ type: "text", text: `Error: ${err.message}` }], isError: true };
+    }
+  }
+
+  if (name === "check-compliance") {
+    const { projectName } = args;
+    try {
+      const report = await checkCompliance(projectName);
+      return { content: [{ type: "text", text: JSON.stringify(report, null, 2) }] };
     } catch (err) {
       return { content: [{ type: "text", text: `Error: ${err.message}` }], isError: true };
     }

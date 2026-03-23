@@ -10,7 +10,7 @@ import { ingestKnowledgeSources } from '../../../packages/core/src/knowledge-bas
 import { analyzeKnowledgeGaps, writeGapReport } from '../../../packages/core/src/gap-analysis.mjs';
 import { writeFocusView } from '../../../packages/core/src/focus-views.mjs';
 import { scaffoldEnvironment } from '../../../packages/core/src/environment-scaffold.mjs';
-import { initProject, readState, transitionPhase, addBlocker, resolveBlocker, getResumeChecklist } from '../../../packages/core/src/continuity.mjs';
+import { initProject, readState, transitionPhase, addBlocker, resolveBlocker, getResumeChecklist, getPhasePolicy, checkCompliance } from '../../../packages/core/src/continuity.mjs';
 import { compilePlanToRalph } from '../../../packages/core/src/ralph-compiler.mjs';
 import { syncRalphProgress } from '../../../packages/core/src/ralph-state-sync.mjs';
 
@@ -71,7 +71,9 @@ async function main() {
         'add-blocker': 'add-blocker <projectName> <description...>',
         'resolve-blocker': 'resolve-blocker <projectName> <index>',
         'compile-ralph': 'compile-ralph <planPath>',
-        'sync-ralph': 'sync-ralph <prdPath> <projectName>'
+        'sync-ralph': 'sync-ralph <prdPath> <projectName>',
+        policy: 'policy <projectName>',
+        compliance: 'compliance <projectName>'
       },
       cliRoot
     });
@@ -227,6 +229,20 @@ async function main() {
     if (!prdPath || !projectName) { console.error('Usage: sync-ralph <prdPath> <projectName>'); process.exit(1); }
     const resolvedPrdPath = resolveMaybe(prdPath);
     printJson(await syncRalphProgress(resolvedPrdPath, projectName));
+    return;
+  }
+
+  if (command === 'policy') {
+    const [projectName] = args;
+    if (!projectName) { console.error('Usage: policy <projectName>'); process.exit(1); }
+    printJson(await getPhasePolicy(projectName));
+    return;
+  }
+
+  if (command === 'compliance') {
+    const [projectName] = args;
+    if (!projectName) { console.error('Usage: compliance <projectName>'); process.exit(1); }
+    printJson(await checkCompliance(projectName));
     return;
   }
 

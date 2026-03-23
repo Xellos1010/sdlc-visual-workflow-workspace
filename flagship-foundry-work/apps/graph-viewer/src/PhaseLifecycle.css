@@ -1,0 +1,651 @@
+/* ── Phase Lifecycle View root ─────────────────────────────────────────────── */
+
+.plv-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #0f1117;
+  color: #e2e8f0;
+  overflow: hidden;
+}
+
+.plv-loading,
+.plv-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 10px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.plv-error-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f87171;
+}
+
+.plv-error-message {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ── View header ─────────────────────────────────────────────────────────────── */
+
+.plv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: #1a1d27;
+  border-bottom: 1px solid #2d3148;
+  flex-shrink: 0;
+}
+
+.plv-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.plv-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #a5b4fc;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.plv-project-name {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.plv-current-phase-badge {
+  font-size: 12px;
+  color: #94a3b8;
+  background: #252836;
+  border: 1px solid #3a3f5c;
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+.plv-current-phase-badge strong {
+  color: #6366f1;
+}
+
+/* ── Pipeline scrollable area ────────────────────────────────────────────────── */
+
+.plv-pipeline-scroll {
+  flex-shrink: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 20px;
+  border-bottom: 1px solid #2d3148;
+}
+
+.plv-pipeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: max-content;
+}
+
+/* ── Loop groups ─────────────────────────────────────────────────────────────── */
+
+.loop-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-radius: 10px;
+  padding: 10px 12px 12px;
+  border: 1px solid transparent;
+}
+
+.loop-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  cursor: default;
+}
+
+.loop-group-phases {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Loop color themes */
+.loop-intent {
+  background: rgba(59, 91, 219, 0.08);
+  border-color: rgba(59, 91, 219, 0.3);
+}
+
+.loop-intent .loop-group-label {
+  color: #93c5fd;
+}
+
+.loop-arch {
+  background: rgba(22, 163, 74, 0.08);
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+.loop-arch .loop-group-label {
+  color: #86efac;
+}
+
+.loop-operate {
+  background: rgba(234, 88, 12, 0.08);
+  border-color: rgba(234, 88, 12, 0.3);
+}
+
+.loop-operate .loop-group-label {
+  color: #fdba74;
+}
+
+/* ── Loop phase slot (phase + gate together) ─────────────────────────────────── */
+
+.loop-phase-slot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ── Phase node card ─────────────────────────────────────────────────────────── */
+
+.phase-node {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 120px;
+  padding: 10px 10px 8px;
+  border-radius: 8px;
+  border: 2px solid #3a3f5c;
+  background: #1a1d27;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s,
+    background 0.15s;
+  position: relative;
+}
+
+.phase-node:hover {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+}
+
+.phase-node:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Status variants */
+.phase-node-completed {
+  border-left: 3px solid #16a34a;
+  background: #111a14;
+  opacity: 0.85;
+}
+
+.phase-node-completed .phase-node-name {
+  color: #86efac;
+}
+
+.phase-node-current {
+  border-left: 3px solid #6366f1;
+  background: #1a1d27;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+  animation: plv-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes plv-pulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(99, 102, 241, 0.25); }
+  50%       { box-shadow: 0 0 14px rgba(99, 102, 241, 0.5); }
+}
+
+.phase-node-pending {
+  border-left: 3px solid #3a3f5c;
+  background: #131519;
+}
+
+.phase-node-pending .phase-node-name {
+  color: #64748b;
+}
+
+/* Selected state */
+.phase-node-selected {
+  border-color: #818cf8 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Phase node internals */
+.phase-node-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.phase-node-order {
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.05em;
+}
+
+.phase-node-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.2;
+}
+
+.phase-node-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.phase-node-agent-badge {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: #252836;
+  border: 1px solid #3a3f5c;
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: #a5b4fc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+.phase-node-principle-count {
+  font-size: 9px;
+  color: #64748b;
+  background: #1e2030;
+  border: 1px solid #2d3148;
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
+/* Status dot */
+.phase-node-status-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.phase-node-status-completed {
+  background: #16a34a;
+  color: #fff;
+}
+
+.phase-node-status-current {
+  background: #6366f1;
+  box-shadow: 0 0 4px rgba(99, 102, 241, 0.8);
+  animation: plv-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes plv-dot-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.phase-node-status-pending {
+  background: #2d3148;
+  border: 1px solid #3a3f5c;
+}
+
+/* DoR progress bar */
+.phase-node-dor {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.phase-node-dor-bar {
+  flex: 1;
+  height: 3px;
+  background: #2d3148;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.phase-node-dor-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.phase-node-dor-fill-completed {
+  background: #16a34a;
+}
+
+.phase-node-dor-fill-current {
+  background: #6366f1;
+}
+
+.phase-node-dor-fill-pending {
+  background: #3a3f5c;
+}
+
+.phase-node-dor-label {
+  font-size: 9px;
+  color: #475569;
+  white-space: nowrap;
+}
+
+/* ── Gate indicator ──────────────────────────────────────────────────────────── */
+
+.gate-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.gate-indicator-passed {
+  color: #16a34a;
+}
+
+.gate-indicator-partial {
+  color: #ca8a04;
+}
+
+.gate-indicator-blocked {
+  color: #dc2626;
+}
+
+.gate-indicator-pending {
+  color: #3a3f5c;
+}
+
+.gate-indicator:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gate-indicator-arrow {
+  display: block;
+}
+
+/* ── Principle card ──────────────────────────────────────────────────────────── */
+
+.principle-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 10px;
+  border-left: 3px solid #6366f1;
+  background: #1e2130;
+  border-radius: 0 6px 6px 0;
+}
+
+.principle-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.principle-card-description {
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.4;
+}
+
+.principle-card-phases {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.principle-phase-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.principle-phase-dot-active {
+  background: #6366f1;
+}
+
+.principle-phase-dot-inactive {
+  background: #2d3148;
+}
+
+/* ── Detail panel ────────────────────────────────────────────────────────────── */
+
+.phase-detail-panel {
+  flex: 1;
+  overflow-y: auto;
+  border-top: 2px solid #3a3f5c;
+  background: #13151f;
+  padding: 16px 20px 20px;
+  transition: border-color 0.2s;
+  min-height: 0;
+}
+
+.phase-detail-panel-completed {
+  border-top-color: #16a34a;
+}
+
+.phase-detail-panel-current {
+  border-top-color: #6366f1;
+}
+
+.phase-detail-panel-pending {
+  border-top-color: #3a3f5c;
+}
+
+.phase-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.phase-detail-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phase-detail-order {
+  font-size: 13px;
+  font-weight: 700;
+  color: #475569;
+}
+
+.phase-detail-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.phase-detail-status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.phase-detail-status-badge-completed {
+  background: #14402a;
+  color: #86efac;
+  border: 1px solid #16a34a;
+}
+
+.phase-detail-status-badge-current {
+  background: #1e2456;
+  color: #a5b4fc;
+  border: 1px solid #6366f1;
+}
+
+.phase-detail-status-badge-pending {
+  background: #1f2937;
+  color: #94a3b8;
+  border: 1px solid #3a3f5c;
+}
+
+.phase-detail-close {
+  background: none;
+  border: none;
+  color: #475569;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.phase-detail-close:hover {
+  color: #e2e8f0;
+  background: #252836;
+}
+
+.phase-detail-objective {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  border-left: 3px solid #2d3148;
+  padding-left: 10px;
+}
+
+.phase-detail-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .phase-detail-columns {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.phase-detail-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.phase-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.phase-detail-section-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.phase-detail-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.phase-detail-checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  font-size: 12px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+.phase-detail-check-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  border: 1.5px solid #3a3f5c;
+  border-radius: 3px;
+  margin-top: 1px;
+}
+
+.phase-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.phase-detail-tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #252836;
+  border: 1px solid #3a3f5c;
+  color: #94a3b8;
+}
+
+.phase-detail-tag-primary {
+  background: #1e2456;
+  border-color: #6366f1;
+  color: #a5b4fc;
+}
+
+.phase-detail-tag-supporting {
+  background: #1e2030;
+  border-color: #3a3f5c;
+  color: #94a3b8;
+}
+
+.phase-detail-tag-artifact {
+  background: #14402a;
+  border-color: #16a34a;
+  color: #86efac;
+}
+
+.phase-detail-tag-viz {
+  background: #3d3412;
+  border-color: #b45309;
+  color: #fde68a;
+}
+
+.phase-detail-tag-skill {
+  background: #2d1b5a;
+  border-color: #7e22ce;
+  color: #d8b4fe;
+}
+
+.phase-detail-tag-guardrail {
+  background: #1f2937;
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+
+.phase-detail-principle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

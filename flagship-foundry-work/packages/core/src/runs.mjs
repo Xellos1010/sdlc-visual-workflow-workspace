@@ -18,7 +18,12 @@ function flattenTasks(plan) {
 export async function createRunForPlan(planId, options = {}) {
   const plan = await loadPlan(planId);
   const runId = makeId('run', `${planId}-${Date.now()}`);
-  const tasks = flattenTasks(plan).map((task) => ({ ...task, status: 'queued' }));
+  const tasks = flattenTasks(plan).map((task) => ({
+    ...task,
+    status: 'queued',
+    verificationResults: [],
+    evidenceArtifacts: []
+  }));
   const run = {
     id: runId,
     planId,
@@ -83,6 +88,7 @@ function activateNextTasks(run) {
     if (task.status !== 'queued') continue;
     if (byProject.has(task.projectPlanId)) continue;
     task.status = 'running';
+    task.startedAt = nowIso();
     byProject.add(task.projectPlanId);
     const session = run.agentSessions.find((entry) => entry.taskId === task.id);
     if (session) session.status = 'running';
@@ -122,6 +128,58 @@ export async function transitionRun(runId, action) {
       if (session.status !== 'done') session.status = 'stopped';
     }
   }
+  run.updatedAt = nowIso();
+  await writeJson(runFilePath(runId), run);
+  return run;
+}
+
+function stampTaskCompletion(task, finalStatus) {
+  const now = nowIso();
+  task.status = finalStatus;
+  task.completedAt = now;
+  if (task.startedAt) {
+    task.durationMs = new Date(now).getTime() - new Date(task.startedAt).getTime();
+  }
+}
+
+export async function completeTask(runId, taskId, options = {}) {
+  const run = await loadRun(runId);
+  const task = run.tasks.find((t) => t.id === taskId);
+  if (!task) throw new Error(`Task ${taskId} not found in run ${runId}`);
+  stampTaskCompletion(task, 'completed');
+  if (options.verificationResults) {
+    task.verificationResults = options.verificationResults;
+  }
+  if (options.evidenceArtifacts) {
+    task.evidenceArtifacts = options.evidenceArtifacts;
+  }
+  const session = run.agentSessions.find((s) => s.taskId === taskId);
+  if (session) session.status = 'done';
+  activateNextTasks(run);
+  const allDone = run.tasks.every((t) => t.status === 'completed' || t.status === 'stopped' || t.status === 'failed');
+  if (allDone) {
+    run.status = 'completed';
+    run.completedAt = nowIso();
+  }
+  run.updatedAt = nowIso();
+  await writeJson(runFilePath(runId), run);
+  return run;
+}
+
+export async function failTask(runId, taskId, options = {}) {
+  const run = await loadRun(runId);
+  const task = run.tasks.find((t) => t.id === taskId);
+  if (!task) throw new Error(`Task ${taskId} not found in run ${runId}`);
+  stampTaskCompletion(task, 'failed');
+  if (options.verificationResults) {
+    task.verificationResults = options.verificationResults;
+  }
+  if (options.evidenceArtifacts) {
+    task.evidenceArtifacts = options.evidenceArtifacts;
+  }
+  const session = run.agentSessions.find((s) => s.taskId === taskId);
+  if (session) session.status = 'failed';
+  run.status = 'failed';
   run.updatedAt = nowIso();
   await writeJson(runFilePath(runId), run);
   return run;

@@ -16,6 +16,12 @@ import { ProjectNode } from './nodes/ProjectNode.tsx'
 import { DefaultNode } from './nodes/DefaultNode.tsx'
 import { buildHierarchicalLayout } from './layout.ts'
 import type { EcosystemGraph, EcosystemManifest, FoundryEdge, FoundryNode } from './types.ts'
+import { PhaseLifecycleView } from './views/PhaseLifecycleView.tsx'
+import { RunTimelineView } from './views/RunTimelineView.tsx'
+import { GlossaryPanel } from './components/GlossaryPanel.tsx'
+import { PrincipleEnforcementBar } from './components/PrincipleEnforcementBar.tsx'
+
+type AppView = 'graph' | 'lifecycle' | 'runs' | 'glossary'
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:4010'
 
@@ -161,19 +167,47 @@ function NodeDetail({ info }: { info: SelectedNodeInfo }) {
   )
 }
 
+// ── API error banner ──────────────────────────────────────────────────────────
+
+interface ApiErrorBannerProps {
+  message: string;
+}
+
+function ApiErrorBanner({ message }: ApiErrorBannerProps) {
+  return (
+    <div className="api-error-banner" role="alert">
+      <span className="api-error-banner-icon" aria-hidden="true">!</span>
+      <span className="api-error-banner-text">
+        Control plane unavailable — {message}. Some views may show cached or placeholder data.
+      </span>
+    </div>
+  )
+}
+
 // ── Root App ──────────────────────────────────────────────────────────────────
 
 export default function App() {
+  const [activeView, setActiveView] = useState<AppView>('graph')
+  const [glossarySidebarOpen, setGlossarySidebarOpen] = useState(false)
+
+  // ── Ecosystem state ───────────────────────────────────────────────────────
   const [ecosystems, setEcosystems] = useState<EcosystemManifest[]>([])
   const [ecosystemsLoading, setEcosystemsLoading] = useState(true)
   const [ecosystemsError, setEcosystemsError] = useState<string | null>(null)
-
   const [selectedEcosystemId, setSelectedEcosystemId] = useState<string>('')
+
+  // ── Project state (for Lifecycle + Principle bar) ─────────────────────────
+  const [projectName, setProjectName] = useState<string>('')
+  const [projectInput, setProjectInput] = useState<string>('')
+
+  // ── Graph state ───────────────────────────────────────────────────────────
   const [graph, setGraph] = useState<EcosystemGraph | null>(null)
   const [graphLoading, setGraphLoading] = useState(false)
   const [graphError, setGraphError] = useState<string | null>(null)
-
   const [selectedNodeInfo, setSelectedNodeInfo] = useState<SelectedNodeInfo | null>(null)
+
+  // ── Lifecycle phase selection (lifted for cross-view potential) ───────────
+  const [currentPhase, setCurrentPhase] = useState<string | undefined>(undefined)
 
   // Fetch ecosystem list on mount
   useEffect(() => {
@@ -263,7 +297,26 @@ export default function App() {
     setSelectedNodeInfo(null)
   }, [])
 
-  const toolbarStatus = ecosystemsLoading
+  // Commit project name only on blur or Enter to avoid thrashing the bar
+  const handleProjectKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        setProjectName(projectInput.trim())
+      }
+    },
+    [projectInput],
+  )
+
+  const handleProjectBlur = useCallback(() => {
+    setProjectName(projectInput.trim())
+  }, [projectInput])
+
+  const handlePhaseSelect = useCallback((phaseId: string) => {
+    setCurrentPhase((prev) => (prev === phaseId ? undefined : phaseId))
+  }, [])
+
+  // ── Toolbar status text (graph view) ─────────────────────────────────────
+  const graphStatusText = ecosystemsLoading
     ? 'Loading ecosystems...'
     : ecosystemsError
       ? ecosystemsError
@@ -273,40 +326,27 @@ export default function App() {
           ? `${graph.nodes.length} nodes, ${graph.edges.length} edges`
           : ''
 
-  const toolbarStatusError = !!(ecosystemsError || graphError)
+  const apiIsDown = !!(ecosystemsError)
 
-  return (
-    <div className="app-shell">
-      <div className="app-toolbar">
-        <span className="app-title">Foundry Graph Viewer</span>
-        <div className="toolbar-separator" />
-        <span className="ecosystem-select-label">Ecosystem:</span>
-        <select
-          className="ecosystem-select"
-          value={selectedEcosystemId}
-          onChange={(e) => setSelectedEcosystemId(e.target.value)}
-          disabled={ecosystemsLoading || ecosystems.length === 0}
-        >
-          {ecosystems.length === 0 && !ecosystemsLoading && (
-            <option value="">No ecosystems found</option>
-          )}
-          {ecosystems.map((eco) => (
-            <option key={eco.id} value={eco.id ?? ''}>
-              {(eco.name as string) ?? eco.id}
-            </option>
-          ))}
-        </select>
-        <span className={`toolbar-status${toolbarStatusError ? ' error' : ''}`}>
-          {toolbarStatus}
-        </span>
-      </div>
+  // When switching to Glossary tab, close the sidebar (it becomes the main content)
+  function handleViewChange(view: AppView) {
+    setActiveView(view)
+    if (view === 'glossary') {
+      setGlossarySidebarOpen(false)
+    }
+  }
 
+  // ── Render graph tab content ───────────────────────────────────────────────
+  function renderGraphContent() {
+    return (
       <div className="app-content">
         <div className="graph-canvas">
           {!selectedEcosystemId && !ecosystemsLoading && (
             <div className="graph-placeholder">
               <div className="graph-placeholder-title">Select an ecosystem</div>
-              <div className="graph-placeholder-sub">Choose an ecosystem from the toolbar to explore its graph</div>
+              <div className="graph-placeholder-sub">
+                Choose an ecosystem from the toolbar to explore its graph
+              </div>
             </div>
           )}
           {graphLoading && (
@@ -350,9 +390,178 @@ export default function App() {
           info={selectedNodeInfo}
           onClose={() => setSelectedNodeInfo(null)}
         />
+
+        {glossarySidebarOpen && (
+          <GlossaryPanel
+            isOpen={glossarySidebarOpen}
+            onClose={() => setGlossarySidebarOpen(false)}
+          />
+        )}
       </div>
+    )
+  }
+
+  // ── Render lifecycle tab content ───────────────────────────────────────────
+  function renderLifecycleContent() {
+    return (
+      <div className="app-view-area">
+        <PhaseLifecycleView
+          currentPhase={currentPhase}
+          projectName={projectName || undefined}
+          onPhaseSelect={handlePhaseSelect}
+        />
+        {glossarySidebarOpen && (
+          <GlossaryPanel
+            isOpen={glossarySidebarOpen}
+            onClose={() => setGlossarySidebarOpen(false)}
+            filterPhase={currentPhase}
+          />
+        )}
+      </div>
+    )
+  }
+
+  // ── Render runs tab content ────────────────────────────────────────────────
+  function renderRunsContent() {
+    return (
+      <div className="app-view-area">
+        <RunTimelineView
+          ecosystemId={selectedEcosystemId || undefined}
+        />
+        {glossarySidebarOpen && (
+          <GlossaryPanel
+            isOpen={glossarySidebarOpen}
+            onClose={() => setGlossarySidebarOpen(false)}
+          />
+        )}
+      </div>
+    )
+  }
+
+  // ── Render glossary tab content (full view) ───────────────────────────────
+  function renderGlossaryContent() {
+    return (
+      <div className="app-view-area app-glossary-full">
+        <GlossaryPanel
+          isOpen={true}
+          onClose={() => handleViewChange('graph')}
+          filterPhase={currentPhase}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div className="app-shell">
+      {/* ── Toolbar ── */}
+      <div className="app-toolbar">
+        <span className="app-title">Foundry Graph Viewer</span>
+        <div className="toolbar-separator" />
+
+        {/* View tabs */}
+        <nav className="app-view-tabs" role="tablist" aria-label="Application views">
+          {(['graph', 'lifecycle', 'runs', 'glossary'] as AppView[]).map((view) => (
+            <button
+              key={view}
+              type="button"
+              role="tab"
+              aria-selected={activeView === view}
+              className={`app-view-tab${activeView === view ? ' app-view-tab-active' : ''}`}
+              onClick={() => handleViewChange(view)}
+            >
+              {VIEW_LABELS[view]}
+            </button>
+          ))}
+        </nav>
+
+        <div className="toolbar-separator" />
+
+        {/* Ecosystem selector — shared across all views */}
+        <span className="ecosystem-select-label">Ecosystem:</span>
+        <select
+          className="ecosystem-select"
+          value={selectedEcosystemId}
+          onChange={(e) => setSelectedEcosystemId(e.target.value)}
+          disabled={ecosystemsLoading || ecosystems.length === 0}
+          aria-label="Select ecosystem"
+        >
+          {ecosystems.length === 0 && !ecosystemsLoading && (
+            <option value="">No ecosystems found</option>
+          )}
+          {ecosystems.map((eco) => (
+            <option key={eco.id} value={eco.id ?? ''}>
+              {(eco.name as string) ?? eco.id}
+            </option>
+          ))}
+        </select>
+
+        <div className="toolbar-separator" />
+
+        {/* Project input — used by Lifecycle view and Principle bar */}
+        <label className="toolbar-project-label" htmlFor="project-input">Project:</label>
+        <input
+          id="project-input"
+          className="toolbar-project-input"
+          type="text"
+          placeholder="optional project name"
+          value={projectInput}
+          onChange={(e) => setProjectInput(e.target.value)}
+          onBlur={handleProjectBlur}
+          onKeyDown={handleProjectKeyDown}
+          aria-label="Project name for lifecycle context"
+        />
+
+        {/* Glossary sidebar toggle — only shown when not in Glossary tab */}
+        {activeView !== 'glossary' && (
+          <>
+            <div className="toolbar-separator" />
+            <button
+              type="button"
+              className={`toolbar-glossary-btn${glossarySidebarOpen ? ' toolbar-glossary-btn-active' : ''}`}
+              onClick={() => setGlossarySidebarOpen((prev) => !prev)}
+              aria-pressed={glossarySidebarOpen}
+              aria-label="Toggle glossary sidebar"
+            >
+              Glossary
+            </button>
+          </>
+        )}
+
+        {/* Status text — only meaningful for graph view */}
+        {activeView === 'graph' && (
+          <span className={`toolbar-status${ecosystemsError || graphError ? ' error' : ''}`}>
+            {graphStatusText}
+          </span>
+        )}
+      </div>
+
+      {/* ── API error banner ── */}
+      {apiIsDown && <ApiErrorBanner message={ecosystemsError ?? 'unknown error'} />}
+
+      {/* ── Principle enforcement bar — shown when a project is set ── */}
+      {projectName && (
+        <PrincipleEnforcementBar
+          currentPhase={currentPhase}
+          projectName={projectName}
+        />
+      )}
+
+      {/* ── Active view content ── */}
+      {activeView === 'graph' && renderGraphContent()}
+      {activeView === 'lifecycle' && renderLifecycleContent()}
+      {activeView === 'runs' && renderRunsContent()}
+      {activeView === 'glossary' && renderGlossaryContent()}
     </div>
   )
+}
+
+// ── Constants ─────────────────────────────────────────────────────────────────
+
+const VIEW_LABELS: Record<AppView, string> = {
+  graph: 'Graph',
+  lifecycle: 'Lifecycle',
+  runs: 'Runs',
+  glossary: 'Glossary',
 }
 
 function minimapNodeColor(node: { type?: string }): string {
