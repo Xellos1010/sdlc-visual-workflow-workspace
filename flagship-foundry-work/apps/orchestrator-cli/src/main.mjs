@@ -10,6 +10,9 @@ import { ingestKnowledgeSources } from '../../../packages/core/src/knowledge-bas
 import { analyzeKnowledgeGaps, writeGapReport } from '../../../packages/core/src/gap-analysis.mjs';
 import { writeFocusView } from '../../../packages/core/src/focus-views.mjs';
 import { scaffoldEnvironment } from '../../../packages/core/src/environment-scaffold.mjs';
+import { initProject, readState, transitionPhase, addBlocker, resolveBlocker, getResumeChecklist } from '../../../packages/core/src/continuity.mjs';
+import { compilePlanToRalph } from '../../../packages/core/src/ralph-compiler.mjs';
+import { syncRalphProgress } from '../../../packages/core/src/ralph-state-sync.mjs';
 
 const cliRoot = path.dirname(fileURLToPath(import.meta.url));
 
@@ -60,7 +63,15 @@ async function main() {
         bootstrap: 'bootstrap <importConfigPath> [changeRequestPath] [knowledgeManifestPath]',
         run: 'run <planId>',
         'show-plan': 'show-plan <planId>',
-        'scaffold-env': 'scaffold-env <preset> <targetDir> [--dry-run]'
+        'scaffold-env': 'scaffold-env <preset> <targetDir> [--dry-run]',
+        'init-project': 'init-project <projectName> <objective>',
+        status: 'status <projectName>',
+        resume: 'resume <projectName>',
+        transition: 'transition <projectName> <newPhase> [notes...]',
+        'add-blocker': 'add-blocker <projectName> <description...>',
+        'resolve-blocker': 'resolve-blocker <projectName> <index>',
+        'compile-ralph': 'compile-ralph <planPath>',
+        'sync-ralph': 'sync-ralph <prdPath> <projectName>'
       },
       cliRoot
     });
@@ -144,6 +155,78 @@ async function main() {
     const targetDir = args[1];
     const dryRun = args.includes('--dry-run');
     printJson(await scaffoldEnvironment({ preset, targetDir: resolveMaybe(targetDir), dryRun }));
+    return;
+  }
+
+  if (command === 'init-project') {
+    const [projectName, ...rest] = args;
+    const objective = rest.join(' ');
+    if (!projectName || !objective) { console.error('Usage: init-project <projectName> <objective>'); process.exit(1); }
+    printJson(await initProject(projectName, objective));
+    return;
+  }
+
+  if (command === 'status') {
+    const [projectName] = args;
+    if (!projectName) { console.error('Usage: status <projectName>'); process.exit(1); }
+    const state = await readState(projectName);
+    printJson({
+      project: state.project.name,
+      phase: state.currentPhase.id,
+      phaseStatus: state.currentPhase.status,
+      branch: state.activeBranch,
+      blockers: state.blockedBy,
+      doneCriteria: state.doneCriteria,
+      nextCommands: state.nextCommandSet
+    });
+    return;
+  }
+
+  if (command === 'resume') {
+    const [projectName] = args;
+    if (!projectName) { console.error('Usage: resume <projectName>'); process.exit(1); }
+    printJson(await getResumeChecklist(projectName));
+    return;
+  }
+
+  if (command === 'transition') {
+    const [projectName, newPhase, ...rest] = args;
+    const notes = rest.join(' ');
+    if (!projectName || !newPhase) { console.error('Usage: transition <projectName> <newPhase> [notes]'); process.exit(1); }
+    printJson(await transitionPhase(projectName, newPhase, notes));
+    return;
+  }
+
+  if (command === 'add-blocker') {
+    const [projectName, ...rest] = args;
+    const description = rest.join(' ');
+    if (!projectName || !description) { console.error('Usage: add-blocker <projectName> <description>'); process.exit(1); }
+    printJson(await addBlocker(projectName, description));
+    return;
+  }
+
+  if (command === 'resolve-blocker') {
+    const [projectName, index] = args;
+    if (!projectName || index === undefined) { console.error('Usage: resolve-blocker <projectName> <index>'); process.exit(1); }
+    printJson(await resolveBlocker(projectName, parseInt(index, 10)));
+    return;
+  }
+
+  if (command === 'compile-ralph') {
+    const [planPath] = args;
+    if (!planPath) { console.error('Usage: compile-ralph <planPath>'); process.exit(1); }
+    const resolvedPlanPath = resolveMaybe(planPath);
+    const outputPath = path.join(process.cwd(), 'ralph-prd.json');
+    const prd = await compilePlanToRalph(resolvedPlanPath, { outputPath });
+    printJson(prd);
+    return;
+  }
+
+  if (command === 'sync-ralph') {
+    const [prdPath, projectName] = args;
+    if (!prdPath || !projectName) { console.error('Usage: sync-ralph <prdPath> <projectName>'); process.exit(1); }
+    const resolvedPrdPath = resolveMaybe(prdPath);
+    printJson(await syncRalphProgress(resolvedPrdPath, projectName));
     return;
   }
 

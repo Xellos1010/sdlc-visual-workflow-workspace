@@ -1,0 +1,560 @@
+/* ── Layout ── */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #0f1117;
+  color: #e2e8f0;
+}
+
+.app-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: #1a1d27;
+  border-bottom: 1px solid #2d3148;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.app-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #a5b4fc;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: #2d3148;
+}
+
+.ecosystem-select-label {
+  font-size: 13px;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.ecosystem-select {
+  background: #252836;
+  border: 1px solid #3a3f5c;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+  min-width: 200px;
+  outline: none;
+}
+
+.ecosystem-select:focus {
+  border-color: #6366f1;
+}
+
+.ecosystem-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toolbar-status {
+  font-size: 12px;
+  color: #64748b;
+  margin-left: auto;
+}
+
+.toolbar-status.error {
+  color: #f87171;
+}
+
+/* ── Main content area ── */
+.app-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── Graph canvas ── */
+.graph-canvas {
+  flex: 1;
+  position: relative;
+  background: #0f1117;
+}
+
+.graph-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 12px;
+  color: #475569;
+}
+
+.graph-placeholder-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.graph-placeholder-sub {
+  font-size: 13px;
+}
+
+.graph-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6366f1;
+  font-size: 14px;
+}
+
+.graph-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  color: #f87171;
+}
+
+.graph-error-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.graph-error-message {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* ── Detail sidebar ── */
+.detail-panel {
+  width: 300px;
+  background: #1a1d27;
+  border-left: 1px solid #2d3148;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.detail-panel-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid #2d3148;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.detail-panel-close {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
+.detail-panel-close:hover {
+  color: #e2e8f0;
+}
+
+.detail-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.detail-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+  color: #475569;
+  text-align: center;
+  padding: 20px;
+}
+
+.detail-empty-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.detail-empty-sub {
+  font-size: 12px;
+}
+
+.detail-node-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.detail-node-type {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.detail-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.detail-section-title:first-of-type {
+  margin-top: 0;
+}
+
+.detail-kv-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detail-kv-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.detail-kv-key {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.detail-kv-value {
+  font-size: 13px;
+  color: #cbd5e1;
+  word-break: break-all;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.detail-tag {
+  background: #252836;
+  border: 1px solid #3a3f5c;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.detail-edge-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail-edge-item {
+  background: #252836;
+  border: 1px solid #2d3148;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.detail-edge-direction {
+  font-size: 10px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 2px;
+}
+
+.detail-edge-target {
+  font-size: 12px;
+  color: #a5b4fc;
+  word-break: break-all;
+}
+
+.detail-edge-label {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* ── Custom React Flow Nodes ── */
+.foundry-node {
+  border-radius: 8px;
+  border: 1px solid #3a3f5c;
+  background: #1e2130;
+  overflow: hidden;
+  min-width: 180px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.foundry-node:hover {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.foundry-node.node-selected {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.35);
+}
+
+.node-header {
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.node-type-label {
+  opacity: 0.9;
+}
+
+.node-body {
+  padding: 8px 10px 10px;
+}
+
+.node-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.3;
+  margin-bottom: 3px;
+  word-break: break-word;
+}
+
+.node-subtitle {
+  font-size: 11px;
+  color: #94a3b8;
+  word-break: break-all;
+}
+
+.node-meta {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Node type color themes */
+.ecosystem-header {
+  background: #1e2d5a;
+  color: #93c5fd;
+}
+
+.ecosystem-node {
+  border-color: #3b5bdb;
+}
+
+.system-header {
+  background: #1e3a5f;
+  color: #7dd3fc;
+}
+
+.system-node {
+  border-color: #0369a1;
+}
+
+.project-header {
+  background: #14402a;
+  color: #86efac;
+}
+
+.project-node {
+  border-color: #16a34a;
+}
+
+.default-header {
+  background: #2a2038;
+  color: #c4b5fd;
+}
+
+.default-node {
+  border-color: #7c3aed;
+}
+
+.default-node-framework .default-header {
+  background: #3d2a12;
+  color: #fed7aa;
+}
+
+.default-node-framework {
+  border-color: #c2410c;
+}
+
+.default-node-platform .default-header {
+  background: #2d1b5a;
+  color: #d8b4fe;
+}
+
+.default-node-platform {
+  border-color: #7e22ce;
+}
+
+.default-node-rule-pack .default-header {
+  background: #1f2937;
+  color: #d1d5db;
+}
+
+.default-node-rule-pack {
+  border-color: #4b5563;
+}
+
+.default-node-environment .default-header {
+  background: #0f2e2a;
+  color: #5eead4;
+}
+
+.default-node-environment {
+  border-color: #0f766e;
+}
+
+.default-node-diagram .default-header {
+  background: #3d3412;
+  color: #fde68a;
+}
+
+.default-node-diagram {
+  border-color: #b45309;
+}
+
+.default-node-repo .default-header {
+  background: #1f1f1f;
+  color: #9ca3af;
+}
+
+.default-node-repo {
+  border-color: #374151;
+}
+
+/* Type badge colors for detail panel */
+.type-badge-ecosystem {
+  background: #1e2d5a;
+  color: #93c5fd;
+  border: 1px solid #3b5bdb;
+}
+
+.type-badge-system {
+  background: #1e3a5f;
+  color: #7dd3fc;
+  border: 1px solid #0369a1;
+}
+
+.type-badge-project {
+  background: #14402a;
+  color: #86efac;
+  border: 1px solid #16a34a;
+}
+
+.type-badge-framework {
+  background: #3d2a12;
+  color: #fed7aa;
+  border: 1px solid #c2410c;
+}
+
+.type-badge-platform {
+  background: #2d1b5a;
+  color: #d8b4fe;
+  border: 1px solid #7e22ce;
+}
+
+.type-badge-rule-pack {
+  background: #1f2937;
+  color: #d1d5db;
+  border: 1px solid #4b5563;
+}
+
+.type-badge-environment {
+  background: #0f2e2a;
+  color: #5eead4;
+  border: 1px solid #0f766e;
+}
+
+.type-badge-diagram {
+  background: #3d3412;
+  color: #fde68a;
+  border: 1px solid #b45309;
+}
+
+.type-badge-repo {
+  background: #1f1f1f;
+  color: #9ca3af;
+  border: 1px solid #374151;
+}
+
+.type-badge-default {
+  background: #2a2038;
+  color: #c4b5fd;
+  border: 1px solid #7c3aed;
+}
+
+/* React Flow overrides */
+.react-flow__background {
+  background: #0f1117;
+}
+
+.react-flow__controls {
+  background: #1a1d27;
+  border: 1px solid #2d3148;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: #1a1d27;
+  border-bottom: 1px solid #2d3148;
+  color: #94a3b8;
+}
+
+.react-flow__controls-button:hover {
+  background: #252836;
+  color: #e2e8f0;
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+.react-flow__minimap {
+  background: #1a1d27;
+  border: 1px solid #2d3148;
+  border-radius: 8px;
+}
+
+.react-flow__edge-path {
+  stroke: #4b5563;
+}
+
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #6366f1;
+}
+
+.react-flow__attribution {
+  display: none;
+}

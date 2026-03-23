@@ -1,10 +1,30 @@
 {
-  "id": "model-routing:default",
-  "reasoningTier": "high-cost frontier model for planning and conflict resolution",
-  "executionTier": "low-cost bounded model for microtask execution",
-  "verificationTier": "separate verifier model or deterministic test runner",
-  "fallbacks": [
-    "dry-run adapter",
-    "manual approval stop"
-  ]
+  "version": "1.0.0",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-sonnet-4-6",
+  "routes": [
+    { "taskClass": "strategic_reasoning", "provider": "anthropic", "model": "claude-opus-4-6", "tier": "frontier_reasoner" },
+    { "taskClass": "constraint_interpretation", "provider": "anthropic", "model": "claude-opus-4-6", "tier": "frontier_reasoner" },
+    { "taskClass": "deterministic_transformation", "provider": "local-ollama", "model": "qwen2.5-coder:7b", "tier": "low_cost_executor", "fallback": "anthropic" },
+    { "taskClass": "structured_generation", "provider": "local-ollama", "model": "llama3.2:3b", "tier": "low_cost_executor", "fallback": "anthropic" },
+    { "taskClass": "verification", "provider": "anthropic", "model": "claude-sonnet-4-6", "tier": "balanced_reasoner" },
+    { "taskClass": "diagnostics", "provider": "anthropic", "model": "claude-sonnet-4-6", "tier": "balanced_reasoner" },
+    { "taskClass": "learning", "provider": "anthropic", "model": "claude-sonnet-4-6", "tier": "balanced_reasoner" }
+  ],
+  "providers": {
+    "local-ollama": {
+      "baseUrl": "http://localhost:11434",
+      "format": "openai-compatible"
+    },
+    "anthropic": {
+      "baseUrl": "https://api.anthropic.com",
+      "format": "anthropic",
+      "apiKeyEnv": "ANTHROPIC_API_KEY"
+    },
+    "openai": {
+      "baseUrl": "https://api.openai.com",
+      "format": "openai-compatible",
+      "apiKeyEnv": "OPENAI_API_KEY"
+    }
+  }
 }

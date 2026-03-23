@@ -13,6 +13,7 @@ import { analyzeKnowledgeGaps, writeGapReport } from '../../../packages/core/src
 import { buildFocusView, writeFocusView } from '../../../packages/core/src/focus-views.mjs';
 import { scaffoldEnvironment } from '../../../packages/core/src/environment-scaffold.mjs';
 import { assessSystemImpact } from '../../../services/system-orchestrator/index.mjs';
+import { initProject, readState, transitionPhase, addBlocker, resolveBlocker, getResumeChecklist } from '../../../packages/core/src/continuity.mjs';
 
 const port = Number(process.env.FLAGSHIP_PORT ?? 4010);
 const serverFile = fileURLToPath(import.meta.url);
@@ -267,6 +268,60 @@ async function handler(request, response) {
     if (request.method === 'POST' && pathname === '/environments/scaffold') {
       const body = await readBody(request);
       sendJson(response, 200, await scaffoldEnvironment(body));
+      return;
+    }
+
+    // ── Continuity / Project State ──
+    const projectInitMatch = pathname.match(/^\/projects\/([^/]+)\/init$/);
+    if (request.method === 'POST' && projectInitMatch) {
+      const body = await readBody(request);
+      const state = await initProject(projectInitMatch[1], body.objective || 'No objective specified');
+      sendJson(response, 200, state);
+      return;
+    }
+
+    const projectStatusMatch = pathname.match(/^\/projects\/([^/]+)\/status$/);
+    if (request.method === 'GET' && projectStatusMatch) {
+      const state = await readState(projectStatusMatch[1]);
+      sendJson(response, 200, {
+        project: state.project.name,
+        phase: state.currentPhase.id,
+        phaseStatus: state.currentPhase.status,
+        branch: state.activeBranch,
+        blockers: state.blockedBy,
+        doneCriteria: state.doneCriteria,
+        nextCommands: state.nextCommandSet
+      });
+      return;
+    }
+
+    const projectTransitionMatch = pathname.match(/^\/projects\/([^/]+)\/transition$/);
+    if (request.method === 'POST' && projectTransitionMatch) {
+      const body = await readBody(request);
+      const state = await transitionPhase(projectTransitionMatch[1], body.phase, body.notes || '');
+      sendJson(response, 200, state);
+      return;
+    }
+
+    const projectBlockerMatch = pathname.match(/^\/projects\/([^/]+)\/blocker$/);
+    if (request.method === 'POST' && projectBlockerMatch) {
+      const body = await readBody(request);
+      const state = await addBlocker(projectBlockerMatch[1], body.description);
+      sendJson(response, 200, state);
+      return;
+    }
+
+    const projectBlockerResolveMatch = pathname.match(/^\/projects\/([^/]+)\/blocker\/(\d+)$/);
+    if (request.method === 'DELETE' && projectBlockerResolveMatch) {
+      const state = await resolveBlocker(projectBlockerResolveMatch[1], parseInt(projectBlockerResolveMatch[2], 10));
+      sendJson(response, 200, state);
+      return;
+    }
+
+    const projectResumeMatch = pathname.match(/^\/projects\/([^/]+)\/resume$/);
+    if (request.method === 'GET' && projectResumeMatch) {
+      const checklist = await getResumeChecklist(projectResumeMatch[1]);
+      sendJson(response, 200, checklist);
       return;
     }
 
