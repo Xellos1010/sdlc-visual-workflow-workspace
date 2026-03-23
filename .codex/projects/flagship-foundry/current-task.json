@@ -1,0 +1,52 @@
+{
+  "authority": {
+    "contractAuthority": "flagship-foundry-work/schemas/continuity-state.schema.json",
+    "runtimeInstanceAuthority": ".codex/projects/flagship-foundry/current-task.json",
+    "derivedMirrors": []
+  },
+  "project": {
+    "name": "flagship-foundry",
+    "path": ".codex/projects/flagship-foundry",
+    "worktree": ".codex/projects/flagship-foundry",
+    "baseBranch": "main",
+    "technicalBaseBranch": "main",
+    "ruleReferences": []
+  },
+  "objective": "Flagship Foundry gap-closure (M1–M4) complete; maintain on change.",
+  "sdlcPhase": "operate",
+  "lifecycleStage": "operate",
+  "currentPhase": {
+    "id": "operate-m4-complete",
+    "title": "operate",
+    "status": "done",
+    "branch": "main",
+    "notes": [
+      "M4 closed: WO-FF-009 (CI + ADR-009), WO-FF-010 (rollout/rollback/incident model + ADR-010).",
+      "Ongoing: cd flagship-foundry-work && npm test && npm run ci:targeted on changes.",
+      "Confirm GitHub Actions when remote CI is connected."
+    ],
+    "updatedAt": "2026-03-23T12:00:00.000Z"
+  },
+  "activeBranch": "main",
+  "nextCommit": {
+    "branch": "main",
+    "message": "",
+    "scope": []
+  },
+  "nextCommandSet": [
+    "cd flagship-foundry-work && npm test",
+    "cd flagship-foundry-work && npm run ci:targeted"
+  ],
+  "blockedBy": [],
+  "artifacts": {
+    "m4Evidence": [
+      "flagship-foundry-work/docs/ci-release-gates.md",
+      "flagship-foundry-work/docs/rollout-rollback-incident-model.md",
+      ".github/workflows/flagship-foundry-ci.yml"
+    ]
+  },
+  "doneCriteria": [
+    "M1–M4 work orders delivered per MILESTONE_CHAINED_EXECUTION_PLAN.md",
+    "ADR-009 and ADR-010 accepted with implementation/docs in repo"
+  ]
+}

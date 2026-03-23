@@ -1,0 +1,58 @@
+{
+  "id": "sme:web-automation-workspace-trace-1774293923087-typescript-node-runtime",
+  "domain": "typescript-node-runtime",
+  "title": "TypeScript + Node Runtime SME",
+  "ecosystemId": "web-automation-workspace-trace-1774293923087",
+  "intent": "Provide deterministic planning, implementation, verification, and blast-radius guidance for TypeScript + Node Runtime SME.",
+  "detectedFrom": [
+    "package.json engines",
+    "tsconfig files",
+    "Node platform rules"
+  ],
+  "mappedRuleIds": [
+    "rule:cursor-rules-01-code-standards-error-handling-and-reliability-mdc",
+    "rule:cursor-rules-01-code-standards-eslint-configuration-mdc",
+    "rule:cursor-rules-01-code-standards-node-platform-standards-mdc",
+    "rule:cursor-rules-01-code-standards-separation-of-concerns-mdc",
+    "rule:cursor-rules-01-code-standards-simplicity-mdc",
+    "rule:cursor-rules-01-code-standards-single-responsibility-mdc",
+    "rule:cursor-rules-01-code-standards-ts-standards-and-strictness-mdc",
+    "rule:cursor-rules-07-apis-api-standards-mdc",
+    "rule:cursor-rules-08-infrastructure-ci-cd-and-releases-mdc",
+    "rule:cursor-rules-08-infrastructure-configuration-standards-mdc",
+    "rule:cursor-rules-08-infrastructure-deployment-workflow-mdc",
+    "rule:cursor-rules-08-infrastructure-ui-feature-flags-mdc"
+  ],
+  "relatedProjectIds": [
+    "project:documentation-scraper",
+    "project:chrome-ext-integrations-zoominfo",
+    "project:web-documentation"
+  ],
+  "mandatoryQuestions": [
+    "What runtime contracts, timeouts, retries, and logging semantics are in scope?",
+    "Which structured errors and config boundaries need to stay stable?",
+    "Which verification commands prove backward compatibility?"
+  ],
+  "blastRadiusChecklist": [
+    "Expand impact to shared config and logger utilities when runtime behavior changes.",
+    "Favor contract and timeout regressions over superficial code diffs.",
+    "Include observability and API schemas in the same verification slice."
+  ],
+  "designPrinciples": [
+    "typed contracts and explicit error semantics",
+    "structured logging and measurable retries",
+    "configuration as artifact authority"
+  ],
+  "artifactExpectations": [
+    "plan fragment with impacted components and interfaces",
+    "verification commands and evidence bundle requirements",
+    "handoff update and fix-memory candidate when defects are found"
+  ],
+  "trainingSignals": [
+    "resolved bugs",
+    "verification failures",
+    "telemetry regressions",
+    "handoff gaps",
+    "blast-radius misses"
+  ]
+}

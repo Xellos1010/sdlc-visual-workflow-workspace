@@ -1,0 +1,82 @@
+[
+  {
+    "api": "storage",
+    "count": 206
+  },
+  {
+    "api": "runtime",
+    "count": 193
+  },
+  {
+    "api": "tabs",
+    "count": 117
+  },
+  {
+    "api": "action",
+    "count": 42
+  },
+  {
+    "api": "downloads",
+    "count": 40
+  },
+  {
+    "api": "scripting",
+    "count": 33
+  },
+  {
+    "api": "identity",
+    "count": 32
+  },
+  {
+    "api": "sidePanel",
+    "count": 31
+  },
+  {
+    "api": "declarativeNetRequest",
+    "count": 25
+  },
+  {
+    "api": "permissions",
+    "count": 21
+  },
+  {
+    "api": "declarativeContent",
+    "count": 15
+  },
+  {
+    "api": "webRequest",
+    "count": 14
+  },
+  {
+    "api": "windows",
+    "count": 11
+  },
+  {
+    "api": "d",
+    "count": 7
+  },
+  {
+    "api": "devtools",
+    "count": 5
+  },
+  {
+    "api": "alarms",
+    "count": 4
+  },
+  {
+    "api": "notifications",
+    "count": 4
+  },
+  {
+    "api": "commands",
+    "count": 4
+  },
+  {
+    "api": "contextMenus",
+    "count": 4
+  },
+  {
+    "api": "cookies",
+    "count": 4
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "version": "1",
+  "description": "Role-based model lanes for swarm orchestration (Specifier → Architect → Builder → Adversary → Verifier).",
+  "roles": {
+    "specifier": {
+      "description": "Requirement intake, constraints, acceptance criteria",
+      "defaultProviderLane": "upstream-spec",
+      "outputs": ["requirementPack", "riskClass"]
+    },
+    "architect": {
+      "description": "Diagrams, PRD shards, system boundaries",
+      "defaultProviderLane": "upstream-spec",
+      "outputs": ["architectureDraft", "diagramSet"]
+    },
+    "blastRadiusAnalyst": {
+      "description": "Expand impacted systems and mirrored patterns",
+      "defaultProviderLane": "upstream-spec",
+      "outputs": ["blastRadiusReport"]
+    },
+    "adversary": {
+      "description": "Challenge design before implementation",
+      "defaultProviderLane": "verification",
+      "outputs": ["objections", "rollbackConcerns"]
+    },
+    "verifier": {
+      "description": "Independent falsification of completion claims",
+      "defaultProviderLane": "verification",
+      "outputs": ["verificationPlan", "evidenceExpectations"]
+    },
+    "builder": {
+      "description": "Bounded file-scoped implementation",
+      "defaultProviderLane": "local-execution",
+      "outputs": ["patchSet", "evidenceArtifacts"]
+    }
+  },
+  "lanes": {
+    "upstream-spec": {
+      "modelRoutingProfile": "spec-and-architecture",
+      "notes": "Prefer stronger reasoning models for decomposition"
+    },
+    "verification": {
+      "modelRoutingProfile": "independent-verifier",
+      "notes": "Different provider than builder when possible"
+    },
+    "local-execution": {
+      "modelRoutingProfile": "low-cost-deterministic",
+      "notes": "Local or SSH-tunneled OpenAI-compatible endpoint"
+    }
+  }
+}

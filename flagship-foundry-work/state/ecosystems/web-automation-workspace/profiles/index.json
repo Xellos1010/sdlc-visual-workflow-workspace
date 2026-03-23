@@ -70,6 +70,7 @@
       "project:platform-core",
       "project:web-documentation"
     ],
+    "knowledgePackIds": [],
     "mandatoryQuestions": [
       "Which apps, libs, and tools are touched directly or transitively?",
       "Which shared libraries or path aliases create cross-project coupling?",
@@ -175,6 +176,7 @@
       "project:chrome-ext-ui-modern",
       "project:chrome-ext-ui-shared-components"
     ],
+    "knowledgePackIds": [],
     "mandatoryQuestions": [
       "Does the change touch service worker, content script, popup, side panel, storage, permissions, or messaging contracts?",
       "Which Chrome APIs are in scope and what manifest or permission updates follow from the change?",
@@ -278,6 +280,7 @@
       "project:platform-core",
       "project:web-documentation"
     ],
+    "knowledgePackIds": [],
     "mandatoryQuestions": [
       "Which surfaces render the affected state and where is source-of-truth stored?",
       "What tests prove the user-visible contract after the change?",
@@ -336,6 +339,7 @@
       "project:chrome-ext-integrations-zoominfo",
       "project:web-documentation"
     ],
+    "knowledgePackIds": [],
     "mandatoryQuestions": [
       "What runtime contracts, timeouts, retries, and logging semantics are in scope?",
       "Which structured errors and config boundaries need to stay stable?",
@@ -430,6 +434,7 @@
       "project:platform-core",
       "project:web-documentation"
     ],
+    "knowledgePackIds": [],
     "mandatoryQuestions": [
       "What telemetry or error signal triggered the plan and how is it correlated to impacted components?",
       "What additional instrumentation should be added to prevent recurrence?",
@@ -523,6 +528,7 @@
       "project:platform-core",
       "project:web-documentation"
     ],
+    "knowledgePackIds": [],
     "mandatoryQuestions": [
       "Which unit, integration, e2e, and build targets are required for this change?",
       "What negative or regression case currently fails and should pass after the fix?",
@@ -621,6 +627,9 @@
       "project:chrome-ext-ui-shared-components",
       "project:platform-core",
       "project:web-documentation"
+    ],
+    "knowledgePackIds": [
+      "pack:environment-parity-and-tooling"
     ],
     "mandatoryQuestions": [
       "Which agent environments are present and which are missing for parity?",
@@ -721,6 +730,9 @@
       "project:chrome-ext-ui-shared-components",
       "project:platform-core",
       "project:web-documentation"
+    ],
+    "knowledgePackIds": [
+      "pack:knowledge-ingestion-and-rag"
     ],
     "mandatoryQuestions": [
       "Which foundational packs are missing documentation or retrieval artifacts?",

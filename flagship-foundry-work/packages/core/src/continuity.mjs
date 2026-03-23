@@ -19,6 +19,8 @@ const VALID_PHASES = [
   'improve'
 ];
 
+const CONTRACT_AUTHORITY_PATH = 'flagship-foundry-work/schemas/continuity-state.schema.json';
+
 // Maps 11-phase lifecycle stages to the legacy sdlcPhase enum required by the
 // task-state schema.
 const PHASE_TO_SDLC_PHASE = {
@@ -62,6 +64,19 @@ function charterFilePath(projectName) {
   return path.join(projectDir(projectName), 'SDLC_CHARTER.md');
 }
 
+/**
+ * Build authority metadata for ADR-002 split:
+ * - contract authority stays in flagship-foundry-work schema
+ * - runtime instance authority is the active .codex project state file
+ */
+function authorityFor(projectName) {
+  return {
+    contractAuthority: CONTRACT_AUTHORITY_PATH,
+    runtimeInstanceAuthority: `.codex/projects/${projectName}/current-task.json`,
+    derivedMirrors: []
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
@@ -87,6 +102,7 @@ export async function initProject(projectName, objective) {
   const relativePath = `.codex/projects/${projectName}`;
 
   const state = {
+    authority: authorityFor(projectName),
     project: {
       name: projectName,
       path: relativePath,

@@ -17,6 +17,7 @@
     "plan:sample": "node apps/orchestrator-cli/src/main.mjs plan examples/current-workspace/requests/initialize-sdlc-pipeline.json",
     "bootstrap:sample": "node apps/orchestrator-cli/src/main.mjs bootstrap examples/current-workspace/import-config.json examples/current-workspace/requests/initialize-sdlc-pipeline.json",
     "test": "node --test",
+    "ci:targeted": "npm run visualize:sample",
     "knowledge:sample": "node apps/orchestrator-cli/src/main.mjs knowledge examples/knowledge-sources/input/foundry-foundational-docs.manifest.json",
     "gap:sample": "node apps/orchestrator-cli/src/main.mjs gap examples/current-workspace/requests/gap-analysis.json",
     "focus:sample": "node apps/orchestrator-cli/src/main.mjs focus examples/current-workspace/requests/focus-query.json",

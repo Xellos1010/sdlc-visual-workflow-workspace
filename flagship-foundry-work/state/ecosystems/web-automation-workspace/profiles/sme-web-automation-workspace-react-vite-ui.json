@@ -72,6 +72,7 @@
     "project:platform-core",
     "project:web-documentation"
   ],
+  "knowledgePackIds": [],
   "mandatoryQuestions": [
     "Which surfaces render the affected state and where is source-of-truth stored?",
     "What tests prove the user-visible contract after the change?",

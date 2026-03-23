@@ -17,6 +17,21 @@
     "description": {
       "type": "string"
     },
+    "slaTier": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "important",
+        "reference"
+      ]
+    },
+    "freshnessWindowDays": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
     "domains": {
       "type": "array",
       "items": {

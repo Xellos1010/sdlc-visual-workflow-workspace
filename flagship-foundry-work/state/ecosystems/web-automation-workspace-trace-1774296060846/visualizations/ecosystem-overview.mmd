@@ -1,0 +1,66 @@
+flowchart TB
+  eco["Web Automation Workspace"]
+  sys_system_apps_chrome_extensions["apps/chrome-extensions
+2 projects"]
+  eco --> sys_system_apps_chrome_extensions
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  sys_system_apps_chrome_extensions --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  sys_system_apps_chrome_extensions --> proj_project_proof_extension
+  sys_system_apps_documentation_scraper["apps/documentation-scraper
+1 projects"]
+  eco --> sys_system_apps_documentation_scraper
+  proj_project_documentation_scraper["documentation-scraper"]
+  sys_system_apps_documentation_scraper --> proj_project_documentation_scraper
+  sys_system_libs_common["libs/common
+5 projects"]
+  eco --> sys_system_libs_common
+  proj_project_common_browser["common-browser"]
+  sys_system_libs_common --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  sys_system_libs_common --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  sys_system_libs_common --> proj_project_common_logger
+  proj_project_common_ui["common-ui"]
+  sys_system_libs_common --> proj_project_common_ui
+  proj_project_common_utils["common-utils"]
+  sys_system_libs_common --> proj_project_common_utils
+  sys_system_libs_cursor_flow["libs/cursor-flow
+1 projects"]
+  eco --> sys_system_libs_cursor_flow
+  proj_project_cursor_flow["cursor-flow"]
+  sys_system_libs_cursor_flow --> proj_project_cursor_flow
+  sys_system_libs_flows_bravado["libs/flows-bravado
+1 projects"]
+  eco --> sys_system_libs_flows_bravado
+  proj_project_flows_bravado["flows-bravado"]
+  sys_system_libs_flows_bravado --> proj_project_flows_bravado
+  sys_system_libs_google_chrome_extension_library["libs/Google-Chrome-Extension-Library
+34 projects"]
+  eco --> sys_system_libs_google_chrome_extension_library
+  proj_project_chrome_ext_auth_base["chrome-ext-auth-base"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_auth_base
+  proj_project_chrome_ext_auth_email["chrome-ext-auth-email"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_auth_email
+  proj_project_chrome_ext_auth_google["chrome-ext-auth-google"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_auth_google
+  proj_project_chrome_ext_auth_microsoft["chrome-ext-auth-microsoft"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_auth_microsoft
+  proj_project_chrome_ext_auth_social["chrome-ext-auth-social"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_auth_social
+  proj_project_chrome_ext_auth_sso["chrome-ext-auth-sso"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_auth_sso
+  proj_project_chrome_ext_automation_batch["chrome-ext-automation-batch"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_automation_batch
+  proj_project_chrome_ext_automation_core["chrome-ext-automation-core"]
+  sys_system_libs_google_chrome_extension_library --> proj_project_chrome_ext_automation_core
+  sys_system_libs_platform["libs/platform
+1 projects"]
+  eco --> sys_system_libs_platform
+  proj_project_platform_core["platform-core"]
+  sys_system_libs_platform --> proj_project_platform_core
+  sys_system_libs_web_documentation["libs/web-documentation
+1 projects"]
+  eco --> sys_system_libs_web_documentation
+  proj_project_web_documentation["web-documentation"]
+  sys_system_libs_web_documentation --> proj_project_web_documentation

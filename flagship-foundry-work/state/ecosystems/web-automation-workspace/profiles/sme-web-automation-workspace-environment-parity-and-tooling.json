@@ -69,6 +69,9 @@
     "project:platform-core",
     "project:web-documentation"
   ],
+  "knowledgePackIds": [
+    "pack:environment-parity-and-tooling"
+  ],
   "mandatoryQuestions": [
     "Which agent environments are present and which are missing for parity?",
     "Which project doctrine belongs in shared artifacts rather than tool-specific prompts?",

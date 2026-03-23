@@ -6,7 +6,9 @@
   "rules": [
     "Adapters translate the same work-order contract; no agent gets special doctrine.",
     "High-cost models handle ambiguous reasoning; low-cost models handle bounded microtasks.",
-    "Adapter failure should not corrupt continuity state or plan state."
+    "Adapter failure should not corrupt continuity state or plan state.",
+    "Execute-mode adapters must run in run-scoped isolation and preserve rollback evidence.",
+    "No default adapter writes outside run workspace without explicit approval policy."
   ],
   "evidenceRequirements": [
     "adapter invocation envelope",

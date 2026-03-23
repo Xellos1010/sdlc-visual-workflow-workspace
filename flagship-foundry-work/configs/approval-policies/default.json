@@ -7,6 +7,7 @@
   "rules": [
     "high or critical risk always requires manual approval",
     "multi-system changes default to manual approval",
-    "telemetry-only low-risk instrumentation improvements may opt into auto approval"
+    "telemetry-only low-risk instrumentation improvements may opt into auto approval",
+    "any adapter capability that writes outside run-scoped workspace requires explicit manual approval"
   ]
 }

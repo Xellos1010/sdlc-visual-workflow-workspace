@@ -7,7 +7,9 @@
     "id",
     "planId",
     "status",
-    "tasks"
+    "tasks",
+    "mode",
+    "adapterId"
   ],
   "properties": {
     "id": {
@@ -17,7 +19,45 @@
       "type": "string"
     },
     "status": {
+      "type": "string",
+      "enum": ["ready", "running", "paused", "stopped", "completed", "failed"]
+    },
+    "mode": {
       "type": "string"
+    },
+    "adapterId": {
+      "type": "string"
+    },
+    "isolation": {
+      "type": "object",
+      "required": ["mode", "workspaceRoot", "defaultWritePolicy", "allowExternalWritesByDefault"],
+      "properties": {
+        "mode": { "type": "string" },
+        "workspaceRoot": { "type": "string" },
+        "defaultWritePolicy": { "type": "string" },
+        "allowExternalWritesByDefault": { "type": "boolean" }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "required": ["boundary"],
+      "properties": {
+        "boundary": { "type": "string" },
+        "pausePreservesEvidence": { "type": "boolean" },
+        "stopPreservesEvidence": { "type": "boolean" }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "timestamp"],
+        "properties": {
+          "type": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "details": { "type": "object" }
+        }
+      }
     },
     "tasks": {
       "type": "array",

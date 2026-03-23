@@ -64,6 +64,7 @@
     "project:platform-core",
     "project:web-documentation"
   ],
+  "knowledgePackIds": [],
   "mandatoryQuestions": [
     "What telemetry or error signal triggered the plan and how is it correlated to impacted components?",
     "What additional instrumentation should be added to prevent recurrence?",

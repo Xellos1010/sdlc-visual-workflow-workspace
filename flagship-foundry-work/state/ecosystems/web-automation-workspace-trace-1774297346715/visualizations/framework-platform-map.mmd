@@ -1,0 +1,145 @@
+flowchart LR
+  workspace["Web Automation Workspace"]
+  fw_framework_typescript["TypeScript"]
+  workspace --> fw_framework_typescript
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_typescript --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_typescript --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_typescript --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_typescript --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_typescript --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_typescript --> proj_project_common_logger
+  fw_framework_nx["Nx"]
+  workspace --> fw_framework_nx
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_nx --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_nx --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_nx --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_nx --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_nx --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_nx --> proj_project_common_logger
+  fw_framework_react["React"]
+  workspace --> fw_framework_react
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_react --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_react --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_react --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_react --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_react --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_react --> proj_project_common_logger
+  fw_framework_vite["Vite"]
+  workspace --> fw_framework_vite
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_vite --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_vite --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_vite --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_vite --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_vite --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_vite --> proj_project_common_logger
+  fw_framework_playwright["Playwright"]
+  workspace --> fw_framework_playwright
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_playwright --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_playwright --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_playwright --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_playwright --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_playwright --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_playwright --> proj_project_common_logger
+  fw_framework_test_harness["Test Harnesses"]
+  workspace --> fw_framework_test_harness
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_test_harness --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_test_harness --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_test_harness --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_test_harness --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_test_harness --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_test_harness --> proj_project_common_logger
+  fw_framework_web_automation["Browser Automation"]
+  workspace --> fw_framework_web_automation
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_web_automation --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_web_automation --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_web_automation --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_web_automation --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_web_automation --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_web_automation --> proj_project_common_logger
+  fw_framework_google_apps_script["Google Apps Script"]
+  workspace --> fw_framework_google_apps_script
+  proj_project_blue_notary_extension["blue-notary-extension"]
+  fw_framework_google_apps_script --> proj_project_blue_notary_extension
+  proj_project_proof_extension["proof-extension"]
+  fw_framework_google_apps_script --> proj_project_proof_extension
+  proj_project_documentation_scraper["documentation-scraper"]
+  fw_framework_google_apps_script --> proj_project_documentation_scraper
+  proj_project_common_browser["common-browser"]
+  fw_framework_google_apps_script --> proj_project_common_browser
+  proj_project_common_config["common-config"]
+  fw_framework_google_apps_script --> proj_project_common_config
+  proj_project_common_logger["common-logger"]
+  fw_framework_google_apps_script --> proj_project_common_logger
+  fw_framework_document_generation["Document Generation"]
+  workspace --> fw_framework_document_generation
+  pf_platform_web_runtime["Web Runtime"]
+  workspace --> pf_platform_web_runtime
+  pf_platform_web_runtime --> proj_project_blue_notary_extension
+  pf_platform_web_runtime --> proj_project_proof_extension
+  pf_platform_web_runtime --> proj_project_chrome_ext_auth_base
+  pf_platform_web_runtime --> proj_project_chrome_ext_auth_email
+  pf_platform_web_runtime --> proj_project_chrome_ext_auth_google
+  pf_platform_web_runtime --> proj_project_chrome_ext_auth_microsoft
+  pf_platform_chrome_extension_mv3["Chrome Extension MV3"]
+  workspace --> pf_platform_chrome_extension_mv3
+  pf_platform_chrome_extension_mv3 --> proj_project_blue_notary_extension
+  pf_platform_chrome_extension_mv3 --> proj_project_proof_extension
+  pf_platform_chrome_extension_mv3 --> proj_project_chrome_ext_auth_base
+  pf_platform_chrome_extension_mv3 --> proj_project_chrome_ext_auth_email
+  pf_platform_chrome_extension_mv3 --> proj_project_chrome_ext_auth_google
+  pf_platform_chrome_extension_mv3 --> proj_project_chrome_ext_auth_microsoft
+  pf_platform_google_apps_script["Google Apps Script"]
+  workspace --> pf_platform_google_apps_script
+  pf_platform_google_apps_script --> proj_project_blue_notary_extension
+  pf_platform_google_apps_script --> proj_project_proof_extension
+  pf_platform_google_apps_script --> proj_project_documentation_scraper
+  pf_platform_google_apps_script --> proj_project_common_browser
+  pf_platform_google_apps_script --> proj_project_common_config
+  pf_platform_google_apps_script --> proj_project_common_logger
+  pf_platform_node_runtime["Node Runtime"]
+  workspace --> pf_platform_node_runtime
+  pf_platform_node_runtime --> proj_project_documentation_scraper
+  pf_platform_node_runtime --> proj_project_chrome_ext_integrations_zoominfo
+  pf_platform_node_runtime --> proj_project_web_documentation

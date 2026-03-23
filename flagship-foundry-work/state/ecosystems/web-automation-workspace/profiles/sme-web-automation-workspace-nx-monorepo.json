@@ -69,6 +69,7 @@
     "project:platform-core",
     "project:web-documentation"
   ],
+  "knowledgePackIds": [],
   "mandatoryQuestions": [
     "Which apps, libs, and tools are touched directly or transitively?",
     "Which shared libraries or path aliases create cross-project coupling?",

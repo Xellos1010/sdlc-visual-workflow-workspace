@@ -27,6 +27,18 @@
     "adapterId": {
       "type": "string"
     },
+    "isolation": {
+      "$ref": "#/$defs/RunIsolation"
+    },
+    "rollback": {
+      "$ref": "#/$defs/RunRollback"
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RunTimelineEvent"
+      }
+    },
     "createdAt": {
       "type": "string",
       "format": "date-time"
@@ -146,9 +158,97 @@
         },
         "evidenceArtifacts": {
           "type": "array",
-          "items": { "type": "string" },
+          "items": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "object",
+                "required": ["path"],
+                "properties": {
+                  "type": { "type": "string" },
+                  "path": { "type": "string" }
+                }
+              }
+            ]
+          },
           "description": "File paths of evidence artifacts produced by this task"
+        },
+        "fixMemoryRef": {
+          "type": "string",
+          "description": "Pointer to a fix-memory record linked to this task run."
+        },
+        "correlation": {
+          "$ref": "#/$defs/RunTaskCorrelation"
+        },
+        "telemetryReferences": {
+          "$ref": "#/$defs/TelemetryReferenceCollection"
         }
+      }
+    },
+    "RunTaskCorrelation": {
+      "type": "object",
+      "required": ["runId", "taskId"],
+      "properties": {
+        "runId": { "type": "string" },
+        "taskId": { "type": "string" },
+        "planId": { "type": "string" },
+        "ecosystemId": { "type": "string" },
+        "adapterId": { "type": "string" }
+      }
+    },
+    "TelemetryReference": {
+      "type": "object",
+      "required": ["ref", "timestamp", "correlation"],
+      "properties": {
+        "ref": { "type": "string" },
+        "kind": { "type": "string" },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "notes": { "type": "string" },
+        "correlation": { "$ref": "#/$defs/RunTaskCorrelation" }
+      }
+    },
+    "TelemetryReferenceCollection": {
+      "type": "object",
+      "properties": {
+        "before": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TelemetryReference" }
+        },
+        "after": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TelemetryReference" }
+        }
+      }
+    },
+    "RunIsolation": {
+      "type": "object",
+      "required": ["mode", "workspaceRoot", "defaultWritePolicy", "allowExternalWritesByDefault"],
+      "properties": {
+        "mode": { "type": "string" },
+        "workspaceRoot": { "type": "string" },
+        "defaultWritePolicy": { "type": "string" },
+        "allowExternalWritesByDefault": { "type": "boolean" }
+      }
+    },
+    "RunRollback": {
+      "type": "object",
+      "required": ["boundary"],
+      "properties": {
+        "boundary": { "type": "string" },
+        "pausePreservesEvidence": { "type": "boolean" },
+        "stopPreservesEvidence": { "type": "boolean" }
+      }
+    },
+    "RunTimelineEvent": {
+      "type": "object",
+      "required": ["type", "timestamp"],
+      "properties": {
+        "type": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "details": { "type": "object" }
       }
     }
   }

@@ -13,6 +13,7 @@ import { scaffoldEnvironment } from '../../../packages/core/src/environment-scaf
 import { initProject, readState, transitionPhase, addBlocker, resolveBlocker, getResumeChecklist, getPhasePolicy, checkCompliance } from '../../../packages/core/src/continuity.mjs';
 import { compilePlanToRalph } from '../../../packages/core/src/ralph-compiler.mjs';
 import { syncRalphProgress } from '../../../packages/core/src/ralph-state-sync.mjs';
+import { scheduleLocalShellExecution, shouldExecuteLocally } from '../../../packages/core/src/run-executor.mjs';
 
 const cliRoot = path.dirname(fileURLToPath(import.meta.url));
 
@@ -61,9 +62,9 @@ async function main() {
         focus: 'focus <focusRequestPath>',
         plan: 'plan <changeRequestPath>',
         bootstrap: 'bootstrap <importConfigPath> [changeRequestPath] [knowledgeManifestPath]',
-        run: 'run <planId>',
+        run: 'run <planId> [--execute]',
         'show-plan': 'show-plan <planId>',
-        'scaffold-env': 'scaffold-env <preset> <targetDir> [--dry-run]',
+        'scaffold-env': 'scaffold-env <preset> <targetDir> [--dry-run] [--approve-user-owned]',
         'init-project': 'init-project <projectName> <objective>',
         status: 'status <projectName>',
         resume: 'resume <projectName>',
@@ -142,8 +143,16 @@ async function main() {
 
   if (command === 'run') {
     const planId = args[0];
-    const run = await createRunForPlan(planId, { mode: 'simulate' });
-    printJson(await transitionRun(run.id, 'start'));
+    const execute = args.includes('--execute');
+    const run = await createRunForPlan(planId, {
+      mode: execute ? 'execute' : 'simulate',
+      adapterId: execute ? 'adapter:local-shell' : 'adapter:dry-run'
+    });
+    const started = await transitionRun(run.id, 'start');
+    if (shouldExecuteLocally(started)) {
+      scheduleLocalShellExecution(started.id);
+    }
+    printJson(started);
     return;
   }
 
@@ -156,7 +165,13 @@ async function main() {
     const preset = args[0];
     const targetDir = args[1];
     const dryRun = args.includes('--dry-run');
-    printJson(await scaffoldEnvironment({ preset, targetDir: resolveMaybe(targetDir), dryRun }));
+    const approveUserOwnedConflicts = args.includes('--approve-user-owned');
+    printJson(await scaffoldEnvironment({
+      preset,
+      targetDir: resolveMaybe(targetDir),
+      dryRun,
+      approveUserOwnedConflicts
+    }));
     return;
   }
 

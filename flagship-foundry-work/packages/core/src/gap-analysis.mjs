@@ -3,6 +3,32 @@ import { repoRoot, writeJson, writeText } from './io.mjs';
 import { loadKnowledgeBaseManifest, loadKnowledgeDocuments, loadDomainPackCatalog } from './knowledge-base.mjs';
 import { loadCatalogs } from './catalogs.mjs';
 
+const CRITICAL_PACK_IDS = new Set([
+  'pack:knowledge-ingestion-and-rag',
+  'pack:environment-parity-and-tooling',
+  'pack:testing-quality-and-verification',
+  'pack:observability-telemetry-and-operations'
+]);
+
+const CANONICAL_DOWNSTREAM_PROFILE_BY_PACK = Object.freeze({
+  'pack:knowledge-ingestion-and-rag': path.join(
+    repoRoot,
+    'state',
+    'ecosystems',
+    'web-automation-workspace',
+    'profiles',
+    'sme-web-automation-workspace-knowledge-ingestion-and-rag.json'
+  ),
+  'pack:environment-parity-and-tooling': path.join(
+    repoRoot,
+    'state',
+    'ecosystems',
+    'web-automation-workspace',
+    'profiles',
+    'sme-web-automation-workspace-environment-parity-and-tooling.json'
+  )
+});
+
 function unique(values) {
   return [...new Set((values ?? []).filter(Boolean))];
 }
@@ -45,9 +71,34 @@ function presentIdSet(items) {
   return new Set((items ?? []).map((item) => item.id));
 }
 
-function environmentCoverage(ecosystem) {
+async function environmentCoverage(ecosystem) {
   const environments = ecosystem.agentEnvironments ?? [];
-  return new Set(environments.map((entry) => entry.tool));
+  const tools = new Set(environments.map((entry) => entry.tool));
+
+  // Gap analysis should not fail parity solely because an imported manifest is stale.
+  // Merge canonical repository environment signals as a fallback.
+  const fs = await import('node:fs/promises');
+  const paritySignals = [
+    { tool: 'cursor', relPath: '.cursor' },
+    { tool: 'codex', relPath: '.codex' },
+    { tool: 'claude', relPath: '.claude' },
+    { tool: 'claude', relPath: 'CLAUDE.md' },
+    { tool: 'claude', relPath: '.mcp.json' }
+  ];
+  const candidateRoots = [repoRoot, path.resolve(repoRoot, '..')];
+
+  for (const rootPath of candidateRoots) {
+    for (const signal of paritySignals) {
+      try {
+        await fs.access(path.join(rootPath, signal.relPath));
+        tools.add(signal.tool);
+      } catch {
+        // Ignore missing optional parity signal.
+      }
+    }
+  }
+
+  return tools;
 }
 
 function buildRecommendation(pack, reasons, catalogs, ecosystem) {
@@ -65,6 +116,8 @@ function buildRecommendation(pack, reasons, catalogs, ecosystem) {
   if (reasons.includes('runbooks')) actions.push('add the missing runbook and handoff expectations');
   if (reasons.includes('guardrails')) actions.push('add the missing guardrail policy');
   if (reasons.includes('environment-parity')) actions.push('scaffold Cursor, Codex, and Claude parity artifacts');
+  if (reasons.includes('freshness')) actions.push('refresh source versions and re-ingest this knowledge pack');
+  if (reasons.includes('downstream-linkage')) actions.push('wire canonical SME profile linkage for this pack');
   return {
     packId: pack.id,
     title: pack.title,
@@ -75,6 +128,39 @@ function buildRecommendation(pack, reasons, catalogs, ecosystem) {
     suggestedPersonas,
     suggestedRunbooks
   };
+}
+
+function parseIsoDate(value) {
+  if (typeof value !== 'string') return null;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? new Date(parsed) : null;
+}
+
+function dayDiff(older, newer) {
+  const deltaMs = newer.getTime() - older.getTime();
+  return Math.max(0, Math.floor(deltaMs / (24 * 60 * 60 * 1000)));
+}
+
+function tierForPack(packId) {
+  return CRITICAL_PACK_IDS.has(packId) ? 'critical' : 'important';
+}
+
+function freshnessWindowDaysForTier(tier) {
+  return tier === 'critical' ? 14 : 30;
+}
+
+async function hasCanonicalDownstreamLinkage(packId) {
+  const profilePath = CANONICAL_DOWNSTREAM_PROFILE_BY_PACK[packId];
+  if (!profilePath) return true;
+  try {
+    const fs = await import('node:fs/promises');
+    const raw = await fs.readFile(profilePath, 'utf8');
+    const profile = JSON.parse(raw);
+    const linkedIds = profile.knowledgePackIds ?? [];
+    return Array.isArray(linkedIds) && linkedIds.includes(packId);
+  } catch {
+    return false;
+  }
 }
 
 export async function analyzeKnowledgeGaps(ecosystem, knowledgeBaseId = null) {
@@ -89,7 +175,7 @@ export async function analyzeKnowledgeGaps(ecosystem, knowledgeBaseId = null) {
   const personas = presentIdSet(catalogs.personas);
   const runbooks = presentIdSet(catalogs.runbooks);
   const guardrails = presentIdSet(catalogs.guardrails);
-  const environmentTools = environmentCoverage(ecosystem);
+  const environmentTools = await environmentCoverage(ecosystem);
 
   const coverage = [];
   const recommendations = [];
@@ -106,6 +192,19 @@ export async function analyzeKnowledgeGaps(ecosystem, knowledgeBaseId = null) {
     if (pack.id === 'pack:environment-parity-and-tooling' && (!environmentTools.has('cursor') || !environmentTools.has('codex') || !environmentTools.has('claude'))) {
       missing.push('environment-parity');
     }
+    const tier = tierForPack(pack.id);
+    const freshnessWindowDays = freshnessWindowDaysForTier(tier);
+    const relevantDocuments = documents.filter((document) => document.knowledgePackIds?.includes(pack.id));
+    const newestVersion = relevantDocuments
+      .map((document) => ({ raw: document.metadata?.version ?? null, date: parseIsoDate(document.metadata?.version ?? null) }))
+      .filter((entry) => entry.date)
+      .sort((left, right) => right.date.getTime() - left.date.getTime())[0] ?? null;
+    const importedAtDate = parseIsoDate(knowledgeBase?.importedAt) ?? new Date();
+    const freshnessAgeDays = newestVersion ? dayDiff(newestVersion.date, importedAtDate) : null;
+    const freshnessStatus = freshnessAgeDays !== null && freshnessAgeDays <= freshnessWindowDays ? 'fresh' : 'stale';
+    if (freshnessStatus === 'stale') missing.push('freshness');
+    const hasDownstreamLinkage = await hasCanonicalDownstreamLinkage(pack.id);
+    if (!hasDownstreamLinkage) missing.push('downstream-linkage');
 
     const dimensions = [
       1,
@@ -115,7 +214,9 @@ export async function analyzeKnowledgeGaps(ecosystem, knowledgeBaseId = null) {
       (pack.requiredGuardrailIds ?? []).every((id) => guardrails.has(id)) ? 1 : 0,
       pack.id === 'pack:environment-parity-and-tooling'
         ? ((!missing.includes('environment-parity')) ? 1 : 0)
-        : 1
+        : 1,
+      freshnessStatus === 'fresh' ? 1 : 0,
+      hasDownstreamLinkage ? 1 : 0
     ];
     const completeness = Number((dimensions.reduce((sum, value) => sum + value, 0) / dimensions.length).toFixed(2));
 
@@ -127,6 +228,13 @@ export async function analyzeKnowledgeGaps(ecosystem, knowledgeBaseId = null) {
       requiredPersonaIds: pack.requiredPersonaIds ?? [],
       requiredRunbookIds: pack.requiredRunbookIds ?? [],
       requiredGuardrailIds: pack.requiredGuardrailIds ?? [],
+      slaTier: tier,
+      freshness: {
+        windowDays: freshnessWindowDays,
+        ageDays: freshnessAgeDays,
+        sourceVersion: newestVersion?.raw ?? null,
+        status: freshnessStatus
+      },
       missing
     });
 
@@ -152,6 +260,7 @@ export async function analyzeKnowledgeGaps(ecosystem, knowledgeBaseId = null) {
       requiredPackCount: requiredPackIds.length,
       incompletePackCount: coverage.filter((entry) => entry.missing.length > 0).length,
       criticalMissingDocs: coverage.filter((entry) => entry.missing.includes('docs')).length,
+      staleCriticalPackCount: coverage.filter((entry) => entry.slaTier === 'critical' && entry.missing.includes('freshness')).length,
       weakestPack: coverage[0]?.packId ?? null
     }
   };
@@ -169,7 +278,9 @@ function buildGapReportMarkdown(report) {
     `- Weakest pack: **${weakest?.title ?? 'n/a'}**`,
     '',
     '## Coverage',
-    ...report.coverage.map((entry) => `- ${entry.title}: completeness ${entry.completeness} (${entry.missing.length > 0 ? `missing ${entry.missing.join(', ')}` : 'complete'})`),
+    ...report.coverage.map((entry) =>
+      `- ${entry.title}: completeness ${entry.completeness} (tier=${entry.slaTier}, freshness=${entry.freshness.status}${entry.freshness.ageDays !== null ? `, age=${entry.freshness.ageDays}d` : ''}${entry.missing.length > 0 ? `, missing ${entry.missing.join(', ')}` : ', complete'})`
+    ),
     '',
     '## Recommendations',
     ...(report.recommendations.length > 0

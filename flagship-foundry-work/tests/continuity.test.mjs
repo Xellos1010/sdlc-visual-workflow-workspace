@@ -43,6 +43,12 @@ test('initProject creates a project directory and valid current-task.json', asyn
 
     // Verify returned state shape
     assert.equal(state.project.name, 'test-project');
+    assert.equal(state.authority.contractAuthority, 'flagship-foundry-work/schemas/continuity-state.schema.json');
+    assert.equal(
+      state.authority.runtimeInstanceAuthority,
+      '.codex/projects/test-project/current-task.json'
+    );
+    assert.ok(Array.isArray(state.authority.derivedMirrors));
     assert.equal(state.objective, 'Build something great');
     assert.equal(state.lifecycleStage, 'discover');
     assert.equal(state.sdlcPhase, 'plan');
@@ -57,6 +63,7 @@ test('initProject creates a project directory and valid current-task.json', asyn
     const raw = await fs.readFile(statePath, 'utf8');
     const parsed = JSON.parse(raw);
     assert.equal(parsed.project.name, 'test-project');
+    assert.equal(parsed.authority.contractAuthority, 'flagship-foundry-work/schemas/continuity-state.schema.json');
 
     // Verify the charter was created
     const charterPath = path.join(tmpDir, '.codex', 'projects', 'test-project', 'SDLC_CHARTER.md');

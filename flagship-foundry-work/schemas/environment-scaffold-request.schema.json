@@ -19,6 +19,10 @@
     },
     "dryRun": {
       "type": "boolean"
+    },
+    "approveUserOwnedConflicts": {
+      "type": "boolean",
+      "description": "Explicit approval to overwrite user-owned conflicts during parity projection"
     }
   },
   "additionalProperties": true

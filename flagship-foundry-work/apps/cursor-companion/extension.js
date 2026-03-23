@@ -1,6 +1,7 @@
 const vscode = require('vscode');
 const cp = require('node:child_process');
 const fs = require('node:fs/promises');
+const fsSync = require('node:fs');
 const path = require('node:path');
 
 let serverProcess = null;
@@ -8,15 +9,41 @@ let latestEcosystemId = null;
 let latestPanel = null;
 let latestGapSummary = null;
 let latestFocusPath = null;
+let latestMirroredFile = null;
 
 function getWorkspaceRoot() {
   return vscode.workspace.workspaceFolders?.[0]?.uri?.fsPath ?? null;
 }
 
-function getDefaultKnowledgeManifestPath() {
+/**
+ * Resolves the Flagship Foundry app root (directory containing apps/control-plane).
+ */
+function resolveFoundryRoot() {
+  const configuration = vscode.workspace.getConfiguration('flagshipFoundry');
+  const configured = configuration.get('foundryRoot', '');
+  if (configured && String(configured).trim() !== '') {
+    return String(configured).trim();
+  }
   const workspaceRoot = getWorkspaceRoot();
-  if (!workspaceRoot) return 'examples/knowledge-sources/input/foundry-foundational-docs.manifest.json';
-  return path.join(workspaceRoot, 'examples', 'knowledge-sources', 'input', 'foundry-foundational-docs.manifest.json');
+  if (!workspaceRoot) {
+    return null;
+  }
+  const directServer = path.join(workspaceRoot, 'apps', 'control-plane', 'src', 'server.mjs');
+  if (fsSync.existsSync(directServer)) {
+    return workspaceRoot;
+  }
+  const nested = path.join(workspaceRoot, 'flagship-foundry-work');
+  const nestedServer = path.join(nested, 'apps', 'control-plane', 'src', 'server.mjs');
+  if (fsSync.existsSync(nestedServer)) {
+    return nested;
+  }
+  return null;
+}
+
+function getDefaultKnowledgeManifestPath() {
+  const base = resolveFoundryRoot() ?? getWorkspaceRoot();
+  if (!base) return 'examples/knowledge-sources/input/foundry-foundational-docs.manifest.json';
+  return path.join(base, 'examples', 'knowledge-sources', 'input', 'foundry-foundational-docs.manifest.json');
 }
 
 function getSettings() {
@@ -26,7 +53,8 @@ function getSettings() {
     autoApproveDraftPlans: configuration.get('autoApproveDraftPlans', false),
     autoStartApprovedPlans: configuration.get('autoStartApprovedPlans', false),
     knowledgeManifestPath: configuration.get('knowledgeManifestPath', getDefaultKnowledgeManifestPath()),
-    defaultFocusQuery: configuration.get('defaultFocusQuery', 'service worker messaging storage sidepanel')
+    defaultFocusQuery: configuration.get('defaultFocusQuery', 'service worker messaging storage sidepanel'),
+    runExecutionMode: configuration.get('runExecutionMode', 'simulate')
   };
 }
 
@@ -48,14 +76,16 @@ async function ensureServer(context) {
     await fetchJson(`${settings.controlPlaneUrl}/health`);
     return settings.controlPlaneUrl;
   } catch {
-    const workspaceRoot = getWorkspaceRoot();
-    if (!workspaceRoot) {
-      throw new Error('Open the Foundry repository as the current workspace before starting the control plane.');
+    const foundryRoot = resolveFoundryRoot();
+    if (!foundryRoot) {
+      throw new Error(
+        'Could not find Flagship Foundry app root. Open flagship-foundry-work as the folder, the parent repo with a nested flagship-foundry-work/, or set flagshipFoundry.foundryRoot.'
+      );
     }
     if (!serverProcess) {
-      const serverPath = path.join(workspaceRoot, 'apps', 'control-plane', 'src', 'server.mjs');
+      const serverPath = path.join(foundryRoot, 'apps', 'control-plane', 'src', 'server.mjs');
       serverProcess = cp.spawn(process.execPath, [serverPath], {
-        cwd: workspaceRoot,
+        cwd: foundryRoot,
         stdio: 'ignore',
         detached: false
       });
@@ -186,6 +216,8 @@ function overlayHtml(state) {
         <div class="card">
           <h2>Foundry Orchestrator</h2>
           <div class="muted">Ecosystem: <code>${state.ecosystemId || 'not imported yet'}</code></div>
+          <div class="muted">Foundry root: <code>${state.foundryRoot ? state.foundryRoot : 'auto'}</code></div>
+          <div class="muted">Run mode: <code>${state.settings?.runExecutionMode ?? 'simulate'}</code></div>
           <div class="muted">Auto approve: <code>${state.settings?.autoApproveDraftPlans ? 'on' : 'off'}</code></div>
           <p>
             <button data-action="start-server">Start Plane</button>
@@ -210,16 +242,37 @@ function overlayHtml(state) {
         </div>
         
         <div class="card">
-          <h3>Latest Run (Ralph loop)</h3>
+          <h3>Latest Run</h3>
           ${latestRun ? `
             <div><strong>${latestRun.id}</strong></div>
-            <div class="muted">Status: ${latestRun.status}</div>
+            <div class="muted">Status: ${latestRun.status} | Mode: ${latestRun.mode ?? '—'}</div>
             <p>
               <button data-action="pause-run">Pause</button>
               <button data-action="resume-run">Resume</button>
               <button data-action="stop-run">Stop</button>
             </p>
           ` : '<div class="muted">No runs yet.</div>'}
+        </div>
+
+        <div class="card">
+          <h3>Lifecycle (ontology)</h3>
+          <div class="muted">${state.phases && state.phases.phases ? `${state.phases.phases.length} phases` : 'Start control plane to load'}</div>
+        </div>
+
+        <div class="card">
+          <h3>Graph snapshot</h3>
+          <div class="muted">Nodes: ${state.graphStats ? state.graphStats.nodeCount : '—'} | Edges: ${state.graphStats ? state.graphStats.edgeCount : '—'}</div>
+        </div>
+
+        <div class="card">
+          <h3>Mirrored focus</h3>
+          <div class="muted">Active editor: <code id="mirrored-file">${state.mirroredFile ? state.mirroredFile : '—'}</code></div>
+          <p class="muted">Select a file in the IDE to link visual drill-down (stub).</p>
+        </div>
+
+        <div class="card">
+          <h3>Layered planning context</h3>
+          <div class="muted">${state.planningContext ? `${state.planningContext.layer1_workspace?.projectCount ?? 0} projects in workspace slice` : 'Import ecosystem to load'}</div>
         </div>
       </div>
 
@@ -234,6 +287,14 @@ function overlayHtml(state) {
       <script>
         const vscode = acquireVsCodeApi();
         mermaid.initialize({ startOnLoad: true, theme: 'dark', securityLevel: 'loose' });
+
+        window.addEventListener('message', (event) => {
+          const msg = event.data;
+          if (msg && msg.type === 'mirrored-file' && msg.fileName) {
+            const el = document.getElementById('mirrored-file');
+            if (el) el.textContent = msg.fileName;
+          }
+        });
 
         document.body.addEventListener('click', (event) => {
           const action = event.target?.dataset?.action;
@@ -258,23 +319,64 @@ function overlayHtml(state) {
 async function collectOverlayState(context) {
   const baseUrl = await ensureServer(context);
   const settings = getSettings();
+  const foundryRoot = resolveFoundryRoot();
   const [plans, runs, knowledgeBases] = await Promise.all([
-    fetchJson(`${baseUrl}/plans`).catch(()=>[]),
-    fetchJson(`${baseUrl}/runs`).catch(()=>[]),
-    fetchJson(`${baseUrl}/knowledge-bases`).catch(()=>[])
+    fetchJson(`${baseUrl}/plans`).catch(() => []),
+    fetchJson(`${baseUrl}/runs`).catch(() => []),
+    fetchJson(`${baseUrl}/knowledge-bases`).catch(() => [])
   ]);
   const gapSummary = latestEcosystemId
-    ? await fetchJson(`${baseUrl}/ecosystems/${latestEcosystemId}/analysis/gap`).then((value) => value?.summary || latestGapSummary).catch(() => latestGapSummary)
+    ? await fetchJson(`${baseUrl}/ecosystems/${latestEcosystemId}/analysis/gap`)
+        .then((value) => value?.summary || latestGapSummary)
+        .catch(() => latestGapSummary)
     : latestGapSummary;
-    
+
   let focusContent = null;
   if (latestFocusPath) {
     try {
       focusContent = await fs.readFile(latestFocusPath, 'utf8');
-    } catch(e) {}
+    } catch {
+      /* ignore */
+    }
   }
-  
-  return { ecosystemId: latestEcosystemId, plans, runs, knowledgeBases, gapSummary, focusPath: latestFocusPath, focusContent, settings };
+
+  let phases = null;
+  let graphStats = null;
+  let planningContext = null;
+  try {
+    phases = await fetchJson(`${baseUrl}/ontology/phases`);
+  } catch {
+    phases = null;
+  }
+  if (latestEcosystemId) {
+    try {
+      const g = await fetchJson(`${baseUrl}/ecosystems/${latestEcosystemId}/graph`);
+      graphStats = { nodeCount: g.nodes?.length ?? 0, edgeCount: g.edges?.length ?? 0 };
+      const kbId = knowledgeBases[0]?.id;
+      const qs = kbId
+        ? `ecosystemId=${encodeURIComponent(latestEcosystemId)}&knowledgeBaseId=${encodeURIComponent(kbId)}`
+        : `ecosystemId=${encodeURIComponent(latestEcosystemId)}`;
+      planningContext = await fetchJson(`${baseUrl}/planning/context?${qs}`);
+    } catch {
+      graphStats = null;
+    }
+  }
+
+  return {
+    ecosystemId: latestEcosystemId,
+    plans,
+    runs,
+    knowledgeBases,
+    gapSummary,
+    focusPath: latestFocusPath,
+    focusContent,
+    settings,
+    foundryRoot,
+    phases,
+    graphStats,
+    planningContext,
+    mirroredFile: latestMirroredFile
+  };
 }
 
 async function refreshOverlay(context, panel) {
@@ -335,9 +437,14 @@ async function actOnLatest(context, action) {
       body: JSON.stringify({ approvedBy: 'cursor-user', autoStartOnApproval: getSettings().autoStartApprovedPlans })
     });
   } else if (action === 'create-run' && latestPlan) {
+    const mode = getSettings().runExecutionMode;
+    const body =
+      mode === 'execute'
+        ? { planId: latestPlan.id, mode: 'execute', adapterId: 'adapter:local-shell' }
+        : { planId: latestPlan.id, mode: 'simulate', adapterId: 'adapter:cursor-companion' };
     await fetchJson(`${baseUrl}/runs/start`, {
       method: 'POST',
-      body: JSON.stringify({ planId: latestPlan.id, mode: 'simulate', adapterId: 'adapter:cursor-companion' })
+      body: JSON.stringify(body)
     });
   } else if (['pause-run', 'resume-run', 'stop-run'].includes(action) && latestRun) {
     const endpoint = action.replace('-run', '');
@@ -347,6 +454,17 @@ async function actOnLatest(context, action) {
 }
 
 function activate(context) {
+  context.subscriptions.push(
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+      if (!editor || !latestPanel) {
+        return;
+      }
+      const base = editor.document?.fileName ? path.basename(editor.document.fileName) : '';
+      latestMirroredFile = base || null;
+      latestPanel.webview.postMessage({ type: 'mirrored-file', fileName: latestMirroredFile || '' });
+    })
+  );
+
   context.subscriptions.push(vscode.commands.registerCommand('flagshipFoundry.startControlPlane', async () => {
     try {
       await ensureServer(context);

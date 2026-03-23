@@ -2,25 +2,24 @@
 
 Flagship Foundry is a graph-native SDLC control plane for human plus AI orchestration.
 
+**Runnable product code** for this effort lives in [`flagship-foundry-work/`](flagship-foundry-work/). See [`flagship-foundry-work/docs/REPOSITORY_LAYOUT.md`](flagship-foundry-work/docs/REPOSITORY_LAYOUT.md) for canonical layout and how this repo relates to research docs at the root.
+
 This repository now includes a working import, knowledge-ingestion, gap-analysis, focus-view, approval-aware planning, and run-control slice that starts from an existing workspace rather than assuming a greenfield implementation path.
 
 ## What is here
 
-- `apps/control-plane/` - HTTP API for import, knowledge ingestion, gap analysis, focus views, planning, approval, run control, and graph patching
-- `apps/orchestrator-cli/` - CLI for bootstrap, import, knowledge ingestion, gap analysis, focus views, planning, environment scaffold, and run simulation
-- `apps/cursor-companion/` - VS Code and Cursor companion surface with start, import, ingest, gap, plan, focus, approve, and run control actions
-- `packages/core/` - import pipeline, graph store, plans, runs, visualizations, focus views, knowledge ingestion, environment scaffold, SME profile generation, and catalogs
-- `knowledge/` - domain packs, framework registries, source presets, and agent plus skill blueprints
-- `schemas/` - contracts for import, graph, plans, runs, knowledge sources, documents, gap reports, focus views, runbooks, personas, guardrails, and fix memory
-- `runbooks/`, `personas/`, `guardrails/`, `configs/`, `ontology/` - process, role, policy, and routing catalogs
-- `environments/` - project-local parity templates for Cursor, Codex, and Claude Code
-- `examples/current-workspace/` - current ecosystem export bundle, requests, and generated artifacts
-- `examples/knowledge-sources/` - seed knowledge manifest and local documentation sources
-- `state/` - generated ecosystem manifests, graphs, knowledge bases, plans, runs, visualizations, and profile outputs
+Inside [`flagship-foundry-work/`](flagship-foundry-work/):
+
+- `apps/control-plane/` — HTTP API for import, knowledge ingestion, gap analysis, focus views, planning, approval, run control, and graph patching
+- `apps/orchestrator-cli/` — CLI for bootstrap, import, knowledge, gaps, focus, planning, environment scaffold, and runs
+- `apps/cursor-companion/` — VS Code and Cursor companion
+- `packages/core/` — import pipeline, graph store, plans, runs, knowledge, environment scaffold, catalogs
+- `knowledge/`, `schemas/`, `runbooks/`, `personas/`, `guardrails/`, `configs/`, `ontology/`, `environments/`, `examples/`, `state/`
 
 ## Quick start
 
 ```bash
+cd flagship-foundry-work
 npm run bootstrap:full-sample
 npm run api
 npm test
@@ -29,6 +28,7 @@ npm test
 ## Sample commands
 
 ```bash
+cd flagship-foundry-work
 npm run import:sample
 npm run knowledge:sample
 npm run gap:sample

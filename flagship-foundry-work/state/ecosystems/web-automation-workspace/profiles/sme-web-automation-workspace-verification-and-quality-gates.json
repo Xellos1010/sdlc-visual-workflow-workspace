@@ -63,6 +63,7 @@
     "project:platform-core",
     "project:web-documentation"
   ],
+  "knowledgePackIds": [],
   "mandatoryQuestions": [
     "Which unit, integration, e2e, and build targets are required for this change?",
     "What negative or regression case currently fails and should pass after the fix?",

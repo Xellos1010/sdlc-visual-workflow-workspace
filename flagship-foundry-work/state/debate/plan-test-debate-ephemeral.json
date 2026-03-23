@@ -1,0 +1,225 @@
+{
+  "planId": "plan:test-debate-ephemeral",
+  "rounds": [
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T05:25:49.472Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T18:53:58.818Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T18:55:10.677Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T18:56:12.977Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T18:58:07.167Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T18:58:29.335Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:03:50.607Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:04:53.379Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:09:48.582Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:10:48.008Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:13:28.922Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:22:16.422Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:23:42.850Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:25:23.277Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:31:44.312Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:32:00.986Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:32:16.765Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:32:32.224Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:34:35.772Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:37:21.723Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:37:54.600Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:38:18.061Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:38:51.155Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:40:26.752Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:41:02.881Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:41:36.975Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:49:46.217Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:51:34.534Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:54:31.227Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:55:02.900Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:55:17.287Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:55:36.940Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T19:56:06.022Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:01:01.059Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:02:14.383Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:04:19.863Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:05:19.456Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:20:48.459Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:22:26.992Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:32:07.225Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:32:23.807Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T20:33:27.529Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T21:48:27.420Z"
+    },
+    {
+      "role": "adversary",
+      "content": "test objection",
+      "at": "2026-03-23T21:50:08.570Z"
+    }
+  ]
+}

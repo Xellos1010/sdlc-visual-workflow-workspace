@@ -2,7 +2,7 @@
   "id": "foundry-foundational-docs",
   "name": "Foundry Foundational Docs",
   "description": "Seed knowledge base from local Cursor, Codex, Claude Code, and documentation tooling sources.",
-  "importedAt": "2026-03-22T02:11:44.604Z",
+  "importedAt": "2026-03-23T21:50:09.551Z",
   "sources": [
     {
       "id": "source:claude-code-docs",
@@ -180,77 +180,182 @@
     {
       "packId": "pack:environment-parity-and-tooling",
       "title": "Environment Parity and Tooling",
-      "documentCount": 1082
+      "documentCount": 1082,
+      "slaTier": "critical",
+      "freshness": {
+        "windowDays": 14,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:ui-ux-and-design-systems",
       "title": "UI UX and Design Systems",
-      "documentCount": 692
+      "documentCount": 692,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:knowledge-ingestion-and-rag",
       "title": "Knowledge Ingestion and RAG",
-      "documentCount": 534
+      "documentCount": 534,
+      "slaTier": "critical",
+      "freshness": {
+        "windowDays": 14,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:data-modeling-and-api-contracts",
       "title": "Data Modeling and API Contracts",
-      "documentCount": 455
+      "documentCount": 455,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:security-networking-and-permissions",
       "title": "Security Networking and Permissions",
-      "documentCount": 437
+      "documentCount": 437,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:agent-orchestration-and-evaluation",
       "title": "Agent Orchestration and Evaluation",
-      "documentCount": 430
+      "documentCount": 430,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:cloud-and-deployment-environments",
       "title": "Cloud and Deployment Environments",
-      "documentCount": 417
+      "documentCount": 417,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:browser-extension-mv3-specialization",
       "title": "Browser Extension MV3 Specialization",
-      "documentCount": 387
+      "documentCount": 387,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:state-management-and-event-flows",
       "title": "State Management and Event Flows",
-      "documentCount": 328
+      "documentCount": 328,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:testing-quality-and-verification",
       "title": "Testing Quality and Verification",
-      "documentCount": 309
+      "documentCount": 309,
+      "slaTier": "critical",
+      "freshness": {
+        "windowDays": 14,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:system-architecture-and-boundaries",
       "title": "System Architecture and Boundaries",
-      "documentCount": 305
+      "documentCount": 305,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:nx-monorepo-and-repository-cartography",
       "title": "Nx Monorepo and Repository Cartography",
-      "documentCount": 177
+      "documentCount": 177,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:self-improvement-and-fix-memory",
       "title": "Self Improvement and Fix Memory",
-      "documentCount": 169
+      "documentCount": 169,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:observability-telemetry-and-operations",
       "title": "Observability Telemetry and Operations",
-      "documentCount": 97
+      "documentCount": 97,
+      "slaTier": "critical",
+      "freshness": {
+        "windowDays": 14,
+        "ageDays": 2,
+        "sourceVersion": "2026-03-21",
+        "status": "fresh"
+      }
     },
     {
       "packId": "pack:documentation-runbooks-and-handoffs",
       "title": "Documentation Runbooks and Handoffs",
-      "documentCount": 97
+      "documentCount": 97,
+      "slaTier": "important",
+      "freshness": {
+        "windowDays": 30,
+        "ageDays": 1,
+        "sourceVersion": "2026-03-22",
+        "status": "fresh"
+      }
     }
   ],
   "frameworks": [
@@ -395,5 +500,14 @@
     "keyword/agents-md",
     "keyword/model-routing",
     "keyword/accessibility"
-  ]
+  ],
+  "sla": {
+    "authority": "adr-001",
+    "policyRef": "adr-005",
+    "completenessPolicy": "canonical-contract-plus-lineage-and-downstream-linkage",
+    "freshnessWindowsDays": {
+      "critical": 14,
+      "important": 30
+    }
+  }
 }

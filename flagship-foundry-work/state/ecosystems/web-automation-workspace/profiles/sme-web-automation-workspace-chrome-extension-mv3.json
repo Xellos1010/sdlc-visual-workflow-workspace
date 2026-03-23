@@ -75,6 +75,7 @@
     "project:chrome-ext-ui-modern",
     "project:chrome-ext-ui-shared-components"
   ],
+  "knowledgePackIds": [],
   "mandatoryQuestions": [
     "Does the change touch service worker, content script, popup, side panel, storage, permissions, or messaging contracts?",
     "Which Chrome APIs are in scope and what manifest or permission updates follow from the change?",

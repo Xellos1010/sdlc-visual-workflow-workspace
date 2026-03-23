@@ -6,6 +6,19 @@ function runFilePath(runId) {
   return path.join(stateRoot, 'runs', `${runId.replace(/[:/]+/g, '-')}.json`);
 }
 
+function runWorkspacePath(runId) {
+  return path.join(stateRoot, 'run-workspaces', runId.replace(/[:/]+/g, '-'));
+}
+
+function appendRunEvent(run, type, details = {}) {
+  run.timeline = Array.isArray(run.timeline) ? run.timeline : [];
+  run.timeline.push({
+    type,
+    timestamp: nowIso(),
+    details
+  });
+}
+
 function flattenTasks(plan) {
   return plan.projectPlans.flatMap((projectPlan) =>
     projectPlan.tasks.map((task) => ({
@@ -15,14 +28,57 @@ function flattenTasks(plan) {
   );
 }
 
+function createTaskCorrelation(runId, planId, ecosystemId, adapterId, taskId) {
+  const correlation = {
+    runId,
+    taskId,
+    planId
+  };
+  if (ecosystemId) {
+    correlation.ecosystemId = ecosystemId;
+  }
+  if (adapterId) {
+    correlation.adapterId = adapterId;
+  }
+  return correlation;
+}
+
+function normalizeTelemetryReference(reference, correlation) {
+  if (!reference || typeof reference !== 'object') {
+    return null;
+  }
+  return {
+    ...reference,
+    correlation: {
+      ...correlation,
+      ...(reference.correlation ?? {})
+    }
+  };
+}
+
+function normalizeTelemetryReferences(telemetryReferences, correlation) {
+  const before = Array.isArray(telemetryReferences?.before) ? telemetryReferences.before : [];
+  const after = Array.isArray(telemetryReferences?.after) ? telemetryReferences.after : [];
+  return {
+    before: before.map((reference) => normalizeTelemetryReference(reference, correlation)).filter(Boolean),
+    after: after.map((reference) => normalizeTelemetryReference(reference, correlation)).filter(Boolean)
+  };
+}
+
 export async function createRunForPlan(planId, options = {}) {
   const plan = await loadPlan(planId);
   const runId = makeId('run', `${planId}-${Date.now()}`);
+  const adapterId = options.adapterId ?? 'adapter:dry-run';
   const tasks = flattenTasks(plan).map((task) => ({
     ...task,
     status: 'queued',
     verificationResults: [],
-    evidenceArtifacts: []
+    evidenceArtifacts: [],
+    telemetryReferences: {
+      before: [],
+      after: []
+    },
+    correlation: createTaskCorrelation(runId, planId, plan.ecosystemId, adapterId, task.id)
   }));
   const run = {
     id: runId,
@@ -32,16 +88,29 @@ export async function createRunForPlan(planId, options = {}) {
     updatedAt: nowIso(),
     status: 'ready',
     mode: options.mode ?? 'simulate',
-    adapterId: options.adapterId ?? 'adapter:dry-run',
+    adapterId,
+    isolation: {
+      mode: 'run-scoped',
+      workspaceRoot: runWorkspacePath(runId),
+      defaultWritePolicy: 'workspace-only',
+      allowExternalWritesByDefault: false
+    },
+    rollback: {
+      boundary: 'run-instance',
+      pausePreservesEvidence: true,
+      stopPreservesEvidence: true
+    },
+    timeline: [],
     tasks,
     agentSessions: tasks.map((task) => ({
       id: makeId('agent-session', `${runId}-${task.id}`),
       taskId: task.id,
       status: 'idle',
       personaIds: task.personaIds,
-      adapterId: options.adapterId ?? 'adapter:dry-run'
+      adapterId
     }))
   };
+  appendRunEvent(run, 'run-created', { mode: run.mode, adapterId: run.adapterId });
   await writeJson(runFilePath(runId), run);
   return run;
 }
@@ -101,6 +170,10 @@ export async function transitionRun(runId, action) {
   const run = await loadRun(runId);
   if (action === 'start') {
     activateNextTasks(run);
+    if (!run.startedAt && run.status === 'running') {
+      run.startedAt = nowIso();
+    }
+    appendRunEvent(run, 'run-started', { status: run.status });
   } else if (action === 'pause') {
     run.status = 'paused';
     for (const task of run.tasks) {
@@ -109,6 +182,7 @@ export async function transitionRun(runId, action) {
     for (const session of run.agentSessions) {
       if (session.status === 'running') session.status = 'paused';
     }
+    appendRunEvent(run, 'run-paused', { rollbackBoundary: run.rollback?.boundary ?? 'run-instance' });
   } else if (action === 'resume') {
     for (const task of run.tasks) {
       if (task.status === 'paused') task.status = 'queued';
@@ -117,6 +191,7 @@ export async function transitionRun(runId, action) {
       if (session.status === 'paused') session.status = 'idle';
     }
     activateNextTasks(run);
+    appendRunEvent(run, 'run-resumed', { status: run.status });
   } else if (action === 'stop') {
     run.status = 'stopped';
     for (const task of run.tasks) {
@@ -127,6 +202,10 @@ export async function transitionRun(runId, action) {
     for (const session of run.agentSessions) {
       if (session.status !== 'done') session.status = 'stopped';
     }
+    appendRunEvent(run, 'run-stopped', {
+      rollbackBoundary: run.rollback?.boundary ?? 'run-instance',
+      preservedEvidence: true
+    });
   }
   run.updatedAt = nowIso();
   await writeJson(runFilePath(runId), run);
@@ -146,6 +225,7 @@ export async function completeTask(runId, taskId, options = {}) {
   const run = await loadRun(runId);
   const task = run.tasks.find((t) => t.id === taskId);
   if (!task) throw new Error(`Task ${taskId} not found in run ${runId}`);
+  task.correlation = task.correlation ?? createTaskCorrelation(run.id, run.planId, run.ecosystemId, run.adapterId, task.id);
   stampTaskCompletion(task, 'completed');
   if (options.verificationResults) {
     task.verificationResults = options.verificationResults;
@@ -153,6 +233,16 @@ export async function completeTask(runId, taskId, options = {}) {
   if (options.evidenceArtifacts) {
     task.evidenceArtifacts = options.evidenceArtifacts;
   }
+  if (options.telemetryReferences) {
+    task.telemetryReferences = normalizeTelemetryReferences(options.telemetryReferences, task.correlation);
+  }
+  if (options.fixMemoryRef) {
+    task.fixMemoryRef = options.fixMemoryRef;
+  }
+  appendRunEvent(run, 'task-completed', {
+    taskId,
+    evidenceCount: Array.isArray(task.evidenceArtifacts) ? task.evidenceArtifacts.length : 0
+  });
   const session = run.agentSessions.find((s) => s.taskId === taskId);
   if (session) session.status = 'done';
   activateNextTasks(run);
@@ -170,6 +260,7 @@ export async function failTask(runId, taskId, options = {}) {
   const run = await loadRun(runId);
   const task = run.tasks.find((t) => t.id === taskId);
   if (!task) throw new Error(`Task ${taskId} not found in run ${runId}`);
+  task.correlation = task.correlation ?? createTaskCorrelation(run.id, run.planId, run.ecosystemId, run.adapterId, task.id);
   stampTaskCompletion(task, 'failed');
   if (options.verificationResults) {
     task.verificationResults = options.verificationResults;
@@ -177,6 +268,16 @@ export async function failTask(runId, taskId, options = {}) {
   if (options.evidenceArtifacts) {
     task.evidenceArtifacts = options.evidenceArtifacts;
   }
+  if (options.telemetryReferences) {
+    task.telemetryReferences = normalizeTelemetryReferences(options.telemetryReferences, task.correlation);
+  }
+  if (options.fixMemoryRef) {
+    task.fixMemoryRef = options.fixMemoryRef;
+  }
+  appendRunEvent(run, 'task-failed', {
+    taskId,
+    evidenceCount: Array.isArray(task.evidenceArtifacts) ? task.evidenceArtifacts.length : 0
+  });
   const session = run.agentSessions.find((s) => s.taskId === taskId);
   if (session) session.status = 'failed';
   run.status = 'failed';

@@ -26,6 +26,44 @@ npm run api
 npm test
 ```
 
+## CI and release gates
+
+Blocking automation and the release evidence threshold are documented in **[docs/ci-release-gates.md](docs/ci-release-gates.md)** (ADR-009). GitHub Actions runs **`npm test`** plus **`npm run ci:targeted`** (orchestrator visualize smoke) from `flagship-foundry-work/`; workflow definition lives at **`.github/workflows/flagship-foundry-ci.yml`** in the parent workspace repository.
+
+Rollout, rollback, and incident documentation (how operator records link to plans, runs, and evidence) are defined in **[docs/rollout-rollback-incident-model.md](docs/rollout-rollback-incident-model.md)** (ADR-010).
+
+## Control-plane auth and trust boundary config
+
+ADR-006 Option B is enforced in the control plane:
+- non-loopback requests require a scoped bearer token
+- loopback (`127.0.0.1` / `::1`) can bypass auth in local dev
+- CORS only allows explicit origins (no wildcard)
+
+Set these variables before `npm run api`:
+
+```bash
+# Required for non-loopback access
+export FLAGSHIP_CONTROL_PLANE_BEARER_TOKEN="replace-me"
+export FLAGSHIP_CONTROL_PLANE_BEARER_SCOPES="control-plane:read,control-plane:write,control-plane:execute"
+
+# Optional: multiple scoped tokens (overrides *_BEARER_* when set)
+# export FLAGSHIP_CONTROL_PLANE_TOKENS='[{"token":"token-a","scopes":["control-plane:read"]}]'
+
+# Optional local dev exception (default 1 = enabled)
+export FLAGSHIP_ALLOW_LOOPBACK_NO_AUTH=1
+
+# Explicit CORS allowlist (comma-separated; no wildcard)
+export FLAGSHIP_CORS_ORIGINS="http://localhost:3000,http://localhost:4010"
+```
+
+## Runtime adapter isolation and rollback boundary
+
+ADR-008 indicators are enforced for execute-mode runs:
+- run records include an explicit `isolation` contract (`run-scoped` workspace, default `workspace-only` writes)
+- run records include explicit `rollback` semantics (`pause`/`stop` preserve task evidence and timeline)
+- local-shell executor persists per-task evidence JSON under `state/run-workspaces/<run-id>/`
+- non-zero local-shell exits mark the task and run as failed while preserving artifacts for diagnosis
+
 ## Sample commands
 
 ```bash
@@ -44,10 +82,19 @@ npm run plan:sample
 - `POST /analysis/gaps`
 - `POST /analysis/focus`
 - `POST /planning/create`
-- `POST /runs/start`
+- `GET /planning/context?ecosystemId=&knowledgeBaseId=`
+- `POST /runs/start` (use `mode: execute` + `adapterId: adapter:local-shell` for real local execution)
+- `GET /runs/:id/evidence-bundle`
+- `POST /runs/:id/ralph-sync` (body: `prdPath`, `projectName`)
 - `POST /plans/:id/approve`
-- `POST /runs/:id/pause|resume|stop`
+- `GET|POST /plans/:id/debate`
+- `GET /projects/:id/gates`
+- `GET /swarm/registry` — `POST /swarm/orchestration-stub`
+- `GET /trace/forward|backward|file` — graph trace helpers
+- `GET /environments/detect?targetDir=`
 - `POST /environments/scaffold`
+
+See [docs/REPOSITORY_LAYOUT.md](docs/REPOSITORY_LAYOUT.md) for repo boundaries and [docs/source-of-truth-matrix.md](docs/source-of-truth-matrix.md) for artifact authority and sync direction.
 
 ## Current direction
 

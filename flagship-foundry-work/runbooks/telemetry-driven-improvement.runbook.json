@@ -41,6 +41,8 @@
     "incident-to-plan mapping",
     "telemetry evidence bundle",
     "fix memory",
-    "guardrail update proposal"
+    "guardrail update proposal",
+    "correlation keys (runId/taskId/planId/ecosystemId/adapterId)",
+    "before/after telemetry references"
   ]
 }

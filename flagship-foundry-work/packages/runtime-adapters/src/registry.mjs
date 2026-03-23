@@ -1,6 +1,14 @@
 // runtime-adapters/src/registry.mjs
 
 export const providers = {
+  localShell: {
+    id: "adapter:local-shell",
+    name: "Local Shell",
+    role: "bounded-local-executor",
+    supportsMCP: false,
+    isolationMode: "run-scoped-workspace",
+    defaultWritePolicy: "workspace-only"
+  },
   claudeCode: {
     id: "adapter-claude-code",
     name: "Claude Code",

@@ -70,6 +70,9 @@
     "project:platform-core",
     "project:web-documentation"
   ],
+  "knowledgePackIds": [
+    "pack:knowledge-ingestion-and-rag"
+  ],
   "mandatoryQuestions": [
     "Which foundational packs are missing documentation or retrieval artifacts?",
     "Which framework or platform sources should be versioned and refreshed?",

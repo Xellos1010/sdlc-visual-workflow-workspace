@@ -10,6 +10,8 @@
   ],
   "evidenceRequirements": [
     "before/after telemetry snapshot",
-    "fix-memory record"
+    "fix-memory record",
+    "run-task correlation keys (runId, taskId, planId, ecosystemId, adapterId when available)",
+    "telemetry references attached to evidence bundle summary"
   ]
 }

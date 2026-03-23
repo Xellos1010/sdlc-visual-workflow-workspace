@@ -28,6 +28,7 @@
     "project:chrome-ext-integrations-zoominfo",
     "project:web-documentation"
   ],
+  "knowledgePackIds": [],
   "mandatoryQuestions": [
     "What runtime contracts, timeouts, retries, and logging semantics are in scope?",
     "Which structured errors and config boundaries need to stay stable?",

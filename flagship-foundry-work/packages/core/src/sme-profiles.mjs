@@ -5,7 +5,18 @@ function unique(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
-function buildProfile({ domain, title, ecosystem, sources, rules, projects, questions, heuristics, designPrinciples }) {
+function buildProfile({
+  domain,
+  title,
+  ecosystem,
+  sources,
+  rules,
+  projects,
+  questions,
+  heuristics,
+  designPrinciples,
+  knowledgePackIds = []
+}) {
   return {
     id: makeId('sme', `${ecosystem.id}-${domain}`),
     domain,
@@ -15,6 +26,7 @@ function buildProfile({ domain, title, ecosystem, sources, rules, projects, ques
     detectedFrom: unique(sources),
     mappedRuleIds: unique(rules.map((rule) => rule.id)),
     relatedProjectIds: unique(projects.map((project) => project.id)),
+    knowledgePackIds: unique(knowledgePackIds),
     mandatoryQuestions: questions,
     blastRadiusChecklist: heuristics,
     designPrinciples,
@@ -223,6 +235,7 @@ export function generateSmeProfiles({ ecosystem }) {
         domain: 'environment-parity-and-tooling',
         title: 'Environment Parity and Tooling SME',
         ecosystem,
+        knowledgePackIds: ['pack:environment-parity-and-tooling'],
         sources: ['.cursor rules', '.claude settings', '.codex config', '.mcp.json'],
         rules: [...workflowRules, ...nxRules],
         projects,
@@ -250,6 +263,7 @@ export function generateSmeProfiles({ ecosystem }) {
       domain: 'knowledge-ingestion-and-rag',
       title: 'Knowledge Ingestion and Retrieval SME',
       ecosystem,
+      knowledgePackIds: ['pack:knowledge-ingestion-and-rag'],
       sources: ['documentation manifests', 'versioned downloads', 'knowledge packs', 'framework registries'],
       rules: [...workflowRules, ...observabilityRules],
       projects,

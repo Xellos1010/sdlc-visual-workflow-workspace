@@ -1,0 +1,10 @@
+{
+  "mode": "auto",
+  "autoApprove": true,
+  "autoStartOnApproval": true,
+  "requiredReason": false,
+  "status": "approved",
+  "approvedAt": null,
+  "approvedBy": null,
+  "notes": null
+}

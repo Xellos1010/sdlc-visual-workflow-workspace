@@ -4,16 +4,72 @@
   "title": "Continuity State",
   "type": "object",
   "required": [
+    "authority",
     "project",
+    "objective",
+    "sdlcPhase",
     "lifecycleStage",
-    "phaseId",
-    "verificationCommands"
+    "currentPhase",
+    "activeBranch",
+    "nextCommit",
+    "nextCommandSet",
+    "blockedBy",
+    "artifacts",
+    "doneCriteria"
   ],
   "properties": {
+    "authority": {
+      "type": "object",
+      "required": [
+        "contractAuthority",
+        "runtimeInstanceAuthority",
+        "derivedMirrors"
+      ],
+      "properties": {
+        "contractAuthority": {
+          "type": "string",
+          "const": "flagship-foundry-work/schemas/continuity-state.schema.json"
+        },
+        "runtimeInstanceAuthority": {
+          "type": "string",
+          "pattern": "^\\.codex/projects/[^/]+/current-task\\.json$"
+        },
+        "derivedMirrors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
     "project": {
+      "type": "object",
+      "required": [
+        "name",
+        "path",
+        "worktree",
+        "baseBranch",
+        "technicalBaseBranch",
+        "ruleReferences"
+      ],
+      "properties": {
+        "name": { "type": "string" },
+        "path": { "type": "string" },
+        "worktree": { "type": "string" },
+        "baseBranch": { "type": "string" },
+        "technicalBaseBranch": { "type": "string" },
+        "ruleReferences": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "objective": {
       "type": "string"
     },
-    "lifecycleStage": {
+    "sdlcPhase": {
       "type": "string",
       "enum": [
         "plan",
@@ -25,22 +81,79 @@
         "operate"
       ]
     },
-    "phaseId": {
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "discover",
+        "define",
+        "visualize",
+        "architect",
+        "plan",
+        "implement",
+        "verify",
+        "release",
+        "operate",
+        "diagnose",
+        "improve"
+      ]
+    },
+    "currentPhase": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "status",
+        "branch",
+        "notes",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in_progress", "blocked", "verified", "done"]
+        },
+        "branch": { "type": "string" },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": true
+    },
+    "activeBranch": {
       "type": "string"
     },
-    "verificationCommands": {
+    "nextCommit": {
+      "type": "object",
+      "required": ["branch", "message", "scope"],
+      "properties": {
+        "branch": { "type": "string" },
+        "message": { "type": "string" },
+        "scope": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "nextCommandSet": {
       "type": "array",
       "items": {
         "type": "string"
       }
     },
-    "doneCriteria": {
+    "blockedBy": {
       "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "items": { "type": "string" }
     },
     "artifacts": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "doneCriteria": {
       "type": "array",
       "items": {
         "type": "string"

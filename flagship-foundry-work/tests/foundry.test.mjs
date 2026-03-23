@@ -18,8 +18,29 @@ const adversarialChangeRequest = JSON.parse(await fs.readFile(path.join(repoRoot
 const knowledgeManifest = JSON.parse(await fs.readFile(path.join(repoRoot, 'examples/knowledge-sources/input/foundry-foundational-docs.manifest.json'), 'utf8'));
 
 async function cleanup() {
-  await fs.rm(path.join(repoRoot, 'state/ecosystems/web-automation-workspace'), { recursive: true, force: true });
-  await fs.rm(path.join(repoRoot, 'state/knowledge/foundry-foundational-docs'), { recursive: true, force: true });
+  const targets = [
+    path.join(repoRoot, 'state/ecosystems/web-automation-workspace'),
+    path.join(repoRoot, 'state/knowledge/foundry-foundational-docs')
+  ];
+  for (const target of targets) {
+    await rmWithRetry(target);
+  }
+}
+
+async function rmWithRetry(targetPath, maxAttempts = 5) {
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      await fs.rm(targetPath, { recursive: true, force: true });
+      return;
+    } catch (error) {
+      const code = error?.code;
+      const isTransient = code === 'ENOTEMPTY' || code === 'EBUSY' || code === 'EPERM';
+      if (!isTransient || attempt === maxAttempts) {
+        throw error;
+      }
+      await new Promise((resolve) => setTimeout(resolve, attempt * 20));
+    }
+  }
 }
 
 test('import pipeline builds current workspace ecosystem graph', async () => {

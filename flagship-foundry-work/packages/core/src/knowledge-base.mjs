@@ -4,6 +4,12 @@ import { ensureDir, nowIso, readJson, readText, repoRoot, sanitizeForFileName, s
 const domainPacksPath = path.join(repoRoot, 'knowledge', 'catalogs', 'domain-packs.json');
 const sourcePresetsPath = path.join(repoRoot, 'knowledge', 'catalogs', 'source-presets.json');
 const knowledgeRoot = path.join(stateRoot, 'knowledge');
+const PACK_TIER_BY_ID = Object.freeze({
+  'pack:knowledge-ingestion-and-rag': 'critical',
+  'pack:environment-parity-and-tooling': 'critical',
+  'pack:testing-quality-and-verification': 'critical',
+  'pack:observability-telemetry-and-operations': 'critical'
+});
 
 function resolveRepoPath(relativeOrAbsolutePath) {
   return path.isAbsolute(relativeOrAbsolutePath)
@@ -13,6 +19,27 @@ function resolveRepoPath(relativeOrAbsolutePath) {
 
 function unique(values) {
   return [...new Set((values ?? []).filter(Boolean))];
+}
+
+function parseIsoDate(value) {
+  if (typeof value !== 'string') return null;
+  const parsed = Date.parse(value);
+  return Number.isFinite(parsed) ? new Date(parsed) : null;
+}
+
+function dayDiff(older, newer) {
+  const deltaMs = newer.getTime() - older.getTime();
+  return Math.max(0, Math.floor(deltaMs / (24 * 60 * 60 * 1000)));
+}
+
+function classifyPackTier(packId) {
+  return PACK_TIER_BY_ID[packId] ?? 'important';
+}
+
+function freshnessWindowDaysForTier(tier) {
+  if (tier === 'critical') return 14;
+  if (tier === 'important') return 30;
+  return null;
 }
 
 function summarize(content, maxLength = 280) {
@@ -184,7 +211,14 @@ function buildCoverageReport(knowledgeBase, documents) {
     `- Imported at: **${knowledgeBase.importedAt}**`,
     '',
     '## Pack Coverage',
-    ...knowledgeBase.packCoverage.map((entry) => `- ${entry.packId}: ${entry.documentCount} documents`),
+    ...knowledgeBase.packCoverage.map((entry) =>
+      `- ${entry.packId}: ${entry.documentCount} documents (tier=${entry.slaTier}, freshness=${entry.freshness.status}${entry.freshness.ageDays !== null ? `, age=${entry.freshness.ageDays}d` : ''})`
+    ),
+    '',
+    '## SLA',
+    `- Authority: **${knowledgeBase.sla.authority}**`,
+    `- Completeness policy: **${knowledgeBase.sla.completenessPolicy}**`,
+    `- Freshness windows: **critical=${knowledgeBase.sla.freshnessWindowsDays.critical}d, important=${knowledgeBase.sla.freshnessWindowsDays.important}d**`,
     '',
     '## Sources',
     ...knowledgeBase.sources.map((source) => `- ${source.id}: ${source.documentCount} documents (${source.type})`)
@@ -235,11 +269,33 @@ export async function ingestKnowledgeSources(manifest) {
     });
   }
 
-  const packCoverage = packs.map((pack) => ({
-    packId: pack.id,
-    title: pack.title,
-    documentCount: documents.filter((document) => document.knowledgePackIds.includes(pack.id)).length
-  })).filter((entry) => entry.documentCount > 0).sort((left, right) => right.documentCount - left.documentCount);
+  const packCoverage = packs.map((pack) => {
+    const packDocuments = documents.filter((document) => document.knowledgePackIds.includes(pack.id));
+    const sourceVersions = unique(packDocuments.map((document) => document.metadata?.version));
+    const freshestSourceVersion = sourceVersions
+      .map((value) => ({ raw: value, date: parseIsoDate(value) }))
+      .filter((entry) => entry.date)
+      .sort((left, right) => right.date.getTime() - left.date.getTime())[0] ?? null;
+    const importedAtDate = parseIsoDate(manifest.importedAt) ?? new Date();
+    const tier = classifyPackTier(pack.id);
+    const freshnessWindowDays = freshnessWindowDaysForTier(tier);
+    const ageDays = freshestSourceVersion ? dayDiff(freshestSourceVersion.date, importedAtDate) : null;
+    const freshnessStatus = freshnessWindowDays === null
+      ? 'not-applicable'
+      : (ageDays !== null && ageDays <= freshnessWindowDays ? 'fresh' : 'stale');
+    return {
+      packId: pack.id,
+      title: pack.title,
+      documentCount: packDocuments.length,
+      slaTier: tier,
+      freshness: {
+        windowDays: freshnessWindowDays,
+        ageDays,
+        sourceVersion: freshestSourceVersion?.raw ?? null,
+        status: freshnessStatus
+      }
+    };
+  }).filter((entry) => entry.documentCount > 0).sort((left, right) => right.documentCount - left.documentCount);
 
   const knowledgeBase = {
     id: manifest.knowledgeBaseId,
@@ -251,7 +307,16 @@ export async function ingestKnowledgeSources(manifest) {
     packCoverage,
     frameworks: unique(documents.flatMap((document) => document.frameworkIds)),
     platforms: unique(documents.flatMap((document) => document.platformIds)),
-    tags: unique(documents.flatMap((document) => document.tags)).slice(0, 128)
+    tags: unique(documents.flatMap((document) => document.tags)).slice(0, 128),
+    sla: {
+      authority: 'adr-001',
+      policyRef: 'adr-005',
+      completenessPolicy: 'canonical-contract-plus-lineage-and-downstream-linkage',
+      freshnessWindowsDays: {
+        critical: 14,
+        important: 30
+      }
+    }
   };
 
   const outDir = knowledgeBaseDir(knowledgeBase.id);

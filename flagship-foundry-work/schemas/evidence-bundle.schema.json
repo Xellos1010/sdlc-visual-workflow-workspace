@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/evidence-bundle.schema.json",
+  "title": "Evidence bundle",
+  "type": "object",
+  "required": ["id", "runId", "assembledAt", "correlation", "summary", "tasks"],
+  "properties": {
+    "id": { "type": "string" },
+    "runId": { "type": "string" },
+    "planId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "adapterId": { "type": "string" },
+    "assembledAt": { "type": "string", "format": "date-time" },
+    "correlation": { "$ref": "#/$defs/Correlation" },
+    "summary": {
+      "type": "object",
+      "required": ["taskCount", "completedTaskCount", "failedTaskCount", "verification"],
+      "properties": {
+        "taskCount": { "type": "integer", "minimum": 0 },
+        "completedTaskCount": { "type": "integer", "minimum": 0 },
+        "failedTaskCount": { "type": "integer", "minimum": 0 },
+        "verification": {
+          "type": "object",
+          "required": ["total", "passed", "failed"],
+          "properties": {
+            "total": { "type": "integer", "minimum": 0 },
+            "passed": { "type": "integer", "minimum": 0 },
+            "failed": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "telemetryReferences": { "$ref": "#/$defs/TelemetryReferenceCollection" },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["taskId", "status", "correlation"],
+        "properties": {
+          "taskId": { "type": "string" },
+          "status": { "type": "string" },
+          "verificationResults": { "type": "array" },
+          "verificationSummary": {
+            "type": "object",
+            "required": ["total", "passed", "failed"],
+            "properties": {
+              "total": { "type": "integer", "minimum": 0 },
+              "passed": { "type": "integer", "minimum": 0 },
+              "failed": { "type": "integer", "minimum": 0 }
+            }
+          },
+          "evidenceArtifacts": { "type": "array", "items": { "type": "string" } },
+          "telemetryReferences": { "$ref": "#/$defs/TelemetryReferenceCollection" },
+          "fixMemoryRef": { "type": "string" },
+          "correlation": { "$ref": "#/$defs/TaskCorrelation" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Correlation": {
+      "type": "object",
+      "required": ["runId"],
+      "properties": {
+        "runId": { "type": "string" },
+        "planId": { "type": "string" },
+        "ecosystemId": { "type": "string" },
+        "adapterId": { "type": "string" }
+      }
+    },
+    "TaskCorrelation": {
+      "type": "object",
+      "required": ["runId", "taskId"],
+      "properties": {
+        "runId": { "type": "string" },
+        "taskId": { "type": "string" },
+        "planId": { "type": "string" },
+        "ecosystemId": { "type": "string" },
+        "adapterId": { "type": "string" }
+      }
+    },
+    "TelemetryReference": {
+      "type": "object",
+      "required": ["ref", "timestamp", "correlation"],
+      "properties": {
+        "ref": { "type": "string" },
+        "kind": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "notes": { "type": "string" },
+        "correlation": { "$ref": "#/$defs/TaskCorrelation" }
+      }
+    },
+    "TelemetryReferenceCollection": {
+      "type": "object",
+      "properties": {
+        "before": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TelemetryReference" }
+        },
+        "after": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/TelemetryReference" }
+        }
+      }
+    }
+  }
+}
