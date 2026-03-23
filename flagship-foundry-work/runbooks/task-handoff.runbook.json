@@ -1,0 +1,37 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:task-handoff",
+  "name": "Task Completion and Handoff",
+  "purpose": "Ensure every finished task leaves resumable context for humans and other agents.",
+  "triggers": [
+    "task done",
+    "phase transition",
+    "run paused or stopped"
+  ],
+  "phases": [
+    {
+      "id": "capture",
+      "personaId": "persona:independent-verifier",
+      "steps": [
+        "write what changed",
+        "write commands run",
+        "write evidence produced"
+      ]
+    },
+    {
+      "id": "handoff",
+      "personaId": "persona:telemetry-and-learning-curator",
+      "steps": [
+        "update continuity state",
+        "update handoff docs",
+        "emit fix-memory candidate when relevant"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "continuity state",
+    "phase ledger entry",
+    "handoff document",
+    "fix-memory candidate"
+  ]
+}

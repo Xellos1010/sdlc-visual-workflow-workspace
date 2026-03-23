@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Review Policy",
+  "type": "object",
+  "required": [
+    "debateRounds"
+  ],
+  "properties": {
+    "debateRounds": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 5
+    },
+    "reviewerPersonaId": {
+      "type": "string"
+    },
+    "enableArchitectureChallenge": {
+      "type": "boolean"
+    },
+    "requireReconciliationMemo": {
+      "type": "boolean"
+    },
+    "stopConditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

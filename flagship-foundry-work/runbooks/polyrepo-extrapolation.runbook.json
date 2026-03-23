@@ -1,0 +1,36 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:polyrepo-extrapolation",
+  "name": "Polyrepo and Undefined Ecosystem Extrapolation",
+  "purpose": "Infer structure when a workspace is not neatly modeled as an Nx monorepo.",
+  "triggers": [
+    "polyrepo registration",
+    "partial repo scan",
+    "undefined legacy codebase"
+  ],
+  "phases": [
+    {
+      "id": "group",
+      "personaId": "persona:polyrepo-cartographer",
+      "steps": [
+        "group repos by manifests",
+        "infer shared contracts",
+        "identify deployment boundaries"
+      ]
+    },
+    {
+      "id": "stabilize",
+      "personaId": "persona:ecosystem-orchestrator",
+      "steps": [
+        "build provisional graph",
+        "mark unknown edges",
+        "publish manual review questions"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "provisional graph",
+    "unknown-edge review list",
+    "recommended normalization plan"
+  ]
+}

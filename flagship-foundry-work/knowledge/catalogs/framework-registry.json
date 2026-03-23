@@ -1,0 +1,84 @@
+[
+  {
+    "id": "framework:nx",
+    "title": "Nx",
+    "knowledgePackIds": [
+      "pack:nx-monorepo-and-repository-cartography",
+      "pack:testing-quality-and-verification",
+      "pack:agent-orchestration-and-evaluation"
+    ],
+    "recommendedDocs": [
+      "source:cursor-learning-path",
+      "source:generic-doc-scraper",
+      "source:nx-context-bundle"
+    ],
+    "recommendedPersonas": [
+      "persona:nx-monorepo-cartographer"
+    ],
+    "recommendedRunbooks": [
+      "runbook:workspace-import",
+      "runbook:polyrepo-extrapolation"
+    ]
+  },
+  {
+    "id": "platform:chrome-extension-mv3",
+    "title": "Chrome Extension MV3",
+    "knowledgePackIds": [
+      "pack:browser-extension-mv3-specialization",
+      "pack:state-management-and-event-flows",
+      "pack:security-networking-and-permissions",
+      "pack:ui-ux-and-design-systems"
+    ],
+    "recommendedDocs": [
+      "source:chrome-api-docs",
+      "source:cursor-learning-path"
+    ],
+    "recommendedPersonas": [
+      "persona:chrome-extension-mv3-sme"
+    ],
+    "recommendedRunbooks": [
+      "runbook:feature-delivery",
+      "runbook:bug-remediation"
+    ]
+  },
+  {
+    "id": "framework:react",
+    "title": "React",
+    "knowledgePackIds": [
+      "pack:ui-ux-and-design-systems",
+      "pack:state-management-and-event-flows",
+      "pack:testing-quality-and-verification"
+    ],
+    "recommendedDocs": [
+      "source:cursor-learning-path"
+    ],
+    "recommendedPersonas": [
+      "persona:react-vite-ui-sme"
+    ],
+    "recommendedRunbooks": [
+      "runbook:feature-delivery"
+    ]
+  },
+  {
+    "id": "tooling:terminal-agents",
+    "title": "Terminal Agent Environments",
+    "knowledgePackIds": [
+      "pack:environment-parity-and-tooling",
+      "pack:agent-orchestration-and-evaluation",
+      "pack:knowledge-ingestion-and-rag"
+    ],
+    "recommendedDocs": [
+      "source:claude-code-docs",
+      "source:openai-codex",
+      "source:cursor-learning-path"
+    ],
+    "recommendedPersonas": [
+      "persona:environment-migrator",
+      "persona:knowledge-curator"
+    ],
+    "recommendedRunbooks": [
+      "runbook:environment-scaffold",
+      "runbook:knowledge-ingestion"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "title": "Watch flow regression after service worker change",
+  "objective": "Investigate the watch overlay and scheduler behavior after a service worker update.",
+  "targetQuery": "proof-extension watch service worker",
+  "sourceSignal": "telemetry",
+  "riskLevel": "high",
+  "approval": {
+    "mode": "manual"
+  }
+}

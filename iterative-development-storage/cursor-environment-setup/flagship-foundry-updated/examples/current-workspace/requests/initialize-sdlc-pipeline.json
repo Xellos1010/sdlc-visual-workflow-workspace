@@ -1,0 +1,13 @@
+{
+  "ecosystemId": "web-automation-workspace",
+  "title": "Initialize the current ecosystem into Foundry with visualizations, SME profiles, approval control, and run control.",
+  "objective": "Import the current workspace, generate visualizations and SME profiles, create approval-aware plans, and expose start pause resume stop controls for simulated task runs.",
+  "targetQuery": "proof-extension blue-notary-extension chrome extension shared libraries",
+  "sourceSignal": "request",
+  "riskLevel": "medium",
+  "approval": {
+    "mode": "manual",
+    "autoApprove": false,
+    "autoStartOnApproval": false
+  }
+}

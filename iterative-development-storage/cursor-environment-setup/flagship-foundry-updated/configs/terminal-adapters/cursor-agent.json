@@ -1,0 +1,8 @@
+{
+  "id": "adapter:cursor-agent",
+  "name": "Cursor Agent Adapter",
+  "kind": "terminal-agent",
+  "transport": "mcp-or-cli",
+  "entrypointTemplate": "cursor-agent",
+  "notes": "Cursor supports MCP over stdio, SSE, and Streamable HTTP; use work-order envelopes as MCP resources or prompts."
+}

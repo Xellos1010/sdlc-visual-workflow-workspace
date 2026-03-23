@@ -1,0 +1,85 @@
+{
+  "name": "flagship-foundry-cursor-companion",
+  "displayName": "Flagship Foundry Companion",
+  "description": "Cursor and VS Code companion for importing workspaces, ingesting knowledge, approving plans, and controlling agent runs.",
+  "version": "0.3.0",
+  "publisher": "flagship-foundry",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "icon": "./media/icon.png",
+  "activationEvents": [
+    "onCommand:flagshipFoundry.startControlPlane",
+    "onCommand:flagshipFoundry.importCurrentWorkspace",
+    "onCommand:flagshipFoundry.ingestSeedKnowledge",
+    "onCommand:flagshipFoundry.analyzeKnowledgeGaps",
+    "onCommand:flagshipFoundry.focusImpactView",
+    "onCommand:flagshipFoundry.openOverlay"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "flagshipFoundry.startControlPlane",
+        "title": "Flagship Foundry: Start Control Plane"
+      },
+      {
+        "command": "flagshipFoundry.importCurrentWorkspace",
+        "title": "Flagship Foundry: Import Current Workspace"
+      },
+      {
+        "command": "flagshipFoundry.ingestSeedKnowledge",
+        "title": "Flagship Foundry: Ingest Seed Knowledge"
+      },
+      {
+        "command": "flagshipFoundry.analyzeKnowledgeGaps",
+        "title": "Flagship Foundry: Analyze Knowledge Gaps"
+      },
+      {
+        "command": "flagshipFoundry.focusImpactView",
+        "title": "Flagship Foundry: Focus Impact View"
+      },
+      {
+        "command": "flagshipFoundry.openOverlay",
+        "title": "Flagship Foundry: Open Orchestration Overlay"
+      }
+    ],
+    "configuration": {
+      "title": "Flagship Foundry",
+      "properties": {
+        "flagshipFoundry.controlPlaneUrl": {
+          "type": "string",
+          "default": "http://localhost:4010",
+          "description": "Base URL for the local Foundry control plane."
+        },
+        "flagshipFoundry.autoApproveDraftPlans": {
+          "type": "boolean",
+          "default": false,
+          "description": "Create plans with auto approval enabled."
+        },
+        "flagshipFoundry.autoStartApprovedPlans": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically start a run after approval when supported."
+        },
+        "flagshipFoundry.knowledgeManifestPath": {
+          "type": "string",
+          "default": "examples/knowledge-sources/input/foundry-foundational-docs.manifest.json",
+          "description": "Manifest used when ingesting seed documentation into the Foundry knowledge base."
+        },
+        "flagshipFoundry.defaultFocusQuery": {
+          "type": "string",
+          "default": "service worker messaging storage sidepanel",
+          "description": "Default query used for generating a focused blast-radius view."
+        }
+      }
+    }
+  },
+  "extensionKind": [
+    "workspace",
+    "ui"
+  ]
+}

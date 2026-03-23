@@ -1,0 +1,46 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:bug-remediation",
+  "name": "Bug Remediation",
+  "purpose": "Convert observed defects into reproducible, bounded, and regression-safe fixes.",
+  "triggers": [
+    "bug report",
+    "telemetry incident",
+    "failed verification"
+  ],
+  "phases": [
+    {
+      "id": "reproduce",
+      "personaId": "persona:telemetry-and-learning-curator",
+      "steps": [
+        "capture failing symptom",
+        "attach environment details",
+        "seed blast radius from defect signal"
+      ]
+    },
+    {
+      "id": "repair",
+      "personaId": "persona:ecosystem-orchestrator",
+      "steps": [
+        "prepare fix plan",
+        "update dependent patterns",
+        "implement bounded repair"
+      ]
+    },
+    {
+      "id": "prevent",
+      "personaId": "persona:independent-verifier",
+      "steps": [
+        "add regression coverage",
+        "record fix memory",
+        "update guardrails if recurring"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "reproduction record",
+    "fix plan",
+    "regression evidence",
+    "fix-memory record"
+  ]
+}

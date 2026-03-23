@@ -1,0 +1,196 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/agent-work-order.schema.json",
+  "title": "Flagship Agent Work Order",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "workOrderId",
+    "lifecycleStage",
+    "phaseId",
+    "systemId",
+    "taskClass",
+    "agentRole",
+    "agentPersona",
+    "modelTier",
+    "contextBudget",
+    "sourceArtifacts",
+    "allowedTools",
+    "constraints",
+    "expectedOutputs",
+    "acceptanceCriteria",
+    "verificationPlan",
+    "approvalRequirements",
+    "status"
+  ],
+  "properties": {
+    "workOrderId": { "type": "string" },
+    "parentWorkOrderId": { "type": "string" },
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "discover",
+        "define",
+        "visualize",
+        "architect",
+        "plan",
+        "implement",
+        "verify",
+        "release",
+        "operate",
+        "diagnose",
+        "improve"
+      ]
+    },
+    "phaseId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "systemId": { "type": "string" },
+    "componentId": { "type": "string" },
+    "fileScope": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "taskClass": {
+      "type": "string",
+      "enum": [
+        "strategic_reasoning",
+        "constraint_interpretation",
+        "deterministic_transformation",
+        "structured_generation",
+        "verification",
+        "diagnostics",
+        "learning"
+      ]
+    },
+    "agentRole": {
+      "type": "string",
+      "enum": [
+        "intent_curator",
+        "context_curator",
+        "impact_analyst",
+        "systems_architect",
+        "builder",
+        "contract_agent",
+        "migration_agent",
+        "ui_experience_agent",
+        "test_agent",
+        "verifier",
+        "security_reviewer",
+        "performance_reviewer",
+        "compliance_reviewer",
+        "release_agent",
+        "sre_diagnostics_agent",
+        "learning_agent"
+      ]
+    },
+    "agentPersona": {
+      "type": "string",
+      "enum": [
+        "curious_architect",
+        "conservative_builder",
+        "skeptical_verifier",
+        "paranoid_security",
+        "performance_hunter",
+        "compliance_auditor",
+        "sync_editor",
+        "incident_commander"
+      ]
+    },
+    "modelTier": {
+      "type": "string",
+      "enum": [
+        "frontier_reasoner",
+        "balanced_reasoner",
+        "low_cost_executor",
+        "deterministic_rule_engine"
+      ]
+    },
+    "contextBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxInputArtifacts", "maxFiles", "tokenBudget"],
+      "properties": {
+        "maxInputArtifacts": { "type": "integer", "minimum": 1 },
+        "maxFiles": { "type": "integer", "minimum": 1 },
+        "tokenBudget": { "type": "integer", "minimum": 1 },
+        "mustResetContextOnComplete": { "type": "boolean", "default": true }
+      }
+    },
+    "sourceArtifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "inputGraphRefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "allowedTools": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "expectedOutputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "verificationPlan": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rollbackNotes": { "type": "string" },
+    "escalationRules": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "approvalRequirements": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "ready",
+        "in_progress",
+        "blocked",
+        "awaiting_approval",
+        "verified",
+        "failed",
+        "done"
+      ]
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "graphPatch": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["op", "targetType", "targetId"],
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": ["upsert_node", "upsert_edge", "set_property", "remove_edge", "remove_node"]
+          },
+          "targetType": { "type": "string" },
+          "targetId": { "type": "string" },
+          "payload": { "type": "object" }
+        }
+      }
+    },
+    "continuityPatch": {
+      "type": "object"
+    }
+  }
+}

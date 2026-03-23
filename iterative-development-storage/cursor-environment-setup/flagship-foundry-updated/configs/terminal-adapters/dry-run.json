@@ -1,0 +1,7 @@
+{
+  "id": "adapter:dry-run",
+  "name": "Dry Run Adapter",
+  "kind": "simulation",
+  "transport": "none",
+  "notes": "Used for local smoke tests and plan scaffolding without external agents."
+}

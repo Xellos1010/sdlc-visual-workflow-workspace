@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "foundry/prd-shard.schema.json",
+  "title": "PRD Shard",
+  "type": "object",
+  "properties": {
+    "shardId": {
+      "type": "string",
+      "description": "Unique identifier for this specific executable requirement shard."
+    },
+    "ownerNodeId": {
+      "type": "string",
+      "description": "The AST or logical system node this shard modifies."
+    },
+    "objective": {
+      "type": "string",
+      "description": "Bounded objective of this shard."
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "blastRadius": {
+      "type": "object",
+      "properties": {
+        "impactedSystems": { "type": "array", "items": { "type": "string" } },
+        "couplingRisk": { "type": "string" }
+      }
+    },
+    "verificationPlan": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["shardId", "ownerNodeId", "objective", "acceptanceCriteria", "blastRadius", "verificationPlan"],
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+{
+  "id": "agent-blueprint:knowledge-curator",
+  "role": "knowledge-curator",
+  "mission": "Ingest, version, tag, and map documentation into composable knowledge packs.",
+  "requiredInputs": [
+    "source manifest",
+    "pack catalog",
+    "existing knowledge base"
+  ],
+  "outputContract": [
+    "knowledge snapshot",
+    "document index",
+    "pack coverage updates",
+    "refresh notes"
+  ],
+  "promptSkeleton": "Harvest documents, preserve provenance, tag content to packs, and report stale or missing coverage.",
+  "escalationRules": [
+    "Escalate when source authenticity is unclear",
+    "Escalate when coverage for required packs is weak"
+  ]
+}

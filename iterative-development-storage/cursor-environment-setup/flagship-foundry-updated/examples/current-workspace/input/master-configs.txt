@@ -1,0 +1,1767 @@
+# Master Configuration - Web Automation Workspace
+# Generated on: $(date)
+#
+# This file contains all configuration files from all project components:
+# - Main Directory (Root configs)
+# - Tools (Development tools configs)
+#
+# =============================================================================
+
+# main-directory Configuration Files
+# Generated on: Fri Mar 20 22:25:40 EDT 2026
+# Source: /Users/evanmccall/Workspaces/Web Automation Workspace
+# 
+# This file contains all configuration files from the main-directory component.
+#
+# =============================================================================
+
+==== FILE: docx-generation-export/package.json ====
+{
+  "name": "docx-generation-modules",
+  "version": "1.0.0",
+  "description": "DOCX generation modules and CLI extracted from patient-record-generation",
+  "type": "module",
+  "main": "src/docx/index.ts",
+  "scripts": {
+    "generate-docx": "tsx src/cli/generate-docx.ts",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "docx": "^8.6.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.7.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
+
+
+
+==== FILE: libs/cursor-flow/package.json ====
+{
+  "name": "@org/cursor-flow",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "main": "dist/libs/cursor-flow/src/index.js"
+}
+
+
+
+
+
+==== FILE: libs/flows-bravado/package.json ====
+{
+  "name": "@org/flows-bravado",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts"
+}
+
+
+
+
+
+==== FILE: package.json ====
+{
+  "name": "automation-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Unified Nx monorepo for Kareo Automation and Notarization OpenCall Automation",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20.0.0 <21"
+  },
+  "packageManager": "pnpm@9.12.2",
+  "scripts": {
+    "nx": "nx",
+    "daemon:start": "npm exec -- nx daemon --start",
+    "daemon:stop": "npm exec -- nx daemon --stop",
+    "daemon:restart": "npm run daemon:stop && sleep 2 && npm run daemon:start",
+    "daemon:status": "npm exec -- nx daemon --status",
+    "daemon:setup": "./setup-daemon.sh",
+    "build": "nx run-many -t build",
+    "lint": "nx run-many -t lint",
+    "test:unit": "nx run-many -t test --all --parallel --configuration=unit",
+    "test:it": "nx run-many -t test --all --parallel --configuration=integration",
+    "test:e2e:smoke": "nx run-many -t e2e --all --parallel -- --grep @smoke",
+    "test:e2e:full": "nx run-many -t e2e --all --parallel",
+    "test:coverage": "nx run-many -t test --all --parallel --coverage --coverageReporters=text,html,lcov",
+    "test:mutation": "nx run-many -t mutation --all --parallel",
+    "test:mutation:cursor-flow": "nx run cursor-flow:mutation",
+    "test:quality": "pnpm test:coverage && pnpm test:mutation",
+    "test:ci": "pnpm lint && pnpm typecheck && pnpm test:unit && pnpm test:it",
+    "test": "nx run-many -t test",
+    "verify:cursor-flow": "node verify-cursor-flow-fix.cjs",
+    "sync:bravado-records": "nx run support-scripts-summerysky-support-bravado-patient-records-sync:run",
+    "typecheck": "nx run-many -t typecheck",
+    "check-all": "pnpm lint && pnpm typecheck && pnpm test",
+    "verify": "pnpm check-all && pnpm build",
+    "flows:gen": "tsx tools/flows/cli.ts",
+    "affected:lint": "nx affected -t lint",
+    "affected:test": "nx affected -t test",
+    "affected:build": "nx affected -t build",
+    "dev": "nx run-many -t dev --parallel",
+    "dev:serve": "nx run-many -t serve --parallel",
+    "dev:mode": "./dev-mode.sh",
+    "dev:menu": "node dev-menu.js",
+    "clean-regenerate": "tsx scripts/clean-and-regenerate.ts",
+    "release": "pnpm verify && cd archived/apps/automation-chrome-ext && pnpm exec vite build && pnpm exec vite --config vite.config.content.ts build && cp src/manifest.json dist/manifest.json && mkdir -p dist/popup dist/sidepanel dist/options && cp src/popup/index.html dist/popup/index.html && cp src/sidepanel/index.html dist/sidepanel/index.html && cp src/options/index.html dist/options/index.html && cp src/styles/popup.css dist/popup.css && cp src/styles/tokens.css dist/tokens.css && node scripts/package-release.js",
+    "release:dry-run": "pnpm verify && cd archived/apps/automation-chrome-ext && pnpm exec vite build && pnpm exec vite --config vite.config.content.ts build && cp src/manifest.json dist/manifest.json && mkdir -p dist/popup dist/sidepanel dist/options && cp src/popup/index.html dist/popup/index.html && cp src/sidepanel/index.html dist/sidepanel/index.html && cp src/options/index.html dist/options/index.html && cp src/styles/popup.css dist/popup.css && cp src/styles/tokens.css dist/tokens.css && node scripts/package-release.js --dry-run",
+    "gas:login": "pnpm exec clasp login",
+    "gas:create": "cd archived/apps/google-apps-script && pnpm exec clasp create --type standalone --title 'Google Apps Script' --rootDir dist",
+    "gas:clone": "cd archived/apps/google-apps-script && ./scripts/clasp-clone-safe.sh",
+    "gas:push": "cd archived/apps/google-apps-script && ./scripts/clasp-push-safe.sh",
+    "gas:pull": "cd archived/apps/google-apps-script && ./scripts/clasp-pull-safe.sh",
+    "gas:open": "node -e \"const scriptId = require('./archived/apps/google-apps-script/.clasp.json').scriptId; const {execSync} = require('child_process'); execSync('open https://script.google.com/home/projects/' + scriptId + '/edit', {stdio: 'inherit'})\"",
+    "gas:deploy": "cd archived/apps/google-apps-script && pnpm exec clasp deploy --description 'Deployed from local development'",
+    "gas:logs": "cd archived/apps/google-apps-script && pnpm exec clasp logs",
+    "gas:status": "cd archived/apps/google-apps-script && pnpm exec clasp status",
+    "gas:run": "cd archived/apps/google-apps-script && pnpm exec clasp run"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@google/clasp": "^2.4.2",
+    "@playwright/test": "^1.57.0",
+    "@types/google-apps-script": "^2.0.8",
+    "@types/jest": "^30.0.0",
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^24.4.0",
+    "@types/papaparse": "^5.3.16",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.1.2",
+    "jsdom": "20.0.3",
+    "nx": "19.8.4",
+    "playwright": "^1.57.0",
+    "pnpm": "9.12.2",
+    "prettier": "^3.6.2",
+    "ssh2-sftp-client": "^12.0.1",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.0",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "cheerio": "^1.1.2",
+    "csv-writer": "^1.6.0",
+    "docx": "^8.6.0",
+    "dotenv": "^17.2.2",
+    "fetch-cookie": "^3.2.0",
+    "googleapis": "^144.0.0",
+    "papaparse": "^5.5.3",
+    "playwright-extra": "^4.3.6",
+    "puppeteer": "^24.20.0",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tough-cookie": "^6.0.0",
+    "winston": "^3.17.0"
+  }
+}
+
+
+
+==== FILE: apps/documentation-scraper/tsconfig.json ====
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "../../dist/apps/documentation-scraper",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "es2021",
+    "types": ["node"],
+    "strict": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
+
+
+
+
+
+
+
+==== FILE: docx-generation-export/tsconfig.json ====
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "lib": ["ES2020"],
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
+
+
+
+==== FILE: libs/cursor-flow/tsconfig.json ====
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/libs/cursor-flow",
+    "rootDir": "./src",
+    "composite": false,
+    "declaration": false,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022"
+  },
+  "include": ["src/**/*.ts"]
+}
+
+
+
+
+
+==== FILE: libs/flows-bravado/tsconfig.json ====
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/libs/flows-bravado",
+    "rootDir": "./src",
+    "declaration": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "strict": true
+  },
+  "include": ["src/**/*"]
+}
+
+
+
+==== FILE: libs/web-documentation/tsconfig.json ====
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "../../dist/libs/web-documentation",
+    "types": ["node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+}
+
+
+==== FILE: nx.json ====
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "daemon": {
+    "enabled": false
+  },
+  "useDaemonProcess": false,
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "inputs": ["default", "^default"],
+      "outputs": ["{options.outputPath}"]
+    },
+    "lint": {
+      "cache": true,
+      "inputs": ["{projectRoot}/**/*"]
+    },
+    "test": {
+      "cache": true,
+      "inputs": ["default", "^default"],
+      "outputs": ["{projectRoot}/coverage"]
+    },
+    "typecheck": {
+      "cache": true
+    }
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "{workspaceRoot}/tsconfig.base.json",
+      "!{projectRoot}/**/*.md"
+    ]
+  },
+  "defaultBase": "main"
+}
+
+
+
+==== FILE: eslint.config.js ====
+// eslint.config.js (root)
+import js from '@eslint/js'
+import tseslint from '@typescript-eslint/eslint-plugin'
+import tsparser from '@typescript-eslint/parser'
+import prettier from 'eslint-plugin-prettier'
+import prettierConfig from 'eslint-config-prettier'
+
+export default [
+  js.configs.recommended,
+
+  // JavaScript files (scripts, configs, etc.)
+  {
+    files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        exports: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        Buffer: 'readonly',
+        global: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+      'no-console': 'off', // Allow console in scripts
+    },
+  },
+
+  // Shared TypeScript rules for the whole Nx workspace
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    languageOptions: {
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        // Point at the workspace tsconfig so Nx projects share types
+        project: './tsconfig.base.json',
+        tsconfigRootDir: import.meta.dirname,
+      },
+      globals: {
+        console: 'readonly',
+        process: 'readonly',
+        __dirname: 'readonly',
+        require: 'readonly',
+        module: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        Buffer: 'readonly',
+        global: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        performance: 'readonly',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': tseslint,
+      prettier: prettier,
+    },
+    rules: {
+      // Base TS + Prettier integration
+      ...tseslint.configs.recommended.rules,
+      'prettier/prettier': 'error',
+
+      // ---- Augmentation you requested ----
+      // 1) Permit empty catch {} only (keep all other empties as errors)
+      'no-empty': ['error', { allowEmptyCatch: true }],
+
+      // 2) Allow intentionally-unused vars/args via `_` prefix
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+
+      // 3) Force explicit null checks + consistent assertions
+      '@typescript-eslint/strict-boolean-expressions': 'error',
+      '@typescript-eslint/consistent-type-assertions': [
+        'error',
+        { assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
+      ],
+
+      // 4) Case declarations: relax to avoid noisy refactors in switch blocks
+      'no-case-declarations': 'off',
+
+      // 5) Transitional warnings to keep velocity but surface debt
+      '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+
+      // Handled by TS
+      'no-undef': 'off',
+      'no-useless-catch': 'warn',
+    },
+  },
+
+  // Disable ESLint formatting rules in favor of Prettier
+  prettierConfig,
+
+  // Workspace ignores (kept in flat-config style)
+  {
+    ignores: [
+      'archived/**',
+      'node_modules/',
+      'dist/',
+      '**/dist/**',
+      'build/',
+      'coverage/',
+      '*.log',
+      'yarn.lock',
+      'package-lock.json',
+      '.git/',
+      '.nx/',
+      'playwright-report/',
+      'test-results/',
+      'playwright/',
+      // Google Apps Script compiled output
+      'archived/apps/google-apps-script/dist/**',
+      // project-specific generated folders can be added below if needed
+    ],
+  },
+]
+
+
+
+
+==== FILE: .gitignore ====
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.*.local
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+#nx cache
+.nx/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Logs
+logs/
+*.log
+
+# Generated and extracted content
+ACTIVE_PATIENTS/
+documentation-3rd-party/
+extracted-codebase/
+extracted-configs/
+extracted-rules/
+output/
+recordings/
+queue/
+state/
+
+# Coverage and test artifacts
+coverage/
+.nyc_output/
+playwright-report/
+playwright/test-results/
+test-results/
+screenshots/
+videos/
+
+# Optional caches
+.cache
+.parcel-cache
+.eslintcache
+
+# Package locks
+yarn.lock
+package-lock.json
+
+# Chrome extension keys (private keys should never be committed)
+apps/chrome-extensions/*/key.pem
+apps/chrome-extensions/*/key.pub
+
+# Test credentials (never commit real credentials)
+**/test-credentials.json
+apps/chrome-extensions/*/test-credentials.json
+zoominfo/credentials/zoominfo.json
+
+ai-prompts/
+ai-prompts-valid-only/
+extraction-test-reports/
+enhanced-test-reports/
+valid-encounter-records/
+record-requests/
+successful-patient-records/
+
+
+==== FILE: .codex/README.md ====
+# Codex Continuity Files
+
+This directory is the machine-readable continuity layer for Codex work in this workspace.
+
+## Read Order
+
+1. `.codex/projects/<project>/current-task.json`
+2. `.codex/projects/<project>/SDLC_CHARTER.md`
+3. Project-local handoff docs under the target app's `docs/` directory
+4. Existing `.cursor/rules/**` documents referenced by the charter and handoff docs
+
+## Rules
+
+- Keep this data committed and deterministic.
+- Update `current-task.json` whenever the active branch, phase, next commit, or verification commands change.
+- Prefer referencing existing `.cursor` rules instead of duplicating policy text here.
+- Use project-local docs for human-readable runbooks, ledgers, SOPs, and diagram indexes.
+
+
+
+==== FILE: archived/README.md ====
+# Archived workspace projects
+
+These trees were moved from active `apps/`, `libs/`, and `tools/` to shrink the default Nx graph and local checkout size. **Folder layout under `archived/` mirrors the original paths** (e.g. `apps/bravado` → `archived/apps/bravado`).
+
+## Contents
+
+| Original path | Archived path |
+|---------------|-----------------|
+| `apps/automation-chrome-ext` | `archived/apps/automation-chrome-ext` |
+| `apps/bravado` | `archived/apps/bravado` |
+| `apps/bravado-extraction-cli` | `archived/apps/bravado-extraction-cli` |
+| `apps/chrome-extensions/autom8` | `archived/apps/chrome-extensions/autom8` |
+| `apps/chrome-extensions/Florida-Treasury-Scrapper` | `archived/apps/chrome-extensions/Florida-Treasury-Scrapper` |
+| `apps/chrome-extensions/job-hunt-extension` | `archived/apps/chrome-extensions/job-hunt-extension` |
+| `apps/chrome-extensions/PMHNP-Administration-SummerySky` | `archived/apps/chrome-extensions/PMHNP-Administration-SummerySky` |
+| `apps/chrome-extensions/remote-Notary-Extension` | `archived/apps/chrome-extensions/remote-Notary-Extension` |
+| `apps/chrome-extensions/test-results` | `archived/apps/chrome-extensions/test-results` |
+| `apps/google-apps-script` | `archived/apps/google-apps-script` |
+| `apps/kareo` | `archived/apps/kareo` |
+| `apps/notaryresume-automation` | `archived/apps/notaryresume-automation` |
+| `apps/opencall` | `archived/apps/opencall` |
+| `apps/optimispt` | `archived/apps/optimispt` |
+| `apps/patient-record-generation` | `archived/apps/patient-record-generation` |
+| `libs/summerysky` | `archived/libs/summerysky` |
+| `tools/html-audit` | `archived/tools/html-audit` |
+| `tools/html-capture` | `archived/tools/html-capture` |
+
+## Nx / TypeScript notes
+
+- **`.nxignore`** at the repo root lists `archived/**` so Nx does not register these as workspace projects.
+- **`tsconfig.base.json`** maps `@ss/*` to `archived/libs/summerysky/*/src/index.ts` so support scripts under `support-pipelines/.../summerysky-support` that import `@ss/*` or relative `archived/libs/summerysky/...` paths keep resolving.
+- **`project.json` files inside `archived/`** still reference old `apps/...` / `libs/summerysky/...` roots in some `cwd` or `sourceRoot` fields; fix those when you move a project back.
+
+## Restore a project
+
+1. Move the directory back (example): `git mv archived/apps/kareo apps/kareo`
+2. If restoring `libs/summerysky`, also set `@ss/*` back to `libs/summerysky/*/src/index.ts` in `tsconfig.base.json` and update any `support-pipelines` imports that point at `archived/libs/summerysky`.
+3. Remove or narrow the `archived/**` line in `.nxignore` if you want Nx to pick the restored tree up again (or only ignore paths that stay archived).
+4. Restore any `package.json` scripts you need (see git history for removed `dev:*` / `serve:*` entries for kareo, bravado, opencall).
+
+## Active apps (after archive)
+
+Under `apps/`: `documentation-scraper`, `chrome-extensions/blue-notary-extension`, `chrome-extensions/proof-extension`.
+
+
+
+==== FILE: documentation-3rd-party/README.md ====
+# Documentation Tools
+
+This folder contains tools for managing third-party documentation.
+
+## Generate Master Documentation Script
+
+The `generate-master-documentation.cjs` script combines all `.md` files from a specified folder and its subfolders into a single master documentation file.
+
+### Usage
+
+```bash
+node generate-master-documentation.cjs <folder-path>
+```
+
+### Features
+
+- **Recursive Search**: Finds all `.md` files in the specified folder and subfolders
+- **Duplicate Prevention**: Automatically deletes existing master files to prevent duplication
+- **Organized Output**: Creates `master-{folder-name}-documentation.md` in the target folder
+- **Structured Content**: Each file becomes a numbered section with file path reference
+- **Error Handling**: Continues processing even if individual files have errors
+
+### Example
+
+```bash
+# Generate master documentation for Chrome Extension API docs
+node generate-master-documentation.cjs chrome-ext-api
+
+# This creates: chrome-ext-api/master-chrome-ext-api-documentation.md
+```
+
+### Output Structure
+
+The generated master file includes:
+- Header with generation timestamp and file count
+- Numbered sections for each `.md` file
+- File path references for each section
+- Original content from each file
+- Section separators between files
+
+### Testing
+
+The script has been tested on the `chrome-ext-api` folder containing 70 `.md` files (1 root + 69 in subfolder), successfully generating a 30,000+ line master documentation file.
+
+
+
+
+
+
+
+
+==== FILE: docx-generation-export/README.md ====
+# DOCX Generation Modules
+
+Standalone extraction of the DOCX generation modules and supporting components from the patient-record-generation app. Generates Microsoft Word (.docx) documents from encounter JSON records with configurable styles, headers, and page layout.
+
+## Contents
+
+- **src/docx/** – Core DOCX generation
+  - `docx-generator.ts` – Main generator (Document, sections, numbering, header)
+  - `docx-styles.ts` – Style config (title, headings, body, field label/value, header table, page margins)
+  - `docx-header.ts` – Header table (patient info, DOB, MRN, column widths, borders)
+  - `index.ts` – Public API
+- **src/types/encounter-types.ts** – TypeScript types (EncounterRecord, Block, DocxStyleConfig, EncounterHeader, etc.)
+- **src/cli/generate-docx.ts** – CLI for single file, patient folder, or batch
+
+## Install
+
+```bash
+cd docx-generation-export
+npm install
+# or: pnpm install
+```
+
+## Usage
+
+### Programmatic
+
+```ts
+import { generateDocx, createDocxGenerator, DEFAULT_DOCX_STYLE_CONFIG } from './src/docx/index.js';
+import type { EncounterRecord } from './src/types/encounter-types.js';
+
+const encounter: EncounterRecord = JSON.parse(fs.readFileSync('encounter.json', 'utf-8'));
+const buffer = await generateDocx(encounter, { includeHeader: true });
+fs.writeFileSync('output.docx', buffer);
+```
+
+### CLI
+
+```bash
+# Single file
+npx tsx src/cli/generate-docx.ts --input=path/to/encounter.json
+
+# Custom output
+npx tsx src/cli/generate-docx.ts --input=encounter.json --output=out.docx
+
+# All JSONs in a patient folder (expects patient folder to have encounters/ subdir)
+npx tsx src/cli/generate-docx.ts --patient=patient-12345
+
+# All patient folders (default base: output/Bravado-Unified-Patient-Folders)
+npx tsx src/cli/generate-docx.ts --all
+
+# Help
+npx tsx src/cli/generate-docx.ts --help
+```
+
+## Encounter JSON shape
+
+Input JSON must be an `IDEEncounterRecord` or `MMEEncounterRecord`: `schemaVersion`, `encounter`, `patient`, `provider`, `clinical`, `header` (with `table.rows`), and `blocks` (title, heading, paragraph, bullets). See `src/types/encounter-types.ts` for full definitions.
+
+## Dependencies
+
+- **docx** (^8.6.0) – Word document generation
+- **tsx** (dev) – Run TypeScript CLI
+- **typescript** (dev) – Build
+
+## License
+
+Same as the source workspace.
+
+
+
+==== FILE: libs/cursor-flow/README.md ====
+# Cursor Flow - Web Automation Made Easy
+
+A comprehensive web automation system for creating, editing, and managing automated workflows with AI assistance.
+
+## 🚀 Features
+
+- **🎯 Visual Flow Editor**: Create and edit automation flows with a user-friendly interface
+- **🤖 AI-Powered**: Generate flows automatically using AI models
+- **📦 Staging & Promotion**: Test flows in staging before promoting to production
+- **🔧 Step Management**: Add, edit, move, and delete individual steps
+- **🎨 Element Picker**: Visually select elements on web pages
+- **📊 Observability**: Comprehensive logging and action tracking
+- **🔄 Bridge Communication**: Seamless integration with backend platforms
+
+## 📋 Architecture
+
+The cursor-flow system consists of several key components:
+
+### Core Components
+
+1. **FlowEditorUI** (`src/ui/FlowEditorUI.ts`)
+   - Main UI component for flow editing
+   - Handles modal display and user interactions
+   - Manages flow state and step editing
+
+2. **FlowEditor** (`src/ui/flow/FlowEditor.ts`)
+   - Core business logic for flow management
+   - Implements the `FlowEditorApi` interface
+   - Handles flow validation and step operations
+
+3. **CursorCLIIntegration** (`src/cursorCLI.ts`)
+   - Interface for AI model integration
+   - Handles flow generation and optimization
+
+4. **StagingWorkflowManager** (`src/stagingWorkflow.ts`)
+   - Manages flow deployment lifecycle
+   - Handles staging, testing, and promotion
+
+### Interface Definition
+
+The `FlowEditorApi` interface defines the contract for flow editing operations:
+
+```typescript
+interface FlowEditorApi {
+  getSteps(): FlowStepDef[]
+  setSteps(steps: FlowStepDef[]): void
+  append(step: FlowStepDef): void
+  loadFlow(flow: Flow): void
+  getFlow(): Flow
+  addStep(step: FlowStep): void
+  moveStep(fromIndex: number, toIndex: number): void
+  validateFlow(): void
+  updateStepLocator(stepIndex: number, locator: any): void
+  saveFlow(): void
+  canRunFlow(): boolean
+  updateContent(content: string): void
+}
+```
+
+## 🎯 Usage
+
+### Basic Flow Creation
+
+1. **Open Editor**: Click the "Open Editor" button in the main menu
+2. **Create Flow**: Click "Create New Flow" to start a new automation
+3. **Add Steps**: Use the step editor to add individual actions
+4. **Configure Elements**: Use the element picker to select page elements
+5. **Save & Test**: Save your flow and test it in the staging environment
+6. **Promote**: Move successful flows to production
+
+### Step Types
+
+The system supports various step types:
+
+- **click**: Click on an element
+- **type**: Type text into an input field
+- **select**: Select an option from a dropdown
+- **goto**: Navigate to a URL
+- **waitFor**: Wait for an element or condition
+- **assertVisible**: Assert that an element is visible
+- **assertText**: Assert that text is present
+- **iterate**: Repeat steps for multiple elements
+
+### Element Locators
+
+Elements can be located using various strategies:
+
+- **CSS Selectors**: `.button`, `#element-id`
+- **Text Content**: Elements containing specific text
+- **ARIA Roles**: `button`, `textbox`, etc.
+- **Labels**: Form elements with specific labels
+- **Placeholders**: Input fields with placeholder text
+- **Test IDs**: Elements with `data-testid` attributes
+
+## 🔧 Bridge Events
+
+The system uses bridge events for communication between the overlay and platform:
+
+### Outgoing Events (from overlay to platform)
+
+- `openEditor`: Open the flow editor modal
+- `saveSteps`: Save flow steps to storage
+- `runDraft`: Execute the current draft flow
+- `promoteDraft`: Promote draft to production
+- `testFlow`: Test flow in staging environment
+- `generateFlow`: Generate flow using AI
+
+### Incoming Events (from platform to overlay)
+
+- `cursorflow:testResults`: Test execution results
+- `cursorflow:aiSuggestions`: AI-generated step suggestions
+
+## 🧪 Testing
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run specific test files
+npm test FlowEditorUI.spec.ts
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+### Test Structure
+
+- **Unit Tests**: Test individual components in isolation
+- **Integration Tests**: Test component interactions
+- **E2E Tests**: Test complete user workflows
+
+## 📊 Observability
+
+The system provides comprehensive observability features:
+
+### Action Tracking
+
+Every action is tracked with timing information:
+
+```
+🔄 Action started: openEditor at 2025-09-24T00:18:26.727Z
+✅ Action completed: openEditor in 150ms
+```
+
+### Bridge Communication Logging
+
+All bridge events are logged for debugging:
+
+```
+[CursorFlow] 🔓 User clicked Open Editor button
+[CursorFlow] Bridge function found, calling...
+🎯 Handling bridge event: openEditor
+🎯 Opening Cursor Flow Editor via bridge event
+```
+
+### Error Handling
+
+Errors are caught and logged with context:
+
+```
+❌ Action failed: generateFlow after 3000ms
+Error: AI service unavailable
+```
+
+## 🚀 Development
+
+### Setting Up Development Environment
+
+1. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
+
+3. **Run Tests**
+   ```bash
+   npm test
+   ```
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+### Code Quality
+
+- **TypeScript**: Strict type checking enabled
+- **ESLint**: Comprehensive linting rules
+- **Prettier**: Consistent code formatting
+- **Husky**: Pre-commit hooks for quality checks
+
+## 📚 API Reference
+
+### FlowStepDef Interface
+
+```typescript
+interface FlowStepDef {
+  type: FlowStepType
+  locator?: FlowStepLocator
+  value?: string
+  description?: string
+  url?: string
+  state?: string
+  text?: string
+  each?: FlowStepDef[]
+}
+```
+
+### FlowStepLocator Interface
+
+```typescript
+interface FlowStepLocator {
+  by: 'css' | 'text' | 'role' | 'label' | 'placeholder' | 'testId'
+  selector?: string
+  text?: string
+  role?: string
+  id?: string
+}
+```
+
+## 🔒 Security
+
+- **CSP Compliance**: All scripts are CSP-compatible
+- **Input Sanitization**: All user inputs are validated
+- **XSS Prevention**: Content properly escaped
+- **Shadow DOM**: UI isolated from page content
+
+## 🤝 Contributing
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Make your changes**
+4. **Add tests**: Ensure comprehensive test coverage
+5. **Run the test suite**: `npm test`
+6. **Submit a pull request**
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support and questions:
+
+1. **Check the documentation** above
+2. **Review the test files** for usage examples
+3. **Check the issue tracker** for known issues
+4. **Create a new issue** if you find a bug
+
+---
+
+**Made with ❤️ for web automation enthusiasts**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==== FILE: libs/Google-Chrome-Extension-Library/README.md ====
+# Chrome Extension Library
+
+A composable, modular Chrome Extension library for MV3 with pluggable authentication providers and a fluid design system.
+
+## Overview
+
+This library provides a foundation for building Chrome Extensions with:
+
+- **Modular architecture** - Pick and choose only the modules you need
+- **Pluggable authentication** - Support for Google, Microsoft, Social, SSO, and Email/password
+- **MV3 compliant** - Service worker, promises, and modern Chrome APIs
+- **Fluid design system** - Responsive typography and spacing using `clamp()` and viewport units
+- **Side panel support** - Optional MV3 side panel UI (Chrome 114+)
+- **Type-safe** - Full TypeScript support with strict typing
+- **Observable** - Structured logging, correlation IDs, and metrics
+
+## Library Structure
+
+```
+libs/Google-Chrome-Extension-Library/
+├── core/
+│   ├── runtime/        # MV3 scaffolding, manifest builder, message bus
+│   ├── storage/        # chrome.storage wrappers with namespacing
+│   └── telemetry/      # Structured logging, correlation IDs, metrics
+├── ui/
+│   └── design-tokens/  # Fluid typography/spacing tokens
+└── auth/
+    ├── base/           # AuthProvider interface and registry
+    ├── google/         # Google Identity API provider
+    ├── microsoft/      # Azure AD provider
+    ├── social/         # OAuth2 social providers
+    ├── sso/            # OIDC/SAML providers
+    └── email/          # Email/password provider
+```
+
+## Quick Start
+
+### Installation
+
+Import the modules you need:
+
+```typescript
+import { buildManifest, bootstrapBackground } from '@chrome-ext/core-runtime';
+import { ChromeStorage } from '@chrome-ext/core-storage';
+import { logger } from '@chrome-ext/core-telemetry';
+import { googleProvider } from '@chrome-ext/auth-google';
+import { microsoftProvider } from '@chrome-ext/auth-microsoft';
+import { registerProviders } from '@chrome-ext/auth-base';
+```
+
+### Basic Usage
+
+#### 1. Build Manifest
+
+```typescript
+import { buildManifest } from '@chrome-ext/core-runtime';
+
+const manifest = buildManifest({
+  name: 'My Extension',
+  version: '1.0.0',
+  permissions: ['storage', 'identity'],
+  sidePanel: {
+    defaultPath: 'sidepanel.html',
+  },
+  oauth2: {
+    clientId: 'your-google-client-id',
+    scopes: ['openid', 'profile', 'email'],
+  },
+});
+```
+
+#### 2. Setup Background Service Worker
+
+```typescript
+import { bootstrapBackground, setupSidePanel } from '@chrome-ext/core-runtime';
+
+bootstrapBackground({
+  onInstalled: async (details) => {
+    console.log('Extension installed:', details.reason);
+    await setupSidePanel({
+      openPanelOnActionClick: true,
+      defaultPath: 'sidepanel.html',
+    });
+  },
+});
+```
+
+#### 3. Setup Authentication
+
+```typescript
+import { registerProviders } from '@chrome-ext/auth-base';
+import { googleProvider } from '@chrome-ext/auth-google';
+import { microsoftProvider } from '@chrome-ext/auth-microsoft';
+
+const providers = registerProviders(
+  googleProvider({
+    clientId: 'your-google-client-id',
+    scopes: ['openid', 'profile', 'email'],
+  }),
+  microsoftProvider({
+    clientId: 'your-microsoft-client-id',
+    scopes: ['openid', 'profile', 'email', 'User.Read'],
+  }),
+);
+
+// Use providers
+const googleAuth = providers.find(p => p.id === 'google');
+if (googleAuth) {
+  const result = await googleAuth.signIn();
+  console.log('Signed in:', result.user);
+}
+```
+
+#### 4. Use Storage
+
+```typescript
+import { ChromeStorage } from '@chrome-ext/core-storage';
+
+const storage = new ChromeStorage('local', 'my-namespace');
+
+await storage.set('key', { value: 'data' });
+const value = await storage.get('key');
+```
+
+#### 5. Use Logging
+
+```typescript
+import { logger } from '@chrome-ext/core-telemetry';
+
+logger.info('User signed in', { userId: '123' });
+logger.error('Sign-in failed', error, { provider: 'google' });
+```
+
+## Design Tokens
+
+Import the CSS file to use fluid design tokens:
+
+```html
+<link rel="stylesheet" href="path/to/tokens.css">
+```
+
+Tokens include:
+- **Fluid typography** using `clamp()` (H1, H2, H3, body, subtext, caption)
+- **Fluid spacing** (8-pt system with clamped values)
+- **Safe-area support** for mobile devices
+- **Container query units** for resizable panes
+- **Touch targets** (minimum 44×44px)
+
+## Authentication Providers
+
+### Google
+
+Uses MV3 Identity API (`chrome.identity.getAuthToken`):
+
+```typescript
+import { googleProvider } from '@chrome-ext/auth-google';
+
+const provider = googleProvider({
+  clientId: 'your-client-id',
+  scopes: ['openid', 'profile', 'email'],
+});
+
+const result = await provider().signIn();
+```
+
+**Required manifest:**
+```json
+{
+  "oauth2": {
+    "client_id": "your-client-id",
+    "scopes": ["openid", "profile", "email"]
+  },
+  "permissions": ["identity"]
+}
+```
+
+### Microsoft
+
+Uses `chrome.identity.launchWebAuthFlow` with PKCE:
+
+```typescript
+import { microsoftProvider } from '@chrome-ext/auth-microsoft';
+
+const provider = microsoftProvider({
+  clientId: 'your-client-id',
+  tenant: 'common', // or your tenant ID
+  scopes: ['openid', 'profile', 'email', 'User.Read'],
+});
+
+const result = await provider().signIn();
+```
+
+## Module Boundaries
+
+Libraries follow Nx module boundaries:
+
+- `core/*` - Runtime utilities (can be used by all)
+- `ui/*` - UI components and tokens (can be used by features)
+- `auth/*` - Authentication providers (can be used by features)
+
+## Testing
+
+Each library includes test configuration:
+
+```bash
+nx test chrome-ext-core-runtime
+nx test chrome-ext-auth-google
+```
+
+## Contributing
+
+When adding new providers or modules:
+
+1. Follow the existing structure
+2. Implement the `AuthProvider` interface for auth providers
+3. Export through `src/index.ts`
+4. Add proper TypeScript types
+5. Include tests
+
+## Documentation
+
+- [Provider Selection Guide](./docs/PROVIDER_GUIDE.md) - Choose and configure auth providers
+- [Manifest Configuration](./docs/MANIFEST_CONFIG.md) - Complete manifest setup guide
+- [Troubleshooting](./docs/TROUBLESHOOTING.md) - Common issues and solutions
+- [API Reference](./docs/API_REFERENCE.md) - Complete API documentation
+- [Operations Runbook](./docs/RUNBOOK.md) - Deployment and operations procedures
+
+## Testing
+
+Run tests for all libraries:
+
+```bash
+# Unit tests
+nx test chrome-ext-core-runtime
+nx test chrome-ext-auth-google
+
+# All tests
+nx run-many -t test --all
+```
+
+## License
+
+MIT
+
+
+
+
+==== FILE: libs/web-documentation/README.md ====
+# Web Documentation Scraper
+
+A TypeScript library for scraping documentation websites and converting them to clean Markdown format.
+
+## Features
+
+- **HTTP Scraping**: Robust web page fetching with retry logic and timeouts
+- **HTML to Markdown**: Intelligent conversion preserving structure and formatting
+- **File Output**: Batch writing of documentation files with customizable naming
+- **CLI Tool**: Command-line interface for easy usage
+- **TypeScript**: Full type safety and modern ES modules
+
+## Installation
+
+This library is part of the monorepo. To use it:
+
+```bash
+# Build the library
+pnpm nx build web-documentation
+
+# Run the CLI
+pnpm nx run web-documentation:scrape -- <urls...>
+```
+
+## Usage
+
+### CLI Usage
+
+```bash
+# Basic usage
+pnpm nx run web-documentation:scrape -- https://docs.example.com/api
+
+# Multiple URLs with custom output directory
+pnpm nx run web-documentation:scrape -- \
+  https://docs.example.com/api \
+  https://docs.example.com/guide \
+  --output-dir ./documentation
+
+# With numbered filenames
+pnpm nx run web-documentation:scrape -- \
+  https://docs.example.com/api \
+  --output-dir ./docs \
+  --numbered
+
+# Use browser automation for dynamic API documentation
+pnpm nx run web-documentation:scrape -- \
+  https://api.example.com/docs \
+  --browser \
+  --headed \
+  --output-dir ./api-docs
+```
+
+### Programmatic Usage
+
+```typescript
+import { DocumentationScraper, MarkdownConverter, FileWriter } from '@mm/web-documentation';
+
+// Initialize components
+const scraper = new DocumentationScraper({
+  userAgent: 'My-Scraper/1.0.0',
+  timeout: 30000,
+});
+
+const converter = new MarkdownConverter({
+  includeCodeExamples: true,
+  includeApiReference: true,
+  includeToc: true,
+});
+
+const writer = new FileWriter();
+
+// Scrape, convert, and save
+const urls = [
+  'https://docs.zoominfo.com/reference/overview',
+  'https://docs.zoominfo.com/reference/searchinterface_searchcontact',
+];
+
+const pages = await scraper.scrapePages(urls);
+const docs = pages.map(page => converter.convert(page));
+await writer.writeFiles(docs, './documentation-3rd-party/Zoom-Info-API');
+```
+
+## API Reference
+
+### DocumentationScraper
+
+```typescript
+class DocumentationScraper {
+  constructor(options?: ScraperOptions);
+
+  scrapePage(url: string): Promise<DocumentationPage>;
+  scrapePages(urls: string[]): Promise<DocumentationPage[]>;
+}
+```
+
+### MarkdownConverter
+
+```typescript
+class MarkdownConverter {
+  constructor(options?: ConverterOptions);
+
+  convert(page: DocumentationPage): ScrapedDocumentation;
+}
+```
+
+### FileWriter
+
+```typescript
+class FileWriter {
+  writeFile(doc: ScrapedDocumentation, outputPath: string): Promise<void>;
+  writeFiles(docs: ScrapedDocumentation[], outputDir: string, filenamePattern?: Function): Promise<void>;
+}
+```
+
+## Configuration Options
+
+### ScraperOptions
+
+- `userAgent?: string` - Custom user agent string
+- `timeout?: number` - Request timeout in milliseconds (default: 30000)
+- `maxRetries?: number` - Maximum retry attempts (default: 3)
+- `retryDelay?: number` - Base delay between retries in milliseconds (default: 1000)
+- `useBrowser?: boolean` - Use browser automation for dynamic content (default: false)
+- `browserWaitTime?: number` - Wait time for dynamic content in milliseconds (default: 5000)
+- `headless?: boolean` - Run browser in headless mode (default: true)
+
+### ConverterOptions
+
+- `includeCodeExamples?: boolean` - Include code blocks in output (default: true)
+- `includeApiReference?: boolean` - Include API reference sections (default: true)
+- `includeToc?: boolean` - Generate table of contents (default: true)
+- `frontmatter?: object` - Additional frontmatter metadata
+
+## Output Format
+
+Each scraped page is converted to Markdown with frontmatter:
+
+```markdown
+---
+title: "Contacts"
+url: "https://docs.zoominfo.com/reference/searchinterface_searchcontact"
+scrapedAt: "2025-12-19T10:00:00.000Z"
+lastModified: "2025-12-19T09:00:00.000Z"
+---
+
+# Contacts
+
+## Overview
+
+This endpoint allows you to search for contacts...
+```
+
+## ZoomInfo API Documentation
+
+This library was specifically designed to scrape ZoomInfo API documentation. The following URLs are commonly scraped:
+
+- `https://docs.zoominfo.com/reference/overview` - API Overview
+- `https://docs.zoominfo.com/reference/searchinterface_searchcontact` - Contacts Search
+- `https://docs.zoominfo.com/reference/enrichinterface_enrichcontact` - Contacts Enrichment
+- `https://docs.zoominfo.com/reference/lookupinterface_lookup` - Data Lookup
+- `https://docs.zoominfo.com/reference/userinterface_userusage` - Usage Data
+
+### Example Command
+
+```bash
+pnpm nx run web-documentation:scrape -- \
+  https://docs.zoominfo.com/reference/overview \
+  https://docs.zoominfo.com/reference/searchinterface_searchcontact \
+  https://docs.zoominfo.com/reference/enrichinterface_enrichcontact \
+  https://docs.zoominfo.com/reference/lookupinterface_lookup \
+  https://docs.zoominfo.com/reference/userinterface_userusage \
+  --output-dir documentation-3rd-party/Zoom-Info-API \
+  --numbered
+```
+
+This will create files like:
+- `001-overview.md`
+- `002-searchinterface_searchcontact.md`
+- `003-enrichinterface_enrichcontact.md`
+- `004-lookupinterface_lookup.md`
+- `005-userinterface_userusage.md`
+
+## Dependencies
+
+- `jsdom` - HTML parsing and DOM manipulation
+- `tsx` - TypeScript execution for CLI
+
+## Development
+
+```bash
+# Build
+pnpm nx build web-documentation
+
+# Test
+pnpm nx test web-documentation
+
+# Lint
+pnpm nx lint web-documentation
+
+# Type check
+pnpm nx typecheck web-documentation
+```
+
+## Error Handling
+
+The scraper includes robust error handling:
+
+- **Network failures**: Automatic retries with exponential backoff
+- **Invalid HTML**: Graceful fallback to basic text extraction
+- **Missing content**: Clear error messages for debugging
+- **Rate limiting**: Respects delays between requests
+
+## Contributing
+
+1. Follow the monorepo's TypeScript and ESLint standards
+2. Add tests for new functionality
+3. Update documentation for API changes
+4. Use conventional commits for changes
+
+
+==== FILE: README.md ====
+## Cursor Flow (Select → Describe → Apply → Test → Promote)
+
+Install Cursor CLI:
+
+```bash
+curl https://cursor.com/install -fsS | bash
+```
+
+Usage (default TARGET_APP=kareo):
+
+```bash
+nx run kareo:dev:watch
+node tools/cursor/feature-bridge.cjs
+```
+
+In the app UI:
+1. Click "🔎 Pick Element" and select a target element
+2. Enter a short description
+3. Click "⇢ Send to Cursor" to apply changes via agent
+4. Watch logs stream in the overlay (SSE)
+5. Click "🧪 Test" to run project tests
+6. Click "⬆️ Promote" to create a local feature branch (no push)
+
+Security: .env files are blocked by `.cursor/cli.json` permissions.
+
+
+
+
+
+==== FILE: scripts/google-apps/README.md ====
+# Google Apps Script: IDE JSON to Google Docs Converter
+
+This Google Apps Script converts AI-generated EncounterNoteDraft JSON files into formatted Google Docs and organizes them in Google Drive by patient status and name.
+
+## Setup Instructions
+
+### Step 1: Create a New Google Apps Script Project
+
+1. Go to [https://script.google.com/](https://script.google.com/)
+2. Click **"New Project"**
+3. Name your project (e.g., "IDE JSON to Docs Converter")
+
+### Step 2: Copy the Script
+
+1. Open `ide-json-to-docs.gs` from this repository
+2. Copy the entire contents
+3. Paste into the Google Apps Script editor (replacing any default code)
+
+### Step 3: Configure the Script
+
+Update the `CONFIG` object at the top of the script:
+
+```javascript
+const CONFIG = {
+  // Root folder ID where ACTIVE/INACTIVE folders live
+  rootFolderId: '1Tb5v39DqRwk2341iYwOKqMXxA3e1Iu-8',
+  
+  // Leave empty for auto-detection (recommended)
+  statusFolder: '',
+  patientName: '',
+  
+  // Paste your JSON here, or use jsonFileId
+  jsonInput: '',
+  jsonFileId: '',
+  
+  // Options
+  createJsonCopy: true,
+  includeMissingData: false,
+  includeClinicalInferences: false,
+  autoDetect: true, // Recommended: automatically detect patient name and status
+};
+```
+
+### Step 4: Grant Permissions
+
+1. Click **"Run"** → **"generateRecordFromJson"**
+2. When prompted, click **"Review Permissions"**
+3. Select your Google account
+4. Click **"Advanced"** → **"Go to [Project Name] (unsafe)"**
+5. Click **"Allow"** to grant permissions:
+   - Access to Google Drive (to create folders and files)
+   - Access to Google Docs (to create documents)
+
+## Usage
+
+### Method 1: Paste JSON Directly (Recommended)
+
+1. Copy the AI-generated JSON from your AI tool
+2. In the script editor, paste it into `CONFIG.jsonInput`:
+   ```javascript
+   jsonInput: `{
+     "schemaVersion": "1.0",
+     "encounterId": "ide-1766464684536-2022-09-01",
+     ...
+   }`,
+   ```
+3. Ensure `autoDetect: true` in CONFIG
+4. Click **"Run"** → **"generateRecordFromJson"**
+5. The script will:
+   - Automatically detect patient name from JSON header
+   - Detect status (ACTIVE/INACTIVE) 
+   - Create/use the appropriate folder structure
+   - Generate the Google Doc
+   - Save a JSON copy in the patient folder
+
+### Method 2: Use Drive File ID
+
+1. Upload the JSON file to Google Drive
+2. Get the file ID from the file URL: `https://drive.google.com/file/d/{FILE_ID}/view`
+3. Set `CONFIG.jsonFileId` to the file ID:
+   ```javascript
+   jsonFileId: '1a2b3c4d5e6f7g8h9i0j',
+   ```
+4. Click **"Run"** → **"generateRecordFromJson"**
+
+## Folder Structure
+
+The script creates the following structure in Google Drive:
+
+```
+Root Folder (1Tb5v39DqRwk2341iYwOKqMXxA3e1Iu-8)
+├── ACTIVE/
+│   └── {Patient Name} - {patientId}/
+│       ├── IDE - {date} - {Patient Name}.doc
+│       └── EncounterNoteDraft-IDE-{date}.json
+└── INACTIVE/
+    └── {Patient Name} - {patientId}/
+        └── ...
+```
+
+## Auto-Detection Features
+
+When `autoDetect: true`:
+
+- **Patient Name**: Extracted from `draft.header.patientLegalName`, or searched for in existing folders by patient ID
+- **Status**: Detected from `draft.status` field, or defaults to "ACTIVE" for IDE notes
+- **Folder Matching**: If patient ID is found in encounterId (pattern: `ide-{patientId}-{date}`), searches existing folders to find the correct patient name
+
+## Error Handling
+
+The script validates:
+- JSON syntax
+- Required fields: `schemaVersion`, `encounterId`, `noteType`, `dateOfService`, `sections`, `missingData`, `clinicalInferences`
+- Folder access permissions
+
+Common errors:
+- **"Invalid JSON"**: Check JSON syntax
+- **"Missing required field"**: Ensure all required fields are present
+- **"Cannot find folder"**: Verify `rootFolderId` is correct and you have access
+
+## Configuration Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `rootFolderId` | Google Drive folder ID for patient records | Required |
+| `statusFolder` | "ACTIVE" or "INACTIVE" (empty for auto-detect) | '' |
+| `patientName` | Patient name (empty for auto-detect) | '' |
+| `jsonInput` | JSON string to paste directly | '' |
+| `jsonFileId` | Google Drive file ID containing JSON | '' |
+| `createJsonCopy` | Save JSON copy in patient folder | `true` |
+| `includeMissingData` | Include missingData section in doc | `false` |
+| `includeClinicalInferences` | Include clinicalInferences section | `false` |
+| `autoDetect` | Auto-detect patient name and status | `true` |
+
+## Troubleshooting
+
+### Script can't find root folder
+- Verify the folder ID is correct
+- Ensure you have access to the folder
+- Check that the folder exists
+
+### Patient name not detected
+- Ensure `draft.header.patientLegalName` exists in JSON
+- Or manually set `CONFIG.patientName`
+- Check that patient ID pattern matches: `ide-{patientId}-{date}`
+
+### Document not created
+- Check Google Apps Script execution log for errors
+- Verify all required permissions are granted
+- Ensure JSON structure matches EncounterNoteDraft schema
+
+## Example JSON Structure
+
+The script expects JSON matching the EncounterNoteDraft schema:
+
+```json
+{
+  "schemaVersion": "1.0",
+  "encounterId": "ide-1766464684536-2022-09-01",
+  "noteType": "IDE",
+  "dateOfService": "2022-09-01",
+  "provider": "Dr. Smith",
+  "header": {
+    "patientLegalName": "DOE, JOHN",
+    "dob": "1980-01-01",
+    "mrn": "12345"
+  },
+  "sections": [
+    {
+      "title": "CHIEF COMPLAINT",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "Patient presents with..."
+        }
+      ]
+    }
+  ],
+  "missingData": [],
+  "clinicalInferences": []
+}
+```
+
+## Support
+
+For issues or questions:
+1. Check the execution log in Google Apps Script editor
+2. Verify JSON structure matches the schema
+3. Ensure all permissions are granted
+4. Review error messages for specific field issues
+
+
+
+
+
+
+
+
+==== FILE: tsconfig.base.json ====
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "lib": ["esnext", "dom"],
+    "strict": true,
+    "moduleResolution": "NodeNext",
+    "verbatimModuleSyntax": false,
+    "resolveJsonModule": true,
+    "types": ["node", "jest", "playwright"],
+    "baseUrl": ".",
+    "paths": {
+      "@org/*": ["libs/*/src/index.ts"],
+      "@ss/*": ["archived/libs/summerysky/*/src/index.ts"],
+      "@chrome-ext/core-runtime": ["libs/Google-Chrome-Extension-Library/core/runtime/src/index.ts"],
+      "@chrome-ext/core-storage": ["libs/Google-Chrome-Extension-Library/core/storage/src/index.ts"],
+      "@chrome-ext/core-privacy": ["libs/Google-Chrome-Extension-Library/core/privacy/src/index.ts"],
+      "@chrome-ext/core-secure-storage": ["libs/Google-Chrome-Extension-Library/core/secure-storage/src/index.ts"],
+      "@chrome-ext/core-action": ["libs/Google-Chrome-Extension-Library/core/action/src/index.ts"],
+      "@chrome-ext/core-tabs": ["libs/Google-Chrome-Extension-Library/core/tabs/src/index.ts"],
+      "@chrome-ext/core-scripting": ["libs/Google-Chrome-Extension-Library/core/scripting/src/index.ts"],
+      "@chrome-ext/core-permissions": ["libs/Google-Chrome-Extension-Library/core/permissions/src/index.ts"],
+      "@chrome-ext/core-sidePanel": ["libs/Google-Chrome-Extension-Library/core/sidePanel/src/index.ts"],
+      "@chrome-ext/core-declarativeNetRequest": ["libs/Google-Chrome-Extension-Library/core/declarativeNetRequest/src/index.ts"],
+      "@chrome-ext/core-declarativeContent": ["libs/Google-Chrome-Extension-Library/core/declarativeContent/src/index.ts"],
+      "@chrome-ext/core-download-manager": ["libs/Google-Chrome-Extension-Library/core/download-manager/src/index.ts"],
+      "@chrome-ext/core-csv": ["libs/Google-Chrome-Extension-Library/core/csv/src/index.ts"],
+      "@chrome-ext/core-telemetry": ["libs/Google-Chrome-Extension-Library/core/telemetry/src/index.ts"],
+      "@chrome-ext/ui-design-tokens": ["libs/Google-Chrome-Extension-Library/ui/design-tokens/src/index.ts"],
+      "@chrome-ext/ui-modern": ["libs/Google-Chrome-Extension-Library/ui/modern/src/index.ts"],
+      "@chrome-ext/ui-shared-components": ["libs/Google-Chrome-Extension-Library/ui/shared-components/src/index.ts"],
+      "@chrome-ext/auth-base": ["libs/Google-Chrome-Extension-Library/auth/base/src/index.ts"],
+      "@chrome-ext/auth-google": ["libs/Google-Chrome-Extension-Library/auth/google/src/index.ts"],
+      "@chrome-ext/auth-microsoft": ["libs/Google-Chrome-Extension-Library/auth/microsoft/src/index.ts"],
+      "@chrome-ext/auth-social": ["libs/Google-Chrome-Extension-Library/auth/social/src/index.ts"],
+      "@chrome-ext/auth-sso": ["libs/Google-Chrome-Extension-Library/auth/sso/src/index.ts"],
+      "@chrome-ext/auth-email": ["libs/Google-Chrome-Extension-Library/auth/email/src/index.ts"],
+      "@chrome-ext/core-ui-shell": ["libs/Google-Chrome-Extension-Library/core/ui-shell/src/index.ts"],
+      "@chrome-ext/core-guide-overlay": ["libs/Google-Chrome-Extension-Library/core/guide-overlay/src/index.ts"],
+      "@chrome-ext/core-feature-flags": ["libs/Google-Chrome-Extension-Library/core/feature-flags/src/index.ts"],
+      "@chrome-ext/automation-core": ["libs/Google-Chrome-Extension-Library/automation/core/src/index.ts"],
+      "@chrome-ext/automation-flows": ["libs/Google-Chrome-Extension-Library/automation/flows/src/index.ts"],
+      "@chrome-ext/automation-recording": ["libs/Google-Chrome-Extension-Library/automation/recording/src/index.ts"],
+      "@chrome-ext/automation-steps": ["libs/Google-Chrome-Extension-Library/automation/steps/src/index.ts"],
+      "@chrome-ext/automation-recipes": ["libs/Google-Chrome-Extension-Library/automation/recipes/src/index.ts"],
+      "@chrome-ext/automation-batch": ["libs/Google-Chrome-Extension-Library/automation/batch/src/index.ts"],
+      "@chrome-ext/automation-notary": ["libs/Google-Chrome-Extension-Library/automation/notary/src/index.ts"],
+      "@chrome-ext/integrations-zoominfo": ["libs/Google-Chrome-Extension-Library/integrations/zoominfo/src/index.ts"]
+    }
+  }
+}
+
+
+
+
+
+
+# tools Configuration Files
+# Generated on: Fri Mar 20 22:25:48 EDT 2026
+# Source: /Users/evanmccall/Workspaces/Web Automation Workspace/tools
+# 
+# This file contains all configuration files from the tools component.
+#
+# =============================================================================
+
+
+
+

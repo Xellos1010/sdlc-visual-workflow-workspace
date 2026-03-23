@@ -1,0 +1,10 @@
+{
+  "adapterId": "adapter:gemini-cli",
+  "displayName": "Gemini CLI",
+  "runtime": "terminal",
+  "supportsMcp": true,
+  "supportsParallelAgents": false,
+  "supportsWorktrees": false,
+  "supportsProviderSwap": false,
+  "executionModel": "local-agent"
+}

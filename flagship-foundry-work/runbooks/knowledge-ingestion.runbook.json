@@ -1,0 +1,45 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:knowledge-ingestion",
+  "name": "Knowledge Ingestion",
+  "purpose": "Harvest external or local docs into a versioned Foundry knowledge base with provenance.",
+  "triggers": [
+    "new framework docs",
+    "tool docs refresh",
+    "domain pack bootstrap"
+  ],
+  "phases": [
+    {
+      "id": "source",
+      "personaId": "persona:knowledge-curator",
+      "steps": [
+        "validate source manifest",
+        "capture version or snapshot date",
+        "read source files"
+      ]
+    },
+    {
+      "id": "chunk",
+      "personaId": "persona:knowledge-curator",
+      "steps": [
+        "split documents",
+        "tag to packs",
+        "write index artifacts"
+      ]
+    },
+    {
+      "id": "review",
+      "personaId": "persona:environment-migrator",
+      "steps": [
+        "check provenance",
+        "compare refresh deltas",
+        "publish snapshot"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "knowledge manifest",
+    "documents index",
+    "pack coverage summary"
+  ]
+}

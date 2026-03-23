@@ -1,0 +1,22 @@
+{
+  "id": "skill-blueprint:task-workflow",
+  "title": "Task workflow skill blueprint",
+  "inputs": [
+    "task class",
+    "approval mode",
+    "persona roles",
+    "evidence contract"
+  ],
+  "outputs": [
+    "SKILL.md",
+    "references/runbook.md",
+    "optional scripts"
+  ],
+  "sections": [
+    "when to use",
+    "required inputs",
+    "ordered workflow",
+    "handoff rules",
+    "evidence contract"
+  ]
+}

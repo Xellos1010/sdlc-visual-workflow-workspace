@@ -1,0 +1,7 @@
+{
+  "id": "provider:windows-remote-openai-compatible",
+  "name": "Windows Hosted OpenAI-Compatible Server",
+  "protocol": "openai-compatible",
+  "baseUrl": "http://WINDOWS-HOST:8000/v1",
+  "intendedUse": "LAN hosted local model on a separate Windows machine"
+}

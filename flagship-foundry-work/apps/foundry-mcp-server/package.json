@@ -1,0 +1,13 @@
+{
+  "name": "foundry-mcp-server",
+  "version": "0.1.0",
+  "description": "Foundry MCP Server exposing graph operations and schemas",
+  "type": "module",
+  "main": "src/server.mjs",
+  "scripts": {
+    "start": "node src/server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.1"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "incidentId": "INC-042",
+  "severity": "critical",
+  "title": "Cross-system workflow stalls after telemetry spike",
+  "summary": "A runtime error storm is not being translated into remediation work orders, leaving impacted systems unassigned.",
+  "systemId": "system:telemetry-intake",
+  "impactedComponents": [
+    "incident-intake",
+    "graph-router"
+  ],
+  "reportedBy": "runtime-monitor",
+  "message": "Unhandled exception while mapping telemetry event to impacted system graph.",
+  "artifacts": [
+    "logs/runtime-incident-example.log",
+    "dashboards/error-rate-example.json"
+  ]
+}

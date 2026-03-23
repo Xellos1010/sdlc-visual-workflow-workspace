@@ -1,0 +1,22 @@
+{
+  "id": "skill-blueprint:framework-sme",
+  "title": "Framework SME skill blueprint",
+  "inputs": [
+    "framework name",
+    "required packs",
+    "source docs",
+    "guardrails"
+  ],
+  "outputs": [
+    "SKILL.md",
+    "references",
+    "scripts if deterministic"
+  ],
+  "sections": [
+    "trigger description",
+    "mandatory questions",
+    "artifact expectations",
+    "blast radius checklist",
+    "verification checklist"
+  ]
+}

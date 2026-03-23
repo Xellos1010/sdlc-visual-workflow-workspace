@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/persona-pack.schema.json",
+  "title": "Persona Pack",
+  "type": "object",
+  "required": [
+    "personaId",
+    "displayName",
+    "purpose",
+    "phaseBindings",
+    "defaultTaskClasses",
+    "forbiddenBehaviors"
+  ],
+  "properties": {
+    "personaId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "phaseBindings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "defaultTaskClasses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredInputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenBehaviors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "defaultModelTier": {
+      "type": "string"
+    },
+    "outputContract": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

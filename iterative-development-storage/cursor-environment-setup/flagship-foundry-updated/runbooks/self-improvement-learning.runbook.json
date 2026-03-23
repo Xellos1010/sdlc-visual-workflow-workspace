@@ -1,0 +1,36 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:self-improvement-learning",
+  "name": "Self Improvement and Training Data Curation",
+  "purpose": "Transform resolved execution results and bugs into future model and guardrail improvements.",
+  "triggers": [
+    "run completed",
+    "bug resolved",
+    "recurring issue cluster found"
+  ],
+  "phases": [
+    {
+      "id": "extract",
+      "personaId": "persona:telemetry-and-learning-curator",
+      "steps": [
+        "capture problem",
+        "capture environment",
+        "capture solution and paradigm"
+      ]
+    },
+    {
+      "id": "curate",
+      "personaId": "persona:telemetry-and-learning-curator",
+      "steps": [
+        "tag by framework and platform",
+        "attach evidence",
+        "export low-level training record"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "fix-memory record",
+    "training export candidate",
+    "guardrail delta proposal"
+  ]
+}

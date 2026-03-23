@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Focus View",
+  "type": "object",
+  "required": [
+    "ecosystemId",
+    "query",
+    "seedNodeIds",
+    "impactedNodes",
+    "mermaid"
+  ],
+  "properties": {
+    "ecosystemId": {
+      "type": "string"
+    },
+    "query": {
+      "type": "string"
+    },
+    "seedNodeIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "impactedNodes": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "mermaid": {
+      "type": "string"
+    },
+    "filePath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

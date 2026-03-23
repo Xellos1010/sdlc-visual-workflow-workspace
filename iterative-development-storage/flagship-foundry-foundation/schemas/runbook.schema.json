@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/runbook.schema.json",
+  "title": "Runbook",
+  "type": "object",
+  "required": [
+    "runbookId",
+    "title",
+    "purpose",
+    "triggers",
+    "inputs",
+    "steps",
+    "outputs"
+  ],
+  "properties": {
+    "runbookId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "phaseBindings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "stepId",
+          "title",
+          "action"
+        ],
+        "properties": {
+          "stepId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "action": {
+            "type": "string"
+          },
+          "decision": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "handoffTargets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

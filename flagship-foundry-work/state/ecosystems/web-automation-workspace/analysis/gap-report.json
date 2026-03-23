@@ -1,0 +1,326 @@
+{
+  "ecosystemId": "web-automation-workspace",
+  "knowledgeBaseId": "foundry-foundational-docs",
+  "knowledgeBaseName": "Foundry Foundational Docs",
+  "requiredPacks": [
+    "pack:system-architecture-and-boundaries",
+    "pack:ui-ux-and-design-systems",
+    "pack:state-management-and-event-flows",
+    "pack:data-modeling-and-api-contracts",
+    "pack:testing-quality-and-verification",
+    "pack:observability-telemetry-and-operations",
+    "pack:cloud-and-deployment-environments",
+    "pack:security-networking-and-permissions",
+    "pack:nx-monorepo-and-repository-cartography",
+    "pack:browser-extension-mv3-specialization",
+    "pack:agent-orchestration-and-evaluation",
+    "pack:knowledge-ingestion-and-rag",
+    "pack:documentation-runbooks-and-handoffs",
+    "pack:self-improvement-and-fix-memory",
+    "pack:environment-parity-and-tooling"
+  ],
+  "coverage": [
+    {
+      "packId": "pack:environment-parity-and-tooling",
+      "title": "Environment Parity and Tooling",
+      "completeness": 0.83,
+      "docsCount": 1082,
+      "requiredPersonaIds": [
+        "persona:environment-migrator"
+      ],
+      "requiredRunbookIds": [
+        "runbook:environment-scaffold"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:terminal-agent-adapters"
+      ],
+      "missing": [
+        "environment-parity"
+      ]
+    },
+    {
+      "packId": "pack:agent-orchestration-and-evaluation",
+      "title": "Agent Orchestration and Evaluation",
+      "completeness": 1,
+      "docsCount": 430,
+      "requiredPersonaIds": [
+        "persona:ecosystem-orchestrator",
+        "persona:adversarial-architect",
+        "persona:independent-verifier"
+      ],
+      "requiredRunbookIds": [
+        "runbook:plan-approval",
+        "runbook:adversarial-design-review",
+        "runbook:task-handoff"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:terminal-agent-adapters"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:browser-extension-mv3-specialization",
+      "title": "Browser Extension MV3 Specialization",
+      "completeness": 1,
+      "docsCount": 387,
+      "requiredPersonaIds": [
+        "persona:chrome-extension-mv3-sme"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery",
+        "runbook:bug-remediation"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:chrome-extension-mv3"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:cloud-and-deployment-environments",
+      "title": "Cloud and Deployment Environments",
+      "completeness": 1,
+      "docsCount": 417,
+      "requiredPersonaIds": [
+        "persona:ecosystem-orchestrator"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:data-modeling-and-api-contracts",
+      "title": "Data Modeling and API Contracts",
+      "completeness": 1,
+      "docsCount": 455,
+      "requiredPersonaIds": [
+        "persona:typescript-node-runtime-sme"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery",
+        "runbook:bug-remediation"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:documentation-runbooks-and-handoffs",
+      "title": "Documentation Runbooks and Handoffs",
+      "completeness": 1,
+      "docsCount": 97,
+      "requiredPersonaIds": [
+        "persona:telemetry-and-learning-curator"
+      ],
+      "requiredRunbookIds": [
+        "runbook:task-handoff"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:knowledge-ingestion-and-rag",
+      "title": "Knowledge Ingestion and RAG",
+      "completeness": 1,
+      "docsCount": 534,
+      "requiredPersonaIds": [
+        "persona:knowledge-curator"
+      ],
+      "requiredRunbookIds": [
+        "runbook:knowledge-ingestion",
+        "runbook:knowledge-gap-analysis"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:nx-monorepo-and-repository-cartography",
+      "title": "Nx Monorepo and Repository Cartography",
+      "completeness": 1,
+      "docsCount": 177,
+      "requiredPersonaIds": [
+        "persona:nx-monorepo-cartographer",
+        "persona:polyrepo-cartographer"
+      ],
+      "requiredRunbookIds": [
+        "runbook:workspace-import",
+        "runbook:polyrepo-extrapolation"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:nx-monorepo"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:observability-telemetry-and-operations",
+      "title": "Observability Telemetry and Operations",
+      "completeness": 1,
+      "docsCount": 97,
+      "requiredPersonaIds": [
+        "persona:telemetry-and-learning-curator"
+      ],
+      "requiredRunbookIds": [
+        "runbook:telemetry-driven-improvement",
+        "runbook:self-improvement-learning"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:telemetry-and-observability"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:security-networking-and-permissions",
+      "title": "Security Networking and Permissions",
+      "completeness": 1,
+      "docsCount": 437,
+      "requiredPersonaIds": [
+        "persona:adversarial-architect"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery",
+        "runbook:bug-remediation"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance",
+        "guardrail:chrome-extension-mv3"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:self-improvement-and-fix-memory",
+      "title": "Self Improvement and Fix Memory",
+      "completeness": 1,
+      "docsCount": 169,
+      "requiredPersonaIds": [
+        "persona:telemetry-and-learning-curator"
+      ],
+      "requiredRunbookIds": [
+        "runbook:self-improvement-learning"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:state-management-and-event-flows",
+      "title": "State Management and Event Flows",
+      "completeness": 1,
+      "docsCount": 328,
+      "requiredPersonaIds": [
+        "persona:react-vite-ui-sme",
+        "persona:chrome-extension-mv3-sme"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:react-vite-ui",
+        "guardrail:chrome-extension-mv3"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:system-architecture-and-boundaries",
+      "title": "System Architecture and Boundaries",
+      "completeness": 1,
+      "docsCount": 305,
+      "requiredPersonaIds": [
+        "persona:ecosystem-orchestrator",
+        "persona:adversarial-architect"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery",
+        "runbook:adversarial-design-review"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:testing-quality-and-verification",
+      "title": "Testing Quality and Verification",
+      "completeness": 1,
+      "docsCount": 309,
+      "requiredPersonaIds": [
+        "persona:independent-verifier"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery",
+        "runbook:bug-remediation",
+        "runbook:task-handoff"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:workspace-governance"
+      ],
+      "missing": []
+    },
+    {
+      "packId": "pack:ui-ux-and-design-systems",
+      "title": "UI UX and Design Systems",
+      "completeness": 1,
+      "docsCount": 692,
+      "requiredPersonaIds": [
+        "persona:react-vite-ui-sme"
+      ],
+      "requiredRunbookIds": [
+        "runbook:feature-delivery"
+      ],
+      "requiredGuardrailIds": [
+        "guardrail:react-vite-ui"
+      ],
+      "missing": []
+    }
+  ],
+  "recommendations": [
+    {
+      "packId": "pack:environment-parity-and-tooling",
+      "title": "Environment Parity and Tooling",
+      "severity": "high",
+      "reasons": [
+        "environment-parity"
+      ],
+      "actions": [
+        "scaffold Cursor, Codex, and Claude parity artifacts"
+      ],
+      "suggestedSources": [
+        "source:cursor-learning-path",
+        "source:generic-doc-scraper",
+        "source:nx-context-bundle",
+        "source:chrome-api-docs",
+        "source:claude-code-docs",
+        "source:openai-codex"
+      ],
+      "suggestedPersonas": [
+        "persona:nx-monorepo-cartographer",
+        "persona:chrome-extension-mv3-sme",
+        "persona:react-vite-ui-sme",
+        "persona:environment-migrator",
+        "persona:knowledge-curator"
+      ],
+      "suggestedRunbooks": [
+        "runbook:workspace-import",
+        "runbook:polyrepo-extrapolation",
+        "runbook:feature-delivery",
+        "runbook:bug-remediation",
+        "runbook:environment-scaffold",
+        "runbook:knowledge-ingestion"
+      ]
+    }
+  ],
+  "summary": {
+    "requiredPackCount": 15,
+    "incompletePackCount": 1,
+    "criticalMissingDocs": 0,
+    "weakestPack": "pack:environment-parity-and-tooling"
+  }
+}

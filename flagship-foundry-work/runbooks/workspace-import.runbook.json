@@ -1,0 +1,45 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:workspace-import",
+  "name": "Workspace Import and Scaffold",
+  "purpose": "Initialize Foundry from an existing codebase, export bundle, or partially defined ecosystem.",
+  "triggers": [
+    "bootstrap current workspace",
+    "register a new repo",
+    "ingest an exported codebase snapshot"
+  ],
+  "phases": [
+    {
+      "id": "detect-topology",
+      "personaId": "persona:nx-monorepo-cartographer",
+      "steps": [
+        "detect repo topology",
+        "collect manifests and diagrams",
+        "identify shared libraries and deployment surfaces"
+      ]
+    },
+    {
+      "id": "build-graph",
+      "personaId": "persona:ecosystem-orchestrator",
+      "steps": [
+        "build graph nodes and edges",
+        "attach rules and task states",
+        "materialize visualization set"
+      ]
+    },
+    {
+      "id": "publish-knowledge",
+      "personaId": "persona:telemetry-and-learning-curator",
+      "steps": [
+        "generate SME profiles",
+        "publish guardrail packs",
+        "write import handoff report"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "state/ecosystems/<id>/manifest.json",
+    "state/ecosystems/<id>/graph.json",
+    "state/ecosystems/<id>/import-report.md"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "edgeTypes": [
+    "CONTAINS",
+    "DEPENDS_ON",
+    "IMPLEMENTS",
+    "OWNS",
+    "EMITS",
+    "CONSUMES",
+    "CALLS",
+    "READS",
+    "WRITES",
+    "DEPLOYS_TO",
+    "VERIFIED_BY",
+    "GATED_BY",
+    "IMPACTS",
+    "DERIVED_FROM",
+    "LEARNS_FROM",
+    "CONSTRAINED_BY",
+    "APPROVED_BY",
+    "ALIGNED_TO"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Environment Scaffold Request",
+  "type": "object",
+  "required": [
+    "preset",
+    "targetDir"
+  ],
+  "properties": {
+    "preset": {
+      "enum": [
+        "claude-project",
+        "codex-project",
+        "cursor-project"
+      ]
+    },
+    "targetDir": {
+      "type": "string"
+    },
+    "dryRun": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

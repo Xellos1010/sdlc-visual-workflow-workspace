@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/continuity-state-v2.schema.json",
+  "title": "Flagship Continuity State v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "system",
+    "objective",
+    "lifecycleStage",
+    "phaseId",
+    "activeBranch",
+    "graphRevision",
+    "currentPhase",
+    "nextWorkOrders",
+    "verificationPlan",
+    "blockedBy",
+    "artifacts",
+    "doneCriteria"
+  ],
+  "properties": {
+    "system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "path", "worktree", "baseBranch", "ruleReferences"],
+      "properties": {
+        "name": { "type": "string" },
+        "path": { "type": "string" },
+        "worktree": { "type": "string" },
+        "baseBranch": { "type": "string" },
+        "technicalBaseBranch": { "type": "string" },
+        "ruleReferences": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "guardrailPacks": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "objective": { "type": "string" },
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "discover",
+        "define",
+        "visualize",
+        "architect",
+        "plan",
+        "implement",
+        "verify",
+        "release",
+        "operate",
+        "diagnose",
+        "improve"
+      ]
+    },
+    "phaseId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "phaseSequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "activeBranch": { "type": "string" },
+    "graphRevision": { "type": "string" },
+    "currentPhase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "status", "branch", "updatedAt"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "in_progress", "blocked", "verified", "done"]
+        },
+        "branch": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "impactedSystems": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "artifactAuthorities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["authority", "owner"],
+        "properties": {
+          "authority": { "type": "string" },
+          "owner": { "type": "string" },
+          "updateRule": { "type": "string" }
+        }
+      }
+    },
+    "nextWorkOrders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["workOrderId", "agentRole", "status"],
+        "properties": {
+          "workOrderId": { "type": "string" },
+          "agentRole": { "type": "string" },
+          "status": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "verificationPlan": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "blockedBy": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "evidenceBundles": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "doneCriteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

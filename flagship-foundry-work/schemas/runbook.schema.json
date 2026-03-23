@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/runbook.schema.json",
+  "title": "Runbook",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "purpose",
+    "phases"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "handoffArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

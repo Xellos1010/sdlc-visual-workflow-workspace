@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge Pack",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "description"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "principles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mandatoryQuestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expectedArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredPersonaIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredRunbookIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredGuardrailIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/sme-profile.schema.json",
+  "title": "Subject Matter Expert Profile",
+  "type": "object",
+  "required": [
+    "id",
+    "domain",
+    "title",
+    "mandatoryQuestions",
+    "blastRadiusChecklist"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "detectedFrom": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mandatoryQuestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blastRadiusChecklist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "trainingSignals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

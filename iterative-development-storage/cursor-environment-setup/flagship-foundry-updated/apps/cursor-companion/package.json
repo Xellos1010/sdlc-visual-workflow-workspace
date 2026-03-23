@@ -1,0 +1,60 @@
+{
+  "name": "flagship-foundry-cursor-companion",
+  "displayName": "Flagship Foundry Companion",
+  "description": "Cursor and VS Code companion for importing workspaces, approving plans, and controlling agent runs.",
+  "version": "0.2.0",
+  "publisher": "flagship-foundry",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./extension.js",
+  "icon": "./media/icon.png",
+  "activationEvents": [
+    "onCommand:flagshipFoundry.startControlPlane",
+    "onCommand:flagshipFoundry.importCurrentWorkspace",
+    "onCommand:flagshipFoundry.openOverlay"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "flagshipFoundry.startControlPlane",
+        "title": "Flagship Foundry: Start Control Plane"
+      },
+      {
+        "command": "flagshipFoundry.importCurrentWorkspace",
+        "title": "Flagship Foundry: Import Current Workspace"
+      },
+      {
+        "command": "flagshipFoundry.openOverlay",
+        "title": "Flagship Foundry: Open Orchestration Overlay"
+      }
+    ],
+    "configuration": {
+      "title": "Flagship Foundry",
+      "properties": {
+        "flagshipFoundry.controlPlaneUrl": {
+          "type": "string",
+          "default": "http://localhost:4010",
+          "description": "Base URL for the local Foundry control plane."
+        },
+        "flagshipFoundry.autoApproveDraftPlans": {
+          "type": "boolean",
+          "default": false,
+          "description": "Create plans with auto approval enabled."
+        },
+        "flagshipFoundry.autoStartApprovedPlans": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically start a run after approval when supported."
+        }
+      }
+    }
+  },
+  "extensionKind": [
+    "workspace",
+    "ui"
+  ]
+}

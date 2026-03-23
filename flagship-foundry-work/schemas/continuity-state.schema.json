@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/continuity-state.schema.json",
+  "title": "Continuity State",
+  "type": "object",
+  "required": [
+    "project",
+    "lifecycleStage",
+    "phaseId",
+    "verificationCommands"
+  ],
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "plan",
+        "design",
+        "implement",
+        "verify",
+        "document",
+        "release",
+        "operate"
+      ]
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "verificationCommands": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "doneCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

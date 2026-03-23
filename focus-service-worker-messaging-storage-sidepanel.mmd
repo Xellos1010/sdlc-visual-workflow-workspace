@@ -1,0 +1,136 @@
+flowchart LR
+  node_project_chrome_ext_core_secure_storage["chrome-ext-core-secure-storage
+seed"]
+  node_project_chrome_ext_core_sidepanel["chrome-ext-core-sidePanel
+seed"]
+  node_project_chrome_ext_core_storage["chrome-ext-core-storage
+seed"]
+  node_project_chrome_ext_core_tabs["chrome-ext-core-tabs
+project"]
+  node_project_chrome_ext_core_telemetry["chrome-ext-core-telemetry
+project"]
+  node_project_chrome_ext_core_ui_shell["chrome-ext-core-ui-shell
+project"]
+  node_project_chrome_ext_ui_design_tokens["chrome-ext-ui-design-tokens
+project"]
+  node_project_chrome_ext_ui_modern["chrome-ext-ui-modern
+project"]
+  node_project_chrome_ext_ui_shared_components["chrome-ext-ui-shared-components
+project"]
+  node_project_chrome_ext_auth_base["chrome-ext-auth-base
+project"]
+  node_project_chrome_ext_auth_email["chrome-ext-auth-email
+project"]
+  node_project_chrome_ext_auth_google["chrome-ext-auth-google
+project"]
+  node_project_chrome_ext_auth_microsoft["chrome-ext-auth-microsoft
+project"]
+  node_project_chrome_ext_auth_social["chrome-ext-auth-social
+project"]
+  node_project_chrome_ext_auth_sso["chrome-ext-auth-sso
+project"]
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_auth_email
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_auth_google
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_auth_microsoft
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_auth_social
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_auth_sso
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_core_secure_storage
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_core_sidepanel
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_auth_base -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_auth_google
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_auth_microsoft
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_auth_social
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_auth_sso
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_core_secure_storage
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_core_sidepanel
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_auth_email -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_auth_microsoft
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_auth_social
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_auth_sso
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_core_secure_storage
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_core_sidepanel
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_auth_google -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_auth_social
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_auth_sso
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_core_secure_storage
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_core_sidepanel
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_auth_microsoft -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_auth_sso
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_core_secure_storage
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_core_sidepanel
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_auth_social -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_core_secure_storage
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_core_sidepanel
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_auth_sso -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_core_sidepanel
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_core_secure_storage -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_core_sidepanel -->|shares-pattern| node_project_chrome_ext_core_storage
+  node_project_chrome_ext_core_sidepanel -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_core_sidepanel -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_core_sidepanel -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_core_sidepanel -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_core_sidepanel -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_core_sidepanel -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_core_storage -->|shares-pattern| node_project_chrome_ext_core_tabs
+  node_project_chrome_ext_core_storage -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_core_storage -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_core_storage -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_core_storage -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_core_storage -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_core_tabs -->|shares-pattern| node_project_chrome_ext_core_telemetry
+  node_project_chrome_ext_core_tabs -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_core_tabs -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_core_tabs -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_core_tabs -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_core_telemetry -->|shares-pattern| node_project_chrome_ext_core_ui_shell
+  node_project_chrome_ext_core_telemetry -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_core_telemetry -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_core_telemetry -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_core_ui_shell -->|shares-pattern| node_project_chrome_ext_ui_design_tokens
+  node_project_chrome_ext_core_ui_shell -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_core_ui_shell -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_ui_design_tokens -->|shares-pattern| node_project_chrome_ext_ui_modern
+  node_project_chrome_ext_ui_design_tokens -->|shares-pattern| node_project_chrome_ext_ui_shared_components
+  node_project_chrome_ext_ui_modern -->|shares-pattern| node_project_chrome_ext_ui_shared_components

@@ -1,0 +1,911 @@
+[
+  {
+    "id": "pack:system-architecture-and-boundaries",
+    "title": "System Architecture and Boundaries",
+    "description": "System decomposition, bounded contexts, interfaces, dependencies, layering, coupling, and blast-radius aware change planning.",
+    "domains": [
+      "architecture",
+      "systems"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [],
+    "concepts": [
+      "bounded contexts",
+      "contracts",
+      "ownership",
+      "dependency direction",
+      "shared kernel",
+      "blast radius"
+    ],
+    "principles": [
+      "optimize for explicit boundaries",
+      "promote contracts over incidental implementation details",
+      "treat shared patterns as first-class impact surfaces"
+    ],
+    "mandatoryQuestions": [
+      "What system, module, or component owns the behavior being changed?",
+      "What contracts, data flows, and adjacent systems depend on that behavior?",
+      "Which sibling implementations should be updated to avoid drift or partial rollout?"
+    ],
+    "expectedArtifacts": [
+      "architecture decision record",
+      "context/container/component diagrams",
+      "blast radius report"
+    ],
+    "requiredPersonaIds": [
+      "persona:ecosystem-orchestrator",
+      "persona:adversarial-architect"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery",
+      "runbook:adversarial-design-review"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance"
+    ],
+    "keywords": [
+      "architecture",
+      "system",
+      "module",
+      "component",
+      "dependency",
+      "boundary",
+      "service",
+      "blast radius"
+    ]
+  },
+  {
+    "id": "pack:ui-ux-and-design-systems",
+    "title": "UI UX and Design Systems",
+    "description": "Interaction design, information architecture, accessibility, visual systems, user flows, and cross-surface consistency.",
+    "domains": [
+      "ui",
+      "ux",
+      "frontend"
+    ],
+    "triggers": {
+      "frameworkIds": [
+        "framework:react"
+      ],
+      "platformIds": [
+        "platform:web-runtime",
+        "platform:chrome-extension-mv3"
+      ]
+    },
+    "frameworkIds": [
+      "framework:react",
+      "framework:vite"
+    ],
+    "platformIds": [
+      "platform:web-runtime",
+      "platform:chrome-extension-mv3"
+    ],
+    "concepts": [
+      "design tokens",
+      "view model",
+      "interaction flow",
+      "progressive disclosure",
+      "accessibility",
+      "feedback loops"
+    ],
+    "principles": [
+      "shared interaction contracts before one-off tweaks",
+      "state authority is explicit",
+      "accessibility is part of correctness"
+    ],
+    "mandatoryQuestions": [
+      "Which surfaces display the affected state and which of them must remain visually or behaviorally consistent?",
+      "What accessibility, keyboard, and error-state expectations must remain intact?",
+      "Which shared tokens, primitives, or layout patterns should move together?"
+    ],
+    "expectedArtifacts": [
+      "UI flow diagram",
+      "state ownership diagram",
+      "acceptance screenshots"
+    ],
+    "requiredPersonaIds": [
+      "persona:react-vite-ui-sme"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:react-vite-ui"
+    ],
+    "keywords": [
+      "ux",
+      "ui",
+      "design",
+      "component",
+      "layout",
+      "accessibility",
+      "token",
+      "design system"
+    ]
+  },
+  {
+    "id": "pack:state-management-and-event-flows",
+    "title": "State Management and Event Flows",
+    "description": "Source of truth, state transitions, messaging, synchronization, eventual consistency, and view-model contracts.",
+    "domains": [
+      "frontend",
+      "distributed-state"
+    ],
+    "triggers": {
+      "platformIds": [
+        "platform:chrome-extension-mv3",
+        "platform:web-runtime"
+      ],
+      "always": true
+    },
+    "frameworkIds": [
+      "framework:react"
+    ],
+    "platformIds": [
+      "platform:chrome-extension-mv3",
+      "platform:web-runtime"
+    ],
+    "concepts": [
+      "single source of truth",
+      "event bus",
+      "rehydration",
+      "subscription",
+      "reducer",
+      "consistency window"
+    ],
+    "principles": [
+      "state changes must be observable",
+      "derive views from authoritative state",
+      "document message contracts"
+    ],
+    "mandatoryQuestions": [
+      "Where is authoritative state stored and who may mutate it?",
+      "Which events, messages, or side effects must be replay-safe or idempotent?",
+      "What other consumers of the same state contract must be regression-checked?"
+    ],
+    "expectedArtifacts": [
+      "event flow diagram",
+      "state contract inventory",
+      "message schema list"
+    ],
+    "requiredPersonaIds": [
+      "persona:react-vite-ui-sme",
+      "persona:chrome-extension-mv3-sme"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:react-vite-ui",
+      "guardrail:chrome-extension-mv3"
+    ],
+    "keywords": [
+      "state",
+      "store",
+      "message",
+      "event",
+      "storage",
+      "synchronization",
+      "rehydration",
+      "queue"
+    ]
+  },
+  {
+    "id": "pack:data-modeling-and-api-contracts",
+    "title": "Data Modeling and API Contracts",
+    "description": "Schemas, validation, search and query design, operational data modeling, compatibility, and contract-first evolution.",
+    "domains": [
+      "data",
+      "api",
+      "backend"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [
+      "framework:typescript"
+    ],
+    "platformIds": [
+      "platform:node-runtime",
+      "platform:web-runtime"
+    ],
+    "concepts": [
+      "schema evolution",
+      "normalization",
+      "search indexes",
+      "idempotency",
+      "compatibility",
+      "serialization"
+    ],
+    "principles": [
+      "model data around read and write responsibilities",
+      "version contracts intentionally",
+      "treat search and operations as separate workloads"
+    ],
+    "mandatoryQuestions": [
+      "What data contract changes and who consumes it?",
+      "Which indexes, queries, caches, or exports depend on the shape of this data?",
+      "How will backward compatibility, migrations, or rollbacks work?"
+    ],
+    "expectedArtifacts": [
+      "schema diff",
+      "API contract checklist",
+      "migration or compatibility note"
+    ],
+    "requiredPersonaIds": [
+      "persona:typescript-node-runtime-sme"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery",
+      "runbook:bug-remediation"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance"
+    ],
+    "keywords": [
+      "schema",
+      "api",
+      "contract",
+      "data",
+      "query",
+      "search",
+      "index",
+      "migration"
+    ]
+  },
+  {
+    "id": "pack:testing-quality-and-verification",
+    "title": "Testing Quality and Verification",
+    "description": "Unit, integration, end-to-end, contract, smoke, and runtime verification strategy tied to explicit acceptance criteria.",
+    "domains": [
+      "testing",
+      "quality"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [
+      "framework:playwright",
+      "framework:test-harness"
+    ],
+    "platformIds": [],
+    "concepts": [
+      "quality gates",
+      "affected testing",
+      "independent verification",
+      "smoke coverage",
+      "regression slice",
+      "oracle"
+    ],
+    "principles": [
+      "verification is part of implementation",
+      "independent verification breaks self-confirmation loops",
+      "tests reflect user and runtime contracts"
+    ],
+    "mandatoryQuestions": [
+      "What proves the change works beyond the edited file?",
+      "Which existing behavior is at highest risk of silent regression?",
+      "What is the smallest reliable verification slice for this change?"
+    ],
+    "expectedArtifacts": [
+      "verification plan",
+      "command set",
+      "evidence bundle"
+    ],
+    "requiredPersonaIds": [
+      "persona:independent-verifier"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery",
+      "runbook:bug-remediation",
+      "runbook:task-handoff"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance"
+    ],
+    "keywords": [
+      "test",
+      "verify",
+      "e2e",
+      "smoke",
+      "lint",
+      "typecheck",
+      "quality gate"
+    ]
+  },
+  {
+    "id": "pack:observability-telemetry-and-operations",
+    "title": "Observability Telemetry and Operations",
+    "description": "Logs, metrics, traces, alerts, incident response, deploy safety, and telemetry-driven improvement loops.",
+    "domains": [
+      "observability",
+      "operations",
+      "sre"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [
+      "platform:node-runtime",
+      "platform:chrome-extension-mv3",
+      "platform:web-runtime"
+    ],
+    "concepts": [
+      "golden signals",
+      "event taxonomy",
+      "error budgets",
+      "alert quality",
+      "incident timeline",
+      "telemetry feedback"
+    ],
+    "principles": [
+      "observable-by-default changes",
+      "alerts tie to user or system impact",
+      "incident learnings become reusable guardrails"
+    ],
+    "mandatoryQuestions": [
+      "What telemetry should move when this feature or fix succeeds or fails?",
+      "How will the orchestrator recognize regressions early?",
+      "What learning should be recorded if this work resolves a recurring failure class?"
+    ],
+    "expectedArtifacts": [
+      "telemetry map",
+      "alert or log update list",
+      "fix-memory candidate"
+    ],
+    "requiredPersonaIds": [
+      "persona:telemetry-and-learning-curator"
+    ],
+    "requiredRunbookIds": [
+      "runbook:telemetry-driven-improvement",
+      "runbook:self-improvement-learning"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:telemetry-and-observability"
+    ],
+    "keywords": [
+      "telemetry",
+      "observability",
+      "metric",
+      "trace",
+      "alert",
+      "incident",
+      "logging",
+      "sentry"
+    ]
+  },
+  {
+    "id": "pack:cloud-and-deployment-environments",
+    "title": "Cloud and Deployment Environments",
+    "description": "Runtime environments, rollout safety, release topology, environment parity, secret boundaries, and deployment automation.",
+    "domains": [
+      "cloud",
+      "deployment",
+      "devops"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [
+      "platform:node-runtime",
+      "platform:web-runtime"
+    ],
+    "concepts": [
+      "environment parity",
+      "promotion flow",
+      "feature flags",
+      "secrets management",
+      "rollback",
+      "progressive delivery"
+    ],
+    "principles": [
+      "deployment paths are explicit artifacts",
+      "production safety comes from reversible rollout design",
+      "environment drift is a known risk signal"
+    ],
+    "mandatoryQuestions": [
+      "Which environments are affected and what changes between them?",
+      "What is the rollback or feature-flag strategy?",
+      "Which deployment or runtime assumptions need to be revalidated?"
+    ],
+    "expectedArtifacts": [
+      "release checklist",
+      "environment matrix",
+      "rollback note"
+    ],
+    "requiredPersonaIds": [
+      "persona:ecosystem-orchestrator"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance"
+    ],
+    "keywords": [
+      "deploy",
+      "release",
+      "cloud",
+      "staging",
+      "production",
+      "env",
+      "flag",
+      "rollback"
+    ]
+  },
+  {
+    "id": "pack:security-networking-and-permissions",
+    "title": "Security Networking and Permissions",
+    "description": "Least privilege, network boundaries, auth, secrets, browser permissions, and secure-by-default integration patterns.",
+    "domains": [
+      "security",
+      "networking"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [
+      "platform:chrome-extension-mv3",
+      "platform:node-runtime",
+      "platform:web-runtime"
+    ],
+    "concepts": [
+      "least privilege",
+      "token handling",
+      "network boundary",
+      "host permission",
+      "threat surface",
+      "credential scope"
+    ],
+    "principles": [
+      "security posture is part of the design review",
+      "explicit permission change review",
+      "secrets never leak into agent context or committed artifacts"
+    ],
+    "mandatoryQuestions": [
+      "What permission, auth, or network surface changes?",
+      "Which secrets or credentials are involved and how are they isolated?",
+      "What downstream systems become reachable because of this change?"
+    ],
+    "expectedArtifacts": [
+      "permission diff",
+      "security review note",
+      "credential handling checklist"
+    ],
+    "requiredPersonaIds": [
+      "persona:adversarial-architect"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery",
+      "runbook:bug-remediation"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance",
+      "guardrail:chrome-extension-mv3"
+    ],
+    "keywords": [
+      "permission",
+      "security",
+      "auth",
+      "token",
+      "network",
+      "host_permissions",
+      "oauth",
+      "secret"
+    ]
+  },
+  {
+    "id": "pack:nx-monorepo-and-repository-cartography",
+    "title": "Nx Monorepo and Repository Cartography",
+    "description": "Repository graph extraction, workspace topology, project tags, dependency constraints, and deterministic context bundling.",
+    "domains": [
+      "monorepo",
+      "repository-analysis"
+    ],
+    "triggers": {
+      "topologyKinds": [
+        "nx-monorepo",
+        "polyrepo-or-loose-monorepo"
+      ]
+    },
+    "frameworkIds": [
+      "framework:nx"
+    ],
+    "platformIds": [],
+    "concepts": [
+      "project graph",
+      "path alias resolution",
+      "tag boundaries",
+      "context bundle",
+      "affected scope",
+      "archived trees"
+    ],
+    "principles": [
+      "repository structure is a planning artifact",
+      "dependency edges are first-class data",
+      "context bundles should be deterministic and resumable"
+    ],
+    "mandatoryQuestions": [
+      "What does the project graph say is touched transitively?",
+      "Which archived or excluded trees still influence runtime or tooling?",
+      "What context bundle best represents the target slice without bloating context?"
+    ],
+    "expectedArtifacts": [
+      "workspace manifest",
+      "graph export",
+      "context bundle"
+    ],
+    "requiredPersonaIds": [
+      "persona:nx-monorepo-cartographer",
+      "persona:polyrepo-cartographer"
+    ],
+    "requiredRunbookIds": [
+      "runbook:workspace-import",
+      "runbook:polyrepo-extrapolation"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:nx-monorepo"
+    ],
+    "keywords": [
+      "nx",
+      "monorepo",
+      "workspace",
+      "project graph",
+      "tag",
+      "context bundle",
+      "polyrepo"
+    ]
+  },
+  {
+    "id": "pack:browser-extension-mv3-specialization",
+    "title": "Browser Extension MV3 Specialization",
+    "description": "MV3 runtime, service workers, popup and sidepanel coordination, storage, messaging, and permissions.",
+    "domains": [
+      "browser-extension"
+    ],
+    "triggers": {
+      "platformIds": [
+        "platform:chrome-extension-mv3"
+      ]
+    },
+    "frameworkIds": [],
+    "platformIds": [
+      "platform:chrome-extension-mv3"
+    ],
+    "concepts": [
+      "service worker lifecycle",
+      "content script scope",
+      "popup/sidepanel orchestration",
+      "storage",
+      "message contract",
+      "declarative APIs"
+    ],
+    "principles": [
+      "background owns orchestration",
+      "UI surfaces are projections of background state",
+      "permissions stay least privilege"
+    ],
+    "mandatoryQuestions": [
+      "Does the change touch service worker, popup, sidepanel, content script, or shared message contracts?",
+      "What manifest, permission, or host permission deltas follow from the change?",
+      "Which sibling extension surfaces or libraries should receive the same update?"
+    ],
+    "expectedArtifacts": [
+      "MV3 surface map",
+      "manifest diff",
+      "message flow diagram"
+    ],
+    "requiredPersonaIds": [
+      "persona:chrome-extension-mv3-sme"
+    ],
+    "requiredRunbookIds": [
+      "runbook:feature-delivery",
+      "runbook:bug-remediation"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:chrome-extension-mv3"
+    ],
+    "keywords": [
+      "chrome",
+      "extension",
+      "mv3",
+      "service_worker",
+      "sidepanel",
+      "popup",
+      "content script",
+      "manifest"
+    ]
+  },
+  {
+    "id": "pack:agent-orchestration-and-evaluation",
+    "title": "Agent Orchestration and Evaluation",
+    "description": "Hierarchical agents, bounded tasks, approvals, tool policy, prompt contracts, evaluation loops, and model routing.",
+    "domains": [
+      "agents",
+      "orchestration"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [],
+    "concepts": [
+      "orchestrator",
+      "subagent",
+      "approval mode",
+      "tool policy",
+      "task contract",
+      "evaluation"
+    ],
+    "principles": [
+      "delegate narrow tasks with strong contracts",
+      "separate reasoning from execution",
+      "evaluate outputs against artifacts not charisma"
+    ],
+    "mandatoryQuestions": [
+      "Which role should reason, which should challenge, and which should verify?",
+      "What minimum context is sufficient for the subtask to succeed deterministically?",
+      "What artifact proves completion so the orchestrator can safely reset context?"
+    ],
+    "expectedArtifacts": [
+      "persona pack",
+      "task contract",
+      "evaluation checklist"
+    ],
+    "requiredPersonaIds": [
+      "persona:ecosystem-orchestrator",
+      "persona:adversarial-architect",
+      "persona:independent-verifier"
+    ],
+    "requiredRunbookIds": [
+      "runbook:plan-approval",
+      "runbook:adversarial-design-review",
+      "runbook:task-handoff"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:terminal-agent-adapters"
+    ],
+    "keywords": [
+      "agent",
+      "orchestrator",
+      "subagent",
+      "approval",
+      "model routing",
+      "evaluation",
+      "persona",
+      "skill"
+    ]
+  },
+  {
+    "id": "pack:knowledge-ingestion-and-rag",
+    "title": "Knowledge Ingestion and RAG",
+    "description": "Versioned documentation harvesting, provenance, chunking, retrieval, and framework-specific knowledge pack assembly.",
+    "domains": [
+      "knowledge",
+      "rag",
+      "documentation"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [],
+    "concepts": [
+      "source manifest",
+      "versioned snapshot",
+      "chunk provenance",
+      "knowledge pack",
+      "retrieval",
+      "refresh cadence"
+    ],
+    "principles": [
+      "source provenance is mandatory",
+      "docs are versioned inputs not ephemeral links",
+      "framework packs are composable and replaceable"
+    ],
+    "mandatoryQuestions": [
+      "What source of truth is being ingested and how is it versioned?",
+      "How will documents be chunked, tagged, and mapped to domain packs?",
+      "What refresh policy keeps the pack current without destabilizing the system?"
+    ],
+    "expectedArtifacts": [
+      "knowledge source manifest",
+      "knowledge base snapshot",
+      "pack coverage report"
+    ],
+    "requiredPersonaIds": [
+      "persona:knowledge-curator"
+    ],
+    "requiredRunbookIds": [
+      "runbook:knowledge-ingestion",
+      "runbook:knowledge-gap-analysis"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance"
+    ],
+    "keywords": [
+      "documentation",
+      "knowledge",
+      "rag",
+      "chunk",
+      "index",
+      "docs",
+      "provenance",
+      "manifest"
+    ]
+  },
+  {
+    "id": "pack:documentation-runbooks-and-handoffs",
+    "title": "Documentation Runbooks and Handoffs",
+    "description": "Structured handoff artifacts, operator runbooks, pseudo-code, diagrams, and resumable continuity documents.",
+    "domains": [
+      "documentation",
+      "operations"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [],
+    "concepts": [
+      "handoff",
+      "runbook",
+      "pseudo-code",
+      "diagram",
+      "continuity",
+      "evidence bundle"
+    ],
+    "principles": [
+      "documentation is an execution artifact",
+      "handoffs encode resumption not prose alone",
+      "operators need procedures, not just architecture"
+    ],
+    "mandatoryQuestions": [
+      "What must another human or agent know to continue safely?",
+      "Which diagrams, pseudo-code, or procedures are missing today?",
+      "What evidence and context links should be preserved?"
+    ],
+    "expectedArtifacts": [
+      "project handoff",
+      "runbook set",
+      "diagram index",
+      "pseudo-code blueprint"
+    ],
+    "requiredPersonaIds": [
+      "persona:telemetry-and-learning-curator"
+    ],
+    "requiredRunbookIds": [
+      "runbook:task-handoff"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance"
+    ],
+    "keywords": [
+      "handoff",
+      "runbook",
+      "diagram",
+      "pseudocode",
+      "documentation",
+      "playbook"
+    ]
+  },
+  {
+    "id": "pack:self-improvement-and-fix-memory",
+    "title": "Self Improvement and Fix Memory",
+    "description": "Capture recurring failures, resolved bugs, design context, and future prevention signals for retrieval and training.",
+    "domains": [
+      "learning",
+      "quality"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [],
+    "concepts": [
+      "fix memory",
+      "error taxonomy",
+      "failure class",
+      "prevention heuristic",
+      "training corpus",
+      "retrospective"
+    ],
+    "principles": [
+      "every resolved defect can become reusable prevention knowledge",
+      "record environment and design paradigm with the fix",
+      "training data follows evidence and provenance"
+    ],
+    "mandatoryQuestions": [
+      "What failed, in what environment, and why?",
+      "What specific design or operational principle would have prevented it?",
+      "How should this learning change future plans, prompts, or training data?"
+    ],
+    "expectedArtifacts": [
+      "fix memory record",
+      "failure taxonomy update",
+      "training corpus candidate"
+    ],
+    "requiredPersonaIds": [
+      "persona:telemetry-and-learning-curator"
+    ],
+    "requiredRunbookIds": [
+      "runbook:self-improvement-learning"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:workspace-governance"
+    ],
+    "keywords": [
+      "fix memory",
+      "bug",
+      "learning",
+      "training",
+      "defect",
+      "root cause",
+      "improvement"
+    ]
+  },
+  {
+    "id": "pack:environment-parity-and-tooling",
+    "title": "Environment Parity and Tooling",
+    "description": "Shared project instructions and parity across Cursor, Codex, Claude Code, MCP configs, and locally hosted model endpoints.",
+    "domains": [
+      "tooling",
+      "environments"
+    ],
+    "triggers": {
+      "always": true
+    },
+    "frameworkIds": [],
+    "platformIds": [],
+    "concepts": [
+      "environment parity",
+      "shared prompts",
+      "rules vs skills",
+      "AGENTS.md",
+      "CLAUDE.md",
+      "config migration",
+      "MCP config"
+    ],
+    "principles": [
+      "project intent should survive tool changes",
+      "shared environment artifacts are generated from a common source",
+      "migration paths are explicit"
+    ],
+    "mandatoryQuestions": [
+      "What should be shared across Cursor, Codex, and Claude, and what stays tool-specific?",
+      "Which configs, skills, or prompts need migration or parity?",
+      "How are local and remote model endpoints declared consistently?"
+    ],
+    "expectedArtifacts": [
+      "environment templates",
+      "parity matrix",
+      "migration checklist"
+    ],
+    "requiredPersonaIds": [
+      "persona:environment-migrator"
+    ],
+    "requiredRunbookIds": [
+      "runbook:environment-scaffold"
+    ],
+    "requiredGuardrailIds": [
+      "guardrail:terminal-agent-adapters"
+    ],
+    "keywords": [
+      "cursor",
+      "codex",
+      "claude",
+      "agents.md",
+      "claude.md",
+      "config",
+      "mcp",
+      "ollama",
+      "vllm"
+    ]
+  }
+]

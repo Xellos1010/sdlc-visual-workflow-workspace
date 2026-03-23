@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/system-registration.schema.json",
+  "title": "System Registration",
+  "type": "object",
+  "required": [
+    "systemId",
+    "displayName",
+    "repos",
+    "owners",
+    "runtimeKinds",
+    "contracts"
+  ],
+  "properties": {
+    "systemId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "repos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "owners": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "runtimeKinds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "guardrailPacks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

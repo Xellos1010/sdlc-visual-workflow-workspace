@@ -1,0 +1,42 @@
+{
+  "knowledgeBaseId": "foundry-foundational-docs",
+  "name": "Foundry Foundational Docs",
+  "description": "Seed knowledge base from local Cursor, Codex, Claude Code, and documentation tooling sources.",
+  "sources": [
+    {
+      "id": "source:claude-code-docs",
+      "title": "Claude Code combined docs",
+      "type": "combined-markdown",
+      "path": "examples/knowledge-sources/input/claude-code-docs-combined.md",
+      "version": "2026-03-21"
+    },
+    {
+      "id": "source:openai-codex",
+      "title": "OpenAI Codex combined docs",
+      "type": "combined-markdown",
+      "path": "examples/knowledge-sources/input/openai-codex-combined.md",
+      "version": "2026-03-21"
+    },
+    {
+      "id": "source:cursor-learning-path",
+      "title": "Cursor learning path",
+      "type": "combined-markdown",
+      "path": "examples/knowledge-sources/input/cursor-learning-path-combined.md",
+      "version": "2026-03-21"
+    },
+    {
+      "id": "source:generic-doc-scraper",
+      "title": "Generic documentation scraper Nx bundle",
+      "type": "text-bundle",
+      "path": "examples/knowledge-sources/input/generic-doc-scraper.txt",
+      "version": "2026-03-22"
+    },
+    {
+      "id": "source:nx-context-bundle",
+      "title": "Nx context bundler",
+      "type": "javascript-source",
+      "path": "examples/knowledge-sources/input/nx-context-bundle.mjs",
+      "version": "2026-03-22"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "adapterId": "adapter:claude-code",
+  "displayName": "Claude Code",
+  "runtime": "terminal",
+  "supportsMcp": true,
+  "supportsParallelAgents": true,
+  "supportsWorktrees": false,
+  "supportsProviderSwap": false,
+  "executionModel": "local-agent"
+}
