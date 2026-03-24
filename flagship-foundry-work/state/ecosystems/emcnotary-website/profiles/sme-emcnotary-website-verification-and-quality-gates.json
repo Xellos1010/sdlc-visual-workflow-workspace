@@ -1,0 +1,98 @@
+{
+  "id": "sme:emcnotary-website-verification-and-quality-gates",
+  "domain": "verification-and-quality-gates",
+  "title": "Independent Verifier SME",
+  "ecosystemId": "emcnotary-website",
+  "intent": "Provide deterministic planning, implementation, verification, and blast-radius guidance for Independent Verifier SME.",
+  "detectedFrom": [
+    "testing rule packs",
+    "project targets",
+    "current task verification commands"
+  ],
+  "mappedRuleIds": [
+    "rule:cursor-rules-04-testing-bridge-communication-testing-mdc",
+    "rule:cursor-rules-04-testing-comprehensive-testing-strategy-mdc",
+    "rule:cursor-rules-04-testing-playwright-playwright-automation-standards-mdc",
+    "rule:cursor-rules-04-testing-runtime-verification-mdc"
+  ],
+  "relatedProjectIds": [
+    "project:bluenotary-update-bot",
+    "project:dashboard-domain-dev-env",
+    "project:dashboard-domain-dashboard",
+    "project:elevenlabs-agent-dashboard",
+    "project:elevenlabs-webhook-service",
+    "project:email-mcp-server",
+    "project:emc-notary-document-kit",
+    "project:emc-notary-mobile-crm",
+    "project:emc-notary-telephony",
+    "project:google-profile-manager",
+    "project:google-profile-mcp-server",
+    "project:modernized-emcnotary-api",
+    "project:modernized-emcnotary",
+    "project:notary-workspace-runtime",
+    "project:notaryresume-automation",
+    "project:platform-update-bot",
+    "project:email-service-cdk",
+    "project:emc-notary-cdk",
+    "project:outbound-dialer-cdk",
+    "project:docs-generator",
+    "project:notary-workspace-config",
+    "project:notary-workspace-event-bus",
+    "project:notary-workspace-notification",
+    "project:notary-workspace-platform-adapter",
+    "project:notary-workspace-session-tracker",
+    "project:notary-workspace-telegram",
+    "project:voice-data-access-conversations",
+    "project:api-crm",
+    "project:workspace-design-tokens",
+    "project:google-ads-data-access",
+    "project:pipeline-observability",
+    "project:workspace-request-core",
+    "project:workspace-shared",
+    "project:workspace-ui-base",
+    "project:workspace-ui-primitives",
+    "project:elevenlabs-client",
+    "project:extract-project-context",
+    "project:affiliate-e2e",
+    "project:business-profile-manager",
+    "project:code-extractor",
+    "project:copy-report",
+    "project:divorcedesk-tools",
+    "project:email-e2e",
+    "project:keyword-report",
+    "project:local-aws",
+    "project:mcp-smoke",
+    "project:modernized-smoke",
+    "project:predeploy-audit",
+    "project:prospect-e2e",
+    "project:trends-analysis"
+  ],
+  "knowledgePackIds": [],
+  "mandatoryQuestions": [
+    "Which unit, integration, e2e, and build targets are required for this change?",
+    "What negative or regression case currently fails and should pass after the fix?",
+    "What evidence must be written for handoff and plan closure?"
+  ],
+  "blastRadiusChecklist": [
+    "Never close a plan without evidence from independent verification.",
+    "Use the narrowest affected slice first, then widen for shared-library or runtime-boundary changes.",
+    "Keep verification agent independent from the builder agent."
+  ],
+  "designPrinciples": [
+    "verification is a role, not a comment",
+    "capture commands and outputs as artifacts",
+    "regression coverage is part of the fix"
+  ],
+  "artifactExpectations": [
+    "plan fragment with impacted components and interfaces",
+    "verification commands and evidence bundle requirements",
+    "handoff update and fix-memory candidate when defects are found"
+  ],
+  "trainingSignals": [
+    "resolved bugs",
+    "verification failures",
+    "telemetry regressions",
+    "handoff gaps",
+    "blast-radius misses"
+  ]
+}

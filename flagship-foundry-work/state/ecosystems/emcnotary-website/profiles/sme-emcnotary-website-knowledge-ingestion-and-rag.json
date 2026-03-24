@@ -1,0 +1,107 @@
+{
+  "id": "sme:emcnotary-website-knowledge-ingestion-and-rag",
+  "domain": "knowledge-ingestion-and-rag",
+  "title": "Knowledge Ingestion and Retrieval SME",
+  "ecosystemId": "emcnotary-website",
+  "intent": "Provide deterministic planning, implementation, verification, and blast-radius guidance for Knowledge Ingestion and Retrieval SME.",
+  "detectedFrom": [
+    "documentation manifests",
+    "versioned downloads",
+    "knowledge packs",
+    "framework registries"
+  ],
+  "mappedRuleIds": [
+    "rule:cursor-rules-03-workflow-ai-sdlc-orchestrator-mdc",
+    "rule:cursor-rules-03-workflow-dev-workflow-and-git-mdc",
+    "rule:cursor-rules-03-workflow-documentation-standards-mdc",
+    "rule:cursor-rules-03-workflow-sdlc-setup-mdc",
+    "rule:cursor-rules-03-workflow-ship-it-workflow-mdc",
+    "rule:cursor-rules-10-observability-alert-definitions-mdc",
+    "rule:cursor-rules-10-observability-distributed-tracing-mdc",
+    "rule:cursor-rules-10-observability-incident-management-mdc",
+    "rule:cursor-rules-10-observability-metrics-collection-mdc",
+    "rule:cursor-rules-10-observability-structured-logging-mdc"
+  ],
+  "relatedProjectIds": [
+    "project:bluenotary-update-bot",
+    "project:dashboard-domain-dev-env",
+    "project:dashboard-domain-dashboard",
+    "project:elevenlabs-agent-dashboard",
+    "project:elevenlabs-webhook-service",
+    "project:email-mcp-server",
+    "project:emc-notary-document-kit",
+    "project:emc-notary-mobile-crm",
+    "project:emc-notary-telephony",
+    "project:google-profile-manager",
+    "project:google-profile-mcp-server",
+    "project:modernized-emcnotary-api",
+    "project:modernized-emcnotary",
+    "project:notary-workspace-runtime",
+    "project:notaryresume-automation",
+    "project:platform-update-bot",
+    "project:email-service-cdk",
+    "project:emc-notary-cdk",
+    "project:outbound-dialer-cdk",
+    "project:docs-generator",
+    "project:notary-workspace-config",
+    "project:notary-workspace-event-bus",
+    "project:notary-workspace-notification",
+    "project:notary-workspace-platform-adapter",
+    "project:notary-workspace-session-tracker",
+    "project:notary-workspace-telegram",
+    "project:voice-data-access-conversations",
+    "project:api-crm",
+    "project:workspace-design-tokens",
+    "project:google-ads-data-access",
+    "project:pipeline-observability",
+    "project:workspace-request-core",
+    "project:workspace-shared",
+    "project:workspace-ui-base",
+    "project:workspace-ui-primitives",
+    "project:elevenlabs-client",
+    "project:extract-project-context",
+    "project:affiliate-e2e",
+    "project:business-profile-manager",
+    "project:code-extractor",
+    "project:copy-report",
+    "project:divorcedesk-tools",
+    "project:email-e2e",
+    "project:keyword-report",
+    "project:local-aws",
+    "project:mcp-smoke",
+    "project:modernized-smoke",
+    "project:predeploy-audit",
+    "project:prospect-e2e",
+    "project:trends-analysis"
+  ],
+  "knowledgePackIds": [
+    "pack:knowledge-ingestion-and-rag"
+  ],
+  "mandatoryQuestions": [
+    "Which foundational packs are missing documentation or retrieval artifacts?",
+    "Which framework or platform sources should be versioned and refreshed?",
+    "What extraction and chunking strategy will preserve document lineage and reuse?"
+  ],
+  "blastRadiusChecklist": [
+    "Version documentation sources and treat ingestion as a first-class pipeline.",
+    "Map documents to packs, personas, and runbooks rather than storing raw text only.",
+    "Prefer narrow, versioned source manifests over ad hoc prompt stuffing."
+  ],
+  "designPrinciples": [
+    "knowledge should be versioned and attributable",
+    "retrieval should align to packs and roles",
+    "ingestion is continuous, not one-time setup"
+  ],
+  "artifactExpectations": [
+    "plan fragment with impacted components and interfaces",
+    "verification commands and evidence bundle requirements",
+    "handoff update and fix-memory candidate when defects are found"
+  ],
+  "trainingSignals": [
+    "resolved bugs",
+    "verification failures",
+    "telemetry regressions",
+    "handoff gaps",
+    "blast-radius misses"
+  ]
+}

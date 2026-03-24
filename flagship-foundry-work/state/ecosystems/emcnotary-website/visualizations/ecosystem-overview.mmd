@@ -1,0 +1,230 @@
+flowchart TB
+  eco["EMC Notary Website"]
+  sys_system_apps_bluenotary_update_bot["apps/bluenotary-update-bot
+1 projects"]
+  eco --> sys_system_apps_bluenotary_update_bot
+  proj_project_bluenotary_update_bot["bluenotary-update-bot"]
+  sys_system_apps_bluenotary_update_bot --> proj_project_bluenotary_update_bot
+  sys_system_apps_dashboard_domain_dashboard["apps/dashboard-domain-dashboard
+2 projects"]
+  eco --> sys_system_apps_dashboard_domain_dashboard
+  proj_project_dashboard_domain_dev_env["dashboard-domain-dev-env"]
+  sys_system_apps_dashboard_domain_dashboard --> proj_project_dashboard_domain_dev_env
+  proj_project_dashboard_domain_dashboard["dashboard-domain-dashboard"]
+  sys_system_apps_dashboard_domain_dashboard --> proj_project_dashboard_domain_dashboard
+  sys_system_apps_elevenlabs_agent_dashboard["apps/elevenlabs-agent-dashboard
+1 projects"]
+  eco --> sys_system_apps_elevenlabs_agent_dashboard
+  proj_project_elevenlabs_agent_dashboard["elevenlabs-agent-dashboard"]
+  sys_system_apps_elevenlabs_agent_dashboard --> proj_project_elevenlabs_agent_dashboard
+  sys_system_apps_elevenlabs_webhook_service["apps/elevenlabs-webhook-service
+1 projects"]
+  eco --> sys_system_apps_elevenlabs_webhook_service
+  proj_project_elevenlabs_webhook_service["elevenlabs-webhook-service"]
+  sys_system_apps_elevenlabs_webhook_service --> proj_project_elevenlabs_webhook_service
+  sys_system_apps_email_mcp_server["apps/email-mcp-server
+1 projects"]
+  eco --> sys_system_apps_email_mcp_server
+  proj_project_email_mcp_server["email-mcp-server"]
+  sys_system_apps_email_mcp_server --> proj_project_email_mcp_server
+  sys_system_apps_emc_notary_document_kit["apps/EMC Notary Document Kit
+1 projects"]
+  eco --> sys_system_apps_emc_notary_document_kit
+  proj_project_emc_notary_document_kit["emc-notary-document-kit"]
+  sys_system_apps_emc_notary_document_kit --> proj_project_emc_notary_document_kit
+  sys_system_apps_emc_notary_mobile_crm["apps/emc-notary-mobile-crm
+1 projects"]
+  eco --> sys_system_apps_emc_notary_mobile_crm
+  proj_project_emc_notary_mobile_crm["emc-notary-mobile-crm"]
+  sys_system_apps_emc_notary_mobile_crm --> proj_project_emc_notary_mobile_crm
+  sys_system_apps_emc_notary_telephony["apps/emc-notary-telephony
+1 projects"]
+  eco --> sys_system_apps_emc_notary_telephony
+  proj_project_emc_notary_telephony["emc-notary-telephony"]
+  sys_system_apps_emc_notary_telephony --> proj_project_emc_notary_telephony
+  sys_system_apps_google_profile_manager["apps/google-profile-manager
+1 projects"]
+  eco --> sys_system_apps_google_profile_manager
+  proj_project_google_profile_manager["google-profile-manager"]
+  sys_system_apps_google_profile_manager --> proj_project_google_profile_manager
+  sys_system_apps_google_profile_mcp_server["apps/google-profile-mcp-server
+1 projects"]
+  eco --> sys_system_apps_google_profile_mcp_server
+  proj_project_google_profile_mcp_server["google-profile-mcp-server"]
+  sys_system_apps_google_profile_mcp_server --> proj_project_google_profile_mcp_server
+  sys_system_apps_modernized_emcnotary["apps/modernized-emcnotary
+1 projects"]
+  eco --> sys_system_apps_modernized_emcnotary
+  proj_project_modernized_emcnotary["modernized-emcnotary"]
+  sys_system_apps_modernized_emcnotary --> proj_project_modernized_emcnotary
+  sys_system_apps_modernized_emcnotary_api["apps/modernized-emcnotary-api
+1 projects"]
+  eco --> sys_system_apps_modernized_emcnotary_api
+  proj_project_modernized_emcnotary_api["modernized-emcnotary-api"]
+  sys_system_apps_modernized_emcnotary_api --> proj_project_modernized_emcnotary_api
+  sys_system_apps_notary_workspace_runtime["apps/notary-workspace-runtime
+1 projects"]
+  eco --> sys_system_apps_notary_workspace_runtime
+  proj_project_notary_workspace_runtime["notary-workspace-runtime"]
+  sys_system_apps_notary_workspace_runtime --> proj_project_notary_workspace_runtime
+  sys_system_apps_notaryresume_automation["apps/notaryresume-automation
+1 projects"]
+  eco --> sys_system_apps_notaryresume_automation
+  proj_project_notaryresume_automation["notaryresume-automation"]
+  sys_system_apps_notaryresume_automation --> proj_project_notaryresume_automation
+  sys_system_apps_platform_update_bot["apps/platform-update-bot
+1 projects"]
+  eco --> sys_system_apps_platform_update_bot
+  proj_project_platform_update_bot["platform-update-bot"]
+  sys_system_apps_platform_update_bot --> proj_project_platform_update_bot
+  sys_system_infra_emc_notary["infra/emc-notary
+3 projects"]
+  eco --> sys_system_infra_emc_notary
+  proj_project_email_service_cdk["email-service-cdk"]
+  sys_system_infra_emc_notary --> proj_project_email_service_cdk
+  proj_project_emc_notary_cdk["emc-notary-cdk"]
+  sys_system_infra_emc_notary --> proj_project_emc_notary_cdk
+  proj_project_outbound_dialer_cdk["outbound-dialer-cdk"]
+  sys_system_infra_emc_notary --> proj_project_outbound_dialer_cdk
+  sys_system_libs_docs_generator["libs/docs-generator
+1 projects"]
+  eco --> sys_system_libs_docs_generator
+  proj_project_docs_generator["docs-generator"]
+  sys_system_libs_docs_generator --> proj_project_docs_generator
+  sys_system_libs_notary_workspace["libs/notary-workspace
+6 projects"]
+  eco --> sys_system_libs_notary_workspace
+  proj_project_notary_workspace_config["notary-workspace-config"]
+  sys_system_libs_notary_workspace --> proj_project_notary_workspace_config
+  proj_project_notary_workspace_event_bus["notary-workspace-event-bus"]
+  sys_system_libs_notary_workspace --> proj_project_notary_workspace_event_bus
+  proj_project_notary_workspace_notification["notary-workspace-notification"]
+  sys_system_libs_notary_workspace --> proj_project_notary_workspace_notification
+  proj_project_notary_workspace_platform_adapter["notary-workspace-platform-adapter"]
+  sys_system_libs_notary_workspace --> proj_project_notary_workspace_platform_adapter
+  proj_project_notary_workspace_session_tracker["notary-workspace-session-tracker"]
+  sys_system_libs_notary_workspace --> proj_project_notary_workspace_session_tracker
+  proj_project_notary_workspace_telegram["notary-workspace-telegram"]
+  sys_system_libs_notary_workspace --> proj_project_notary_workspace_telegram
+  sys_system_libs_voice["libs/voice
+1 projects"]
+  eco --> sys_system_libs_voice
+  proj_project_voice_data_access_conversations["voice-data-access-conversations"]
+  sys_system_libs_voice --> proj_project_voice_data_access_conversations
+  sys_system_packages_api_crm["packages/api-crm
+2 projects"]
+  eco --> sys_system_packages_api_crm
+  proj_project_api_crm["api-crm"]
+  sys_system_packages_api_crm --> proj_project_api_crm
+  proj_project_api_crm["api-crm"]
+  sys_system_packages_api_crm --> proj_project_api_crm
+  sys_system_packages_design_tokens["packages/design-tokens
+1 projects"]
+  eco --> sys_system_packages_design_tokens
+  proj_project_workspace_design_tokens["@workspace/design-tokens"]
+  sys_system_packages_design_tokens --> proj_project_workspace_design_tokens
+  sys_system_packages_google_ads["packages/google-ads
+1 projects"]
+  eco --> sys_system_packages_google_ads
+  proj_project_google_ads_data_access["google-ads-data-access"]
+  sys_system_packages_google_ads --> proj_project_google_ads_data_access
+  sys_system_packages_pipeline["packages/pipeline
+1 projects"]
+  eco --> sys_system_packages_pipeline
+  proj_project_pipeline_observability["pipeline-observability"]
+  sys_system_packages_pipeline --> proj_project_pipeline_observability
+  sys_system_packages_request_core["packages/request-core
+1 projects"]
+  eco --> sys_system_packages_request_core
+  proj_project_workspace_request_core["@workspace/request-core"]
+  sys_system_packages_request_core --> proj_project_workspace_request_core
+  sys_system_packages_shared["packages/shared
+1 projects"]
+  eco --> sys_system_packages_shared
+  proj_project_workspace_shared["@workspace/shared"]
+  sys_system_packages_shared --> proj_project_workspace_shared
+  sys_system_packages_ui_base["packages/ui-base
+1 projects"]
+  eco --> sys_system_packages_ui_base
+  proj_project_workspace_ui_base["@workspace/ui-base"]
+  sys_system_packages_ui_base --> proj_project_workspace_ui_base
+  sys_system_packages_ui_primitives["packages/ui-primitives
+1 projects"]
+  eco --> sys_system_packages_ui_primitives
+  proj_project_workspace_ui_primitives["@workspace/ui-primitives"]
+  sys_system_packages_ui_primitives --> proj_project_workspace_ui_primitives
+  sys_system_packages_voice["packages/voice
+1 projects"]
+  eco --> sys_system_packages_voice
+  proj_project_elevenlabs_client["elevenlabs-client"]
+  sys_system_packages_voice --> proj_project_elevenlabs_client
+  sys_system_support_scripts["support-scripts
+1 projects"]
+  eco --> sys_system_support_scripts
+  proj_project_extract_project_context["extract-project-context"]
+  sys_system_support_scripts --> proj_project_extract_project_context
+  sys_system_tools_affiliate_e2e["tools/affiliate-e2e
+1 projects"]
+  eco --> sys_system_tools_affiliate_e2e
+  proj_project_affiliate_e2e["affiliate-e2e"]
+  sys_system_tools_affiliate_e2e --> proj_project_affiliate_e2e
+  sys_system_tools_business_profile_manager["tools/business-profile-manager
+1 projects"]
+  eco --> sys_system_tools_business_profile_manager
+  proj_project_business_profile_manager["business-profile-manager"]
+  sys_system_tools_business_profile_manager --> proj_project_business_profile_manager
+  sys_system_tools_code_extractor["tools/code-extractor
+1 projects"]
+  eco --> sys_system_tools_code_extractor
+  proj_project_code_extractor["code-extractor"]
+  sys_system_tools_code_extractor --> proj_project_code_extractor
+  sys_system_tools_copy_report["tools/copy-report
+1 projects"]
+  eco --> sys_system_tools_copy_report
+  proj_project_copy_report["copy-report"]
+  sys_system_tools_copy_report --> proj_project_copy_report
+  sys_system_tools_divorcedesk["tools/divorcedesk
+1 projects"]
+  eco --> sys_system_tools_divorcedesk
+  proj_project_divorcedesk_tools["divorcedesk-tools"]
+  sys_system_tools_divorcedesk --> proj_project_divorcedesk_tools
+  sys_system_tools_email_e2e["tools/email-e2e
+1 projects"]
+  eco --> sys_system_tools_email_e2e
+  proj_project_email_e2e["email-e2e"]
+  sys_system_tools_email_e2e --> proj_project_email_e2e
+  sys_system_tools_keyword_report["tools/keyword-report
+1 projects"]
+  eco --> sys_system_tools_keyword_report
+  proj_project_keyword_report["keyword-report"]
+  sys_system_tools_keyword_report --> proj_project_keyword_report
+  sys_system_tools_local_aws["tools/local-aws
+1 projects"]
+  eco --> sys_system_tools_local_aws
+  proj_project_local_aws["local-aws"]
+  sys_system_tools_local_aws --> proj_project_local_aws
+  sys_system_tools_mcp_smoke["tools/mcp-smoke
+1 projects"]
+  eco --> sys_system_tools_mcp_smoke
+  proj_project_mcp_smoke["mcp-smoke"]
+  sys_system_tools_mcp_smoke --> proj_project_mcp_smoke
+  sys_system_tools_modernized_smoke["tools/modernized-smoke
+1 projects"]
+  eco --> sys_system_tools_modernized_smoke
+  proj_project_modernized_smoke["modernized-smoke"]
+  sys_system_tools_modernized_smoke --> proj_project_modernized_smoke
+  sys_system_tools_predeploy_audit["tools/predeploy-audit
+1 projects"]
+  eco --> sys_system_tools_predeploy_audit
+  proj_project_predeploy_audit["predeploy-audit"]
+  sys_system_tools_predeploy_audit --> proj_project_predeploy_audit
+  sys_system_tools_prospect_e2e["tools/prospect-e2e
+1 projects"]
+  eco --> sys_system_tools_prospect_e2e
+  proj_project_prospect_e2e["prospect-e2e"]
+  sys_system_tools_prospect_e2e --> proj_project_prospect_e2e
+  sys_system_tools_trends_analysis["tools/trends-analysis
+1 projects"]
+  eco --> sys_system_tools_trends_analysis
+  proj_project_trends_analysis["trends-analysis"]
+  sys_system_tools_trends_analysis --> proj_project_trends_analysis

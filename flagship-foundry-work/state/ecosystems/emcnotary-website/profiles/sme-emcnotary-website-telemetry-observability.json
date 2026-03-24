@@ -1,0 +1,99 @@
+{
+  "id": "sme:emcnotary-website-telemetry-observability",
+  "domain": "telemetry-observability",
+  "title": "Telemetry and Incident Response SME",
+  "ecosystemId": "emcnotary-website",
+  "intent": "Provide deterministic planning, implementation, verification, and blast-radius guidance for Telemetry and Incident Response SME.",
+  "detectedFrom": [
+    "observability rule packs",
+    "watch metrics stores",
+    "run logs and diagnostic surfaces"
+  ],
+  "mappedRuleIds": [
+    "rule:cursor-rules-10-observability-alert-definitions-mdc",
+    "rule:cursor-rules-10-observability-distributed-tracing-mdc",
+    "rule:cursor-rules-10-observability-incident-management-mdc",
+    "rule:cursor-rules-10-observability-metrics-collection-mdc",
+    "rule:cursor-rules-10-observability-structured-logging-mdc"
+  ],
+  "relatedProjectIds": [
+    "project:bluenotary-update-bot",
+    "project:dashboard-domain-dev-env",
+    "project:dashboard-domain-dashboard",
+    "project:elevenlabs-agent-dashboard",
+    "project:elevenlabs-webhook-service",
+    "project:email-mcp-server",
+    "project:emc-notary-document-kit",
+    "project:emc-notary-mobile-crm",
+    "project:emc-notary-telephony",
+    "project:google-profile-manager",
+    "project:google-profile-mcp-server",
+    "project:modernized-emcnotary-api",
+    "project:modernized-emcnotary",
+    "project:notary-workspace-runtime",
+    "project:notaryresume-automation",
+    "project:platform-update-bot",
+    "project:email-service-cdk",
+    "project:emc-notary-cdk",
+    "project:outbound-dialer-cdk",
+    "project:docs-generator",
+    "project:notary-workspace-config",
+    "project:notary-workspace-event-bus",
+    "project:notary-workspace-notification",
+    "project:notary-workspace-platform-adapter",
+    "project:notary-workspace-session-tracker",
+    "project:notary-workspace-telegram",
+    "project:voice-data-access-conversations",
+    "project:api-crm",
+    "project:workspace-design-tokens",
+    "project:google-ads-data-access",
+    "project:pipeline-observability",
+    "project:workspace-request-core",
+    "project:workspace-shared",
+    "project:workspace-ui-base",
+    "project:workspace-ui-primitives",
+    "project:elevenlabs-client",
+    "project:extract-project-context",
+    "project:affiliate-e2e",
+    "project:business-profile-manager",
+    "project:code-extractor",
+    "project:copy-report",
+    "project:divorcedesk-tools",
+    "project:email-e2e",
+    "project:keyword-report",
+    "project:local-aws",
+    "project:mcp-smoke",
+    "project:modernized-smoke",
+    "project:predeploy-audit",
+    "project:prospect-e2e",
+    "project:trends-analysis"
+  ],
+  "knowledgePackIds": [],
+  "mandatoryQuestions": [
+    "What telemetry or error signal triggered the plan and how is it correlated to impacted components?",
+    "What additional instrumentation should be added to prevent recurrence?",
+    "What fix-memory record should be emitted when the defect is resolved?"
+  ],
+  "blastRadiusChecklist": [
+    "Use telemetry sources as seeds, then widen by capability lineage and runtime adjacency.",
+    "Require a before/after evidence bundle for every incident-derived fix.",
+    "Promote recurring defects into guardrail or verifier updates."
+  ],
+  "designPrinciples": [
+    "signals outrank anecdotes",
+    "instrument before and after fixing",
+    "learn from every resolved incident"
+  ],
+  "artifactExpectations": [
+    "plan fragment with impacted components and interfaces",
+    "verification commands and evidence bundle requirements",
+    "handoff update and fix-memory candidate when defects are found"
+  ],
+  "trainingSignals": [
+    "resolved bugs",
+    "verification failures",
+    "telemetry regressions",
+    "handoff gaps",
+    "blast-radius misses"
+  ]
+}
