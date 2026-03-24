@@ -2,7 +2,7 @@
   "id": "foundry-foundational-docs",
   "name": "Foundry Foundational Docs",
   "description": "Seed knowledge base from local Cursor, Codex, Claude Code, and documentation tooling sources.",
-  "importedAt": "2026-03-23T21:50:09.551Z",
+  "importedAt": "2026-03-24T02:23:27.604Z",
   "sources": [
     {
       "id": "source:claude-code-docs",
@@ -184,7 +184,7 @@
       "slaTier": "critical",
       "freshness": {
         "windowDays": 14,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -196,7 +196,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -208,7 +208,7 @@
       "slaTier": "critical",
       "freshness": {
         "windowDays": 14,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -220,7 +220,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -232,7 +232,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -244,7 +244,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -256,7 +256,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -268,7 +268,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -280,7 +280,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -292,7 +292,7 @@
       "slaTier": "critical",
       "freshness": {
         "windowDays": 14,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -304,7 +304,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -316,7 +316,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -328,7 +328,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }
@@ -340,7 +340,7 @@
       "slaTier": "critical",
       "freshness": {
         "windowDays": 14,
-        "ageDays": 2,
+        "ageDays": 3,
         "sourceVersion": "2026-03-21",
         "status": "fresh"
       }
@@ -352,7 +352,7 @@
       "slaTier": "important",
       "freshness": {
         "windowDays": 30,
-        "ageDays": 1,
+        "ageDays": 2,
         "sourceVersion": "2026-03-22",
         "status": "fresh"
       }

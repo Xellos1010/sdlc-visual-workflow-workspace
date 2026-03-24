@@ -84,6 +84,7 @@ async function loadSectionsFromExportBundle(source) {
 function shouldReadFilesystemPath(relativePath) {
   if (relativePath.startsWith('.cursor/rules/')) return true;
   if (relativePath.startsWith('.claude/')) return true;
+  if (relativePath.startsWith('.foundry/')) return true;
   if (relativePath.startsWith('.codex/')) return true;
   if (relativePath === '.mcp.json') return true;
   if (relativePath === 'CLAUDE.md' || relativePath === 'AGENTS.md') return true;
@@ -486,6 +487,18 @@ function buildAgentEnvironments(sections) {
       hasConfig: Boolean(codexConfig),
       hasAgentsMd: Boolean(agentsGuide),
       hasMcpConfig: Boolean(mcpConfig)
+    });
+  }
+
+  if (paths.some((entry) => entry.startsWith('.foundry/'))) {
+    environments.push({
+      id: makeId('environment', 'foundry'),
+      tool: 'foundry',
+      name: 'Flagship Foundry',
+      paths: paths.filter((entry) => entry.startsWith('.foundry/')).slice(0, 40),
+      hasContinuity: paths.some(
+        (entry) => entry.includes('.foundry/projects/') && entry.endsWith('current-task.json')
+      )
     });
   }
 

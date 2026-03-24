@@ -86,7 +86,7 @@ export async function loadCatalogs() {
     skillBlueprints
   ] = await Promise.all([
     loadDirectoryJson('runbooks'),
-    loadDirectoryJson('personas'),
+    loadDirectoryJson('../.foundry/personas'),
     loadDirectoryJson('guardrails'),
     loadDirectoryJson('configs/terminal-adapters'),
     loadDirectoryJson('configs/provider-manifests'),

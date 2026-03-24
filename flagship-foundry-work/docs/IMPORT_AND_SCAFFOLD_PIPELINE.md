@@ -18,7 +18,7 @@ Turn an existing ecosystem into a graph-native, approval-aware, knowledge-backed
 
 2. **Continuity and artifact ingestion**
    - ingest current task states, diagrams, rule packs, handoff markers, and phase-ledger signals;
-   - detect agent-environment artifacts such as `.cursor`, `.claude`, `.codex`, `AGENTS.md`, `CLAUDE.md`, and `.mcp.json`.
+   - detect agent-environment artifacts such as `.cursor`, `.claude`, `.codex`, `.foundry`, `AGENTS.md`, `CLAUDE.md`, and `.mcp.json`.
 
 3. **Graph construction**
    - create nodes for ecosystem, repo, system, project, framework, platform, rule pack, diagram, task state, and environment;

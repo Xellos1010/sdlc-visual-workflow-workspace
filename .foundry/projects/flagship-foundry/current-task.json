@@ -1,0 +1,128 @@
+{
+  "authority": {
+    "contractAuthority": "flagship-foundry-work/schemas/continuity-state.schema.json",
+    "runtimeInstanceAuthority": ".foundry/projects/flagship-foundry/current-task.json",
+    "derivedMirrors": []
+  },
+  "project": {
+    "name": "flagship-foundry",
+    "path": ".foundry/projects/flagship-foundry",
+    "worktree": ".foundry/projects/flagship-foundry",
+    "baseBranch": "main",
+    "technicalBaseBranch": "main",
+    "ruleReferences": []
+  },
+  "objective": "Flagship Foundry gap-closure (M1–M4) complete; maintain on change.",
+  "sdlcPhase": "verify",
+  "lifecycleStage": "verify",
+  "currentPhase": {
+    "id": "foundry-ssot-verify",
+    "title": "verify",
+    "status": "done",
+    "branch": "main",
+    "notes": [
+      "wo-001 complete: ADR-011a layout decisions documented; .foundry/README.md updated",
+      "wo-002 complete: continuity.mjs already reads .foundry/; no schema changes needed",
+      "wo-003 complete: personas, skills, agents copied/merged to .foundry/",
+      "wo-004 complete: .cursor and .claude adapter stubs written",
+      "wo-005 complete: catalogs.mjs updated to read personas from ../.foundry/personas",
+      "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass"
+    ],
+    "updatedAt": "2026-03-23T16:00:00.000Z"
+  },
+  "activeBranch": "main",
+  "nextCommit": {
+    "branch": "main",
+    "message": "feat(foundry): SSOT migration complete — personas, skills, agents under .foundry/ with adapter stubs (wo-001–wo-005)",
+    "scope": [
+      ".foundry/",
+      ".cursor/agents/",
+      ".cursor/skills/",
+      ".claude/agents/",
+      ".claude/skills/",
+      "flagship-foundry-work/packages/core/src/catalogs.mjs",
+      "flagship-foundry-work/docs/adr/adr-011a-foundry-ssot-personas-skills-layout.md"
+    ]
+  },
+  "nextCommandSet": [
+    "cd flagship-foundry-work && npm test",
+    "cd flagship-foundry-work && npm run ci:targeted"
+  ],
+  "blockedBy": [],
+  "artifacts": {
+    "m4Evidence": [
+      "flagship-foundry-work/docs/ci-release-gates.md",
+      "flagship-foundry-work/docs/rollout-rollback-incident-model.md",
+      ".github/workflows/flagship-foundry-ci.yml"
+    ],
+    "woFF011": [
+      "flagship-foundry-work/docs/adr/adr-011-foundry-directory-layout-and-continuity-instance.md",
+      "flagship-foundry-work/docs/intent/scope-chunk-foundry-dot-foundry-2026-03-23.md"
+    ],
+    "wo003Personas": [
+      ".foundry/personas/adversarial-architect.json",
+      ".foundry/personas/chrome-extension-mv3-sme.json",
+      ".foundry/personas/cursor-companion-product-owner.json",
+      ".foundry/personas/ecosystem-orchestrator.json",
+      ".foundry/personas/environment-migrator.json",
+      ".foundry/personas/independent-verifier.json",
+      ".foundry/personas/knowledge-curator.json",
+      ".foundry/personas/nx-monorepo-cartographer.json",
+      ".foundry/personas/plan-approval-governor.json",
+      ".foundry/personas/polyrepo-cartographer.json",
+      ".foundry/personas/react-vite-ui-sme.json",
+      ".foundry/personas/telemetry-and-learning-curator.json",
+      ".foundry/personas/typescript-node-runtime-sme.json"
+    ],
+    "wo003Skills": [
+      ".foundry/skills/adr-writer/SKILL.md",
+      ".foundry/skills/c4-diagram-generator/SKILL.md",
+      ".foundry/skills/continuity-writer/SKILL.md",
+      ".foundry/skills/define-intent/SKILL.md",
+      ".foundry/skills/define-intent/reference/feature-intake-runbook.md",
+      ".foundry/skills/evidence-collector/SKILL.md",
+      ".foundry/skills/handoff-generator/SKILL.md",
+      ".foundry/skills/handoff-generator/templates/PLAN_HANDOFF_TEMPLATE.md",
+      ".foundry/skills/model-router/SKILL.md",
+      ".foundry/skills/nx-verification/SKILL.md",
+      ".foundry/skills/scope-chunker/SKILL.md",
+      ".foundry/skills/scope-chunker/reference/work-order-quick-ref.md",
+      ".foundry/skills/sdlc-phase-router/SKILL.md",
+      ".foundry/skills/sdlc-phase-router/reference/phase-gate-matrix.md"
+    ],
+    "wo003Agents": [
+      ".foundry/agents/builder.md",
+      ".foundry/agents/context-curator.md",
+      ".foundry/agents/docs-release-agent.md",
+      ".foundry/agents/orchestrator.md",
+      ".foundry/agents/performance-reviewer.md",
+      ".foundry/agents/security-reviewer.md",
+      ".foundry/agents/systems-architect.md",
+      ".foundry/agents/verifier.md"
+    ],
+    "wo004Adapters": {
+      "cursorAgents": ".cursor/agents/",
+      "claudeAgents": ".claude/agents/",
+      "cursorSkills": ".cursor/skills/*/SKILL.md",
+      "claudeSkills": ".claude/skills/*/SKILL.md"
+    },
+    "wo005CatalogsUpdate": [
+      "flagship-foundry-work/packages/core/src/catalogs.mjs"
+    ],
+    "wo006Evidence": [
+      ".foundry/projects/flagship-foundry/current-task.json",
+      "flagship-foundry-work/docs/adr/adr-011a-foundry-ssot-personas-skills-layout.md"
+    ]
+  },
+  "doneCriteria": [
+    "M1–M4 work orders delivered per MILESTONE_CHAINED_EXECUTION_PLAN.md",
+    "ADR-009 and ADR-010 accepted with implementation/docs in repo",
+    "ADR-011 accepted; continuity under .foundry/projects/",
+    "wo-001 complete: ADR-011a layout decisions; .foundry/README.md updated",
+    "wo-002 complete: continuity.mjs already .foundry/-only; no schema changes needed",
+    "wo-003 complete: 13 personas at .foundry/personas/, 10 skills at .foundry/skills/, 8 agents at .foundry/agents/",
+    "wo-004 complete: adapter stubs in .cursor/ and .claude/ written to reference .foundry/ base files",
+    "wo-005 complete: catalogs.mjs reads personas from .foundry/personas/; 60/60 tests pass",
+    "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass; phase closed"
+  ]
+}

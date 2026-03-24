@@ -2,7 +2,7 @@
   "graphId": "graph:web-automation-workspace",
   "ecosystemId": "web-automation-workspace",
   "ecosystemName": "Web Automation Workspace",
-  "generatedAt": "2026-03-23T21:50:10.184Z",
+  "generatedAt": "2026-03-24T02:23:28.220Z",
   "nodes": [
     {
       "id": "ecosystem:web-automation-workspace",
@@ -16,7 +16,7 @@
       ],
       "properties": {
         "topology": "nx-monorepo",
-        "importedAt": "2026-03-23T21:50:10.184Z",
+        "importedAt": "2026-03-24T02:23:28.220Z",
         "projectCount": 46
       }
     },

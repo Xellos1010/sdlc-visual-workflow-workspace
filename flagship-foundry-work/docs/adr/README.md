@@ -20,3 +20,4 @@
 - `adr-008-runtime-adapter-isolation-and-rollback-boundary.md`
 - `adr-009-ci-gate-baseline-and-release-evidence-threshold.md`
 - `adr-010-rollout-rollback-and-incident-documentation-model.md`
+- `adr-011-foundry-directory-layout-and-continuity-instance.md`

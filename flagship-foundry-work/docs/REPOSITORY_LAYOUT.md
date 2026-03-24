@@ -11,8 +11,10 @@ Open this folder as the VS Code/Cursor workspace when developing or running Foun
 The enclosing repository (`SDLC - Visual - Workflow - SoftwareEngineering-NewAge`) may contain:
 
 - Cursor rules, skills, and SDLC orchestration docs
+- **`.foundry/projects/<project>/`** — Flagship Foundry **continuity** (`current-task.json`, `SDLC_CHARTER.md`) per **ADR-011** (agent-neutral; not Codex-specific)
 - Research markdown, plans, and handoff notes at the repo root
 - A copy of or symlink to `flagship-foundry-work`
+- Legacy **`.codex/projects/`** may still exist for other tools; Foundry runtime uses **`.foundry/projects/`** for continuity
 
 **Doc sync policy:** Product behavior and APIs are defined by code and `flagship-foundry-work/docs/`. Root-level research files are supporting material; when they conflict with `flagship-foundry-work`, **prefer the implementation under `flagship-foundry-work/`** and update research docs when intentionally changing behavior.
 

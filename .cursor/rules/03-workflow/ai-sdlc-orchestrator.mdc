@@ -7,7 +7,7 @@ description: Repo-wide SDLC orchestrator driven by Codex continuity state and Fl
 
 Use this rule to keep AI work aligned with the SDLC process defined in `/.cursor/rules/03-workflow/sdlc-setup.mdc` and to apply the practical feature/bug/hotfix workflows in `/.cursor/rules/03-workflow/ship-it-workflow.mdc`.
 
-When `.codex/projects/**/current-task.json` exists, treat it as the phase source of truth for the matching project:
+When `.foundry/projects/**/current-task.json` exists (Flagship Foundry continuity, **ADR-011**), treat it as the phase source of truth for the matching project. If absent, legacy `.codex/projects/**/current-task.json` may still exist for Codex-only workflows:
 - Phase state: `sdlcPhase` (7-phase legacy) or `lifecycleStage` (11-phase Flagship)
 - Verification commands: `nextCommandSet`
 - Completion criteria: `doneCriteria`
@@ -34,15 +34,16 @@ Also map intent to Flagship 11-phase lifecycle stages via the `sdlc-phase-router
 
 ## 2) Pick the SDLC state source
 
-Step A: Look for task-state continuity state (Codex first)
-- Search for `.codex/projects/**/current-task.json`.
+Step A: Look for task-state continuity state (Foundry first)
+- Search for `.foundry/projects/**/current-task.json` (**ADR-011**).
+- If not found, search for legacy `.codex/projects/**/current-task.json`.
 - Choose the project whose `project.path` matches (or is closest to) the files being changed, mentioned paths, or the primary target app.
-- If no matching Codex project exists:
-  - Search for a non-Codex task-state file at a recommended path like `.cursor/sdlc/task-state/<project>/current-task.json`.
+- If no matching project exists:
+  - Search for a task-state file at a recommended path like `.cursor/sdlc/task-state/<project>/current-task.json`.
   - If neither exists, treat the flow as generic and follow `sdlc-setup.mdc` phase ordering.
 
 Step B: If a task-state file exists, read:
-- `.codex/projects/<project>/SDLC_CHARTER.md` (project-specific SDLC sequence, guardrails, and quality gates)
+- `.foundry/projects/<project>/SDLC_CHARTER.md` or legacy `.codex/projects/<project>/SDLC_CHARTER.md` (project-specific SDLC sequence, guardrails, and quality gates)
 - the active task-state file for:
   - `sdlcPhase`
   - `currentPhase`
@@ -115,7 +116,7 @@ Use `ship-it-workflow.mdc` branching guidance:
 
 Safety constraints from SDLC/charters:
 - Keep work phase-scoped and independently verifiable.
-- Do not work directly in the user’s dirty workspace when an applicable charter forbids it (if `.codex/**/SDLC_CHARTER.md` includes a “do not work directly” guardrail, comply).
+- Do not work directly in the user’s dirty workspace when an applicable charter forbids it (if `.foundry/**/SDLC_CHARTER.md` or `.codex/**/SDLC_CHARTER.md` includes a “do not work directly” guardrail, comply).
 - Before switching phases or branches, update the active task-state `currentPhase` and `nextCommandSet` for the new state.
 
 ## 7) Task-state continuity updates (before phase close)

@@ -23,7 +23,7 @@ let originalCwd;
 async function setupTmpCwd() {
   originalCwd = process.cwd();
   tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'continuity-test-'));
-  // continuity.mjs resolves .codex/projects/ from process.cwd()
+  // continuity.mjs resolves .foundry/projects/ from process.cwd()
   process.chdir(tmpDir);
 }
 
@@ -46,7 +46,7 @@ test('initProject creates a project directory and valid current-task.json', asyn
     assert.equal(state.authority.contractAuthority, 'flagship-foundry-work/schemas/continuity-state.schema.json');
     assert.equal(
       state.authority.runtimeInstanceAuthority,
-      '.codex/projects/test-project/current-task.json'
+      '.foundry/projects/test-project/current-task.json'
     );
     assert.ok(Array.isArray(state.authority.derivedMirrors));
     assert.equal(state.objective, 'Build something great');
@@ -59,14 +59,14 @@ test('initProject creates a project directory and valid current-task.json', asyn
     assert.ok(Array.isArray(state.nextCommandSet));
 
     // Verify the file exists on disk
-    const statePath = path.join(tmpDir, '.codex', 'projects', 'test-project', 'current-task.json');
+    const statePath = path.join(tmpDir, '.foundry', 'projects', 'test-project', 'current-task.json');
     const raw = await fs.readFile(statePath, 'utf8');
     const parsed = JSON.parse(raw);
     assert.equal(parsed.project.name, 'test-project');
     assert.equal(parsed.authority.contractAuthority, 'flagship-foundry-work/schemas/continuity-state.schema.json');
 
     // Verify the charter was created
-    const charterPath = path.join(tmpDir, '.codex', 'projects', 'test-project', 'SDLC_CHARTER.md');
+    const charterPath = path.join(tmpDir, '.foundry', 'projects', 'test-project', 'SDLC_CHARTER.md');
     const charter = await fs.readFile(charterPath, 'utf8');
     assert.ok(charter.includes('test-project SDLC Charter'));
     assert.ok(charter.includes('Build something great'));

@@ -26,10 +26,12 @@ Use this checklist for new apps/services or major features. Each phase builds on
 
 Use this checklist for human-readable SDLC gates, but drive *phase progress* and *verification execution order* from a task-state file.
 
-### Source of truth (use Codex when available)
-- Codex projects:
-  - Machine-readable task state: `.codex/projects/<project>/current-task.json`
-  - Project charter / guardrails: `.codex/projects/<project>/SDLC_CHARTER.md` (optional but preferred)
+### Source of truth (Flagship Foundry + legacy Codex)
+- Foundry projects (**ADR-011**):
+  - Machine-readable task state: `.foundry/projects/<project>/current-task.json`
+  - Project charter / guardrails: `.foundry/projects/<project>/SDLC_CHARTER.md` (optional but preferred)
+- Legacy Codex-only paths (if present without `.foundry`):
+  - `.codex/projects/<project>/current-task.json` and `SDLC_CHARTER.md`
 - Non-Codex projects (fallback):
   - Create and maintain a task-state file using the same schema fields at a recommended path like `.cursor/sdlc/task-state/<project>/current-task.json`.
   - Use `.codex/schemas/task-state.schema.json` as the reference shape for required fields.

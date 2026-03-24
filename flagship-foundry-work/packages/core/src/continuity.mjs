@@ -42,12 +42,12 @@ const PHASE_TO_SDLC_PHASE = {
 // ---------------------------------------------------------------------------
 
 /**
- * Returns the absolute path to the project directory under .codex/projects/.
+ * Returns the absolute path to the project directory under .foundry/projects/.
  * Uses process.cwd() as the workspace root so commands executed from the
- * workspace root resolve correctly.
+ * workspace root resolve correctly (ADR-011).
  */
 function projectDir(projectName) {
-  return path.join(process.cwd(), '.codex', 'projects', projectName);
+  return path.join(process.cwd(), '.foundry', 'projects', projectName);
 }
 
 /**
@@ -67,12 +67,12 @@ function charterFilePath(projectName) {
 /**
  * Build authority metadata for ADR-002 split:
  * - contract authority stays in flagship-foundry-work schema
- * - runtime instance authority is the active .codex project state file
+ * - runtime instance authority is the active .foundry project state file (ADR-011)
  */
 function authorityFor(projectName) {
   return {
     contractAuthority: CONTRACT_AUTHORITY_PATH,
-    runtimeInstanceAuthority: `.codex/projects/${projectName}/current-task.json`,
+    runtimeInstanceAuthority: `.foundry/projects/${projectName}/current-task.json`,
     derivedMirrors: []
   };
 }
@@ -85,8 +85,8 @@ function authorityFor(projectName) {
  * Initialize a new project with continuity state.
  *
  * Creates:
- *   .codex/projects/<projectName>/current-task.json
- *   .codex/projects/<projectName>/SDLC_CHARTER.md
+ *   .foundry/projects/<projectName>/current-task.json
+ *   .foundry/projects/<projectName>/SDLC_CHARTER.md
  *
  * @param {string} projectName - Short identifier for the project.
  * @param {string} objective   - One-sentence description of the project goal.
@@ -99,7 +99,7 @@ export async function initProject(projectName, objective) {
   const statePath = stateFilePath(projectName);
   const charterPath = charterFilePath(projectName);
 
-  const relativePath = `.codex/projects/${projectName}`;
+  const relativePath = `.foundry/projects/${projectName}`;
 
   const state = {
     authority: authorityFor(projectName),

@@ -32,7 +32,7 @@
         },
         "runtimeInstanceAuthority": {
           "type": "string",
-          "pattern": "^\\.codex/projects/[^/]+/current-task\\.json$"
+          "pattern": "^\\.foundry/projects/[^/]+/current-task\\.json$"
         },
         "derivedMirrors": {
           "type": "array",

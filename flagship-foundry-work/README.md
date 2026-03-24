@@ -32,6 +32,13 @@ Blocking automation and the release evidence threshold are documented in **[docs
 
 Rollout, rollback, and incident documentation (how operator records link to plans, runs, and evidence) are defined in **[docs/rollout-rollback-incident-model.md](docs/rollout-rollback-incident-model.md)** (ADR-010).
 
+## Continuity and `.foundry`
+
+Per **ADR-011**, machine-readable **project continuity** (task state) lives under **`.foundry/projects/<project>/current-task.json`** at the **workspace root** you choose when running `init-project`—not under `flagship-foundry-work/state/`. See **[docs/guides/ecosystem-onboarding.md](docs/guides/ecosystem-onboarding.md)** for a full import → knowledge → gap → plan → continuity walkthrough.
+
+- **Docker (optional):** [docs/docker-and-local-dev.md](docs/docker-and-local-dev.md)
+- **Cursor extension init patterns:** [docs/guides/cursor-extension-foundry-init.md](docs/guides/cursor-extension-foundry-init.md)
+
 ## Control-plane auth and trust boundary config
 
 ADR-006 Option B is enforced in the control plane:
