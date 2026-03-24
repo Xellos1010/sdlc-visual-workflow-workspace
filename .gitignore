@@ -1,0 +1,73 @@
+# ── Dependencies ──────────────────────────────────────────────────────────────
+node_modules/
+.pnpm-store/
+.yarn/
+.npm/
+
+# ── Build outputs ─────────────────────────────────────────────────────────────
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vite/
+*.tsbuildinfo
+
+# ── Environment and secrets ───────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*secret*
+*credential*
+*token*
+.aws/credentials
+.aws/config
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V7
+.Trashes
+Icon?
+Thumbs.db
+
+# ── Editors ───────────────────────────────────────────────────────────────────
+.idea/
+*.swp
+*.swo
+*~
+.vscode/settings.json
+.vscode/launch.json
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ── Test / coverage ───────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+*.lcov
+
+# ── Claude Code local settings (personal, not team) ──────────────────────────
+.claude/settings.local.json
+
+# ── Cursor local experiments ──────────────────────────────────────────────────
+.cursor/cursor-experiments/
+
+# ── Runtime / temp ────────────────────────────────────────────────────────────
+tmp/
+temp/
+.cache/
+*.pid

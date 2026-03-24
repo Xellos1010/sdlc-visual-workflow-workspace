@@ -303,7 +303,7 @@ async function loadProfileIndex(ecosystemId) {
 }
 
 async function handler(request, response) {
-  const pathname = new URL(request.url, `http://${request.headers.host ?? 'localhost'}`).pathname;
+  const pathname = decodeURIComponent(new URL(request.url, `http://${request.headers.host ?? 'localhost'}`).pathname);
   const allowedOrigin = resolveAllowedOrigin(request);
 
   if (allowedOrigin === '__denied__') {
