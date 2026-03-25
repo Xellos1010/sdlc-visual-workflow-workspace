@@ -3,28 +3,12 @@ set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# All directories containing a package.json (excluding node_modules)
-PACKAGES=(
-  "flagship-foundry-work"
-  "flagship-foundry-work/apps/cursor-companion"
-  "flagship-foundry-work/apps/foundry-mcp-server"
-  "flagship-foundry-work/apps/graph-viewer"
-  "flagship-foundry-work/packages/model-gateway"
-  "flagship-foundry-work/packages/runtime-adapters"
-)
-
-echo "==> Foundry setup — installing all packages"
+echo "==> Foundry setup — installing all packages via pnpm workspace"
 echo ""
 
-for pkg in "${PACKAGES[@]}"; do
-  dir="$REPO_ROOT/$pkg"
-  if [ -f "$dir/package.json" ]; then
-    echo "--- $pkg"
-    (cd "$dir" && pnpm install)
-    echo ""
-  else
-    echo "--- SKIP $pkg (no package.json)"
-  fi
-done
+# Install from workspace root (picks up apps/flagship-foundry and all sub-packages)
+(cd "$REPO_ROOT" && pnpm install)
 
+echo ""
 echo "==> Done. All packages installed."
+echo "    Run: pnpm exec nx run flagship-foundry:test"

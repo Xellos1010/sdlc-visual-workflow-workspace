@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "sdlc-visual-workflow-workspace",
+  "version": "0.0.0",
+  "description": "SDLC Visual Workflow — Nx monorepo root",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "nx": "nx"
+  },
+  "devDependencies": {
+    "nx": "^20.0.0"
+  }
+}

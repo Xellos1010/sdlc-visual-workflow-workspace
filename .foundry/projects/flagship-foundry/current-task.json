@@ -1,6 +1,6 @@
 {
   "authority": {
-    "contractAuthority": "flagship-foundry-work/schemas/continuity-state.schema.json",
+    "contractAuthority": "apps/flagship-foundry/schemas/continuity-state.schema.json",
     "runtimeInstanceAuthority": ".foundry/projects/flagship-foundry/current-task.json",
     "derivedMirrors": []
   },
@@ -12,11 +12,11 @@
     "technicalBaseBranch": "main",
     "ruleReferences": []
   },
-  "objective": "Flagship Foundry gap-closure (M1–M4) complete; maintain on change.",
+  "objective": "Flagship Foundry Nx monorepo migration complete (WO-NX-000..006).",
   "sdlcPhase": "verify",
   "lifecycleStage": "verify",
   "currentPhase": {
-    "id": "foundry-ssot-verify",
+    "id": "nx-migration-verification",
     "title": "verify",
     "status": "done",
     "branch": "main",
@@ -26,38 +26,53 @@
       "wo-003 complete: personas, skills, agents copied/merged to .foundry/",
       "wo-004 complete: .cursor and .claude adapter stubs written",
       "wo-005 complete: catalogs.mjs updated to read personas from ../.foundry/personas",
-      "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass"
+      "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass",
+      "scope-chunker 2026-03-24: WO-NX-000..006 queued for Nx root + apps/flagship-foundry migration (see artifacts.nxMonorepoMigration20260324); execute WO-NX-000 before file moves",
+      "WO-NX-000 2026-03-24: architecture lock issued by @systems-architect — Decision A: single-folder apps/flagship-foundry; Decision B: pnpm at root; Decision C: CI path swap working-directory + path filters. ADR-012 written at docs/adr/adr-012-nx-root-and-flagship-app-path.md. APPROVED 2026-03-24.",
+      "WO-NX-001 2026-03-24: root package.json, pnpm-workspace.yaml, nx.json created; pnpm install succeeded; nx v20.8.4 available from root.",
+      "WO-NX-002 2026-03-24: git mv flagship-foundry-work apps/flagship-foundry complete; full tree verified at new path.",
+      "WO-NX-003 2026-03-24: pnpm install at root links 2 workspace projects (root + apps/flagship-foundry); 60/60 tests pass from new path.",
+      "WO-NX-004 2026-03-24: apps/flagship-foundry/project.json created with test and ci-targeted targets; nx run flagship-foundry:test PASS; nx run flagship-foundry:ci-targeted PASS.",
+      "WO-NX-005 2026-03-24: README.md, setup.sh, dev.sh, CI workflow, continuity JSON paths updated to apps/flagship-foundry.",
+      "WO-NX-006 2026-03-24: independent verification PASS — pnpm install OK; nx:test 60/60; nx:ci-targeted OK; rg gate 0 stale external refs; nx affected --uncommitted triggers flagship-foundry:test. Migration closed."
     ],
-    "updatedAt": "2026-03-23T16:00:00.000Z"
+    "updatedAt": "2026-03-24T18:00:00.000Z"
   },
   "activeBranch": "main",
   "nextCommit": {
     "branch": "main",
-    "message": "feat(foundry): SSOT migration complete — personas, skills, agents under .foundry/ with adapter stubs (wo-001–wo-005)",
+    "message": "feat(nx): Nx monorepo scaffold + flagship-foundry-work → apps/flagship-foundry (WO-NX-001..005)",
     "scope": [
-      ".foundry/",
-      ".cursor/agents/",
-      ".cursor/skills/",
-      ".claude/agents/",
-      ".claude/skills/",
-      "flagship-foundry-work/packages/core/src/catalogs.mjs",
-      "flagship-foundry-work/docs/adr/adr-011a-foundry-ssot-personas-skills-layout.md"
+      "package.json",
+      "pnpm-workspace.yaml",
+      "nx.json",
+      "pnpm-lock.yaml",
+      ".gitignore",
+      "apps/flagship-foundry/",
+      "apps/flagship-foundry/project.json",
+      "README.md",
+      "setup.sh",
+      ".github/workflows/flagship-foundry-ci.yml",
+      ".foundry/projects/flagship-foundry/current-task.json",
+      "docs/adr/adr-012-nx-root-and-flagship-app-path.md"
     ]
   },
   "nextCommandSet": [
-    "cd flagship-foundry-work && npm test",
-    "cd flagship-foundry-work && npm run ci:targeted"
+    "pnpm install",
+    "pnpm exec nx run flagship-foundry:test",
+    "pnpm exec nx run flagship-foundry:ci-targeted",
+    "pnpm exec nx affected -t test --base=origin/main --head=HEAD"
   ],
   "blockedBy": [],
   "artifacts": {
     "m4Evidence": [
-      "flagship-foundry-work/docs/ci-release-gates.md",
-      "flagship-foundry-work/docs/rollout-rollback-incident-model.md",
+      "apps/flagship-foundry/docs/ci-release-gates.md",
+      "apps/flagship-foundry/docs/rollout-rollback-incident-model.md",
       ".github/workflows/flagship-foundry-ci.yml"
     ],
     "woFF011": [
-      "flagship-foundry-work/docs/adr/adr-011-foundry-directory-layout-and-continuity-instance.md",
-      "flagship-foundry-work/docs/intent/scope-chunk-foundry-dot-foundry-2026-03-23.md"
+      "apps/flagship-foundry/docs/adr/adr-011-foundry-directory-layout-and-continuity-instance.md",
+      "apps/flagship-foundry/docs/intent/scope-chunk-foundry-dot-foundry-2026-03-23.md"
     ],
     "wo003Personas": [
       ".foundry/personas/adversarial-architect.json",
@@ -107,11 +122,20 @@
       "claudeSkills": ".claude/skills/*/SKILL.md"
     },
     "wo005CatalogsUpdate": [
-      "flagship-foundry-work/packages/core/src/catalogs.mjs"
+      "apps/flagship-foundry/packages/core/src/catalogs.mjs"
     ],
     "wo006Evidence": [
       ".foundry/projects/flagship-foundry/current-task.json",
-      "flagship-foundry-work/docs/adr/adr-011a-foundry-ssot-personas-skills-layout.md"
+      "apps/flagship-foundry/docs/adr/adr-011a-foundry-ssot-personas-skills-layout.md"
+    ],
+    "nxMonorepoMigration20260324": [
+      "docs/intent/intent-nx-flagship-foundry-apps-2026-03-24.md",
+      "docs/plan/work-orders-nx-monorepo-flagship-2026-03-24.md",
+      "docs/adr/adr-012-nx-root-and-flagship-app-path.md",
+      "apps/flagship-foundry/project.json",
+      "package.json",
+      "pnpm-workspace.yaml",
+      "nx.json"
     ]
   },
   "doneCriteria": [
@@ -123,6 +147,8 @@
     "wo-003 complete: 13 personas at .foundry/personas/, 10 skills at .foundry/skills/, 8 agents at .foundry/agents/",
     "wo-004 complete: adapter stubs in .cursor/ and .claude/ written to reference .foundry/ base files",
     "wo-005 complete: catalogs.mjs reads personas from .foundry/personas/; 60/60 tests pass",
-    "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass; phase closed"
+    "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass; phase closed",
+    "WO-NX-001..005 complete: Nx root scaffold, git mv, workspace wiring, project.json, path/CI/continuity refresh",
+    "WO-NX-006 complete: all gates PASS — 60/60 tests, ci-targeted OK, rg gate clean, nx affected correct"
   ]
 }

@@ -2,13 +2,13 @@
 
 Flagship Foundry is a graph-native SDLC control plane for human plus AI orchestration.
 
-**Runnable product code** for this effort lives in [`flagship-foundry-work/`](flagship-foundry-work/). See [`flagship-foundry-work/docs/REPOSITORY_LAYOUT.md`](flagship-foundry-work/docs/REPOSITORY_LAYOUT.md) for canonical layout and how this repo relates to research docs at the root.
+**Runnable product code** for this effort lives in [`apps/flagship-foundry/`](apps/flagship-foundry/). See [`apps/flagship-foundry/docs/REPOSITORY_LAYOUT.md`](apps/flagship-foundry/docs/REPOSITORY_LAYOUT.md) for canonical layout and how this repo relates to research docs at the root.
 
 This repository now includes a working import, knowledge-ingestion, gap-analysis, focus-view, approval-aware planning, and run-control slice that starts from an existing workspace rather than assuming a greenfield implementation path.
 
 ## What is here
 
-Inside [`flagship-foundry-work/`](flagship-foundry-work/):
+Inside [`apps/flagship-foundry/`](apps/flagship-foundry/):
 
 - `apps/control-plane/` — HTTP API for import, knowledge ingestion, gap analysis, focus views, planning, approval, run control, and graph patching
 - `apps/orchestrator-cli/` — CLI for bootstrap, import, knowledge, gaps, focus, planning, environment scaffold, and runs
@@ -19,7 +19,13 @@ Inside [`flagship-foundry-work/`](flagship-foundry-work/):
 ## Quick start
 
 ```bash
-cd flagship-foundry-work
+# From repo root (Nx monorepo)
+pnpm install
+pnpm exec nx run flagship-foundry:test
+pnpm exec nx run flagship-foundry:ci-targeted
+
+# Or from the app directory
+cd apps/flagship-foundry
 npm run bootstrap:full-sample
 npm run api
 npm test
@@ -28,7 +34,7 @@ npm test
 ## Sample commands
 
 ```bash
-cd flagship-foundry-work
+cd apps/flagship-foundry
 npm run import:sample
 npm run knowledge:sample
 npm run gap:sample

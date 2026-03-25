@@ -1,0 +1,22 @@
+{
+  "$schema": "https://cdn.nx.dev/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "nxCloudAccessToken": "",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["test", "lint", "build", "ci-targeted"]
+      }
+    }
+  },
+  "targetDefaults": {
+    "test": {
+      "cache": true
+    },
+    "ci-targeted": {
+      "cache": true,
+      "dependsOn": ["test"]
+    }
+  }
+}

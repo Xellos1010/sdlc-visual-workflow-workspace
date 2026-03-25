@@ -71,3 +71,6 @@ tmp/
 temp/
 .cache/
 *.pid
+
+# Nx cache
+.nx/cache
