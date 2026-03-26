@@ -50,12 +50,14 @@ For agents and tooling resuming or bootstrapping:
 
 ```
 .foundry/agents/<name>.md            <-- BASE: full role definition (env-neutral)
-.cursor/agents/<name>.md             <-- OVERLAY: model routing + Cursor extensions
-.claude/agents/<name>.md             <-- OVERLAY: model routing + Claude extensions
+.cursor/agents/<name>.md             <-- OVERLAY: Cursor frontmatter + @ import of BASE
+.claude/agents/<name>.md             <-- OVERLAY: Claude Code YAML frontmatter (name, description, tools, model) + @ import
+.codex/agents/<name>.toml            <-- OVERLAY: Codex custom agent TOML (name, description, developer_instructions → read BASE)
 
 .foundry/skills/<name>/SKILL.md      <-- BASE: canonical procedure body
-.cursor/skills/<name>/SKILL.md       <-- OVERLAY: tool-specific frontmatter + reference
-.claude/skills/<name>/SKILL.md       <-- OVERLAY: tool-specific frontmatter + reference
+.cursor/skills/<name>/SKILL.md       <-- OVERLAY: Cursor YAML frontmatter + @ import of BASE
+.claude/skills/<name>/SKILL.md       <-- OVERLAY: Claude YAML frontmatter (name, description) + @ import of BASE
+.codex/skills/<name>/SKILL.md        <-- OVERLAY: Codex YAML (name, description, allowed-tools) + pointer to read BASE
 
 .foundry/personas/<id>.json          <-- BASE ONLY: no overlay mechanism; consumed directly
 ```
