@@ -1,0 +1,972 @@
+{
+  "mode": "profile",
+  "versioned": false,
+  "includeCount": 1,
+  "fileCount": 9715,
+  "skippedCount": 237,
+  "skippedByReason": {
+    "file-too-large:1126055": 1,
+    "file-too-large:44736069": 1,
+    "file-too-large:52118230": 1,
+    "file-too-large:686202": 1,
+    "file-too-large:686524": 1,
+    "ignored-path": 122,
+    "lock-file": 23,
+    "non-text-extension": 44,
+    "sensitive-pattern": 40,
+    "unsupported-file-type": 3
+  },
+  "outputFile": "exports/ai-context/example-agent-pipelines/ruflo/export.txt",
+  "outputFolder": "exports/ai-context/example-agent-pipelines/ruflo",
+  "writtenLines": 9716,
+  "skipped": [
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.claude/commands/analysis/token-efficiency.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.claude/commands/analysis/token-usage.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.git/HEAD",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.git/config",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.git/index",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.git/logs",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.git/objects",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.git/packed-refs",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/.git/refs",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/plugin/agents",
+      "reason": "unsupported-file-type"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/plugin/commands",
+      "reason": "unsupported-file-type"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/plugin/skills",
+      "reason": "unsupported-file-type"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/.env.example",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/assets/ruFlo.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/assets/ruflo-small.jpeg",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/chat-ui/static/chatui/icon-144x144.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/chat-ui/static/chatui/omni-welcome.gif",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/.env",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/.env.ci",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/.husky/lint-stage-config.js",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/.husky/pre-commit",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/mcp-bridge/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/constants/publicSepToken.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/adminToken.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/apiToken.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-Black.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-Bold.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-ExtraBold.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-ExtraLight.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-Light.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-Medium.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-Regular.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-SemiBold.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/server/fonts/Inter-Thin.ttf",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/types/TokenCache.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/lib/utils/searchTokens.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/routes/api/user/validate-token",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/src/routes/api/v2/user/reports/+server.ts",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/apple-touch-icon.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/favicon.ico",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-128x128.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-144x144.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-192x192.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-256x256.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-36x36.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-48x48.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-512x512.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-72x72.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/icon-96x96.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/omni-welcome.gif",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/chatui/omni-welcome.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/apple-touch-icon.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/assistants-thumbnail.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/castle-example.jpg",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/favicon.ico",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-128x128.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-144x144.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-192x192.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-256x256.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-36x36.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-48x48.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-512x512.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-72x72.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/icon-96x96.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/omni-welcome.gif",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/thumbnail.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/ruflo/src/ruvocal/static/huggingchat/tools-thumbnail.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/.claude/commands/analysis/token-efficiency.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/.claude/commands/analysis/token-usage.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/analysis-reports/performance-1759240002305.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/assets/image.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/agent-reports/AGENT2_COMPLETION_SUMMARY.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/agent-reports/AUTOMATION_IMPLEMENTATION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/agent-reports/CLAUDE_OPTIMIZER_IMPLEMENTATION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/agent-reports/MLE_STAR_IMPLEMENTATION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/benchmark_summary.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-analysis-mesh_54f77f50-5c84-4bee-a929-207b1194ac7d.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-analysis-mesh_826e8b63-4f5e-4aea-bd83-04b4496cfc4e.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-analysis-mesh_bdb0f91c-4de0-4459-aacd-702df5b8dd3d.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-auto-centralized_0ccd161d-5c63-4117-a8b2-59db5a9dda48.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-auto-centralized_b7461443-088c-4cb3-a90d-5936cc4c9891.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-auto-centralized_b7e1dad2-453d-4983-8f6f-14f7be7dc716.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-development-hierarchical_62f546df-f93c-468a-b4e7-cf665a791aaf.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-development-hierarchical_6611c450-c58b-4e9c-badd-7c5aaf89f4fd.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-development-hierarchical_e723cdc5-93b9-4480-b136-281f9990ef3e.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-maintenance-centralized_14cf0a3f-11f8-4297-8250-619a7c57d8b2.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-maintenance-centralized_8621aa31-c81a-437e-b5b0-5500ad975393.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-maintenance-centralized_9afe8bb8-143d-429b-9da1-ed6722d18dd3.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-optimization-hybrid_20e5e971-c1aa-411f-a4c1-bd9c831d468a.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-optimization-hybrid_a563ac83-1474-4f2e-8628-cf38d363f4d2.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-optimization-hybrid_e81f77c8-485f-449c-9160-4639ecff6741.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-research-distributed_02e44433-4487-4983-8cb5-dfd39be0e393.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-research-distributed_67cab5d5-e07c-48fb-94fc-8bfb59d8a030.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-research-distributed_7f0d6c07-159e-4956-bbfa-c80906c87c97.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-testing-distributed_c88872a5-d0bd-4d5f-9bfd-39904d4000bd.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-testing-distributed_c941e576-5936-4044-9133-f6aa6d292a3e.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/demo_reports/demo-testing-distributed_de30d0d7-afab-42bd-b244-5e1fc4e55adc.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/implementation-reports/DETAILED_IMPLEMENTATION_GUIDE.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/implementation-reports/ENHANCEMENT_PLAN.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/AGENT2_IMPORT_FIXES_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/CLEANUP_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/GITHUB_ISSUE_599_COMPLETION.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/GITHUB_ISSUE_599_UPDATE.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/README.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/README_HELLO_WORLD.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/REAL_BENCHMARKS_README.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/REAL_BENCHMARK_COMPLETION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/REAL_CLAUDE_FLOW_INTEGRATION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/REORGANIZATION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/VALIDATION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/api_development_accuracy_claude.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/api_development_speed_claude.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/api_development_tokens_claude.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/github_issue_599_comment.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/ml_pipeline_claude.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/performance_optimization_claude.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/old-reports/testing_automation_claude.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/reports/IMPLEMENTATION_SUMMARY.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/reports/LOAD_TESTING_IMPLEMENTATION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/reports/PERFORMANCE_SUITE_README.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/archive/reports/REAL_BENCHMARK_SUMMARY.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/benchmark/swe-bench/reports/simulation_results.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/examples/real/real_token_tracking.py",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/examples/reports/metrics_edcb3fff-6fe4-432c-ab07-f01483a4cb46.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/examples/reports/process_report_edcb3fff-6fe4-432c-ab07-f01483a4cb46.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/examples/reports/real-benchmark-auto-centralized_edcb3fff-6fe4-432c-ab07-f01483a4cb46.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/hive-mind-benchmarks/reports/hive_mind_comprehensive_benchmark_report.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/hive-mind-benchmarks/reports/performance_summary.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/AGENT4_COMPLETION_REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/agent4_performance_benchmarker_report.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-analysis-centralized_595fb042-57aa-4126-a3d8-d5a3099f6922.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-analysis-hierarchical_870a421a-414b-4a8b-9de7-9c90fc4cb8d7.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-analysis-hierarchical_940f1fc1-fd46-48d6-9bd5-ab0822f51370.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-auto-centralized_0756a031-b873-43e1-9ea2-7ea25b5c092c.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-auto-centralized_12f5df02-e130-4d98-b9e4-038b95ac2a10.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-development-centralized_aeaaa661-524f-4d88-aad8-9d9652e507ec.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-development-centralized_bd1018c1-3a32-45b5-88f7-bce8929e7bfa.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-development-distributed_00c2b747-d359-4212-a69b-c3ba54e49b90.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-development-distributed_fd70541e-7d12-4909-b2ce-462b2f54450f.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-development-hierarchical_c2cd1635-507c-4842-ae22-fa92ac5cd46b.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-development-mesh_39298fb1-c907-4387-9377-992f6647567c.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-optimization-hybrid_8645e972-c0a5-4cba-8b33-caa28af64ff8.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-optimization-mesh_2008ba15-5b5d-41e2-b396-28e4aabff057.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-optimization-mesh_2efec067-4437-4347-aedc-b022edd84090.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-research-centralized_55723718-a42b-4a0d-96e4-9294223aa6c0.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-research-distributed_15bc1f4e-cb57-43a0-9e4f-bc9e8225c3fc.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/benchmark-research-distributed_67f5a2f5-2e06-4594-9768-4701e8d6f777.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-analysis-mesh_8156fc8e-c236-43bc-84d5-0beb602a040d.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-analysis-mesh_97febc9c-5490-49ac-96aa-d8ae369522f7.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-development-hierarchical_88d86f43-6c07-4615-b998-50f4fa55c20e.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-development-hierarchical_d52ee071-9225-4cb5-8b5a-fd23234b33cb.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-optimization-hybrid_d3067a5d-365c-46a2-b266-02f06b7c3349.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-optimization-hybrid_db820609-048b-4337-aaf0-9d40107eec1b.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-research-distributed_81a807ff-e354-425e-9f64-a87074b101d9.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-research-distributed_893141e1-1783-4f6b-892a-754a40d9005e.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-testing-distributed_0a20d01d-17fd-47aa-b69c-012125bdb8ff.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/comparison-testing-distributed_e5dab387-6734-478c-887e-52064354720f.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/examples",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/metrics_03f056f8-c7df-4feb-816f-46ae8415cffb.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/metrics_1cd14167-2141-4899-98d5-b5ee82fd8d2a.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/metrics_8dfb8b87-34ce-407b-9df8-034264ad281f.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/metrics_b0784f86-a849-4720-a729-8d26d1da60d9.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/metrics_cf23adca-8fd5-4ac4-b4e6-ea381673e853.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/metrics_ea2cf6b0-9a37-4ff2-9adf-5cce559c844c.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/process_report_03f056f8-c7df-4feb-816f-46ae8415cffb.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/process_report_1cd14167-2141-4899-98d5-b5ee82fd8d2a.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/process_report_8dfb8b87-34ce-407b-9df8-034264ad281f.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/process_report_b0784f86-a849-4720-a729-8d26d1da60d9.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/process_report_cf23adca-8fd5-4ac4-b4e6-ea381673e853.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/process_report_ea2cf6b0-9a37-4ff2-9adf-5cce559c844c.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/swarm-development_03f056f8-c7df-4feb-816f-46ae8415cffb.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/swarm-development_1cd14167-2141-4899-98d5-b5ee82fd8d2a.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/swarm-optimization_8dfb8b87-34ce-407b-9df8-034264ad281f.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/swarm-optimization_ea2cf6b0-9a37-4ff2-9adf-5cce559c844c.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/swarm-research_b0784f86-a849-4720-a729-8d26d1da60d9.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/reports/swarm-research_cf23adca-8fd5-4ac4-b4e6-ea381673e853.json",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/src/swarm_benchmark/advanced_metrics/token_optimizer.py",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/swe-bench-official/results/evaluation_report_1754585693.json",
+      "reason": "file-too-large:686524"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/benchmark/swe-bench-official/results/predictions.json",
+      "reason": "file-too-large:686202"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/bin/token-tracker.js",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/development/token-tracking-status.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/guides/token-tracking-guide.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/reasoningbank/models/domain-expert/memory.db",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/reasoningbank/models/safla/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/reports/README.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/reports/REASONINGBANK_STATUS_UPDATE_v2_7_0_alpha_7.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/reports/analysis",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/reports/releases",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/docs/reports/validation",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/05-swarm-apps/rest-api/.env.example",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/05-swarm-apps/rest-api-advanced/.env.example",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/05-swarm-apps/rest-api-advanced/src/models/token.model.js",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/05-swarm-apps/swarm-sample/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/blog-api/.env.example",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/litellm/.env.example",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/rest-api-simple/.env.example",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/rest-api-simple/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/examples/user-api/.env.example",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/models/phi-4-mini/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/model.onnx",
+      "reason": "file-too-large:52118230"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/models/phi-4-mini/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/model.onnx.data",
+      "reason": "file-too-large:44736069"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/pnpm-lock.yaml",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/src/cli/simple-commands/token-tracker.js",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v2/src/consciousness-symphony/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/cli/.claude/commands/analysis/token-efficiency.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/cli/.claude/commands/analysis/token-usage.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/guidance/docs/reports/claude-md-analysis.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/guidance/docs/reports/flight-build-report.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/guidance/wasm-pkg/guidance_kernel_bg.wasm",
+      "reason": "file-too-large:1126055"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/integration/src/__tests__/token-optimizer.test.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/integration/src/token-optimizer.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/mcp/.claude/commands/analysis/token-efficiency.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/mcp/.claude/commands/analysis/token-usage.md",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/mcp/pnpm-lock.yaml",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/security/__tests__/credential-generator.test.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/security/__tests__/token-generator.test.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/security/__tests__/unit/credential-generator.test.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/security/__tests__/unit/token-generator.test.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/security/src/credential-generator.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/@claude-flow/security/src/token-generator.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/implementation/reports/V2-COMPATIBILITY-REPORT.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/agentic-qe/src/tools/security-compliance/detect-secrets.ts",
+      "reason": "sensitive-pattern"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/cognitive-kernel/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/financial-risk/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/gastown-bridge/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/healthcare-clinical/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/hyperbolic-reasoning/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/neural-coordination/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/perf-optimizer/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/prime-radiant/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/quantum-optimizer/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/teammate-plugin/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/plugins/test-intelligence/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ruflo/v3/pnpm-lock.yaml",
+      "reason": "lock-file"
+    }
+  ]
+}

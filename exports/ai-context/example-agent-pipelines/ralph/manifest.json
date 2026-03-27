@@ -1,0 +1,81 @@
+{
+  "mode": "profile",
+  "versioned": false,
+  "includeCount": 1,
+  "fileCount": 28,
+  "skippedCount": 16,
+  "skippedByReason": {
+    "ignored-path": 13,
+    "lock-file": 1,
+    "non-text-extension": 2
+  },
+  "outputFile": "exports/ai-context/example-agent-pipelines/ralph/export.txt",
+  "outputFolder": "exports/ai-context/example-agent-pipelines/ralph",
+  "writtenLines": 29,
+  "skipped": [
+    {
+      "path": "Example AI Agent Pipelines/ralph/.DS_Store",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/.DS_Store",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/FETCH_HEAD",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/HEAD",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/config",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/gk",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/index",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/logs",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/objects",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/packed-refs",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/.git/refs",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/flowchart/.DS_Store",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/flowchart/package-lock.json",
+      "reason": "lock-file"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/ralph-flowchart.png",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/ralph.webp",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "Example AI Agent Pipelines/ralph/skills/.DS_Store",
+      "reason": "ignored-path"
+    }
+  ]
+}

@@ -17,6 +17,9 @@
     "ci-targeted": {
       "cache": true,
       "dependsOn": ["test"]
+    },
+    "dev": {
+      "cache": false
     }
   }
 }

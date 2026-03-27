@@ -1,0 +1,13 @@
+{
+  "catalog": "runbooks",
+  "items": [
+    {"id": "runbook:feature-intake", "path": "runbooks/feature-intake.md", "summary": "Feature intake through task planning and decomposition."},
+    {"id": "runbook:bug-fix", "path": "runbooks/bug-fix.md", "summary": "Bug diagnosis, containment, fix, and regression proof."},
+    {"id": "runbook:change-management", "path": "runbooks/change-management.md", "summary": "Cross-system change control and rollout planning."},
+    {"id": "runbook:handoff", "path": "runbooks/task-completion-and-handoff.md", "summary": "Completion, continuity, evidence, and handoff."},
+    {"id": "runbook:telemetry-remediation", "path": "runbooks/incident-telemetry-remediation.md", "summary": "Telemetry to remediation flow."},
+    {"id": "runbook:learning", "path": "runbooks/learning-and-memory-curation.md", "summary": "Structured learning and training-corpus preparation."},
+    {"id": "runbook:guardrails", "path": "runbooks/guardrail-pack-authoring.md", "summary": "Guardrail pack authoring and validation."},
+    {"id": "runbook:provider-onboarding", "path": "runbooks/model-provider-onboarding.md", "summary": "Provider and adapter onboarding."}
+  ]
+}

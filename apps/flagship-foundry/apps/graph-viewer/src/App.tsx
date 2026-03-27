@@ -18,10 +18,12 @@ import { buildHierarchicalLayout } from './layout.ts'
 import type { EcosystemGraph, EcosystemManifest, FoundryEdge, FoundryNode } from './types.ts'
 import { PhaseLifecycleView } from './views/PhaseLifecycleView.tsx'
 import { RunTimelineView } from './views/RunTimelineView.tsx'
+import { HomeView } from './views/HomeView.tsx'
 import { GlossaryPanel } from './components/GlossaryPanel.tsx'
 import { PrincipleEnforcementBar } from './components/PrincipleEnforcementBar.tsx'
+import { useGlossary } from './hooks/useGlossary.ts'
 
-type AppView = 'graph' | 'lifecycle' | 'runs' | 'glossary'
+type AppView = 'home' | 'graph' | 'lifecycle' | 'work-orders' | 'glossary'
 
 const API_BASE = import.meta.env.VITE_API_BASE ?? 'http://localhost:4010'
 
@@ -51,9 +53,10 @@ interface SelectedNodeInfo {
 interface DetailPanelProps {
   info: SelectedNodeInfo | null;
   onClose: () => void;
+  relatedTerms?: import('./types.ts').GlossaryTerm[];
 }
 
-function DetailPanel({ info, onClose }: DetailPanelProps) {
+function DetailPanel({ info, onClose, relatedTerms = [] }: DetailPanelProps) {
   return (
     <div className="detail-panel">
       <div className="detail-panel-header">
@@ -71,14 +74,14 @@ function DetailPanel({ info, onClose }: DetailPanelProps) {
             <div className="detail-empty-sub">Click a node in the graph to inspect its details</div>
           </div>
         ) : (
-          <NodeDetail info={info} />
+          <NodeDetail info={info} relatedTerms={relatedTerms} />
         )}
       </div>
     </div>
   )
 }
 
-function NodeDetail({ info }: { info: SelectedNodeInfo }) {
+function NodeDetail({ info, relatedTerms }: { info: SelectedNodeInfo; relatedTerms: import('./types.ts').GlossaryTerm[] }) {
   const { foundryNode, inbound, outbound } = info
   const props = foundryNode.properties
 
@@ -127,6 +130,22 @@ function NodeDetail({ info }: { info: SelectedNodeInfo }) {
           <div className="detail-tags">
             {foundryNode.refs.map((ref) => (
               <span className="detail-tag" key={ref}>{ref}</span>
+            ))}
+          </div>
+        </>
+      )}
+
+      {relatedTerms.length > 0 && (
+        <>
+          <div className="detail-section-title">Related Concepts</div>
+          <div className="detail-kv-list">
+            {relatedTerms.map((term) => (
+              <div className="detail-kv-row" key={term.term} title={term.definition}>
+                <span className="detail-kv-key" style={{ fontSize: '11px' }}>{term.term}</span>
+                <span className="detail-kv-value" style={{ fontSize: '11px', color: '#64748b' }}>
+                  {term.definition.slice(0, 60)}{term.definition.length > 60 ? '…' : ''}
+                </span>
+              </div>
             ))}
           </div>
         </>
@@ -187,7 +206,7 @@ function ApiErrorBanner({ message }: ApiErrorBannerProps) {
 // ── Root App ──────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [activeView, setActiveView] = useState<AppView>('graph')
+  const [activeView, setActiveView] = useState<AppView>('home')
   const [glossarySidebarOpen, setGlossarySidebarOpen] = useState(false)
 
   // ── Ecosystem state ───────────────────────────────────────────────────────
@@ -208,6 +227,9 @@ export default function App() {
 
   // ── Lifecycle phase selection (lifted for cross-view potential) ───────────
   const [currentPhase, setCurrentPhase] = useState<string | undefined>(undefined)
+
+  // ── Glossary (for node detail panel related-concepts section) ─────────────
+  const { getTermsForNode } = useGlossary()
 
   // Fetch ecosystem list on mount
   useEffect(() => {
@@ -336,6 +358,31 @@ export default function App() {
     }
   }
 
+  // ── Callbacks for HomeView ────────────────────────────────────────────────
+  const handleSelectProjectFromHome = useCallback((ecosystemId: string) => {
+    setSelectedEcosystemId(ecosystemId)
+    setActiveView('graph')
+  }, [])
+
+  const handleViewRunsFromHome = useCallback((ecosystemId: string) => {
+    setSelectedEcosystemId(ecosystemId)
+    setActiveView('work-orders')
+  }, [])
+
+  // ── Render home tab content ───────────────────────────────────────────────
+  function renderHomeContent() {
+    return (
+      <HomeView
+        ecosystems={ecosystems}
+        ecosystemsLoading={ecosystemsLoading}
+        selectedEcosystemId={selectedEcosystemId}
+        onSelectEcosystem={handleSelectProjectFromHome}
+        onViewRuns={handleViewRunsFromHome}
+        onNavigate={handleViewChange}
+      />
+    )
+  }
+
   // ── Render graph tab content ───────────────────────────────────────────────
   function renderGraphContent() {
     return (
@@ -367,8 +414,11 @@ export default function App() {
               onPaneClick={handlePaneClick}
               fitView
               fitViewOptions={{ padding: 0.15 }}
-              minZoom={0.1}
+              minZoom={0.3}
               maxZoom={2}
+              nodesDraggable={false}
+              edgesFocusable={false}
+              elevateNodesOnSelect={false}
               proOptions={{ hideAttribution: true }}
             >
               <Controls />
@@ -389,6 +439,9 @@ export default function App() {
         <DetailPanel
           info={selectedNodeInfo}
           onClose={() => setSelectedNodeInfo(null)}
+          relatedTerms={selectedNodeInfo
+            ? getTermsForNode(selectedNodeInfo.foundryNode.type, selectedNodeInfo.foundryNode.tags)
+            : []}
         />
 
         {glossarySidebarOpen && (
@@ -421,8 +474,8 @@ export default function App() {
     )
   }
 
-  // ── Render runs tab content ────────────────────────────────────────────────
-  function renderRunsContent() {
+  // ── Render work-orders tab content ───────────────────────────────────────
+  function renderWorkOrdersContent() {
     return (
       <div className="app-view-area">
         <RunTimelineView
@@ -444,7 +497,7 @@ export default function App() {
       <div className="app-view-area app-glossary-full">
         <GlossaryPanel
           isOpen={true}
-          onClose={() => handleViewChange('graph')}
+          onClose={() => handleViewChange('home')}
           filterPhase={currentPhase}
         />
       </div>
@@ -460,7 +513,7 @@ export default function App() {
 
         {/* View tabs */}
         <nav className="app-view-tabs" role="tablist" aria-label="Application views">
-          {(['graph', 'lifecycle', 'runs', 'glossary'] as AppView[]).map((view) => (
+          {(['home', 'graph', 'lifecycle', 'work-orders', 'glossary'] as AppView[]).map((view) => (
             <button
               key={view}
               type="button"
@@ -547,9 +600,10 @@ export default function App() {
       )}
 
       {/* ── Active view content ── */}
+      {activeView === 'home' && renderHomeContent()}
       {activeView === 'graph' && renderGraphContent()}
       {activeView === 'lifecycle' && renderLifecycleContent()}
-      {activeView === 'runs' && renderRunsContent()}
+      {activeView === 'work-orders' && renderWorkOrdersContent()}
       {activeView === 'glossary' && renderGlossaryContent()}
     </div>
   )
@@ -558,9 +612,10 @@ export default function App() {
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const VIEW_LABELS: Record<AppView, string> = {
+  home: 'Home',
   graph: 'Graph',
   lifecycle: 'Lifecycle',
-  runs: 'Runs',
+  'work-orders': 'Work Orders',
   glossary: 'Glossary',
 }
 

@@ -1,0 +1,22 @@
+{
+  "guardrailPackId": "guardrail:azure-containerized",
+  "scope": "cloud",
+  "cloud": "Azure Containerized",
+  "rules": [
+    "define health probes, configuration authority, and deployment rollback before rollout",
+    "treat secrets and identity boundaries explicitly"
+  ],
+  "antiPatterns": [
+    "mutable runtime config without source of truth",
+    "unclear probe semantics"
+  ],
+  "requiredChecks": [
+    "deployment-review",
+    "probe-review",
+    "identity-review"
+  ],
+  "escalationConditions": [
+    "new identity boundary",
+    "rollout strategy changes"
+  ]
+}

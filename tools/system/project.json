@@ -1,0 +1,33 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "platform-dev",
+  "projectType": "application",
+  "root": "tools/system",
+  "sourceRoot": "tools/system",
+  "tags": ["scope:platform", "type:dev-stack"],
+  "targets": {
+    "dev": {
+      "dependsOn": ["dev-preflight"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Full platform dev stack (control plane, graph viewer, MCP). Add more targets under this project or new Nx projects, then use dependsOn / nx run-many for parallel stacks.",
+        "technologies": ["bash", "node"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash tools/system/dev.sh",
+        "forwardAllArgs": true
+      }
+    },
+    "dev-preflight": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Placeholder for env checks, codegen, or migrations before dev. Replace the command with real steps when needed."
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "true"
+      }
+    }
+  }
+}

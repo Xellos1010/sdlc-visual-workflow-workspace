@@ -75,6 +75,7 @@ export interface UseGlossaryResult {
   searchTerms: (query: string) => GlossaryTerm[]
   getTermsForPhase: (phaseId: string) => GlossaryTerm[]
   getTermsForCategory: (categoryId: string) => GlossaryTerm[]
+  getTermsForNode: (nodeType: string, nodeTags?: string[]) => GlossaryTerm[]
   loading: boolean
   error: string | null
 }
@@ -169,6 +170,31 @@ export function useGlossary(): UseGlossaryResult {
     [categories],
   )
 
+  // Returns glossary terms relevant to a graph node based on its type and tags.
+  // Matches terms whose category id contains the node type, or whose related
+  // terms list intersects with the node's tags.
+  const getTermsForNode = useMemo(
+    () =>
+      (nodeType: string, nodeTags: string[] = []): GlossaryTerm[] => {
+        if (!allTerms.length) return []
+        const lowerType = nodeType.toLowerCase()
+        const lowerTags = nodeTags.map((t) => t.toLowerCase())
+        return allTerms.filter((term) => {
+          const lowerTerm = term.term.toLowerCase()
+          const lowerCategory = term.category.toLowerCase()
+          // Match if the term name or category contains the node type
+          if (lowerTerm.includes(lowerType) || lowerCategory.includes(lowerType)) return true
+          // Match if any of the node's tags appear in the term or its related terms
+          if (lowerTags.some((tag) =>
+            lowerTerm.includes(tag) ||
+            (term.relatedTerms ?? []).some((rt) => rt.toLowerCase().includes(tag)),
+          )) return true
+          return false
+        }).slice(0, 5)
+      },
+    [allTerms],
+  )
+
   return {
     categories,
     allTerms,
@@ -176,6 +202,7 @@ export function useGlossary(): UseGlossaryResult {
     searchTerms,
     getTermsForPhase,
     getTermsForCategory,
+    getTermsForNode,
     loading,
     error,
   }

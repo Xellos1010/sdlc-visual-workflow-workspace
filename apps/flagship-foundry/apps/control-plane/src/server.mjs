@@ -482,7 +482,8 @@ async function handler(request, response) {
     }
 
     if (request.method === 'GET' && pathname === '/plans') {
-      sendJson(response, 200, await listPlans(), allowedOrigin);
+      const ecosystemIdFilter = url.searchParams.get('ecosystemId') ?? null;
+      sendJson(response, 200, await listPlans(ecosystemIdFilter), allowedOrigin);
       return;
     }
 
@@ -560,7 +561,8 @@ async function handler(request, response) {
     }
 
     if (request.method === 'GET' && pathname === '/runs') {
-      sendJson(response, 200, await listRuns(), allowedOrigin);
+      const ecosystemIdFilter = url.searchParams.get('ecosystemId') ?? null;
+      sendJson(response, 200, await listRuns(ecosystemIdFilter), allowedOrigin);
       return;
     }
 

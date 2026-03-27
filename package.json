@@ -8,7 +8,12 @@
     "pnpm": ">=9"
   },
   "scripts": {
-    "nx": "nx"
+    "dev": "nx run platform-dev:dev",
+    "nx": "nx",
+    "export:ai:all": "node tools/ai-context/exporter.mjs --mode all",
+    "export:ai:latest": "node tools/ai-context/exporter.mjs --mode latest",
+    "export:ai:profile": "node tools/ai-context/exporter.mjs --mode profile",
+    "export:ai:profile:generate": "node tools/ai-context/generate-profile.mjs"
   },
   "devDependencies": {
     "nx": "^20.0.0"

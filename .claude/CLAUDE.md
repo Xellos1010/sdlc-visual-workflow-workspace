@@ -73,7 +73,7 @@ discover → define → visualize → architect → plan → implement → verif
 11. Operational assets
 
 ## Workspace References
-- Flagship handbook: @docs/flagship_systems_sdlc_handbook.docx.md
+- Flagship handbook: @docs/reference/flagship_systems_sdlc_handbook.docx.md
 - Codex schemas: @.codex/schemas/task-state.schema.json
 - Flagship schemas: @foundry/flagship-foundry-work/schemas/continuity-state.schema.json
 - Work-order schema: @foundry/flagship-foundry-work/schemas/agent-work-order.schema.json

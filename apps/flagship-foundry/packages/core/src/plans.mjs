@@ -1,16 +1,98 @@
 import path from 'node:path';
+import fs from 'node:fs/promises';
 import { makeId, nowIso, readJson, stateRoot, writeJson } from './io.mjs';
 import { analyzeBlastRadius } from './blast-radius.mjs';
 import { loadGraph } from './graph-store.mjs';
 import { loadCatalogs } from './catalogs.mjs';
 
-function planFilePath(planId) {
-  return path.join(stateRoot, 'plans', `${planId.replace(/[:/]+/g, '-')}.json`);
+// ── Index helpers ──────────────────────────────────────────────────────────────
+
+const indexPath = path.join(stateRoot, '_index.json');
+
+async function readIndex() {
+  return readJson(indexPath, { plans: {}, runs: {} });
 }
 
-function approvalFilePath(planId) {
-  return path.join(stateRoot, 'approvals', `${planId.replace(/[:/]+/g, '-')}.json`);
+async function updateIndex(updater) {
+  const index = await readIndex();
+  updater(index);
+  await writeJson(indexPath, index);
+  return index;
 }
+
+// ── Path builders ──────────────────────────────────────────────────────────────
+
+function safeId(planId) {
+  return planId.replace(/[:/]+/g, '-');
+}
+
+function ecoscopedPlanDir(ecosystemId, location) {
+  return path.join(stateRoot, 'ecosystems', ecosystemId, location, 'plans');
+}
+
+function ecoscopedPlanPath(planId, ecosystemId, location) {
+  return path.join(ecoscopedPlanDir(ecosystemId, location), `${safeId(planId)}.json`);
+}
+
+function ecoscopedPlanHeaderPath(planId, ecosystemId, location) {
+  return path.join(ecoscopedPlanDir(ecosystemId, location), `${safeId(planId)}.header.json`);
+}
+
+function legacyPlanPath(planId) {
+  return path.join(stateRoot, 'plans', `${safeId(planId)}.json`);
+}
+
+function legacyApprovalPath(planId) {
+  return path.join(stateRoot, 'approvals', `${safeId(planId)}.json`);
+}
+
+function ecoscopedApprovalPath(planId, ecosystemId, location) {
+  return path.join(stateRoot, 'ecosystems', ecosystemId, location, 'approvals', `${safeId(planId)}.json`);
+}
+
+async function resolvePlanPaths(planId) {
+  const sid = safeId(planId);
+  const index = await readIndex();
+  const entry = index.plans[sid];
+  if (entry) {
+    return {
+      detail: ecoscopedPlanPath(planId, entry.ecosystemId, entry.location),
+      header: ecoscopedPlanHeaderPath(planId, entry.ecosystemId, entry.location),
+      approval: ecoscopedApprovalPath(planId, entry.ecosystemId, entry.location),
+      ecosystemId: entry.ecosystemId,
+      location: entry.location,
+    };
+  }
+  // Legacy fallback for plans not yet migrated
+  return {
+    detail: legacyPlanPath(planId),
+    header: null,
+    approval: legacyApprovalPath(planId),
+    ecosystemId: null,
+    location: null,
+  };
+}
+
+// ── Plan header builder ────────────────────────────────────────────────────────
+
+function buildPlanHeader(plan) {
+  const taskCount = (plan.projectPlans ?? []).reduce((sum, pp) => sum + (pp.tasks?.length ?? 0), 0);
+  return {
+    id: plan.id,
+    ecosystemId: plan.ecosystemId,
+    title: plan.title,
+    objective: plan.objective,
+    status: plan.status,
+    riskLevel: plan.riskLevel,
+    sourceSignal: plan.sourceSignal,
+    createdAt: plan.createdAt,
+    taskCount,
+    approvalStatus: plan.approval?.status ?? null,
+    approvalMode: plan.approval?.mode ?? null,
+  };
+}
+
+// ── Approval defaults ─────────────────────────────────────────────────────────
 
 function defaultApprovalFor(changeRequest) {
   const risk = changeRequest.riskLevel ?? 'medium';
@@ -224,6 +306,8 @@ function buildTask(project, phaseToken, sequence, sourceSignal, reviewPolicy) {
   };
 }
 
+// ── Public API ────────────────────────────────────────────────────────────────
+
 export async function createPlan(changeRequest, options = {}) {
   const ecosystemId = changeRequest.ecosystemId;
   const graph = await loadGraph(ecosystemId, ecosystemId);
@@ -277,32 +361,103 @@ export async function createPlan(changeRequest, options = {}) {
       : ['review blast radius', 'review debate requirements', 'approve or reject the draft', 'toggle auto-approval if desired']
   };
 
-  await writeJson(planFilePath(planId), plan);
-  await writeJson(approvalFilePath(planId), approval);
+  const location = 'live';
+  const detailPath = ecoscopedPlanPath(planId, ecosystemId, location);
+  const headerPath = ecoscopedPlanHeaderPath(planId, ecosystemId, location);
+  const approvalPath = ecoscopedApprovalPath(planId, ecosystemId, location);
+
+  await writeJson(detailPath, plan);
+  await writeJson(headerPath, buildPlanHeader(plan));
+  await writeJson(approvalPath, approval);
+
+  await updateIndex((index) => {
+    index.plans[safeId(planId)] = { ecosystemId, location };
+  });
+
   return plan;
 }
 
-export async function listPlans() {
-  const plansDir = path.join(stateRoot, 'plans');
+/** List plan headers for a given ecosystem (or all ecosystems if omitted). */
+export async function listPlans(ecosystemId = null) {
+  const index = await readIndex();
+  const headers = [];
+
+  // Gather ecosystems to scan
+  let ecosystemIds;
+  if (ecosystemId) {
+    ecosystemIds = [ecosystemId];
+  } else {
+    // Collect unique ecosystemIds from the index
+    const seen = new Set();
+    for (const entry of Object.values(index.plans)) {
+      if (entry.ecosystemId) seen.add(entry.ecosystemId);
+    }
+    ecosystemIds = [...seen];
+    // Also check filesystem for any ecosystems not in index
+    try {
+      const dirs = await fs.readdir(path.join(stateRoot, 'ecosystems'), { withFileTypes: true });
+      for (const d of dirs) {
+        if (d.isDirectory() && !d.name.startsWith('_')) seen.add(d.name);
+      }
+      ecosystemIds = [...seen];
+    } catch { /* ignore */ }
+  }
+
+  for (const id of ecosystemIds) {
+    for (const location of ['live', 'completed']) {
+      const plansDir = path.join(stateRoot, 'ecosystems', id, location, 'plans');
+      try {
+        const files = await fs.readdir(plansDir);
+        for (const file of files) {
+          if (!file.endsWith('.header.json')) continue;
+          const header = await readJson(path.join(plansDir, file));
+          if (header) headers.push(header);
+        }
+      } catch { /* directory doesn't exist yet */ }
+    }
+  }
+
+  // Legacy fallback: also scan the old flat plans/ directory
+  const legacyDir = path.join(stateRoot, 'plans');
   try {
-    const files = await import('node:fs/promises').then((fs) => fs.readdir(plansDir));
-    const plans = [];
+    const files = await fs.readdir(legacyDir);
     for (const file of files) {
       if (!file.endsWith('.json')) continue;
-      plans.push(await readJson(path.join(plansDir, file)));
+      const plan = await readJson(path.join(legacyDir, file));
+      if (plan && plan.id) {
+        const sid = safeId(plan.id);
+        if (!index.plans[sid]) {
+          // Not yet migrated — include as header
+          const taskCount = (plan.projectPlans ?? []).reduce((sum, pp) => sum + (pp.tasks?.length ?? 0), 0);
+          headers.push({
+            id: plan.id,
+            ecosystemId: plan.ecosystemId,
+            title: plan.title,
+            objective: plan.objective,
+            status: plan.status,
+            riskLevel: plan.riskLevel,
+            sourceSignal: plan.sourceSignal,
+            createdAt: plan.createdAt,
+            taskCount,
+            approvalStatus: plan.approval?.status ?? null,
+            approvalMode: plan.approval?.mode ?? null,
+          });
+        }
+      }
     }
-    return plans.sort((left, right) => right.createdAt.localeCompare(left.createdAt));
-  } catch {
-    return [];
-  }
+  } catch { /* no legacy dir */ }
+
+  return headers.sort((left, right) => right.createdAt.localeCompare(left.createdAt));
 }
 
 export async function loadPlan(planId) {
-  return readJson(planFilePath(planId));
+  const paths = await resolvePlanPaths(planId);
+  return readJson(paths.detail);
 }
 
 export async function updatePlanApproval(planId, update) {
-  const plan = await loadPlan(planId);
+  const paths = await resolvePlanPaths(planId);
+  const plan = await readJson(paths.detail);
   const approval = {
     ...(plan.approval ?? {}),
     ...update,
@@ -315,7 +470,27 @@ export async function updatePlanApproval(planId, update) {
   if (update.status === 'rejected') {
     plan.status = 'rejected';
   }
-  await writeJson(planFilePath(planId), plan);
-  await writeJson(approvalFilePath(planId), approval);
+
+  // If plan is being rejected, move from live → completed
+  if (update.status === 'rejected' && paths.location === 'live' && paths.ecosystemId) {
+    const newDetailPath = ecoscopedPlanPath(planId, paths.ecosystemId, 'completed');
+    const newHeaderPath = ecoscopedPlanHeaderPath(planId, paths.ecosystemId, 'completed');
+    const newApprovalPath = ecoscopedApprovalPath(planId, paths.ecosystemId, 'completed');
+    await writeJson(newDetailPath, plan);
+    await writeJson(newHeaderPath, buildPlanHeader(plan));
+    await writeJson(newApprovalPath, approval);
+    // Remove from live
+    try { await import('node:fs/promises').then((fs) => fs.unlink(paths.detail)); } catch { /* ok */ }
+    try { await import('node:fs/promises').then((fs) => fs.unlink(paths.header)); } catch { /* ok */ }
+    try { await import('node:fs/promises').then((fs) => fs.unlink(paths.approval)); } catch { /* ok */ }
+    await updateIndex((index) => {
+      index.plans[safeId(planId)] = { ecosystemId: paths.ecosystemId, location: 'completed' };
+    });
+  } else {
+    await writeJson(paths.detail, plan);
+    if (paths.header) await writeJson(paths.header, buildPlanHeader(plan));
+    await writeJson(paths.approval, approval);
+  }
+
   return plan;
 }

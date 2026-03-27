@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/incident-record.schema.json",
+  "title": "Incident Record",
+  "type": "object",
+  "required": [
+    "incidentId",
+    "severity",
+    "title",
+    "systemId"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "incidentId": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "systemId": {
+      "type": "string"
+    },
+    "impactedComponents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "reportedBy": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
