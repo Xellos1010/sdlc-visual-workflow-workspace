@@ -28,7 +28,7 @@
       "properties": {
         "contractAuthority": {
           "type": "string",
-          "const": "flagship-foundry-work/schemas/continuity-state.schema.json"
+          "const": "apps/flagship-foundry/schemas/continuity-state.schema.json"
         },
         "runtimeInstanceAuthority": {
           "type": "string",

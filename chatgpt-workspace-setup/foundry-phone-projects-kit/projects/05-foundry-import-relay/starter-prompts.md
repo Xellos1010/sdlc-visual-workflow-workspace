@@ -1,0 +1,2 @@
+- Using the verified artifact bundle, prepare the Foundry import package and operator instructions. Separate pre-implementation versus post-verification imports. Produce a final-deliverable.zip plus foundry-import-manifest.json and kb-update-plan.md.
+- Tell me exactly what to import into the target Foundry workspace, in what order, and what continuity or knowledge-base updates must happen.

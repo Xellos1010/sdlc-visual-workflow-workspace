@@ -1,0 +1,3 @@
+- Verify this builder output against the work orders and acceptance criteria.
+- Generate an evidence-backed verification report and release package.
+- Create handoff, continuity patch, and learning record from these results.

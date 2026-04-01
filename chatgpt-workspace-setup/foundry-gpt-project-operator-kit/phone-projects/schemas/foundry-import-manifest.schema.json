@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Foundry Import Manifest",
+  "type": "object",
+  "required": [
+    "projectName",
+    "phaseId",
+    "importStage",
+    "targetWorkspace",
+    "artifacts",
+    "importOrder",
+    "postImportActions"
+  ],
+  "properties": {
+    "projectName": {
+      "type": "string"
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "importStage": {
+      "type": "string",
+      "enum": [
+        "pre_implementation",
+        "post_verification",
+        "knowledge_base_only"
+      ]
+    },
+    "targetWorkspace": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "purpose",
+          "requiredBeforeExecution"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          },
+          "requiredBeforeExecution": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "importOrder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "postImportActions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "workspace": "Flagship Foundry \u2014 Intake & Routing",
+  "stage": "pre-build",
+  "authority": "design-authority",
+  "importNow": [
+    {
+      "path": "change-request.md",
+      "reason": "raw request normalized into project language"
+    },
+    {
+      "path": "intent-packet.md",
+      "reason": "primary bounded intent artifact for Architecture Studio"
+    },
+    {
+      "path": "impacted-systems-list.md",
+      "reason": "blast-radius starter for architecture and planning"
+    },
+    {
+      "path": "risk-register.md",
+      "reason": "pre-build risk posture"
+    },
+    {
+      "path": "dor-checklist.md",
+      "reason": "phase-gate readiness status"
+    },
+    {
+      "path": "open-questions.md",
+      "reason": "implementation blockers that must be resolved before planning"
+    },
+    {
+      "path": "next-workspace.txt",
+      "reason": "handoff target"
+    }
+  ],
+  "waitForArchitectureOrVerification": [
+    {
+      "artifactType": "c4-diagrams",
+      "reason": "not yet created in Intake & Routing"
+    },
+    {
+      "artifactType": "adrs",
+      "reason": "requires Architecture Studio decisions"
+    },
+    {
+      "artifactType": "contracts-and-schemas",
+      "reason": "requires approved architecture"
+    },
+    {
+      "artifactType": "work-order-tree",
+      "reason": "requires decomposition after architecture"
+    },
+    {
+      "artifactType": "verification-report",
+      "reason": "post-implementation / post-verification only"
+    },
+    {
+      "artifactType": "evidence-bundle",
+      "reason": "post-verification only"
+    }
+  ],
+  "notes": [
+    "Import now as design authority before implementation.",
+    "Do not treat this bundle as implementation approval."
+  ]
+}

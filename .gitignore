@@ -74,3 +74,5 @@ temp/
 
 # Nx cache
 .nx/cache
+archive.zip
+.cursor/cursor-experiments

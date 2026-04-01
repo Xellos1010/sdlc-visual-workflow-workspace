@@ -1,0 +1,19 @@
+{
+  "name": "Foundry Import Relay",
+  "description": "Prepare Foundry import manifests, copy maps, and import order for pre-build and post-verification artifacts.",
+  "recommended_model": "use a frontier model for intake/architecture; balanced or lower-cost for deterministic planning and documentation where appropriate",
+  "knowledge_files": [
+    "foundry-charter.md",
+    "phase-gate-matrix.md",
+    "work-order-contract-reference.md",
+    "foundry-import-protocol.md",
+    "model-tier-routing.md",
+    "output-bundle-policy.md"
+  ],
+  "capabilities": [
+    "web search optional",
+    "code interpreter optional",
+    "canvas optional"
+  ],
+  "notes": "Use apps or actions only if you need external systems. GPTs can use apps or actions, but not both at the same time."
+}

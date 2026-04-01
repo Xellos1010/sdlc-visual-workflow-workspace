@@ -12,15 +12,20 @@
     "technicalBaseBranch": "main",
     "ruleReferences": []
   },
-  "objective": "Flagship Foundry Nx monorepo migration complete (WO-NX-000..006).",
-  "sdlcPhase": "verify",
-  "lifecycleStage": "verify",
+  "objective": "ChatGPT-Foundry import bridge implemented through release handoff and verification coverage.",
+  "sdlcPhase": "release",
+  "lifecycleStage": "release",
   "currentPhase": {
-    "id": "nx-migration-verification",
-    "title": "verify",
-    "status": "done",
+    "id": "import-bridge-release-handoff",
+    "title": "release",
+    "status": "verified",
     "branch": "main",
     "notes": [
+      "WO-IB-001..009: import-bridge package scaffold, schemas, transforms, validator, routing, staging, provenance, continuity writer, work-order activation, export packager, and CLI implemented.",
+      "WO-IB-010: conflict detection and manual merge flow implemented with unified diffs and continuity field-level diffs.",
+      "WO-IB-011: integration tests added for intake import, architecture import, work-order activation, export bundle generation, and round-trip flow against real SDLC-Building-Blocks fixtures.",
+      "WO-IB-012: release handoff, ADRs, and operator runbook added for import bridge operator workflow.",
+      "Docs-release review 2026-03-31: handoff, ADRs, and operator guide tightened for release gates, conflict-decision syntax, and known warning disclosure.",
       "wo-001 complete: ADR-011a layout decisions documented; .foundry/README.md updated",
       "wo-002 complete: continuity.mjs already reads .foundry/; no schema changes needed",
       "wo-003 complete: personas, skills, agents copied/merged to .foundry/",
@@ -36,32 +41,25 @@
       "WO-NX-005 2026-03-24: README.md, setup.sh, dev.sh, CI workflow, continuity JSON paths updated to apps/flagship-foundry.",
       "WO-NX-006 2026-03-24: independent verification PASS — pnpm install OK; nx:test 60/60; nx:ci-targeted OK; rg gate 0 stale external refs; nx affected --uncommitted triggers flagship-foundry:test. Migration closed."
     ],
-    "updatedAt": "2026-03-24T18:00:00.000Z"
+    "updatedAt": "2026-03-31T23:59:00.000Z"
   },
   "activeBranch": "main",
   "nextCommit": {
     "branch": "main",
-    "message": "feat(nx): Nx monorepo scaffold + flagship-foundry-work → apps/flagship-foundry (WO-NX-001..005)",
+    "message": "feat(import-bridge): complete conflict flow, integration coverage, and release handoff",
     "scope": [
-      "package.json",
-      "pnpm-workspace.yaml",
-      "nx.json",
-      "pnpm-lock.yaml",
-      ".gitignore",
-      "apps/flagship-foundry/",
-      "apps/flagship-foundry/project.json",
-      "README.md",
-      "setup.sh",
-      ".github/workflows/flagship-foundry-ci.yml",
+      "apps/flagship-foundry/packages/import-bridge/",
       ".foundry/projects/flagship-foundry/current-task.json",
-      "docs/adr/adr-012-nx-root-and-flagship-app-path.md"
+      "docs/handoff/handoff-import-bridge-2026-03-31.md",
+      "docs/adr/adr-import-bridge-schema-codegen.md",
+      "docs/adr/adr-import-bridge-conflict-resolution.md",
+      "Runbooks/import-bridge-operator-guide.md"
     ]
   },
   "nextCommandSet": [
-    "pnpm install",
-    "pnpm exec nx run flagship-foundry:test",
-    "pnpm exec nx run flagship-foundry:ci-targeted",
-    "pnpm exec nx affected -t test --base=origin/main --head=HEAD"
+    "source ~/.zshrc >/dev/null 2>&1 && pnpm exec nx run import-bridge:typecheck",
+    "source ~/.zshrc >/dev/null 2>&1 && pnpm exec nx run import-bridge:build",
+    "source ~/.zshrc >/dev/null 2>&1 && pnpm exec nx run import-bridge:test"
   ],
   "blockedBy": [],
   "artifacts": {
@@ -136,6 +134,18 @@
       "package.json",
       "pnpm-workspace.yaml",
       "nx.json"
+    ],
+    "importBridge20260331": [
+      "docs/intent/intent-chatgpt-foundry-import-bridge-2026-03-31.md",
+      "docs/plan/work-orders-chatgpt-foundry-import-bridge-2026-03-31.md",
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "apps/flagship-foundry/packages/import-bridge/src/cli.mts",
+      "apps/flagship-foundry/packages/import-bridge/src/conflict-detector.mts",
+      "apps/flagship-foundry/packages/import-bridge/src/diff-merge.mts",
+      "docs/handoff/handoff-import-bridge-2026-03-31.md",
+      "docs/adr/adr-import-bridge-schema-codegen.md",
+      "docs/adr/adr-import-bridge-conflict-resolution.md",
+      "Runbooks/import-bridge-operator-guide.md"
     ]
   },
   "doneCriteria": [
@@ -149,6 +159,7 @@
     "wo-005 complete: catalogs.mjs reads personas from .foundry/personas/; 60/60 tests pass",
     "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass; phase closed",
     "WO-NX-001..005 complete: Nx root scaffold, git mv, workspace wiring, project.json, path/CI/continuity refresh",
-    "WO-NX-006 complete: all gates PASS — 60/60 tests, ci-targeted OK, rg gate clean, nx affected correct"
+    "WO-NX-006 complete: all gates PASS — 60/60 tests, ci-targeted OK, rg gate clean, nx affected correct",
+    "WO-IB-001..012 complete for import bridge implementation, verification coverage, and release handoff"
   ]
 }

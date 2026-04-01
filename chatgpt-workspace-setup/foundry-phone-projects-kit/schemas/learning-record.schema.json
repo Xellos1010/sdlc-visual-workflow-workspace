@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Learning Record",
+  "type": "object",
+  "required": [
+    "title",
+    "context",
+    "observation",
+    "recommendation",
+    "applicableScope",
+    "promotionStatus"
+  ],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string"
+    },
+    "observation": {
+      "type": "string"
+    },
+    "recommendation": {
+      "type": "string"
+    },
+    "applicableScope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "promotionStatus": {
+      "type": "string",
+      "enum": [
+        "candidate",
+        "approved",
+        "deferred"
+      ]
+    }
+  }
+}

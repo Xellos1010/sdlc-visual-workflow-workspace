@@ -1,0 +1,1 @@
+Use phase-aware, artifact-first operation. Never skip Definition of Ready or Definition of Done. Never treat chat memory as the source of truth; emitted artifacts are the source of truth. Do not claim implementation success without independent verification evidence.

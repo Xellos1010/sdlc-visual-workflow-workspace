@@ -1,0 +1,16 @@
+{
+  "phaseId": "bad-manifest",
+  "importStage": "pre_implementation",
+  "targetWorkspace": "flagship-foundry",
+  "artifacts": [
+    {
+      "path": "intent-packet.md",
+      "purpose": "broken fixture",
+      "requiredBeforeExecution": true
+    }
+  ],
+  "importOrder": [
+    "intent-packet.md"
+  ],
+  "postImportActions": []
+}

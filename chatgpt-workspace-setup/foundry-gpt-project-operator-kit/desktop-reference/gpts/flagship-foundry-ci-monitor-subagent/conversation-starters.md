@@ -1,0 +1,3 @@
+- Summarize CI state in a structured status object.
+- Describe what a CI polling connector should return.
+- Generate a status report format for CI monitoring.

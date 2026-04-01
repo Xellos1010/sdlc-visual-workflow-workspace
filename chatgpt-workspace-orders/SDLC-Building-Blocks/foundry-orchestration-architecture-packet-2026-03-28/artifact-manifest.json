@@ -1,0 +1,106 @@
+{
+  "bundleName": "foundry-orchestration-architecture-packet-2026-03-28",
+  "workspace": "Flagship Foundry \u2014 Architecture Studio",
+  "status": "pre-build",
+  "files": [
+    {
+      "name": "architecture-packet.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "c4-context.mmd",
+      "type": "mermaid",
+      "readyForImport": true
+    },
+    {
+      "name": "c4-container.mmd",
+      "type": "mermaid",
+      "readyForImport": true
+    },
+    {
+      "name": "trust-boundary.mmd",
+      "type": "mermaid",
+      "readyForImport": true
+    },
+    {
+      "name": "system-sequence.mmd",
+      "type": "mermaid",
+      "readyForImport": true
+    },
+    {
+      "name": "component-uml.mmd",
+      "type": "mermaid",
+      "readyForImport": true
+    },
+    {
+      "name": "adr-001-select-cursor-companion-as-canonical-operator-surface.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "adr-002-store-compositions-as-schema-backed-declarative-artifacts.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "adr-003-compile-pipelines-to-approved-work-orders-before-execution.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "contracts/building-block-library-index.schema.json",
+      "type": "json-schema",
+      "readyForImport": true
+    },
+    {
+      "name": "contracts/composed-agent-configuration.schema.json",
+      "type": "json-schema",
+      "readyForImport": true
+    },
+    {
+      "name": "contracts/orchestration-pipeline-definition.schema.json",
+      "type": "json-schema",
+      "readyForImport": true
+    },
+    {
+      "name": "contracts/pipeline-compilation-result.schema.json",
+      "type": "json-schema",
+      "readyForImport": true
+    },
+    {
+      "name": "contracts/dashboard-execution-request.schema.json",
+      "type": "json-schema",
+      "readyForImport": true
+    },
+    {
+      "name": "contracts/dashboard-execution-session.schema.json",
+      "type": "json-schema",
+      "readyForImport": true
+    },
+    {
+      "name": "decomposition-plan.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "work-order-tree.json",
+      "type": "json",
+      "readyForImport": true
+    },
+    {
+      "name": "next-workspace.txt",
+      "type": "text",
+      "readyForImport": true
+    },
+    {
+      "name": "foundry-import-manifest.json",
+      "type": "json",
+      "readyForImport": true
+    }
+  ],
+  "notes": [
+    "This bundle is design authority for planning and work-order generation.",
+    "Implementation, verification, and release evidence remain deferred to later workspaces."
+  ]
+}

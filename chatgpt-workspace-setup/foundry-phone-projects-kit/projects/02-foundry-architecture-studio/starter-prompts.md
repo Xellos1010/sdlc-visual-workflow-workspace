@@ -1,0 +1,2 @@
+- Using the uploaded intent packet, generate the full architecture packet: C4 diagrams, trust boundaries, ADRs, expected output diagram, UML change diagrams, contracts, schemas, and decomposition plan. Create downloadable files and zip them.
+- Do not produce implementation code. Produce architecture artifacts only and include next-workspace.txt and foundry-import-manifest.json.

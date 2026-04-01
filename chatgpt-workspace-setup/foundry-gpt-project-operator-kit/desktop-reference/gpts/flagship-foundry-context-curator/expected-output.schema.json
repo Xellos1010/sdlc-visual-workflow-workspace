@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry \u2014 Context Curator Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "taskSummary",
+    "lifecycleStage",
+    "consumerAgent",
+    "relevantFiles",
+    "contractsAndSchemas",
+    "knownRisks"
+  ],
+  "properties": {
+    "taskSummary": {
+      "type": "string"
+    },
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "discover",
+        "define",
+        "visualize",
+        "architect",
+        "plan",
+        "implement",
+        "verify",
+        "release",
+        "operate",
+        "diagnose",
+        "improve"
+      ]
+    },
+    "consumerAgent": {
+      "type": "string"
+    },
+    "continuitySnapshot": {
+      "type": "object"
+    },
+    "relevantFiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "whyItMatters"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "whyItMatters": {
+            "type": "string"
+          },
+          "focusSections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "applicableRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "constraint"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "constraint": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "contractsAndSchemas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "keyFields"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "keyFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "knownRisks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "risk",
+          "recommendation"
+        ],
+        "properties": {
+          "risk": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

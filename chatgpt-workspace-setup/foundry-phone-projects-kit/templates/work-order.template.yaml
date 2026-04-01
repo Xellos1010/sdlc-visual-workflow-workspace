@@ -1,0 +1,34 @@
+workOrderId: wo-example-001
+lifecycleStage: implement
+phaseId: example-phase
+systemId: system:example
+taskClass: deterministic_transformation
+agentRole: builder
+agentPersona: conservative_builder
+modelTier: low_cost_executor
+fileScope:
+  - packages/example/src/example.ts
+  - packages/example/src/example.spec.ts
+sourceArtifacts:
+  - architecture-packet.md
+  - contracts/example.schema.json
+constraints:
+  - typescript strict mode
+  - no edits outside fileScope
+expectedOutputs:
+  - changed source files
+  - tests
+acceptanceCriteria:
+  - public behavior is covered by tests
+verificationPlan:
+  - npx nx typecheck example
+  - npx nx test example
+functionSpecs:
+  - name: doThing
+    inputSchema: schemas/input.schema.json
+    outputSchema: schemas/output.schema.json
+    pseudocode: |
+      validate input
+      perform deterministic transformation
+      return output
+status: ready

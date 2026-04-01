@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry \u2014 Performance Reviewer Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "overallAssessment",
+    "findings",
+    "recommendations"
+  ],
+  "properties": {
+    "overallAssessment": {
+      "type": "string",
+      "enum": [
+        "CLEAR",
+        "FINDINGS",
+        "BLOCKS_RELEASE"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "severity",
+          "description"
+        ],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": [
+              "INFO",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "metric": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "bundleSizeReport": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "target",
+          "status"
+        ],
+        "properties": {
+          "target": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "baseline": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "hotPathAnalysis": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

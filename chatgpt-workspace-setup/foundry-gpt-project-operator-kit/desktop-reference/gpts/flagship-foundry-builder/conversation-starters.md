@@ -1,0 +1,3 @@
+- Implement this work order within bounded file scope.
+- Apply the minimum code change needed to satisfy this acceptance criterion.
+- Execute this implementation slice and summarize changed artifacts.

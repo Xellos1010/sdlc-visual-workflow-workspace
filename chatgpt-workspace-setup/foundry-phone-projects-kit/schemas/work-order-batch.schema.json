@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Work Order Batch",
+  "type": "object",
+  "required": [
+    "projectName",
+    "phaseId",
+    "workOrders",
+    "dependencyOrder",
+    "nextWorkspace"
+  ],
+  "properties": {
+    "projectName": {
+      "type": "string"
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "dependencyOrder": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextWorkspace": {
+      "type": "string"
+    },
+    "workOrders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "workOrderId",
+          "lifecycleStage",
+          "phaseId",
+          "systemId",
+          "taskClass",
+          "agentRole",
+          "agentPersona",
+          "modelTier",
+          "fileScope",
+          "sourceArtifacts",
+          "constraints",
+          "expectedOutputs",
+          "acceptanceCriteria",
+          "verificationPlan",
+          "functionSpecs",
+          "status"
+        ],
+        "properties": {
+          "workOrderId": {
+            "type": "string"
+          },
+          "lifecycleStage": {
+            "type": "string"
+          },
+          "phaseId": {
+            "type": "string"
+          },
+          "systemId": {
+            "type": "string"
+          },
+          "taskClass": {
+            "type": "string"
+          },
+          "agentRole": {
+            "type": "string"
+          },
+          "agentPersona": {
+            "type": "string"
+          },
+          "modelTier": {
+            "type": "string"
+          },
+          "fileScope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sourceArtifacts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "expectedOutputs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "acceptanceCriteria": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "verificationPlan": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "docsRequirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "knowledgeCapture": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "functionSpecs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "name",
+                "inputSchema",
+                "outputSchema",
+                "pseudocode"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "inputSchema": {
+                  "type": "string"
+                },
+                "outputSchema": {
+                  "type": "string"
+                },
+                "pseudocode": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+Flagship Foundry specialist for implement work. Implements bounded code, config, and infrastructure changes from approved work orders with explicit file scope and contract alignment.

@@ -1,0 +1,11 @@
+## Expected outputs
+- verification-report.md
+- evidence-bundle.md
+- criteria-verdict-table.md
+- release-notes.md
+- handoff.md
+- continuity-patch.json
+- learning-record.md
+- artifact-manifest.json
+- foundry-import-manifest.json
+- next-workspace.txt

@@ -1,76 +1,33 @@
 {
   "mode": "profile",
   "versioned": false,
-  "includeCount": 13,
-  "fileCount": 511,
-  "skippedCount": 202,
+  "includeCount": 16,
+  "fileCount": 516,
+  "skippedCount": 196,
   "skippedByReason": {
     "file-too-large:1174034": 1,
     "file-too-large:1317297": 1,
-    "file-too-large:1357796": 1,
-    "file-too-large:1664068": 1,
-    "file-too-large:36649366": 1,
     "file-too-large:4156540": 1,
     "file-too-large:534463": 1,
     "file-too-large:5384895": 1,
     "file-too-large:626021": 1,
     "file-too-large:665872": 1,
     "file-too-large:904419": 1,
-    "ignored-path": 178,
+    "ignored-path": 176,
     "lock-file": 8,
-    "non-text-extension": 3,
+    "non-text-extension": 2,
     "sensitive-pattern": 2
   },
-  "outputFile": "exports/ai-context/latest.txt",
+  "outputFile": "exports/ai-context/full-repo.txt",
   "outputFolder": "exports/ai-context",
-  "writtenLines": 510,
+  "writtenLines": 517,
   "skipped": [
     {
-      "path": ".cursor/cursor-experiments/.cursor/.DS_Store",
+      "path": ".claude/settings.local.json",
       "reason": "ignored-path"
     },
     {
-      "path": ".cursor/cursor-experiments/.git/FETCH_HEAD",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/HEAD",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/config",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/gk",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/index",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/logs",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/objects",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/packed-refs",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/.git/refs",
-      "reason": "ignored-path"
-    },
-    {
-      "path": ".cursor/cursor-experiments/docs/assets/task.png",
-      "reason": "non-text-extension"
-    },
-    {
-      "path": ".cursor/cursor-experiments/reports/plan_to_san_francisco",
+      "path": ".cursor/cursor-experiments",
       "reason": "ignored-path"
     },
     {
@@ -86,20 +43,8 @@
       "reason": "ignored-path"
     },
     {
-      "path": ".nx/workspace-data/1C7A0C2D-769F-5CF4-A72E-CF7B7EF3F3A8.db",
-      "reason": "non-text-extension"
-    },
-    {
-      "path": ".nx/workspace-data/d/daemon.log",
-      "reason": "file-too-large:36649366"
-    },
-    {
-      "path": ".nx/workspace-data/file-map.json",
-      "reason": "file-too-large:1664068"
-    },
-    {
-      "path": ".nx/workspace-data/nx_files.nxt",
-      "reason": "file-too-large:1357796"
+      "path": ".nx/workspace-data",
+      "reason": "ignored-path"
     },
     {
       "path": "apps/flagship-foundry/.DS_Store",
@@ -538,6 +483,10 @@
       "reason": "ignored-path"
     },
     {
+      "path": "apps/flagship-foundry/apps/graph-viewer/node_modules/.tmp",
+      "reason": "ignored-path"
+    },
+    {
       "path": "apps/flagship-foundry/apps/graph-viewer/node_modules/.vite",
       "reason": "ignored-path"
     },
@@ -834,12 +783,28 @@
       "reason": "ignored-path"
     },
     {
-      "path": ".nx/workspace-data/1C7A0C2D-769F-5CF4-A72E-CF7B7EF3F3A8.db-shm",
-      "reason": "binary-nul-byte"
+      "path": "docs/3rd-party",
+      "reason": "ignored-path"
     },
     {
-      "path": ".nx/workspace-data/1C7A0C2D-769F-5CF4-A72E-CF7B7EF3F3A8.db-wal",
-      "reason": "binary-nul-byte"
+      "path": "docs/reference/flagship_systems_sdlc_handbook.docx",
+      "reason": "non-text-extension"
+    },
+    {
+      "path": "docs/reports/coverage-report.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "docs/reports/deep-research-report.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "docs/reports/import-report.md",
+      "reason": "ignored-path"
+    },
+    {
+      "path": "docs/reports/knowledge-gap-report.md",
+      "reason": "ignored-path"
     }
   ]
 }

@@ -1,0 +1,1 @@
+Flagship Foundry specialist for verify work. Independently validates acceptance criteria by rerunning verification commands, inspecting artifacts, and issuing evidence-backed verdicts.

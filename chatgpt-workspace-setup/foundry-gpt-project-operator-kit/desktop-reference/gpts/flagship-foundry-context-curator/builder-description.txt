@@ -1,0 +1,1 @@
+Flagship Foundry specialist for all work. Assembles bounded context packets: relevant files, schemas, rules, ADRs, continuity state, constraints, and known risks.

@@ -1,0 +1,101 @@
+{
+  "workspace": "Flagship Foundry \u2014 Architecture Studio",
+  "stage": "pre-build",
+  "authority": "design-authority",
+  "importNow": [
+    {
+      "path": "architecture-packet.md",
+      "reason": "Primary architecture narrative and decision summary"
+    },
+    {
+      "path": "c4-context.mmd",
+      "reason": "System context authority"
+    },
+    {
+      "path": "c4-container.mmd",
+      "reason": "Container/runtime boundary authority"
+    },
+    {
+      "path": "trust-boundary.mmd",
+      "reason": "Security and approval boundary authority"
+    },
+    {
+      "path": "system-sequence.mmd",
+      "reason": "Compose-to-execute scenario authority"
+    },
+    {
+      "path": "component-uml.mmd",
+      "reason": "Component responsibility/change model"
+    },
+    {
+      "path": "adr-001-select-cursor-companion-as-canonical-operator-surface.md",
+      "reason": "Operator surface authority"
+    },
+    {
+      "path": "adr-002-store-compositions-as-schema-backed-declarative-artifacts.md",
+      "reason": "Artifact model authority"
+    },
+    {
+      "path": "adr-003-compile-pipelines-to-approved-work-orders-before-execution.md",
+      "reason": "Execution boundary authority"
+    },
+    {
+      "path": "contracts/building-block-library-index.schema.json",
+      "reason": "Registry projection contract"
+    },
+    {
+      "path": "contracts/composed-agent-configuration.schema.json",
+      "reason": "Composition contract"
+    },
+    {
+      "path": "contracts/orchestration-pipeline-definition.schema.json",
+      "reason": "Pipeline contract"
+    },
+    {
+      "path": "contracts/pipeline-compilation-result.schema.json",
+      "reason": "Compilation result contract"
+    },
+    {
+      "path": "contracts/dashboard-execution-request.schema.json",
+      "reason": "Launch/pause/resume/stop request contract"
+    },
+    {
+      "path": "contracts/dashboard-execution-session.schema.json",
+      "reason": "Observed session projection contract"
+    },
+    {
+      "path": "decomposition-plan.md",
+      "reason": "Implementation slicing for work-order generation"
+    },
+    {
+      "path": "work-order-tree.json",
+      "reason": "Machine-readable work-order seed"
+    },
+    {
+      "path": "next-workspace.txt",
+      "reason": "Handoff target"
+    }
+  ],
+  "waitForArchitectureOrVerification": [
+    {
+      "artifactType": "implementation-code",
+      "reason": "Out of scope for Architecture Studio"
+    },
+    {
+      "artifactType": "verification-report",
+      "reason": "Produced after implementation in verify phase"
+    },
+    {
+      "artifactType": "evidence-bundle",
+      "reason": "Produced post-verification only"
+    },
+    {
+      "artifactType": "release-notes",
+      "reason": "Produced in release phase"
+    }
+  ],
+  "notes": [
+    "Import now as design authority before implementation.",
+    "Next workspace should generate bounded work orders from the uploaded architecture artifacts, not from memory."
+  ]
+}

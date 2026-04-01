@@ -1,0 +1,3 @@
+- Review this design for trust-boundary and permission issues.
+- Review this implementation for security risks and release blockers.
+- Produce a findings table with severity and remediation.

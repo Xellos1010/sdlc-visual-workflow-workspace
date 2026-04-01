@@ -15,15 +15,19 @@
     ".parcel-cache/",
     ".output/",
     ".nx/cache/",
+    ".nx/workspace-data/",
+    ".pnpm-store/",
     "tmp/",
     "temp/",
     "iterative-development-storage/",
     "apps/flagship-foundry/state/",
     "foundry_research_package/",
     "^ralph/",
-    "docs/3rd-party/"
+    "docs/3rd-party/",
+    ".cursor/cursor-experiments/"
   ],
   "extraIgnore": [
+    ".claude/settings.local.json",
     ".env",
     ".env.local",
     ".env.development",

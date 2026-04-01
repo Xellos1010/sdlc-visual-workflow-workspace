@@ -1,0 +1,2 @@
+- Convert this raw change request into an intent packet with DoR coverage, risk register, impacted systems, and the next workspace handoff.
+- Take this feature request and produce downloadable files: change-request.md, intent-packet.md, impacted-systems-list.md, risk-register.md, dor-checklist.md, artifact-manifest.json, next-workspace.txt, foundry-import-manifest.json. Zip them if there is more than one artifact.

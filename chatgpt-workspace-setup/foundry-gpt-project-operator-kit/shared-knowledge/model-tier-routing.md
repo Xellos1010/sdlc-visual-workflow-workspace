@@ -1,0 +1,1 @@
+Use frontier_reasoner for strategic_reasoning and constraint_interpretation. Use low_cost_executor for deterministic_transformation and structured_generation. Use balanced_reasoner for verification, diagnostics, and learning extraction.

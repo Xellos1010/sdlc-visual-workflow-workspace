@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/provenance-record.schema.json",
+  "title": "Provenance Record",
+  "type": "object",
+  "required": [
+    "sourceWorkspace",
+    "pipelineProject",
+    "generatedAt",
+    "importedAt",
+    "artifactType"
+  ],
+  "properties": {
+    "sourceWorkspace": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pipelineProject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pipelinePhase": {
+      "type": "string"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "importedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "artifactType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "originPath": {
+      "type": "string"
+    },
+    "importSessionId": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

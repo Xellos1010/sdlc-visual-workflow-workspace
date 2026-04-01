@@ -1,0 +1,45 @@
+{
+  "title": "Foundry Verification & Release Output Envelope",
+  "type": "object",
+  "properties": {
+    "stage": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "filesCreated": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextWorkspace": {
+      "type": "string"
+    },
+    "importsNow": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "importsLater": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "openQuestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "stage",
+    "summary",
+    "filesCreated",
+    "nextWorkspace"
+  ]
+}

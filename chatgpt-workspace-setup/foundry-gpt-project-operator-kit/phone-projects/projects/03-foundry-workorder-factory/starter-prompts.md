@@ -1,0 +1,2 @@
+- Using the approved architecture packet, generate a work-order batch whose implement slices are low-cost-model executable. Each work order must include file scope, tests-first expectations, I/O schemas, pseudocode, constraints, expected outputs, acceptance criteria, and verification commands.
+- Output downloadable files: work-order-batch.json, work-order-summary.md, dependency-graph.mmd, verification-plan.md, artifact-manifest.json, next-workspace.txt, foundry-import-manifest.json. Zip if needed.

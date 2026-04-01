@@ -1,0 +1,51 @@
+{
+  "bundleName": "foundry-intake-ai-orchestration-pipeline-2026-03-28",
+  "workspace": "Flagship Foundry \u2014 Intake & Routing",
+  "status": "pre-build",
+  "files": [
+    {
+      "name": "change-request.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "intent-packet.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "impacted-systems-list.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "risk-register.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "dor-checklist.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "open-questions.md",
+      "type": "markdown",
+      "readyForImport": true
+    },
+    {
+      "name": "next-workspace.txt",
+      "type": "text",
+      "readyForImport": true
+    },
+    {
+      "name": "foundry-import-manifest.json",
+      "type": "json",
+      "readyForImport": true
+    }
+  ],
+  "notes": [
+    "Diagrams, ADRs, schemas, and decomposition artifacts are intentionally deferred to Architecture Studio.",
+    "This bundle is definition-phase authority, not implementation authority."
+  ]
+}

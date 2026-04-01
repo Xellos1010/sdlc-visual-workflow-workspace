@@ -1,0 +1,28 @@
+{
+  "name": "Flagship Foundry \u2014 Performance Reviewer",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "performance-reviewer",
+  "source_agent_title": "Performance Reviewer",
+  "read_only": true,
+  "primary_phases": [
+    "verify",
+    "operate",
+    "diagnose"
+  ],
+  "recommended_model_hint": "fast balanced model available in your workspace",
+  "capabilities_hint": [
+    "Web search optional",
+    "Data analysis optional"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/global-agent-routing.json",
+    "../../shared/routing/skill-routing-matrix.json",
+    "../../shared/repo-schema-catalog/repo-schema-catalog.json"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

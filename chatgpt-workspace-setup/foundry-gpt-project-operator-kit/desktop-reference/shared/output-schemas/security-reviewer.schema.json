@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry \u2014 Security Reviewer Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "overallRiskAssessment",
+    "findings",
+    "recommendations"
+  ],
+  "properties": {
+    "overallRiskAssessment": {
+      "type": "string",
+      "enum": [
+        "CLEAR",
+        "FINDINGS",
+        "BLOCKS_RELEASE"
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "severity",
+          "description"
+        ],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": [
+              "INFO",
+              "LOW",
+              "MEDIUM",
+              "HIGH",
+              "CRITICAL"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "remediation": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "trustBoundaryNotes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "complianceCheck": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "framework",
+          "status"
+        ],
+        "properties": {
+          "framework": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

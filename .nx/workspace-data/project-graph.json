@@ -225,6 +225,40 @@
         "implicitDependencies": []
       }
     },
+    "ai-context": {
+      "name": "ai-context",
+      "type": "app",
+      "data": {
+        "root": "tools/ai-context",
+        "name": "ai-context",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "sourceRoot": "tools/ai-context",
+        "tags": [
+          "scope:tools",
+          "type:util"
+        ],
+        "targets": {
+          "extract-full-repo": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Export AI context for the full curated repo scope (orchestration dirs, apps, docs, Runbooks, tools, root manifests). Honors tools/ai-context/profiles/default-ignore.json excludes.",
+              "technologies": [
+                "node"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "node tools/ai-context/exporter.mjs --mode profile --profile tools/ai-context/profiles/full-repo.json",
+              "forwardAllArgs": true
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
     "platform-dev": {
       "name": "platform-dev",
       "type": "app",
@@ -431,6 +465,15 @@
         "hash": "sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw=="
       }
     },
+    "npm:@types/node": {
+      "type": "npm",
+      "name": "npm:@types/node",
+      "data": {
+        "version": "24.12.0",
+        "packageName": "@types/node",
+        "hash": "sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ=="
+      }
+    },
     "npm:@yarnpkg/lockfile": {
       "type": "npm",
       "name": "npm:@yarnpkg/lockfile",
@@ -456,6 +499,15 @@
         "version": "0.0.7",
         "packageName": "@zkochan/js-yaml",
         "hash": "sha512-nrUSn7hzt7J6JWgWGz78ZYI8wj+gdIJdk0Ynjpp8l+trkn58Uqsf6RYrYkEK+3X18EX+TNdtJI0WxAtc+L84SQ=="
+      }
+    },
+    "npm:ajv": {
+      "type": "npm",
+      "name": "npm:ajv",
+      "data": {
+        "version": "8.18.0",
+        "packageName": "ajv",
+        "hash": "sha512-PlXPeEWMXMZ7sPYOHqmDyCJzcfNrUr3fGNKtezX14ykXOEIvyK81d+qydx89KY5O71FKMPaQ2vBfBFI5NHR63A=="
       }
     },
     "npm:ansi-colors": {
@@ -809,6 +861,24 @@
         "hash": "sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A=="
       }
     },
+    "npm:fast-deep-equal": {
+      "type": "npm",
+      "name": "npm:fast-deep-equal",
+      "data": {
+        "version": "3.1.3",
+        "packageName": "fast-deep-equal",
+        "hash": "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="
+      }
+    },
+    "npm:fast-uri": {
+      "type": "npm",
+      "name": "npm:fast-uri",
+      "data": {
+        "version": "3.1.0",
+        "packageName": "fast-uri",
+        "hash": "sha512-iPeeDKJSWf4IEOasVVrknXpaBV0IApz/gp7S2bb7Z4Lljbl2MGJRqInZiUrQwV16cpzw/D3S5j5Julj/gT52AA=="
+      }
+    },
     "npm:figures": {
       "type": "npm",
       "name": "npm:figures",
@@ -1043,6 +1113,15 @@
         "hash": "sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg=="
       }
     },
+    "npm:json-schema-traverse": {
+      "type": "npm",
+      "name": "npm:json-schema-traverse",
+      "data": {
+        "version": "1.0.0",
+        "packageName": "json-schema-traverse",
+        "hash": "sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug=="
+      }
+    },
     "npm:json5": {
       "type": "npm",
       "name": "npm:json5",
@@ -1250,6 +1329,15 @@
         "hash": "sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q=="
       }
     },
+    "npm:require-from-string": {
+      "type": "npm",
+      "name": "npm:require-from-string",
+      "data": {
+        "version": "2.0.2",
+        "packageName": "require-from-string",
+        "hash": "sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw=="
+      }
+    },
     "npm:resolve.exports": {
       "type": "npm",
       "name": "npm:resolve.exports",
@@ -1385,6 +1473,24 @@
         "hash": "sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w=="
       }
     },
+    "npm:typescript": {
+      "type": "npm",
+      "name": "npm:typescript",
+      "data": {
+        "version": "5.9.3",
+        "packageName": "typescript",
+        "hash": "sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw=="
+      }
+    },
+    "npm:undici-types": {
+      "type": "npm",
+      "name": "npm:undici-types",
+      "data": {
+        "version": "7.16.0",
+        "packageName": "undici-types",
+        "hash": "sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw=="
+      }
+    },
     "npm:util-deprecate": {
       "type": "npm",
       "name": "npm:util-deprecate",
@@ -1460,6 +1566,7 @@
   },
   "dependencies": {
     "flagship-foundry": [],
+    "ai-context": [],
     "platform-dev": [],
     "npm:@emnapi/core": [
       {
@@ -1518,6 +1625,13 @@
         "type": "static"
       }
     ],
+    "npm:@types/node": [
+      {
+        "source": "npm:@types/node",
+        "target": "npm:undici-types",
+        "type": "static"
+      }
+    ],
     "npm:@yarnpkg/parsers": [
       {
         "source": "npm:@yarnpkg/parsers",
@@ -1534,6 +1648,28 @@
       {
         "source": "npm:@zkochan/js-yaml",
         "target": "npm:argparse@2.0.1",
+        "type": "static"
+      }
+    ],
+    "npm:ajv": [
+      {
+        "source": "npm:ajv",
+        "target": "npm:fast-deep-equal",
+        "type": "static"
+      },
+      {
+        "source": "npm:ajv",
+        "target": "npm:fast-uri",
+        "type": "static"
+      },
+      {
+        "source": "npm:ajv",
+        "target": "npm:json-schema-traverse",
+        "type": "static"
+      },
+      {
+        "source": "npm:ajv",
+        "target": "npm:require-from-string",
         "type": "static"
       }
     ],
@@ -2420,5 +2556,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1774583373818
+  "computedAt": 1775007768428
 }

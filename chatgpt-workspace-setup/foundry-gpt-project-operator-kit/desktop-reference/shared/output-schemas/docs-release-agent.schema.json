@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry \u2014 Docs & Release Agent Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "primaryArtifact",
+    "continuityPatch",
+    "artifactManifest"
+  ],
+  "properties": {
+    "primaryArtifact": {
+      "type": "object",
+      "required": [
+        "type",
+        "path"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "continuityPatch": {
+      "type": "object"
+    },
+    "fixMemoryCandidates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifactManifest": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "purpose"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "purpose": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

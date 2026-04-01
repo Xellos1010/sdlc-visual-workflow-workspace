@@ -1,0 +1,3 @@
+- Prepare Foundry import manifests for this artifact bundle.
+- Split these artifacts into pre-implementation and post-verification imports.
+- Generate the copy map and import order for the target workspace.

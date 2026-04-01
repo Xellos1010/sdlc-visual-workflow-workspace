@@ -1,0 +1,1 @@
+Prefer multiple files plus artifact-manifest.json. If multiple artifacts are produced, package them into a zip when the surface supports it. If not, emit one bundle file with clearly named file sections and a manifest.

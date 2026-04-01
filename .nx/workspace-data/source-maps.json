@@ -549,6 +549,84 @@
       "nx/target-defaults"
     ]
   },
+  "tools/ai-context": {
+    "root": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "$schema": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.scope:tools": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.type:util": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.executor": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.metadata": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.options": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.options.cwd": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.options.command": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.options.forwardAllArgs": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.metadata.description": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.metadata.technologies": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.extract-full-repo.metadata.technologies.0": [
+      "tools/ai-context/project.json",
+      "nx/core/project-json"
+    ]
+  },
   "tools/system": {
     "root": [
       "tools/system/project.json",

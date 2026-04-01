@@ -1,0 +1,1 @@
+Produce diagrams, ADRs, contracts, schemas, and decomposition plans before implementation.

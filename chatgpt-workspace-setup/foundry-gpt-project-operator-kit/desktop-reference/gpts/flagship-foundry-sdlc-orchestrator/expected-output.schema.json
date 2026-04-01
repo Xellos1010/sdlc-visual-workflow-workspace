@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry \u2014 SDLC Orchestrator Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lifecycleStage",
+    "phaseId",
+    "delegationPlan",
+    "definitionOfReady",
+    "nextPhaseRecommendation"
+  ],
+  "properties": {
+    "lifecycleStage": {
+      "type": "string",
+      "enum": [
+        "discover",
+        "define",
+        "visualize",
+        "architect",
+        "plan",
+        "implement",
+        "verify",
+        "release",
+        "operate",
+        "diagnose",
+        "improve"
+      ]
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "delegationPlan": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "agentRole",
+          "objective"
+        ],
+        "properties": {
+          "agentRole": {
+            "type": "string"
+          },
+          "objective": {
+            "type": "string"
+          },
+          "skillsToInvoke": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fileScope": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "definitionOfReady": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion",
+          "met"
+        ],
+        "properties": {
+          "criterion": {
+            "type": "string"
+          },
+          "met": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "continuityPatch": {
+      "type": "object"
+    },
+    "nextPhaseRecommendation": {
+      "type": "string"
+    },
+    "handoffRequired": {
+      "type": "boolean"
+    }
+  }
+}
