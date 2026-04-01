@@ -11,7 +11,14 @@ out/
 .next/
 .nuxt/
 .vite/
+.storybook-out/
+.turbo/
+.parcel-cache/
+.svelte-kit/
+.vercel/
+.vercel_build_output/
 *.tsbuildinfo
+.eslintcache
 
 # Environment and secrets
 .env
@@ -62,15 +69,19 @@ coverage/
 
 # Local app state
 .claude/settings.local.json
+.claude/settings.local.*
+.cursor/
 .cursor/cursor-experiments/
 .foundry/staging/
 .foundry/projects/
 .nx/cache/
 .nx/workspace-data/
+.nx/workspace-data/*
 
 # Runtime and temp
 tmp/
 temp/
 .cache/
+logs/
 *.pid
 archive.zip
