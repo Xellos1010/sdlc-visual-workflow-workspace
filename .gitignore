@@ -74,6 +74,7 @@ coverage/
 .cursor/cursor-experiments/
 .foundry/staging/
 .foundry/projects/
+Example/AI Agent Pipelines/
 .nx/cache/
 .nx/workspace-data/
 .nx/workspace-data/*
