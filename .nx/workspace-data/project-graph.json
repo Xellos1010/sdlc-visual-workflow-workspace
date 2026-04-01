@@ -1,5 +1,75 @@
 {
   "nodes": {
+    "import-bridge": {
+      "name": "import-bridge",
+      "type": "lib",
+      "data": {
+        "root": "apps/flagship-foundry/packages/import-bridge",
+        "name": "import-bridge",
+        "tags": [
+          "npm:private",
+          "scope:foundry",
+          "type:lib"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build",
+              "typecheck",
+              "test"
+            ]
+          },
+          "description": "Bidirectional import and export bridge between ChatGPT workspace artifacts and Foundry-native artifacts.",
+          "js": {
+            "packageName": "@flagship-foundry/import-bridge",
+            "isInPackageManagerWorkspaces": false
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "tsc -p tsconfig.json",
+              "runCommand": "pnpm run build"
+            },
+            "options": {
+              "script": "build"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "typecheck": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "tsc -p tsconfig.json --noEmit",
+              "runCommand": "pnpm run typecheck"
+            },
+            "options": {
+              "script": "typecheck"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "test": {
+            "executor": "nx:run-script",
+            "metadata": {
+              "scriptContent": "npm run build && node --test dist/__tests__/*.test.mjs dist/__tests__/integration/*.test.mjs",
+              "runCommand": "pnpm run test"
+            },
+            "options": {
+              "script": "test"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": true
+          }
+        },
+        "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "library",
+        "sourceRoot": "apps/flagship-foundry/packages/import-bridge/src",
+        "implicitDependencies": []
+      }
+    },
     "flagship-foundry": {
       "name": "flagship-foundry",
       "type": "app",
@@ -1565,6 +1635,7 @@
     }
   },
   "dependencies": {
+    "import-bridge": [],
     "flagship-foundry": [],
     "ai-context": [],
     "platform-dev": [],
@@ -2556,5 +2627,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1775007768428
+  "computedAt": 1775067992425
 }

@@ -1,10 +1,10 @@
-# ── Dependencies ──────────────────────────────────────────────────────────────
+# Dependencies
 node_modules/
 .pnpm-store/
 .yarn/
 .npm/
 
-# ── Build outputs ─────────────────────────────────────────────────────────────
+# Build outputs
 dist/
 build/
 out/
@@ -13,7 +13,7 @@ out/
 .vite/
 *.tsbuildinfo
 
-# ── Environment and secrets ───────────────────────────────────────────────────
+# Environment and secrets
 .env
 .env.*
 !.env.example
@@ -30,7 +30,7 @@ out/
 .aws/credentials
 .aws/config
 
-# ── macOS ─────────────────────────────────────────────────────────────────────
+# macOS
 .DS_Store
 .DS_Store?
 ._*
@@ -39,7 +39,7 @@ out/
 Icon?
 Thumbs.db
 
-# ── Editors ───────────────────────────────────────────────────────────────────
+# Editors and IDEs
 .idea/
 *.swp
 *.swo
@@ -47,7 +47,7 @@ Thumbs.db
 .vscode/settings.json
 .vscode/launch.json
 
-# ── Logs ──────────────────────────────────────────────────────────────────────
+# Logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
@@ -55,24 +55,22 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-# ── Test / coverage ───────────────────────────────────────────────────────────
+# Test and coverage
 coverage/
 .nyc_output/
 *.lcov
 
-# ── Claude Code local settings (personal, not team) ──────────────────────────
+# Local app state
 .claude/settings.local.json
-
-# ── Cursor local experiments ──────────────────────────────────────────────────
 .cursor/cursor-experiments/
+.foundry/staging/
+.foundry/projects/
+.nx/cache/
+.nx/workspace-data/
 
-# ── Runtime / temp ────────────────────────────────────────────────────────────
+# Runtime and temp
 tmp/
 temp/
 .cache/
 *.pid
-
-# Nx cache
-.nx/cache
 archive.zip
-.cursor/cursor-experiments

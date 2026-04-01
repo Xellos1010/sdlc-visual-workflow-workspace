@@ -5,64 +5,186 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
-      "platform-dev": [
+      "import-bridge": [
         {
-          "file": "tools/system/dev.sh",
-          "hash": "17783527656544530121"
+          "file": "apps/flagship-foundry/packages/import-bridge/bin/foundry-bridge.mjs",
+          "hash": "16573707497174796410"
         },
         {
-          "file": "tools/system/project.json",
-          "hash": "11425320446903954490"
+          "file": "apps/flagship-foundry/packages/import-bridge/package.json",
+          "hash": "15558655700254153671"
         },
         {
-          "file": "tools/system/setup.sh",
-          "hash": "14494095874766575439"
-        }
-      ],
-      "ai-context": [
-        {
-          "file": "tools/ai-context/README.md",
-          "hash": "879393752637350590"
+          "file": "apps/flagship-foundry/packages/import-bridge/project.json",
+          "hash": "4149768626120063064"
         },
         {
-          "file": "tools/ai-context/chunk-export.mjs",
-          "hash": "9257958076463718484"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/artifact-router.test.mjs",
+          "hash": "5853189305169448605"
         },
         {
-          "file": "tools/ai-context/exporter.mjs",
-          "hash": "6440552238918179164"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/cli.test.mjs",
+          "hash": "15498048551784397397"
         },
         {
-          "file": "tools/ai-context/generate-profile.mjs",
-          "hash": "13049109533647596046"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/conflict-detector.test.mjs",
+          "hash": "7818971889050009787"
         },
         {
-          "file": "tools/ai-context/profiles/current-project.json",
-          "hash": "17096737595311052128"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/continuity-writer.test.mjs",
+          "hash": "668097781363632302"
         },
         {
-          "file": "tools/ai-context/profiles/default-ignore.json",
-          "hash": "16145079501181117260"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/export-packager.test.mjs",
+          "hash": "3370261652442798539"
         },
         {
-          "file": "tools/ai-context/profiles/example-agent-pipelines-ralph.json",
-          "hash": "14717169397332724055"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/fixtures/bad-manifest.json",
+          "hash": "9429594284243144505"
         },
         {
-          "file": "tools/ai-context/profiles/example-agent-pipelines-ruflo.json",
-          "hash": "851500701914907670"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/export-verification.test.mjs",
+          "hash": "5448747606915458358"
         },
         {
-          "file": "tools/ai-context/profiles/full-repo.json",
-          "hash": "4084947604348170756"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-architecture.test.mjs",
+          "hash": "15204940590931139505"
         },
         {
-          "file": "tools/ai-context/profiles/latest.json",
-          "hash": "6603408680051193847"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-intake.test.mjs",
+          "hash": "16488127882727801337"
         },
         {
-          "file": "tools/ai-context/project.json",
-          "hash": "94991551809072170"
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-workorders.test.mjs",
+          "hash": "6475980051520707483"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/round-trip.test.mjs",
+          "hash": "5866122418274146398"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/manifest-parser.test.mjs",
+          "hash": "8288824859903832699"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/provenance.test.mjs",
+          "hash": "15042105257811223250"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/schema-validity.test.mjs",
+          "hash": "15410108312066971752"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/transforms.test.mjs",
+          "hash": "4065164937054306145"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/validator.test.mjs",
+          "hash": "17780890609134152876"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/wo-activator.test.mjs",
+          "hash": "13695680130184700826"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/artifact-router.mts",
+          "hash": "178269474204647649"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/cli.mts",
+          "hash": "5313586371345167823"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/codegen/schema-diff.mts",
+          "hash": "13664694706183028641"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/dry-run.mts",
+          "hash": "11825937400734618038"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/export.mts",
+          "hash": "15447684579223023215"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/import.mts",
+          "hash": "3660270391633575979"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/validate.mts",
+          "hash": "3983213661902532463"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/conflict-detector.mts",
+          "hash": "8872474834770860696"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/continuity-writer.mts",
+          "hash": "12847957106720646098"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/dependency-resolver.mts",
+          "hash": "15799049460821147248"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/diff-merge.mts",
+          "hash": "3457664629141462760"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/export-packager.mts",
+          "hash": "15009240320048890133"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/manifest-parser.mts",
+          "hash": "8387585774879978810"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/provenance.mts",
+          "hash": "17280953876525694352"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/staging.mts",
+          "hash": "5147253608265454301"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/architecture-packet.transform.mts",
+          "hash": "5226775549451363779"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/import-manifest.transform.mts",
+          "hash": "2283390139036247977"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/index.mts",
+          "hash": "6026684842448375980"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/intent-packet.transform.mts",
+          "hash": "16280278663563400229"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/verification-bundle.transform.mts",
+          "hash": "4873526797617753398"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/work-order-batch.transform.mts",
+          "hash": "15007828102110495572"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/types.mts",
+          "hash": "16644755641827521215"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/validator.mts",
+          "hash": "18168056670620168342"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/wo-activator.mts",
+          "hash": "8937310396763492189"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/tsconfig.json",
+          "hash": "15166311189154451060"
         }
       ],
       "flagship-foundry": [
@@ -1127,8 +1249,12 @@
           "hash": "18375974672532667138"
         },
         {
+          "file": "apps/flagship-foundry/schemas/chatgpt-workspace-source.schema.json",
+          "hash": "16247138236476721910"
+        },
+        {
           "file": "apps/flagship-foundry/schemas/continuity-state.schema.json",
-          "hash": "15143198094501946673"
+          "hash": "11845597862811110255"
         },
         {
           "file": "apps/flagship-foundry/schemas/diagram-structure.schema.json",
@@ -1175,6 +1301,10 @@
           "hash": "11978249830265673121"
         },
         {
+          "file": "apps/flagship-foundry/schemas/import-bridge-config.schema.json",
+          "hash": "12033218167223119720"
+        },
+        {
           "file": "apps/flagship-foundry/schemas/incident-record.schema.json",
           "hash": "17953700083958033029"
         },
@@ -1209,6 +1339,10 @@
         {
           "file": "apps/flagship-foundry/schemas/principle-card.schema.json",
           "hash": "13199655955563030959"
+        },
+        {
+          "file": "apps/flagship-foundry/schemas/provenance-record.schema.json",
+          "hash": "10278505518088848457"
         },
         {
           "file": "apps/flagship-foundry/schemas/provider-profile.schema.json",
@@ -1313,6 +1447,66 @@
         {
           "file": "apps/flagship-foundry/tests/swarm-and-trace.test.mjs",
           "hash": "5285278584264288210"
+        }
+      ],
+      "ai-context": [
+        {
+          "file": "tools/ai-context/README.md",
+          "hash": "879393752637350590"
+        },
+        {
+          "file": "tools/ai-context/chunk-export.mjs",
+          "hash": "9257958076463718484"
+        },
+        {
+          "file": "tools/ai-context/exporter.mjs",
+          "hash": "6440552238918179164"
+        },
+        {
+          "file": "tools/ai-context/generate-profile.mjs",
+          "hash": "13049109533647596046"
+        },
+        {
+          "file": "tools/ai-context/profiles/current-project.json",
+          "hash": "17096737595311052128"
+        },
+        {
+          "file": "tools/ai-context/profiles/default-ignore.json",
+          "hash": "16145079501181117260"
+        },
+        {
+          "file": "tools/ai-context/profiles/example-agent-pipelines-ralph.json",
+          "hash": "14717169397332724055"
+        },
+        {
+          "file": "tools/ai-context/profiles/example-agent-pipelines-ruflo.json",
+          "hash": "851500701914907670"
+        },
+        {
+          "file": "tools/ai-context/profiles/full-repo.json",
+          "hash": "4084947604348170756"
+        },
+        {
+          "file": "tools/ai-context/profiles/latest.json",
+          "hash": "6603408680051193847"
+        },
+        {
+          "file": "tools/ai-context/project.json",
+          "hash": "94991551809072170"
+        }
+      ],
+      "platform-dev": [
+        {
+          "file": "tools/system/dev.sh",
+          "hash": "17783527656544530121"
+        },
+        {
+          "file": "tools/system/project.json",
+          "hash": "11425320446903954490"
+        },
+        {
+          "file": "tools/system/setup.sh",
+          "hash": "14494095874766575439"
         }
       ]
     },
@@ -1986,12 +2180,20 @@
         "hash": "17098074013440155587"
       },
       {
+        "file": ".foundry/projects/flagship-foundry-intake-routing/current-task.json",
+        "hash": "3735642537068631208"
+      },
+      {
+        "file": ".foundry/projects/flagship-foundry-orchestration-composer/current-task.json",
+        "hash": "11084434819541951029"
+      },
+      {
         "file": ".foundry/projects/flagship-foundry/SDLC_CHARTER.md",
         "hash": "15844721350938305384"
       },
       {
         "file": ".foundry/projects/flagship-foundry/current-task.json",
-        "hash": "17191164748825523795"
+        "hash": "24814550767770743"
       },
       {
         "file": ".foundry/schemas/task-state.schema.json",
@@ -2054,12 +2256,144 @@
         "hash": "3402271707333648489"
       },
       {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/apps/flagship-foundry/schemas/building-block-library-index.schema.json",
+        "hash": "7573045876108332567"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/apps/flagship-foundry/schemas/composed-agent-configuration.schema.json",
+        "hash": "13804800689081326439"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/apps/flagship-foundry/schemas/dashboard-execution-request.schema.json",
+        "hash": "16344389917044484337"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/apps/flagship-foundry/schemas/dashboard-execution-session.schema.json",
+        "hash": "14037207613769475884"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/apps/flagship-foundry/schemas/orchestration-pipeline-definition.schema.json",
+        "hash": "1703300040492842902"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/apps/flagship-foundry/schemas/pipeline-compilation-result.schema.json",
+        "hash": "16425299074270960659"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/adr/adr-001-select-cursor-companion-as-canonical-operator-surface.md",
+        "hash": "15704768559216469788"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/adr/adr-002-store-compositions-as-schema-backed-declarative-artifacts.md",
+        "hash": "7488197864342929949"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/adr/adr-003-compile-pipelines-to-approved-work-orders-before-execution.md",
+        "hash": "17030121994047084433"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/diagrams/c4-container.mmd",
+        "hash": "10046418841624546508"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/diagrams/c4-context.mmd",
+        "hash": "1254094678114357393"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/diagrams/component-uml.mmd",
+        "hash": "7282935683489335759"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/diagrams/system-sequence.mmd",
+        "hash": "1942897547047066335"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/diagrams/trust-boundary.mmd",
+        "hash": "3130526403972225336"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/imported/architecture-packet.md",
+        "hash": "11283858019834004787"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/imported/decomposition-plan.md",
+        "hash": "16089270412541135891"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/imported/next-workspace.txt",
+        "hash": "15099262098542673595"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/imported/next-workspace.txt.manual-merge",
+        "hash": "10918893137037292169"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-architecture-studio/docs/imported/work-order-tree.json",
+        "hash": "17150121541681442746"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-intake-routing/docs/imported/change-request.md",
+        "hash": "7656402672312250457"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-intake-routing/docs/imported/dor-checklist.md",
+        "hash": "2993227615357134908"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-intake-routing/docs/imported/impacted-systems-list.md",
+        "hash": "1584926790486632700"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-intake-routing/docs/imported/intent-packet.md",
+        "hash": "886986866221352223"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-intake-routing/docs/imported/next-workspace.txt",
+        "hash": "911748697653809301"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-intake-routing/docs/imported/open-questions.md",
+        "hash": "464518463692658250"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-intake-routing/docs/imported/risk-register.md",
+        "hash": "4080289321242373349"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-orchestration-composer/docs/diagrams/dependency-graph.mmd",
+        "hash": "14223601449030972529"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-orchestration-composer/docs/imported/artifact-manifest.json",
+        "hash": "14714468856187587710"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-orchestration-composer/docs/imported/foundry-import-manifest.json",
+        "hash": "16884300943569041758"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-orchestration-composer/docs/imported/next-workspace.txt",
+        "hash": "6193394149060206076"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-orchestration-composer/docs/imported/verification-plan.md",
+        "hash": "17366986782841074137"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-orchestration-composer/docs/imported/work-order-batch.json",
+        "hash": "5284570233458503538"
+      },
+      {
+        "file": ".foundry/staging/flagship-foundry-orchestration-composer/docs/imported/work-order-summary.md",
+        "hash": "2290518216699408263"
+      },
+      {
         "file": ".github/workflows/flagship-foundry-ci.yml",
         "hash": "11371795415869476007"
       },
       {
         "file": ".gitignore",
-        "hash": "1841357310093132016"
+        "hash": "5187793394108064249"
       },
       {
         "file": ".mcp.json",
@@ -41942,12 +42276,12 @@
         "hash": "375101934813448834"
       },
       {
-        "file": "Runbooks/nx-pnpm-workspace-setup.txt",
-        "hash": "15634925680233490633"
+        "file": "Runbooks/import-bridge-operator-guide.md",
+        "hash": "4948871387250996755"
       },
       {
-        "file": "archive.zip",
-        "hash": "9704387468665000504"
+        "file": "Runbooks/nx-pnpm-workspace-setup.txt",
+        "hash": "15634925680233490633"
       },
       {
         "file": "archive/flagship-foundry-knowledge-update.zip",
@@ -43176,6 +43510,150 @@
       {
         "file": "archive/iterative-development-storage/flagship-foundry-foundation/tools/export-training-corpus.mjs",
         "hash": "3024659497889346702"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/artifact-manifest.json",
+        "hash": "12532869364457727438"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/change-request.md",
+        "hash": "7656402672312250457"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/dor-checklist.md",
+        "hash": "2993227615357134908"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/foundry-import-manifest.json",
+        "hash": "15320101816311072526"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/impacted-systems-list.md",
+        "hash": "1584926790486632700"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/intent-packet.md",
+        "hash": "886986866221352223"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/next-workspace.txt",
+        "hash": "911748697653809301"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/open-questions.md",
+        "hash": "464518463692658250"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-intake-ai-orchestration-pipeline-2026-03-28/risk-register.md",
+        "hash": "4080289321242373349"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/adr-001-select-cursor-companion-as-canonical-operator-surface.md",
+        "hash": "15704768559216469788"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/adr-002-store-compositions-as-schema-backed-declarative-artifacts.md",
+        "hash": "7488197864342929949"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/adr-003-compile-pipelines-to-approved-work-orders-before-execution.md",
+        "hash": "17030121994047084433"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/architecture-packet.md",
+        "hash": "11283858019834004787"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/artifact-manifest.json",
+        "hash": "3759890820024554805"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/c4-container.mmd",
+        "hash": "10046418841624546508"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/c4-context.mmd",
+        "hash": "1254094678114357393"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/component-uml.mmd",
+        "hash": "7282935683489335759"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/contracts/building-block-library-index.schema.json",
+        "hash": "7573045876108332567"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/contracts/composed-agent-configuration.schema.json",
+        "hash": "13804800689081326439"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/contracts/dashboard-execution-request.schema.json",
+        "hash": "16344389917044484337"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/contracts/dashboard-execution-session.schema.json",
+        "hash": "14037207613769475884"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/contracts/orchestration-pipeline-definition.schema.json",
+        "hash": "1703300040492842902"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/contracts/pipeline-compilation-result.schema.json",
+        "hash": "16425299074270960659"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/decomposition-plan.md",
+        "hash": "16089270412541135891"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/foundry-import-manifest.json",
+        "hash": "16105496363414008007"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/next-workspace.txt",
+        "hash": "15099262098542673595"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/system-sequence.mmd",
+        "hash": "1942897547047066335"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/trust-boundary.mmd",
+        "hash": "3130526403972225336"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-architecture-packet-2026-03-28/work-order-tree.json",
+        "hash": "17150121541681442746"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-composer-work-order-batch-2026-03-30/artifact-manifest.json",
+        "hash": "14714468856187587710"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-composer-work-order-batch-2026-03-30/dependency-graph.mmd",
+        "hash": "14223601449030972529"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-composer-work-order-batch-2026-03-30/foundry-import-manifest.json",
+        "hash": "16884300943569041758"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-composer-work-order-batch-2026-03-30/next-workspace.txt",
+        "hash": "6193394149060206076"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-composer-work-order-batch-2026-03-30/verification-plan.md",
+        "hash": "17366986782841074137"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-composer-work-order-batch-2026-03-30/work-order-batch.json",
+        "hash": "5284570233458503538"
+      },
+      {
+        "file": "chatgpt-workspace-orders/SDLC-Building-Blocks/foundry-orchestration-composer-work-order-batch-2026-03-30/work-order-summary.md",
+        "hash": "2290518216699408263"
       },
       {
         "file": "chatgpt-workspace-setup/foundry-gpt-project-operator-kit/README.md",
@@ -44418,6 +44896,22 @@
         "hash": "4679468853094067398"
       },
       {
+        "file": "docs/adr/adr-import-bridge-conflict-resolution.md",
+        "hash": "11682561239572866836"
+      },
+      {
+        "file": "docs/adr/adr-import-bridge-schema-codegen.md",
+        "hash": "14826288912711125941"
+      },
+      {
+        "file": "docs/diagrams/dependency-graph.mmd",
+        "hash": "14223601449030972529"
+      },
+      {
+        "file": "docs/handoff/handoff-import-bridge-2026-03-31.md",
+        "hash": "3632494677854980260"
+      },
+      {
         "file": "docs/handoffs/AGENT_AND_SKILL_BLUEPRINTS.md",
         "hash": "11241395623177158025"
       },
@@ -44454,8 +44948,64 @@
         "hash": "8899291418174161946"
       },
       {
+        "file": "docs/imported/artifact-manifest.json",
+        "hash": "14714468856187587710"
+      },
+      {
+        "file": "docs/imported/change-request.md",
+        "hash": "7656402672312250457"
+      },
+      {
+        "file": "docs/imported/dor-checklist.md",
+        "hash": "2993227615357134908"
+      },
+      {
+        "file": "docs/imported/foundry-import-manifest.json",
+        "hash": "16884300943569041758"
+      },
+      {
+        "file": "docs/imported/impacted-systems-list.md",
+        "hash": "1584926790486632700"
+      },
+      {
+        "file": "docs/imported/intent-packet.md",
+        "hash": "886986866221352223"
+      },
+      {
+        "file": "docs/imported/next-workspace.txt",
+        "hash": "911748697653809301"
+      },
+      {
+        "file": "docs/imported/open-questions.md",
+        "hash": "464518463692658250"
+      },
+      {
+        "file": "docs/imported/risk-register.md",
+        "hash": "4080289321242373349"
+      },
+      {
+        "file": "docs/imported/verification-plan.md",
+        "hash": "17366986782841074137"
+      },
+      {
+        "file": "docs/imported/work-order-batch.json",
+        "hash": "5284570233458503538"
+      },
+      {
+        "file": "docs/imported/work-order-summary.md",
+        "hash": "2290518216699408263"
+      },
+      {
+        "file": "docs/intent/intent-chatgpt-foundry-import-bridge-2026-03-31.md",
+        "hash": "2700500050138773312"
+      },
+      {
         "file": "docs/intent/intent-nx-flagship-foundry-apps-2026-03-24.md",
         "hash": "1003621733249811226"
+      },
+      {
+        "file": "docs/plan/work-orders-chatgpt-foundry-import-bridge-2026-03-31.md",
+        "hash": "18425382049651953089"
       },
       {
         "file": "docs/plan/work-orders-nx-monorepo-flagship-2026-03-24.md",
@@ -44563,11 +45113,11 @@
       },
       {
         "file": "package.json",
-        "hash": "3924701277598883591"
+        "hash": "11808746551504203473"
       },
       {
         "file": "pnpm-lock.yaml",
-        "hash": "17360637247678121949"
+        "hash": "6313831552913345369"
       },
       {
         "file": "pnpm-workspace.yaml",

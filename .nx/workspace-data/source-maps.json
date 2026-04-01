@@ -549,6 +549,176 @@
       "nx/target-defaults"
     ]
   },
+  "apps/flagship-foundry/packages/import-bridge": {
+    "root": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:private": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.0": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.1": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.2": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.description": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageName": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.executor": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.options": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.metadata": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.options.script": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.build.metadata.scriptContent": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.metadata.runCommand": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.typecheck": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.typecheck.executor": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.typecheck.options": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.typecheck.metadata": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.typecheck.options.script": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.typecheck.metadata.scriptContent": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.typecheck.metadata.runCommand": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.test": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.executor": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.options": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.metadata": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.test.options.script": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.metadata.scriptContent": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.test.metadata.runCommand": [
+      "apps/flagship-foundry/packages/import-bridge/package.json",
+      "nx/core/package-json"
+    ],
+    "$schema": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.scope:foundry": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.type:lib": [
+      "apps/flagship-foundry/packages/import-bridge/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.test.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
   "tools/ai-context": {
     "root": [
       "tools/ai-context/project.json",
