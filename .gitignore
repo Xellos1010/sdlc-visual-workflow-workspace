@@ -84,5 +84,6 @@ tmp/
 temp/
 .cache/
 logs/
+exports/
 *.pid
 archive.zip
