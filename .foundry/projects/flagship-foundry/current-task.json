@@ -12,154 +12,67 @@
     "technicalBaseBranch": "main",
     "ruleReferences": []
   },
-  "objective": "ChatGPT-Foundry import bridge implemented through release handoff and verification coverage.",
+  "objective": "Unify Cursor Companion windowing: browser-based pop-out, bidirectional state sync, and consistent styling.",
   "sdlcPhase": "release",
   "lifecycleStage": "release",
   "currentPhase": {
-    "id": "import-bridge-release-handoff",
+    "id": "unified-windowing-release-handoff",
     "title": "release",
-    "status": "verified",
+    "status": "done",
     "branch": "main",
     "notes": [
-      "WO-IB-001..009: import-bridge package scaffold, schemas, transforms, validator, routing, staging, provenance, continuity writer, work-order activation, export packager, and CLI implemented.",
-      "WO-IB-010: conflict detection and manual merge flow implemented with unified diffs and continuity field-level diffs.",
-      "WO-IB-011: integration tests added for intake import, architecture import, work-order activation, export bundle generation, and round-trip flow against real SDLC-Building-Blocks fixtures.",
-      "WO-IB-012: release handoff, ADRs, and operator runbook added for import bridge operator workflow.",
-      "Docs-release review 2026-03-31: handoff, ADRs, and operator guide tightened for release gates, conflict-decision syntax, and known warning disclosure.",
-      "wo-001 complete: ADR-011a layout decisions documented; .foundry/README.md updated",
-      "wo-002 complete: continuity.mjs already reads .foundry/; no schema changes needed",
-      "wo-003 complete: personas, skills, agents copied/merged to .foundry/",
-      "wo-004 complete: .cursor and .claude adapter stubs written",
-      "wo-005 complete: catalogs.mjs updated to read personas from ../.foundry/personas",
-      "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass",
-      "scope-chunker 2026-03-24: WO-NX-000..006 queued for Nx root + apps/flagship-foundry migration (see artifacts.nxMonorepoMigration20260324); execute WO-NX-000 before file moves",
-      "WO-NX-000 2026-03-24: architecture lock issued by @systems-architect — Decision A: single-folder apps/flagship-foundry; Decision B: pnpm at root; Decision C: CI path swap working-directory + path filters. ADR-012 written at docs/adr/adr-012-nx-root-and-flagship-app-path.md. APPROVED 2026-03-24.",
-      "WO-NX-001 2026-03-24: root package.json, pnpm-workspace.yaml, nx.json created; pnpm install succeeded; nx v20.8.4 available from root.",
-      "WO-NX-002 2026-03-24: git mv flagship-foundry-work apps/flagship-foundry complete; full tree verified at new path.",
-      "WO-NX-003 2026-03-24: pnpm install at root links 2 workspace projects (root + apps/flagship-foundry); 60/60 tests pass from new path.",
-      "WO-NX-004 2026-03-24: apps/flagship-foundry/project.json created with test and ci-targeted targets; nx run flagship-foundry:test PASS; nx run flagship-foundry:ci-targeted PASS.",
-      "WO-NX-005 2026-03-24: README.md, setup.sh, dev.sh, CI workflow, continuity JSON paths updated to apps/flagship-foundry.",
-      "WO-NX-006 2026-03-24: independent verification PASS — pnpm install OK; nx:test 60/60; nx:ci-targeted OK; rg gate 0 stale external refs; nx affected --uncommitted triggers flagship-foundry:test. Migration closed."
+      "Intent packet complete: docs/intent/intent-cursor-companion-unified-windowing-2026-04-10.md.",
+      "All five work orders WO-UW-001 through WO-UW-005 are implemented and verified.",
+      "Focused verification completed successfully: /usr/local/bin/node --test apps/flagship-foundry/tests/browser-popout-contracts.test.mjs apps/flagship-foundry/tests/cursor-companion-browser-popout.test.mjs apps/flagship-foundry/tests/cursor-companion-windowing.test.mjs apps/flagship-foundry/tests/cursor-companion-observability.test.mjs (16/16 passed).",
+      "Unified-windowing release documentation has been created under apps/flagship-foundry/docs/release/.",
+      "Source, test, continuity, and release artifacts for the unified-windowing slice are all present in the working tree and ready for commit."
     ],
-    "updatedAt": "2026-03-31T23:59:00.000Z"
+    "updatedAt": "2026-04-10T05:56:31Z"
   },
   "activeBranch": "main",
   "nextCommit": {
     "branch": "main",
-    "message": "feat(import-bridge): complete conflict flow, integration coverage, and release handoff",
+    "message": "feat(cursor-companion): unified windowing with browser pop-out, state sync, and styling",
     "scope": [
-      "apps/flagship-foundry/packages/import-bridge/",
+      "apps/flagship-foundry/schemas/browser-popout-message.schema.json",
+      "apps/flagship-foundry/apps/cursor-companion/browser-popout-server.js",
+      "apps/flagship-foundry/apps/cursor-companion/browser-theme.css",
+      "apps/flagship-foundry/apps/cursor-companion/operator-panel.js",
+      "apps/flagship-foundry/apps/cursor-companion/extension.js",
+      "apps/flagship-foundry/apps/cursor-companion/window-session.js",
+      "apps/flagship-foundry/apps/cursor-companion/window-launcher.js",
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "apps/flagship-foundry/tests/browser-popout-contracts.test.mjs",
+      "apps/flagship-foundry/tests/cursor-companion-browser-popout.test.mjs",
+      "apps/flagship-foundry/tests/cursor-companion-windowing.test.mjs",
+      "apps/flagship-foundry/tests/cursor-companion-observability.test.mjs",
       ".foundry/projects/flagship-foundry/current-task.json",
-      "docs/handoff/handoff-import-bridge-2026-03-31.md",
-      "docs/adr/adr-import-bridge-schema-codegen.md",
-      "docs/adr/adr-import-bridge-conflict-resolution.md",
-      "Runbooks/import-bridge-operator-guide.md"
+      "apps/flagship-foundry/docs/release/cursor-companion-unified-windowing-release.md"
     ]
   },
   "nextCommandSet": [
-    "source ~/.zshrc >/dev/null 2>&1 && pnpm exec nx run import-bridge:typecheck",
-    "source ~/.zshrc >/dev/null 2>&1 && pnpm exec nx run import-bridge:build",
-    "source ~/.zshrc >/dev/null 2>&1 && pnpm exec nx run import-bridge:test"
+    "Completed: /usr/local/bin/node --test apps/flagship-foundry/tests/browser-popout-contracts.test.mjs apps/flagship-foundry/tests/cursor-companion-browser-popout.test.mjs apps/flagship-foundry/tests/cursor-companion-windowing.test.mjs apps/flagship-foundry/tests/cursor-companion-observability.test.mjs (16/16 passed)"
   ],
   "blockedBy": [],
   "artifacts": {
-    "m4Evidence": [
-      "apps/flagship-foundry/docs/ci-release-gates.md",
-      "apps/flagship-foundry/docs/rollout-rollback-incident-model.md",
-      ".github/workflows/flagship-foundry-ci.yml"
+    "unifiedWindowing20260410": [
+      "docs/intent/intent-cursor-companion-unified-windowing-2026-04-10.md",
+      "docs/plan/work-orders-unified-windowing-2026-04-10.md"
     ],
-    "woFF011": [
-      "apps/flagship-foundry/docs/adr/adr-011-foundry-directory-layout-and-continuity-instance.md",
-      "apps/flagship-foundry/docs/intent/scope-chunk-foundry-dot-foundry-2026-03-23.md"
-    ],
-    "wo003Personas": [
-      ".foundry/personas/adversarial-architect.json",
-      ".foundry/personas/chrome-extension-mv3-sme.json",
-      ".foundry/personas/cursor-companion-product-owner.json",
-      ".foundry/personas/ecosystem-orchestrator.json",
-      ".foundry/personas/environment-migrator.json",
-      ".foundry/personas/independent-verifier.json",
-      ".foundry/personas/knowledge-curator.json",
-      ".foundry/personas/nx-monorepo-cartographer.json",
-      ".foundry/personas/plan-approval-governor.json",
-      ".foundry/personas/polyrepo-cartographer.json",
-      ".foundry/personas/react-vite-ui-sme.json",
-      ".foundry/personas/telemetry-and-learning-curator.json",
-      ".foundry/personas/typescript-node-runtime-sme.json"
-    ],
-    "wo003Skills": [
-      ".foundry/skills/adr-writer/SKILL.md",
-      ".foundry/skills/c4-diagram-generator/SKILL.md",
-      ".foundry/skills/continuity-writer/SKILL.md",
-      ".foundry/skills/define-intent/SKILL.md",
-      ".foundry/skills/define-intent/reference/feature-intake-runbook.md",
-      ".foundry/skills/evidence-collector/SKILL.md",
-      ".foundry/skills/handoff-generator/SKILL.md",
-      ".foundry/skills/handoff-generator/templates/PLAN_HANDOFF_TEMPLATE.md",
-      ".foundry/skills/model-router/SKILL.md",
-      ".foundry/skills/nx-verification/SKILL.md",
-      ".foundry/skills/scope-chunker/SKILL.md",
-      ".foundry/skills/scope-chunker/reference/work-order-quick-ref.md",
-      ".foundry/skills/sdlc-phase-router/SKILL.md",
-      ".foundry/skills/sdlc-phase-router/reference/phase-gate-matrix.md"
-    ],
-    "wo003Agents": [
-      ".foundry/agents/builder.md",
-      ".foundry/agents/context-curator.md",
-      ".foundry/agents/docs-release-agent.md",
-      ".foundry/agents/orchestrator.md",
-      ".foundry/agents/performance-reviewer.md",
-      ".foundry/agents/security-reviewer.md",
-      ".foundry/agents/systems-architect.md",
-      ".foundry/agents/verifier.md"
-    ],
-    "wo004Adapters": {
-      "cursorAgents": ".cursor/agents/",
-      "claudeAgents": ".claude/agents/",
-      "cursorSkills": ".cursor/skills/*/SKILL.md",
-      "claudeSkills": ".claude/skills/*/SKILL.md"
-    },
-    "wo005CatalogsUpdate": [
-      "apps/flagship-foundry/packages/core/src/catalogs.mjs"
-    ],
-    "wo006Evidence": [
-      ".foundry/projects/flagship-foundry/current-task.json",
-      "apps/flagship-foundry/docs/adr/adr-011a-foundry-ssot-personas-skills-layout.md"
-    ],
-    "nxMonorepoMigration20260324": [
-      "docs/intent/intent-nx-flagship-foundry-apps-2026-03-24.md",
-      "docs/plan/work-orders-nx-monorepo-flagship-2026-03-24.md",
-      "docs/adr/adr-012-nx-root-and-flagship-app-path.md",
-      "apps/flagship-foundry/project.json",
-      "package.json",
-      "pnpm-workspace.yaml",
-      "nx.json"
-    ],
-    "importBridge20260331": [
-      "docs/intent/intent-chatgpt-foundry-import-bridge-2026-03-31.md",
-      "docs/plan/work-orders-chatgpt-foundry-import-bridge-2026-03-31.md",
-      "apps/flagship-foundry/packages/import-bridge/project.json",
-      "apps/flagship-foundry/packages/import-bridge/src/cli.mts",
-      "apps/flagship-foundry/packages/import-bridge/src/conflict-detector.mts",
-      "apps/flagship-foundry/packages/import-bridge/src/diff-merge.mts",
-      "docs/handoff/handoff-import-bridge-2026-03-31.md",
-      "docs/adr/adr-import-bridge-schema-codegen.md",
-      "docs/adr/adr-import-bridge-conflict-resolution.md",
-      "Runbooks/import-bridge-operator-guide.md"
+    "releaseDocs": [
+      "apps/flagship-foundry/docs/release/cursor-companion-unified-windowing-release.md"
     ]
   },
+  "nextWorkOrders": [],
+  "verificationPlan": [
+    "Completed: /usr/local/bin/node --test apps/flagship-foundry/tests/browser-popout-contracts.test.mjs apps/flagship-foundry/tests/cursor-companion-browser-popout.test.mjs apps/flagship-foundry/tests/cursor-companion-windowing.test.mjs apps/flagship-foundry/tests/cursor-companion-observability.test.mjs (16/16 passed)"
+  ],
   "doneCriteria": [
-    "M1–M4 work orders delivered per MILESTONE_CHAINED_EXECUTION_PLAN.md",
-    "ADR-009 and ADR-010 accepted with implementation/docs in repo",
-    "ADR-011 accepted; continuity under .foundry/projects/",
-    "wo-001 complete: ADR-011a layout decisions; .foundry/README.md updated",
-    "wo-002 complete: continuity.mjs already .foundry/-only; no schema changes needed",
-    "wo-003 complete: 13 personas at .foundry/personas/, 10 skills at .foundry/skills/, 8 agents at .foundry/agents/",
-    "wo-004 complete: adapter stubs in .cursor/ and .claude/ written to reference .foundry/ base files",
-    "wo-005 complete: catalogs.mjs reads personas from .foundry/personas/; 60/60 tests pass",
-    "wo-006 complete: 21/21 verifier checks passed; 60/60 tests pass; phase closed",
-    "WO-NX-001..005 complete: Nx root scaffold, git mv, workspace wiring, project.json, path/CI/continuity refresh",
-    "WO-NX-006 complete: all gates PASS — 60/60 tests, ci-targeted OK, rg gate clean, nx affected correct",
-    "WO-IB-001..012 complete for import bridge implementation, verification coverage, and release handoff"
+    "WO-UW-001 through WO-UW-005 are implemented and verified.",
+    "Focused verification evidence exists for browser pop-out contracts, browser pop-out behavior, windowing, and observability with 16/16 passing tests.",
+    "Browser pop-out opens as free-floating window connected to active extension host.",
+    "Bidirectional state sync works between webview tab and browser pop-out.",
+    "Browser pop-out renders with consistent dark-theme styling.",
+    "Release documentation captures the completed unified-windowing slice and verification evidence."
   ]
 }

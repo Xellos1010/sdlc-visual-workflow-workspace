@@ -1,0 +1,71 @@
+{
+  "bundleName": "chatgpt-phone-project-bundle",
+  "generatedAt": "2026-04-10T00:00:00Z",
+  "variant": "chatgpt_project_mobile",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 1409
+    },
+    {
+      "path": "project-instructions.md",
+      "size": 3354
+    },
+    {
+      "path": "starter-prompts.md",
+      "size": 1213
+    },
+    {
+      "path": "knowledge-upload-list.md",
+      "size": 797
+    },
+    {
+      "path": "expected-output-contract.md",
+      "size": 871
+    },
+    {
+      "path": "expected-output-schema.json",
+      "size": 3266
+    },
+    {
+      "path": "project-chain-map.md",
+      "size": 350
+    },
+    {
+      "path": "knowledge/01-scoping-doctrine.md",
+      "size": 1502
+    },
+    {
+      "path": "knowledge/02-uiux-artifact-playbook.md",
+      "size": 746
+    },
+    {
+      "path": "knowledge/03-systems-integration-playbook.md",
+      "size": 640
+    },
+    {
+      "path": "knowledge/04-pricing-and-phasing-playbook.md",
+      "size": 624
+    },
+    {
+      "path": "knowledge/05-proposal-output-contract.md",
+      "size": 346
+    },
+    {
+      "path": "templates/project-intake-template.md",
+      "size": 391
+    },
+    {
+      "path": "templates/pitch-proposal-template.md",
+      "size": 331
+    },
+    {
+      "path": "templates/invoice-template.csv",
+      "size": 47
+    },
+    {
+      "path": "templates/release-plan-template.md",
+      "size": 117
+    }
+  ]
+}

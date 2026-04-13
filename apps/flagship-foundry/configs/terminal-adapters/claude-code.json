@@ -4,5 +4,7 @@
   "kind": "terminal-agent",
   "transport": "cli",
   "entrypointTemplate": "claude",
+  "supportsMcp": false,
+  "providerId": "provider:anthropic-cloud",
   "notes": "Map work-order role and evidence expectations into command-line sessions."
 }

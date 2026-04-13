@@ -13,12 +13,14 @@
   "main": "./extension.js",
   "icon": "./media/icon.png",
   "activationEvents": [
+    "onStartupFinished",
     "onCommand:flagshipFoundry.startControlPlane",
     "onCommand:flagshipFoundry.importCurrentWorkspace",
     "onCommand:flagshipFoundry.ingestSeedKnowledge",
     "onCommand:flagshipFoundry.analyzeKnowledgeGaps",
     "onCommand:flagshipFoundry.focusImpactView",
-    "onCommand:flagshipFoundry.openOverlay"
+    "onCommand:flagshipFoundry.openOverlay",
+    "onCommand:flagshipFoundry.showCompanionLog"
   ],
   "contributes": {
     "commands": [
@@ -45,6 +47,10 @@
       {
         "command": "flagshipFoundry.openOverlay",
         "title": "Flagship Foundry: Open Orchestration Overlay"
+      },
+      {
+        "command": "flagshipFoundry.showCompanionLog",
+        "title": "Flagship Foundry: Show Companion Log (Output)"
       }
     ],
     "configuration": {
@@ -85,6 +91,11 @@
           "enum": ["simulate", "execute"],
           "default": "simulate",
           "description": "When starting a run from the overlay: simulate (dry) or execute (local-shell adapter in the control plane)."
+        },
+        "flagshipFoundry.customThemeUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Optional absolute URL for a browser pop-out theme stylesheet loaded after the built-in loopback theme."
         }
       }
     }

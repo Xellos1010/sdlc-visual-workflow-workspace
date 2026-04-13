@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/requirement-refinement-session.schema.json",
+  "title": "Requirement Refinement Session",
+  "type": "object",
+  "required": [
+    "sessionId",
+    "workspaceTargetId",
+    "contextCartId",
+    "objective",
+    "status",
+    "definitionOfReady",
+    "knowledgeGaps",
+    "unresolvedQuestions",
+    "acceptanceCriteria",
+    "risks",
+    "constraints",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "sessionId": {
+      "type": "string"
+    },
+    "workspaceTargetId": {
+      "type": "string"
+    },
+    "contextCartId": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "problemStatement": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stakeholders": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "analyzing",
+        "needs-input",
+        "ready",
+        "archived"
+      ]
+    },
+    "definitionOfReady": {
+      "type": "object",
+      "required": [
+        "status",
+        "checklist",
+        "blockingItems"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "not_ready",
+            "needs_review",
+            "ready"
+          ]
+        },
+        "checklist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "status"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "missing",
+                  "partial",
+                  "met"
+                ]
+              },
+              "notes": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "blockingItems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "knowledgeGaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "severity",
+          "recommendedAction"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "recommendedAction": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "unresolvedQuestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "question",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "answered",
+              "deferred"
+            ]
+          },
+          "answer": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "owner": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "linkedArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

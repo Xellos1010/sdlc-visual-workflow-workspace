@@ -1,0 +1,164 @@
+{
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "name": "cursor-companion",
+  "projectType": "application",
+  "root": "apps/flagship-foundry/apps/cursor-companion",
+  "sourceRoot": "apps/flagship-foundry/apps/cursor-companion",
+  "tags": ["scope:foundry", "type:extension"],
+  "targets": {
+    "dev": {
+      "dependsOn": ["dev-preflight"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Full dev cycle: start control-plane (Docker), launch extension host, tear down on exit.",
+        "technologies": ["docker", "node", "vscode"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh"
+      }
+    },
+    "dev-native": {
+      "dependsOn": ["dev-preflight"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Full dev cycle using native Node (no Docker).",
+        "technologies": ["node", "vscode"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh --native"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Start support services (control-plane) only — no extension host.",
+        "technologies": ["docker"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh --serve-only"
+      }
+    },
+    "serve-native": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Start support services natively (no Docker) — no extension host.",
+        "technologies": ["node"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh --native --serve-only"
+      }
+    },
+    "teardown": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Stop and remove Docker services and volumes for cursor-companion."
+      },
+      "options": {
+        "cwd": "apps/flagship-foundry/apps/cursor-companion",
+        "command": "docker compose down --remove-orphans"
+      }
+    },
+    "teardown-full": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Stop Docker services and remove state volume (clean slate)."
+      },
+      "options": {
+        "cwd": "apps/flagship-foundry/apps/cursor-companion",
+        "command": "docker compose down --remove-orphans --volumes"
+      }
+    },
+    "package": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Package the extension as a .vsix file.",
+        "technologies": ["vscode"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/package.sh"
+      }
+    },
+    "install-extension": {
+      "dependsOn": ["package"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Package and install the extension into VS Code."
+      },
+      "options": {
+        "cwd": "apps/flagship-foundry/apps/cursor-companion",
+        "command": "code --install-extension $(ls -t *.vsix | head -1)"
+      }
+    },
+    "dev-preflight": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Validate prerequisites before dev. Override with real checks as needed."
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "node -e \"const v=process.versions.node.split('.')[0]; if(v<20){console.error('Node 20+ required');process.exit(1)} console.log('Preflight OK: node '+process.version)\""
+      }
+    },
+    "logs": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Tail Docker service logs."
+      },
+      "options": {
+        "cwd": "apps/flagship-foundry/apps/cursor-companion",
+        "command": "docker compose logs -f"
+      }
+    },
+    "watch": {
+      "dependsOn": ["dev-preflight"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Native control-plane (node --watch) + extension change hints; reload Extension Host for .js edits.",
+        "technologies": ["node"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --native"
+      }
+    },
+    "watch-docker": {
+      "dependsOn": ["dev-preflight"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Docker control-plane + debounced container restart on API source changes + extension hints.",
+        "technologies": ["docker", "node"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --docker"
+      }
+    },
+    "watch-serve": {
+      "dependsOn": ["dev-preflight"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Watch mode without launching Extension Host (native API)."
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --native --serve-only"
+      }
+    },
+    "watch-docker-serve": {
+      "dependsOn": ["dev-preflight"],
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Watch mode without Extension Host (Docker API + restarts)."
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --docker --serve-only"
+      }
+    }
+  }
+}

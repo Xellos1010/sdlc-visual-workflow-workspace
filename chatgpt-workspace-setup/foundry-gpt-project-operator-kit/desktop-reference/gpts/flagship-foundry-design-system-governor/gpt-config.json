@@ -1,0 +1,25 @@
+{
+  "name": "Flagship Foundry — Design System Governor",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "design-system-governor",
+  "source_agent_title": "Design System Governor",
+  "read_only": false,
+  "primary_phases": [
+    "implement"
+  ],
+  "recommended_model_hint": "balanced execution-capable model for design system governance",
+  "capabilities_hint": [
+    "Web search optional",
+    "Data analysis recommended"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/uiux-agent-routing.json",
+    "../../shared/knowledge-seeds/uiux-doctrine.md"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

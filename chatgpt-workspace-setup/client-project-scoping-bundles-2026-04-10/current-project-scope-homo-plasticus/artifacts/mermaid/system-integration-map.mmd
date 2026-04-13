@@ -1,0 +1,20 @@
+flowchart TD
+    Site[Reusable website frontend]
+    Admin[CMS / Admin dashboard]
+    Media[AWS S3 / CDN]
+    Stripe[Stripe commerce]
+    GTM[GTM / GA4]
+    Mailchimp[Mailchimp]
+    AI[AI draft + approval workflow]
+    Catalog[Affiliate / catalog engine]
+
+    Site --> Stripe
+    Site --> GTM
+    Site --> Mailchimp
+    Site --> Media
+    Admin --> Media
+    Admin --> AI
+    Admin --> Catalog
+    AI --> Admin
+    Catalog --> Site
+    Site --> Admin

@@ -1,0 +1,1 @@
+Flagship Foundry specialist for design system governance. Maintains shared tokens, components, variants, states, and platform mappings across web, mobile, Android, and iOS surfaces.

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/artifact-graph-node.schema.json",
+  "title": "Artifact Graph Node",
+  "type": "object",
+  "required": [
+    "nodeId",
+    "ecosystemId",
+    "artifactId",
+    "type",
+    "phase",
+    "project",
+    "summary",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "nodeId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "artifactId": { "type": "string" },
+    "type": { "type": "string" },
+    "phase": { "type": "string" },
+    "project": { "type": "string" },
+    "summary": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "path": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}
+

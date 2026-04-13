@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry — Design System Governor Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "tokenMatrix",
+    "componentStates",
+    "consistencyReport"
+  ],
+  "properties": {
+    "tokenMatrix": {
+      "type": "object",
+      "properties": {
+        "colors": { "type": "object" },
+        "typography": { "type": "object" },
+        "spacing": { "type": "object" },
+        "radius": { "type": "object" },
+        "motion": { "type": "object" },
+        "shadows": { "type": "object" },
+        "breakpoints": { "type": "object" }
+      },
+      "additionalProperties": false
+    },
+    "componentStates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "component",
+          "states"
+        ],
+        "properties": {
+          "component": { "type": "string" },
+          "states": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "platforms": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "consistencyReport": {
+      "type": "object",
+      "required": [
+        "issues",
+        "status"
+      ],
+      "properties": {
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "issue",
+              "severity"
+            ],
+            "properties": {
+              "issue": { "type": "string" },
+              "severity": { "type": "string", "enum": ["critical", "major", "minor"] },
+              "remediation": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "status": { "type": "string", "enum": ["CONSISTENT", "DRIFT_DETECTED", "BLOCKED"] }
+      },
+      "additionalProperties": false
+    },
+    "variantRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "rule",
+          "scope"
+        ],
+        "properties": {
+          "rule": { "type": "string" },
+          "scope": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blockersEncountered": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -2,7 +2,9 @@ import http from 'node:http';
 import https from 'node:https';
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { nowIso, makeId } from '../../core/src/io.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -27,6 +29,89 @@ function loadRoutingConfig() {
     );
     return null;
   }
+}
+
+function loadJsonConfig(relativePath, fallback) {
+  try {
+    const raw = fs.readFileSync(path.resolve(__dirname, relativePath), 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return fallback;
+  }
+}
+
+function providerHealthFromRouting(providerName, routingConfig) {
+  const provider = routingConfig?.providers?.[providerName];
+  if (!provider) return { health: 'unknown', configured: false, notes: ['Provider route not configured'] };
+  if (provider.apiKeyEnv && !process.env[provider.apiKeyEnv]) {
+    return { health: 'degraded', configured: false, notes: [`Missing ${provider.apiKeyEnv}`] };
+  }
+  return { health: 'healthy', configured: true, notes: [] };
+}
+
+function buildEmbeddingVector(text, dimensions = 16) {
+  const hash = crypto.createHash('sha256').update(String(text ?? '')).digest();
+  const vector = [];
+  for (let index = 0; index < dimensions; index += 1) {
+    vector.push(Number((hash[index % hash.length] / 255).toFixed(6)));
+  }
+  return vector;
+}
+
+export function buildAdvisoryBudgetSnapshot({ workspaceTargetId, routingConfig = loadRoutingConfig() } = {}) {
+  const providersCatalog = loadJsonConfig('../../../configs/providers/providers.json', { providers: [] });
+  const adapterDir = path.resolve(__dirname, '../../../configs/terminal-adapters');
+  const adapterFiles = fs.existsSync(adapterDir) ? fs.readdirSync(adapterDir).filter((entry) => entry.endsWith('.json')) : [];
+  const adaptersCatalog = adapterFiles.map((entry) => loadJsonConfig(`../../../configs/terminal-adapters/${entry}`, null)).filter(Boolean);
+  const defaultRoute = resolveRoute(routingConfig ?? { providers: {}, defaultProvider: 'unknown', defaultModel: 'unknown' }, null, null);
+
+  return {
+    snapshotId: makeId('budget', workspaceTargetId ?? nowIso()),
+    workspaceTargetId: workspaceTargetId ?? 'target:unknown',
+    advisoryStatus: 'informational',
+    createdAt: nowIso(),
+    usageWindow: {
+      startedAt: nowIso(),
+      endedAt: nowIso()
+    },
+    defaultRoute: {
+      provider: defaultRoute.provider,
+      model: defaultRoute.model,
+      taskClass: null,
+      tier: null,
+      fallbackProvider: defaultRoute.fallbackProvider ?? null
+    },
+    providers: (providersCatalog.providers ?? []).map((provider) => {
+      const routeStatus = providerHealthFromRouting(provider.providerId.replace('provider:', '').replace('-cloud', ''), routingConfig);
+      return {
+        providerId: provider.providerId,
+        displayName: provider.displayName,
+        riskFit: provider.riskFit,
+        health: routeStatus.health,
+        configured: routeStatus.configured,
+        usage: {
+          promptTokens: 0,
+          completionTokens: 0,
+          totalTokens: 0
+        },
+        thresholds: {
+          unit: 'tokens',
+          softLimit: 100000,
+          hardLimit: 200000
+        },
+        notes: [...routeStatus.notes, ...(provider.roles ?? []).map((role) => `role:${role}`)]
+      };
+    }),
+    adapters: adaptersCatalog.map((adapter) => ({
+      adapterId: adapter.id,
+      displayName: adapter.name,
+      transport: adapter.transport,
+      availability: 'available',
+      supportsMcp: adapter.transport === 'mcp-or-cli',
+      notes: [adapter.notes].filter(Boolean)
+    })),
+    connectors: []
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -348,6 +433,29 @@ async function handleChatCompletions(config, req, res) {
   res.end(responseBody);
 }
 
+async function handleEmbeddings(req, res) {
+  const chunks = [];
+  for await (const chunk of req) chunks.push(chunk);
+  const body = JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}');
+  const inputs = Array.isArray(body.input) ? body.input : [body.input ?? ''];
+  const model = body.model ?? 'local-embedding-hash';
+
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify({
+    object: 'list',
+    data: inputs.map((input, index) => ({
+      object: 'embedding',
+      index,
+      embedding: buildEmbeddingVector(input)
+    })),
+    model,
+    usage: {
+      prompt_tokens: inputs.reduce((sum, input) => sum + String(input ?? '').split(/\s+/).filter(Boolean).length, 0),
+      total_tokens: inputs.reduce((sum, input) => sum + String(input ?? '').split(/\s+/).filter(Boolean).length, 0)
+    }
+  }));
+}
+
 async function handleHealth(config) {
   const providerNames = Object.keys(config.providers || {});
   const checks = await Promise.all(
@@ -393,6 +501,11 @@ export function createGatewayServer() {
           return;
         }
         await handleChatCompletions(config, req, res);
+        return;
+      }
+
+      if (req.method === 'POST' && req.url === '/v1/embeddings') {
+        await handleEmbeddings(req, res);
         return;
       }
 

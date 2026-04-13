@@ -71,6 +71,19 @@ test('loopback no-auth requires explicit dev mode plus loopback exception', asyn
   assert.equal(result.reason, 'loopback_no_auth');
 });
 
+test('private IPv4 (e.g. Docker bridge gateway) bypasses auth when dev exception enabled', async () => {
+  const { authorizeRequest } = await loadServerModule({
+    FLAGSHIP_DEV_MODE: '1',
+    FLAGSHIP_ALLOW_LOOPBACK_NO_AUTH: '1',
+    FLAGSHIP_CONTROL_PLANE_BEARER_TOKEN: null
+  });
+  for (const remoteAddress of ['172.17.0.1', '10.0.0.8', '::ffff:172.18.0.1']) {
+    const result = authorizeRequest(buildRequest({ remoteAddress }), '/plans');
+    assert.equal(result.ok, true, remoteAddress);
+    assert.equal(result.reason, 'private_dev_no_auth', remoteAddress);
+  }
+});
+
 test('non-loopback request without bearer token is rejected', async () => {
   const { authorizeRequest } = await loadServerModule();
   const result = authorizeRequest(buildRequest({ remoteAddress: '10.0.0.8' }), '/analysis/gaps');
@@ -84,12 +97,13 @@ test('x-forwarded-for loopback value does not bypass auth', async () => {
     FLAGSHIP_DEV_MODE: '1',
     FLAGSHIP_ALLOW_LOOPBACK_NO_AUTH: '1'
   });
+  // Use a non-RFC1918 socket IP so we only test XFF is ignored (not private-dev bypass).
   const result = authorizeRequest({
     headers: {
       'x-forwarded-for': '127.0.0.1'
     },
     socket: {
-      remoteAddress: '10.0.0.8'
+      remoteAddress: '203.0.113.10'
     }
   }, '/runs/start');
   assert.equal(result.ok, false);

@@ -1,0 +1,3 @@
+- Analyze this feature request for jobs-to-be-done, operator decisions, and friction points. Recommend a style archetype.
+- Translate this change request into a UI/UX intent packet with cognitive load assessment and emotional design targets.
+- What are the top operator tasks, decisions, and failure modes for this interface? Produce a task corpus.

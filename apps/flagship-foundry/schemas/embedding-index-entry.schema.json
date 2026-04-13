@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/embedding-index-entry.schema.json",
+  "title": "Embedding Index Entry",
+  "type": "object",
+  "required": [
+    "entryId",
+    "ecosystemId",
+    "artifactId",
+    "chunkIndex",
+    "chunkText",
+    "artifactType",
+    "phase",
+    "vectorRef",
+    "provenance",
+    "createdAt"
+  ],
+  "properties": {
+    "entryId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "artifactId": { "type": "string" },
+    "chunkIndex": { "type": "integer", "minimum": 0 },
+    "chunkText": { "type": "string" },
+    "artifactType": { "type": "string" },
+    "phase": { "type": "string" },
+    "vectorRef": { "type": "string" },
+    "tokenCount": { "type": "integer", "minimum": 0 },
+    "provenance": {
+      "type": "object",
+      "required": ["sourcePath", "retrievedAt"],
+      "properties": {
+        "sourcePath": { "type": "string" },
+        "sourceArtifactType": { "type": "string" },
+        "retrievedAt": { "type": "string", "format": "date-time" },
+        "sourceAgent": { "type": ["string", "null"] },
+        "sessionId": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
+

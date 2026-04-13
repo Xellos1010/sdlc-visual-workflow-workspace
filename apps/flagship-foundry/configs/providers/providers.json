@@ -14,6 +14,19 @@
       ]
     },
     {
+      "providerId": "provider:codex-cloud",
+      "displayName": "Codex Cloud",
+      "protocol": "openai-native",
+      "transport": "https",
+      "suitableForCritical": true,
+      "riskFit": "critical",
+      "roles": [
+        "reasoning",
+        "implementation",
+        "terminal-agent"
+      ]
+    },
+    {
       "providerId": "provider:anthropic-cloud",
       "displayName": "Anthropic Cloud",
       "protocol": "anthropic-native",
@@ -24,6 +37,18 @@
         "reasoning",
         "policy",
         "verification"
+      ]
+    },
+    {
+      "providerId": "provider:cursor-agent",
+      "displayName": "Cursor Agent Runtime",
+      "protocol": "cursor-agent",
+      "transport": "mcp-or-cli",
+      "suitableForCritical": false,
+      "riskFit": "medium",
+      "roles": [
+        "interactive-analysis",
+        "editor-hosted-execution"
       ]
     },
     {

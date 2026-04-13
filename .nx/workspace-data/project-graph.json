@@ -70,6 +70,262 @@
         "implicitDependencies": []
       }
     },
+    "cursor-companion": {
+      "name": "cursor-companion",
+      "type": "app",
+      "data": {
+        "root": "apps/flagship-foundry/apps/cursor-companion",
+        "name": "cursor-companion",
+        "tags": [
+          "npm:public",
+          "scope:foundry",
+          "type:extension"
+        ],
+        "metadata": {
+          "targetGroups": {},
+          "description": "Cursor and VS Code companion for importing workspaces, ingesting knowledge, approving plans, and controlling agent runs.",
+          "js": {
+            "packageName": "flagship-foundry-cursor-companion",
+            "packageMain": "./extension.js",
+            "isInPackageManagerWorkspaces": false
+          }
+        },
+        "targets": {
+          "nx-release-publish": {
+            "executor": "@nx/js:release-publish",
+            "dependsOn": [
+              "^nx-release-publish"
+            ],
+            "options": {},
+            "configurations": {},
+            "parallelism": true
+          },
+          "dev": {
+            "dependsOn": [
+              "dev-preflight"
+            ],
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Full dev cycle: start control-plane (Docker), launch extension host, tear down on exit.",
+              "technologies": [
+                "docker",
+                "node",
+                "vscode"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "dev-native": {
+            "dependsOn": [
+              "dev-preflight"
+            ],
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Full dev cycle using native Node (no Docker).",
+              "technologies": [
+                "node",
+                "vscode"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh --native"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Start support services (control-plane) only — no extension host.",
+              "technologies": [
+                "docker"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh --serve-only"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "serve-native": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Start support services natively (no Docker) — no extension host.",
+              "technologies": [
+                "node"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/dev.sh --native --serve-only"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "teardown": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Stop and remove Docker services and volumes for cursor-companion."
+            },
+            "options": {
+              "cwd": "apps/flagship-foundry/apps/cursor-companion",
+              "command": "docker compose down --remove-orphans"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "teardown-full": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Stop Docker services and remove state volume (clean slate)."
+            },
+            "options": {
+              "cwd": "apps/flagship-foundry/apps/cursor-companion",
+              "command": "docker compose down --remove-orphans --volumes"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "package": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Package the extension as a .vsix file.",
+              "technologies": [
+                "vscode"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/package.sh"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "install-extension": {
+            "dependsOn": [
+              "package"
+            ],
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Package and install the extension into VS Code."
+            },
+            "options": {
+              "cwd": "apps/flagship-foundry/apps/cursor-companion",
+              "command": "code --install-extension $(ls -t *.vsix | head -1)"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "dev-preflight": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Validate prerequisites before dev. Override with real checks as needed."
+            },
+            "options": {
+              "cwd": "",
+              "command": "node -e \"const v=process.versions.node.split('.')[0]; if(v<20){console.error('Node 20+ required');process.exit(1)} console.log('Preflight OK: node '+process.version)\""
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "logs": {
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Tail Docker service logs."
+            },
+            "options": {
+              "cwd": "apps/flagship-foundry/apps/cursor-companion",
+              "command": "docker compose logs -f"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "watch": {
+            "dependsOn": [
+              "dev-preflight"
+            ],
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Native control-plane (node --watch) + extension change hints; reload Extension Host for .js edits.",
+              "technologies": [
+                "node"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --native"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "watch-docker": {
+            "dependsOn": [
+              "dev-preflight"
+            ],
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Docker control-plane + debounced container restart on API source changes + extension hints.",
+              "technologies": [
+                "docker",
+                "node"
+              ]
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --docker"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "watch-serve": {
+            "dependsOn": [
+              "dev-preflight"
+            ],
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Watch mode without launching Extension Host (native API)."
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --native --serve-only"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "watch-docker-serve": {
+            "dependsOn": [
+              "dev-preflight"
+            ],
+            "executor": "nx:run-commands",
+            "metadata": {
+              "description": "Watch mode without Extension Host (Docker API + restarts)."
+            },
+            "options": {
+              "cwd": "",
+              "command": "bash apps/flagship-foundry/apps/cursor-companion/scripts/watch-dev.sh --docker --serve-only"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          }
+        },
+        "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+        "projectType": "application",
+        "sourceRoot": "apps/flagship-foundry/apps/cursor-companion",
+        "implicitDependencies": []
+      }
+    },
     "flagship-foundry": {
       "name": "flagship-foundry",
       "type": "app",
@@ -97,7 +353,16 @@
               "knowledge:sample",
               "gap:sample",
               "focus:sample",
-              "bootstrap:full-sample"
+              "bootstrap:full-sample",
+              "companion:dev",
+              "companion:dev:native",
+              "companion:serve",
+              "companion:teardown",
+              "companion:package",
+              "companion:watch",
+              "companion:watch:docker",
+              "companion:watch:serve",
+              "companion:watch:docker:serve"
             ]
           },
           "description": "Graph-native SDLC control plane, workspace importer, and Cursor companion for human plus AI orchestration.",
@@ -275,6 +540,121 @@
             },
             "configurations": {},
             "parallelism": true
+          },
+          "companion:dev": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:dev"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/dev.sh",
+              "runCommand": "pnpm run companion:dev"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "companion:dev:native": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:dev:native"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/dev.sh --native",
+              "runCommand": "pnpm run companion:dev:native"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "companion:serve": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:serve"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/dev.sh --serve-only",
+              "runCommand": "pnpm run companion:serve"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "companion:teardown": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:teardown"
+            },
+            "metadata": {
+              "scriptContent": "docker compose -f apps/cursor-companion/docker-compose.yml down --remove-orphans",
+              "runCommand": "pnpm run companion:teardown"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "companion:package": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:package"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/package.sh",
+              "runCommand": "pnpm run companion:package"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "companion:watch": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:watch"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/watch-dev.sh --native",
+              "runCommand": "pnpm run companion:watch"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "companion:watch:docker": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:watch:docker"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/watch-dev.sh --docker",
+              "runCommand": "pnpm run companion:watch:docker"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "companion:watch:serve": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:watch:serve"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/watch-dev.sh --native --serve-only",
+              "runCommand": "pnpm run companion:watch:serve"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          },
+          "companion:watch:docker:serve": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "companion:watch:docker:serve"
+            },
+            "metadata": {
+              "scriptContent": "bash apps/cursor-companion/scripts/watch-dev.sh --docker --serve-only",
+              "runCommand": "pnpm run companion:watch:docker:serve"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
           },
           "ci-targeted": {
             "executor": "nx:run-script",
@@ -1636,6 +2016,7 @@
   },
   "dependencies": {
     "import-bridge": [],
+    "cursor-companion": [],
     "flagship-foundry": [],
     "ai-context": [],
     "platform-dev": [],
@@ -2627,5 +3008,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1775067992425
+  "computedAt": 1776039982436
 }

@@ -133,6 +133,10 @@ function normalizeTelemetryReferences(telemetryReferences, correlation) {
 async function persistRun(run) {
   const paths = await resolveRunPaths(run.id);
   if (!paths.ecosystemId) {
+    if (!run.ecosystemId) {
+      await writeJson(legacyRunPath(run.id), run);
+      return;
+    }
     // Newly created run — write to ecosystem-scoped path and register in index
     const location = runLocation(run.status);
     const detailPath = ecoscopedRunPath(run.id, run.ecosystemId, location);

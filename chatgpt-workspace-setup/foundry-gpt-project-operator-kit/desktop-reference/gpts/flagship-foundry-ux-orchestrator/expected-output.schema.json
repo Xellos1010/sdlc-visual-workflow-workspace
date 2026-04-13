@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry — UX Orchestrator Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "phaseDecision",
+    "agentAssignments",
+    "dorStatus"
+  ],
+  "properties": {
+    "phaseDecision": {
+      "type": "object",
+      "required": [
+        "currentPhase",
+        "nextPhase",
+        "rationale"
+      ],
+      "properties": {
+        "currentPhase": { "type": "string" },
+        "nextPhase": { "type": "string" },
+        "rationale": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "agentAssignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "agentId",
+          "task"
+        ],
+        "properties": {
+          "agentId": { "type": "string" },
+          "task": { "type": "string" },
+          "inputs": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "dorStatus": {
+      "type": "object",
+      "required": [
+        "met",
+        "missing"
+      ],
+      "properties": {
+        "met": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "missing": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "handoffPacket": {
+      "type": "object"
+    },
+    "blockersEncountered": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

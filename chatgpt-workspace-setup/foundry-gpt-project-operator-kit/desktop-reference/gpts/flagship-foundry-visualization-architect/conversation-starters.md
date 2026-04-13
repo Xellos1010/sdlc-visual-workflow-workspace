@@ -1,0 +1,3 @@
+- Design the view registry for this object model: which operator questions map to which views?
+- Compose the cockpit shell layout with peer view switching and saved layouts.
+- Specify graph-native navigation: node interaction, edge semantics, overlays, minimap, and compare mode.

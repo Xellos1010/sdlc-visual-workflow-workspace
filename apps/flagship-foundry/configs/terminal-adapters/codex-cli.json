@@ -4,5 +4,7 @@
   "kind": "terminal-agent",
   "transport": "cli",
   "entrypointTemplate": "codex",
+  "supportsMcp": false,
+  "providerId": "provider:codex-cloud",
   "notes": "Translate work orders into deterministic prompt plus file-scope envelopes."
 }

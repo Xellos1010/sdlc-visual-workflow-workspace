@@ -1,0 +1,26 @@
+{
+  "name": "Flagship Foundry — UI Intent Analyst",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "ui-intent-analyst",
+  "source_agent_title": "UI Intent Analyst",
+  "read_only": false,
+  "primary_phases": [
+    "discover",
+    "define"
+  ],
+  "recommended_model_hint": "frontier reasoning model for intent analysis and psychology application",
+  "capabilities_hint": [
+    "Web search recommended",
+    "Data analysis recommended"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/uiux-agent-routing.json",
+    "../../shared/knowledge-seeds/uiux-doctrine.md"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

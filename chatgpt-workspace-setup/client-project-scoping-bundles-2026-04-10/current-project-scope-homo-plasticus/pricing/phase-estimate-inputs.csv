@@ -1,0 +1,5 @@
+Phase,Workstream,Est. Hours Low,Est. Hours High,Market Blended Rate,Offer Blended Rate,Market Range Low,Market Range High,Offer Range Low,Offer Range High
+Phase 0,Style sprint / 3 iterations,8,14,110,85,,,,
+Phase 1,Base launch site + SEO + analytics + storefront,36,52,100,78,,,,
+Phase 2,CMS + blog + approval workflow foundation,48,72,105,82,,,,
+Phase 3,Affiliate + catalog + advanced integrations,55,88,110,88,,,,

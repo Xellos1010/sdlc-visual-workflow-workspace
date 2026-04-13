@@ -1,0 +1,23 @@
+{
+  "standard_market": [
+    {
+      "phase": "Phase 1",
+      "range_low": 0,
+      "range_high": 0
+    }
+  ],
+  "recommended_offer": [
+    {
+      "phase": "Phase 1",
+      "range_low": 0,
+      "range_high": 0
+    }
+  ],
+  "invoice": [
+    {
+      "phase": "Phase 1",
+      "deliverable": "...",
+      "subtotal": 0
+    }
+  ]
+}

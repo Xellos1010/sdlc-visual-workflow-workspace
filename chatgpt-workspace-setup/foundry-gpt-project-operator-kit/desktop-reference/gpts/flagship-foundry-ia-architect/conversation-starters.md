@@ -1,0 +1,3 @@
+- Define the first-class objects and state authority matrix for this system.
+- Map operator questions to view types and design the drill-down chain.
+- Produce the information architecture: object model, view registry, screen map, and ADR drafts.

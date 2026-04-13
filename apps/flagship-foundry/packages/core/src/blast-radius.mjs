@@ -28,11 +28,45 @@ export function findSeedNodes(graph, query) {
   });
 }
 
+function scoreNodeForQuery(node, lowered, tokens) {
+  const haystacks = [
+    node.id,
+    node.name,
+    node.properties?.path,
+    node.properties?.summary,
+    node.properties?.projectType,
+    ...(node.tags ?? []),
+    ...(node.properties?.capabilityIds ?? []),
+    ...(node.properties?.platformIds ?? []),
+    ...(node.properties?.frameworkIds ?? []),
+    ...(node.properties?.targets ?? []),
+    ...(node.properties?.verificationCommands ?? [])
+  ]
+    .filter(Boolean)
+    .map((value) => String(value).toLowerCase());
+
+  let score = 0;
+  if (lowered && haystacks.some((value) => value.includes(lowered))) score += 8;
+  const matchedTokens = tokens.filter((token) => haystacks.some((value) => value.includes(token)));
+  score += matchedTokens.length * 2;
+
+  const surfaceTokens = ['service', 'worker', 'sidepanel', 'popup', 'content', 'storage', 'messaging', 'automation', 'chrome', 'extension', 'nx'];
+  if (surfaceTokens.some((token) => lowered.includes(token))) {
+    if ((node.properties?.platformIds ?? []).includes('platform:chrome-extension-mv3')) score += 4;
+    if ((node.properties?.capabilityIds ?? []).some((capability) => /service-worker|sidepanel|storage|messaging|content|popup/.test(capability))) score += 3;
+    if ((node.properties?.path ?? '').includes('chrome-extensions')) score += 2;
+  }
+
+  return { score, matchedTokens };
+}
+
 export function analyzeBlastRadius(graph, queryOrNodeIds) {
   const index = indexGraph(graph);
   const seedNodes = Array.isArray(queryOrNodeIds)
     ? queryOrNodeIds.map((id) => index.nodesById.get(id)).filter(Boolean)
     : findSeedNodes(graph, queryOrNodeIds);
+  const lowered = String(queryOrNodeIds ?? '').toLowerCase().trim();
+  const tokens = lowered.split(/[^a-z0-9]+/).filter((token) => token.length >= 3);
 
   const scored = new Map();
 
@@ -58,6 +92,27 @@ export function analyzeBlastRadius(graph, queryOrNodeIds) {
     }
     for (const edge of index.incoming.get(seed.id) ?? []) {
       push(index.nodesById.get(edge.source), scoreReason(5, `incoming dependency via ${edge.type}`, edge.id));
+    }
+  }
+
+  if (seedNodes.length === 0) {
+    const fallback = graph.nodes
+      .map((node) => ({ node, ...scoreNodeForQuery(node, lowered, tokens) }))
+      .filter((entry) => entry.score > 0)
+      .sort((left, right) => right.score - left.score)
+      .slice(0, 3);
+    for (const entry of fallback) {
+      push(entry.node, scoreReason(Math.max(1, entry.score), 'fallback query match'));
+      for (const edge of index.outgoing.get(entry.node.id) ?? []) {
+        push(index.nodesById.get(edge.target), scoreReason(4, `fallback outgoing dependency via ${edge.type}`, edge.id));
+      }
+    }
+  }
+
+  if (scored.size === 0) {
+    const firstProject = graph.nodes.find((node) => node.type === 'project');
+    if (firstProject) {
+      push(firstProject, scoreReason(1, 'workspace project fallback'));
     }
   }
 

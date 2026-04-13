@@ -1,0 +1,33 @@
+{
+  "name": "Flagship Foundry — UX Orchestrator",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "ux-orchestrator",
+  "source_agent_title": "UX Orchestrator",
+  "read_only": false,
+  "primary_phases": [
+    "discover",
+    "define",
+    "visualize",
+    "architect",
+    "plan",
+    "implement",
+    "verify",
+    "release"
+  ],
+  "recommended_model_hint": "frontier reasoning model for coordination and phase routing",
+  "capabilities_hint": [
+    "Web search recommended",
+    "Data analysis recommended"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/uiux-agent-routing.json",
+    "../../shared/routing/uiux-skill-routing-criteria.md",
+    "../../shared/knowledge-seeds/uiux-doctrine.md"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

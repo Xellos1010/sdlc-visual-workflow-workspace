@@ -4,5 +4,7 @@
   "kind": "terminal-agent",
   "transport": "cli",
   "entrypointTemplate": "gemini",
+  "supportsMcp": false,
+  "providerId": "provider:gemini-cloud",
   "notes": "Use the same work-order schema with Gemini-specific invocation wrappers."
 }

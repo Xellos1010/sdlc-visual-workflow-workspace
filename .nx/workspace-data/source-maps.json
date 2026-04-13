@@ -1,4 +1,618 @@
 {
+  "apps/flagship-foundry/apps/cursor-companion": {
+    "root": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "name": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "tags": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:public": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageName": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageMain": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "targets": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.nx-release-publish.options": [
+      "apps/flagship-foundry/apps/cursor-companion/package.json",
+      "nx/core/package-json"
+    ],
+    "$schema": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "projectType": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "sourceRoot": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.scope:foundry": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "tags.type:extension": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.metadata.technologies": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.metadata.technologies.0": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.metadata.technologies.1": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.metadata.technologies.2": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.metadata.technologies": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.metadata.technologies.0": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-native.metadata.technologies.1": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.metadata.technologies": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve.metadata.technologies.0": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.metadata.technologies": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.serve-native.metadata.technologies.0": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown-full": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown-full.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown-full.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown-full.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown-full.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown-full.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.teardown-full.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.metadata.technologies": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.package.metadata.technologies.0": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.install-extension.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-preflight": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-preflight.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-preflight.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-preflight.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-preflight.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-preflight.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev-preflight.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.logs": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.logs.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.logs.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.logs.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.logs.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.logs.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.logs.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.metadata.technologies": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch.metadata.technologies.0": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.metadata.technologies": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.metadata.technologies.0": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker.metadata.technologies.1": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-serve.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve.dependsOn": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve.executor": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve.metadata": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve.options": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve.options.cwd": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve.options.command": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.watch-docker-serve.metadata.description": [
+      "apps/flagship-foundry/apps/cursor-companion/project.json",
+      "nx/core/project-json"
+    ],
+    "targets.dev.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.dev.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch-docker.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch-docker.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch-serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch-serve.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch-docker-serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.watch-docker-serve.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ]
+  },
   "apps/flagship-foundry": {
     "root": [
       "apps/flagship-foundry/project.json",
@@ -77,6 +691,42 @@
       "nx/core/package-json"
     ],
     "metadata.targetGroups.NPM Scripts.13": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.14": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.15": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.16": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.17": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.18": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.19": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.20": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.21": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.22": [
       "apps/flagship-foundry/package.json",
       "nx/core/package-json"
     ],
@@ -492,6 +1142,258 @@
       "apps/flagship-foundry/package.json",
       "nx/core/package-json"
     ],
+    "targets.companion:dev": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev:native": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev:native.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev:native.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev:native.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev:native.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev:native.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:dev:native.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:serve": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:serve.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:serve.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:serve.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:serve.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:serve.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:serve.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:teardown": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:teardown.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:teardown.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:teardown.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:teardown.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:teardown.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:teardown.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:package": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:package.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:package.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:package.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:package.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:package.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:package.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:serve": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:serve.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:serve.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:serve.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:serve.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:serve.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:serve.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker:serve": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker:serve.executor": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker:serve.options": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker:serve.metadata": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker:serve.options.script": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker:serve.metadata.scriptContent": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.companion:watch:docker:serve.metadata.runCommand": [
+      "apps/flagship-foundry/package.json",
+      "nx/core/package-json"
+    ],
     "$schema": [
       "apps/flagship-foundry/project.json",
       "nx/core/project-json"
@@ -537,6 +1439,62 @@
       "nx/target-defaults"
     ],
     "targets.test.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:dev.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:dev.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:dev:native.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:dev:native.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:serve.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch:docker.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch:docker.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch:serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch:serve.parallelism": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch:docker:serve.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.companion:watch:docker:serve.parallelism": [
       "nx.json",
       "nx/target-defaults"
     ],

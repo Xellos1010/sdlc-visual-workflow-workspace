@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry — Accessibility Reviewer Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "accessibilityFindings",
+    "platformFitReport",
+    "releaseRecommendation"
+  ],
+  "properties": {
+    "accessibilityFindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "finding",
+          "severity",
+          "category"
+        ],
+        "properties": {
+          "finding": { "type": "string" },
+          "severity": { "type": "string", "enum": ["critical", "major", "minor"] },
+          "category": { "type": "string" },
+          "element": { "type": "string" },
+          "remediation": { "type": "string" },
+          "wcagCriterion": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "platformFitReport": {
+      "type": "object",
+      "properties": {
+        "web": { "type": "string" },
+        "ios": { "type": "string" },
+        "android": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "releaseRecommendation": {
+      "type": "string",
+      "enum": ["PASS", "CONDITIONAL_PASS", "FAIL"]
+    },
+    "blockingIssues": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "blockersEncountered": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

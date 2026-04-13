@@ -21,7 +21,20 @@ import { buildLayeredPlanningContext } from '../../../packages/core/src/knowledg
 import { loadDebate, appendDebateRound } from '../../../packages/core/src/debate-store.mjs';
 import { assembleEvidenceBundle } from '../../../packages/core/src/evidence-bundle.mjs';
 import { traceForwardFromNode, traceBackwardToNode, traceFileHeuristic } from '../../../packages/core/src/traceability.mjs';
+import { buildArtifactGraph, loadArtifactGraph, rebuildArtifactGraph, queryConnected, queryLifecycleTrace, selectSubgraph } from '../../../packages/core/src/artifact-graph.mjs';
+import { indexArtifact, indexEcosystem } from '../../../packages/core/src/embedding-pipeline.mjs';
+import { buildRagStatus, retrieve } from '../../../packages/core/src/retrieval-engine.mjs';
+import { packageExport, importExportPackage } from '../../../packages/core/src/export-packager.mjs';
+import { composePipeline } from '../../../packages/core/src/pipeline-composer.mjs';
+import { dispatchPipeline, loadPipeline, listPipelines } from '../../../packages/core/src/stage-dispatcher.mjs';
 import { detectEnvironmentArtifacts } from '../../../packages/core/src/environment-detect.mjs';
+import { chooseWorkspaceTarget, loadWorkspaceTarget, resolveWorkspaceCandidates, saveWorkspaceTarget } from '../../../packages/core/src/workspace-targets.mjs';
+import { addContextCartItem, createContextCart, listContextCarts, loadContextCart, saveContextCart } from '../../../packages/core/src/context-cart.mjs';
+import { canGeneratePlanFromRefinement, createRefinementSession, listRefinementSessions, loadRefinementSession, saveRefinementSession } from '../../../packages/core/src/requirement-refinement.mjs';
+import { buildVisualArtifact, listVisualArtifacts, loadVisualArtifact, saveVisualArtifact } from '../../../packages/core/src/visual-artifacts.mjs';
+import { buildAdvisoryBudgetSnapshot } from '../../../packages/model-gateway/src/gateway.mjs';
+import { buildExecutionSessionBoard } from '../../../packages/core/src/session-projection.mjs';
+import { projectPlanForBoard } from '../../../packages/core/src/plans.mjs';
 
 const port = Number(process.env.FLAGSHIP_PORT ?? 4010);
 const serverFile = fileURLToPath(import.meta.url);
@@ -56,6 +69,16 @@ const criticalWriteEndpoints = [
   /^\/runs\/[^/]+\/(pause|resume|stop|start)$/,
   /^\/runs\/[^/]+\/ralph-sync$/,
   /^\/graph\/patch$/,
+  /^\/ecosystems\/[^/]+\/graph\/rebuild$/,
+  /^\/ecosystems\/[^/]+\/graph\/query$/,
+  /^\/ecosystems\/[^/]+\/rag\/index$/,
+  /^\/ecosystems\/[^/]+\/rag\/query$/,
+  /^\/ecosystems\/[^/]+\/export$/,
+  /^\/ecosystems\/[^/]+\/import$/,
+  /^\/pipelines\/create$/,
+  /^\/pipelines\/[^/]+\/launch$/,
+  /^\/pipelines\/[^/]+\/pause$/,
+  /^\/pipelines\/[^/]+\/resume$/,
   /^\/environments\/scaffold$/,
   /^\/swarm\/orchestration-stub$/,
   /^\/plans\/[^/]+\/debate$/,
@@ -119,6 +142,31 @@ function isLoopbackAddress(address) {
     || address === '::ffff:127.0.0.1';
 }
 
+function stripIpv4MappedPrefix(address) {
+  if (!address.startsWith('::ffff:')) {
+    return address;
+  }
+  return address.slice(7);
+}
+
+/**
+ * RFC 1918 private IPv4 (supports IPv4-mapped IPv6). Host traffic to a published Docker port
+ * appears as the bridge gateway (e.g. 172.17.0.1), not loopback, so the extension would otherwise
+ * hit `auth_not_configured` with FLAGSHIP_ALLOW_LOOPBACK_NO_AUTH alone.
+ */
+function isPrivateIpv4Address(address) {
+  const ip = stripIpv4MappedPrefix(address);
+  const match = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/.exec(ip);
+  if (!match) return false;
+  const octets = match.slice(1, 5).map((value) => Number(value));
+  if (octets.some((value) => Number.isNaN(value) || value > 255)) return false;
+  const [a, b] = octets;
+  if (a === 10) return true;
+  if (a === 172 && b >= 16 && b <= 31) return true;
+  if (a === 192 && b === 168) return true;
+  return false;
+}
+
 function parseBearerToken(request) {
   const authHeader = request.headers.authorization;
   if (!authHeader || typeof authHeader !== 'string') return null;
@@ -128,8 +176,13 @@ function parseBearerToken(request) {
 
 export function authorizeRequest(request, pathname) {
   const clientIp = getClientIp(request, { trustForwardedFor: false });
-  if (allowLoopbackNoAuth && isLoopbackAddress(clientIp)) {
-    return { ok: true, reason: 'loopback_no_auth' };
+  if (allowLoopbackNoAuth) {
+    if (isLoopbackAddress(clientIp)) {
+      return { ok: true, reason: 'loopback_no_auth' };
+    }
+    if (isPrivateIpv4Address(clientIp)) {
+      return { ok: true, reason: 'private_dev_no_auth' };
+    }
   }
   if (tokenRegistry.length === 0) {
     return { ok: false, statusCode: 503, error: 'auth_not_configured' };
@@ -207,6 +260,46 @@ function validateCriticalPayload(pathname, body) {
       return 'ecosystemId and patches[] are required';
     }
   }
+  if (/^\/ecosystems\/[^/]+\/graph\/query$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string' || !Array.isArray(body.startNodeIds)) {
+      return 'ecosystemId and startNodeIds[] are required';
+    }
+  }
+  if (/^\/ecosystems\/[^/]+\/graph\/rebuild$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string') {
+      return 'ecosystemId is required';
+    }
+  }
+  if (/^\/ecosystems\/[^/]+\/rag\/index$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string') {
+      return 'ecosystemId is required';
+    }
+  }
+  if (/^\/ecosystems\/[^/]+\/rag\/query$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string' || typeof body.query !== 'string') {
+      return 'ecosystemId and query are required';
+    }
+  }
+  if (/^\/ecosystems\/[^/]+\/export$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string') {
+      return 'ecosystemId is required';
+    }
+  }
+  if (/^\/ecosystems\/[^/]+\/import$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string') {
+      return 'ecosystemId is required';
+    }
+  }
+  if (/^\/pipelines\/create$/.test(pathname)) {
+    if (!body || typeof body.pipelineId !== 'string' || typeof body.ecosystemId !== 'string' || !Array.isArray(body.stages)) {
+      return 'pipelineId, ecosystemId, and stages[] are required';
+    }
+  }
+  if (/^\/pipelines\/[^/]+\/(launch|pause|resume)$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string') {
+      return 'ecosystemId is required';
+    }
+  }
   if (/^\/projects\/[^/]+\/transition$/.test(pathname)) {
     if (!body || typeof body.phase !== 'string' || !body.phase.trim()) {
       return 'phase is required';
@@ -215,6 +308,11 @@ function validateCriticalPayload(pathname, body) {
   if (/^\/planning\/create$/.test(pathname)) {
     if (!body || typeof body.objective !== 'string' || !body.objective.trim()) {
       return 'objective is required';
+    }
+  }
+  if (/^\/operator\/workspace-target$/.test(pathname)) {
+    if (!body || typeof body.ecosystemId !== 'string' || !Array.isArray(body.workspaceFolders)) {
+      return 'ecosystemId and workspaceFolders[] are required';
     }
   }
   return null;
@@ -316,6 +414,18 @@ async function handler(request, response) {
     return;
   }
 
+  // Unauthenticated: callers are often Docker/K8s or host port-forward (not loopback inside the container).
+  if (request.method === 'GET' && pathname === '/health') {
+    sendJson(response, 200, {
+      ok: true,
+      service: 'flagship-foundry-control-plane',
+      port,
+      repoRoot,
+      timestamp: new Date().toISOString()
+    }, allowedOrigin);
+    return;
+  }
+
   const authorization = authorizeRequest(request, pathname);
   if (!authorization.ok) {
     sendJson(response, authorization.statusCode, {
@@ -337,17 +447,6 @@ async function handler(request, response) {
   const url = new URL(request.url, `http://${request.headers.host ?? 'localhost'}`);
 
   try {
-    if (request.method === 'GET' && pathname === '/health') {
-      sendJson(response, 200, {
-        ok: true,
-        service: 'flagship-foundry-control-plane',
-        port,
-        repoRoot,
-        timestamp: new Date().toISOString()
-      }, allowedOrigin);
-      return;
-    }
-
     if (request.method === 'GET' && pathname === '/catalogs') {
       sendJson(response, 200, await loadCatalogs(), allowedOrigin);
       return;
@@ -411,7 +510,179 @@ async function handler(request, response) {
 
     const graphMatch = pathname.match(/^\/ecosystems\/([^/]+)\/graph$/);
     if (request.method === 'GET' && graphMatch) {
-      sendJson(response, 200, await loadGraph(graphMatch[1], graphMatch[1]), allowedOrigin);
+      sendJson(response, 200, await loadArtifactGraph(graphMatch[1]), allowedOrigin);
+      return;
+    }
+
+    const graphRebuildMatch = pathname.match(/^\/ecosystems\/([^/]+)\/graph\/rebuild$/);
+    if (request.method === 'POST' && graphRebuildMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      sendJson(response, 200, await rebuildArtifactGraph(graphRebuildMatch[1], { ecosystemName: body.ecosystemName ?? graphRebuildMatch[1] }), allowedOrigin);
+      return;
+    }
+
+    const graphQueryMatch = pathname.match(/^\/ecosystems\/([^/]+)\/graph\/query$/);
+    if (request.method === 'POST' && graphQueryMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      const graph = await loadArtifactGraph(graphQueryMatch[1]);
+      const result = body.queryType === 'lifecycle-trace'
+        ? queryLifecycleTrace(graph, body.featureId ?? body.query ?? graphQueryMatch[1])
+        : body.subgraphNodeIds?.length
+          ? selectSubgraph(graph, body.subgraphNodeIds)
+          : queryConnected(graph, body.startNodeIds, body);
+      sendJson(response, 200, result, allowedOrigin);
+      return;
+    }
+
+    const ragIndexMatch = pathname.match(/^\/ecosystems\/([^/]+)\/rag\/index$/);
+    if (request.method === 'POST' && ragIndexMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      sendJson(response, 200, await indexEcosystem(ragIndexMatch[1], body), allowedOrigin);
+      return;
+    }
+
+    const ragQueryMatch = pathname.match(/^\/ecosystems\/([^/]+)\/rag\/query$/);
+    if (request.method === 'POST' && ragQueryMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      sendJson(response, 200, await retrieve(ragQueryMatch[1], body), allowedOrigin);
+      return;
+    }
+
+    const ragStatusMatch = pathname.match(/^\/ecosystems\/([^/]+)\/rag\/status$/);
+    if (request.method === 'GET' && ragStatusMatch) {
+      sendJson(response, 200, await buildRagStatus(ragStatusMatch[1]), allowedOrigin);
+      return;
+    }
+
+    const exportMatch = pathname.match(/^\/ecosystems\/([^/]+)\/export$/);
+    if (request.method === 'POST' && exportMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      sendJson(response, 200, await packageExport(exportMatch[1], body.selection ?? body, body), allowedOrigin);
+      return;
+    }
+
+    const importMatch = pathname.match(/^\/ecosystems\/([^/]+)\/import$/);
+    if (request.method === 'POST' && importMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      sendJson(response, 200, await importExportPackage(importMatch[1], body.archive ?? body, body), allowedOrigin);
+      return;
+    }
+
+    const pipelineCreateMatch = pathname.match(/^\/pipelines\/create$/);
+    if (request.method === 'POST' && pipelineCreateMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      const pipeline = composePipeline(body);
+      const dir = path.join(stateRoot, 'ecosystems', pipeline.ecosystemId, 'pipelines');
+      await fs.mkdir(dir, { recursive: true });
+      await fs.writeFile(path.join(dir, `${pipeline.pipelineId.replace(/[:/]+/g, '-')}.json`), `${JSON.stringify(pipeline, null, 2)}\n`, 'utf8');
+      sendJson(response, 201, pipeline, allowedOrigin);
+      return;
+    }
+
+    const pipelineLaunchMatch = pathname.match(/^\/pipelines\/([^/]+)\/launch$/);
+    if (request.method === 'POST' && pipelineLaunchMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      const pipelineId = pipelineLaunchMatch[1];
+      const pipeline = await loadPipeline(body.ecosystemId, pipelineId);
+      if (!pipeline) {
+        sendJson(response, 404, { error: 'pipeline_not_found' }, allowedOrigin);
+        return;
+      }
+      const result = await dispatchPipeline(pipeline, body);
+      sendJson(response, 200, result, allowedOrigin);
+      return;
+    }
+
+    const pipelineStatusMatch = pathname.match(/^\/pipelines\/([^/]+)\/status$/);
+    if (request.method === 'GET' && pipelineStatusMatch) {
+      const ecosystemId = url.searchParams.get('ecosystemId');
+      if (!ecosystemId) {
+        sendJson(response, 400, { error: 'ecosystemId query required' }, allowedOrigin);
+        return;
+      }
+      sendJson(response, 200, await loadPipeline(ecosystemId, pipelineStatusMatch[1]), allowedOrigin);
+      return;
+    }
+
+    const pipelinePauseMatch = pathname.match(/^\/pipelines\/([^/]+)\/pause$/);
+    if (request.method === 'POST' && pipelinePauseMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      const state = await loadPipeline(body.ecosystemId, pipelinePauseMatch[1]);
+      if (!state) {
+        sendJson(response, 404, { error: 'pipeline_not_found' }, allowedOrigin);
+        return;
+      }
+      state.status = 'paused';
+      state.updatedAt = nowIso();
+      await fs.mkdir(path.join(stateRoot, 'ecosystems', body.ecosystemId, 'pipelines'), { recursive: true });
+      await fs.writeFile(path.join(stateRoot, 'ecosystems', body.ecosystemId, 'pipelines', `${pipelinePauseMatch[1].replace(/[:/]+/g, '-')}.json`), `${JSON.stringify(state, null, 2)}\n`, 'utf8');
+      sendJson(response, 200, state, allowedOrigin);
+      return;
+    }
+
+    const pipelineResumeMatch = pathname.match(/^\/pipelines\/([^/]+)\/resume$/);
+    if (request.method === 'POST' && pipelineResumeMatch) {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      const state = await loadPipeline(body.ecosystemId, pipelineResumeMatch[1]);
+      if (!state) {
+        sendJson(response, 404, { error: 'pipeline_not_found' }, allowedOrigin);
+        return;
+      }
+      state.status = 'running';
+      state.updatedAt = nowIso();
+      await fs.mkdir(path.join(stateRoot, 'ecosystems', body.ecosystemId, 'pipelines'), { recursive: true });
+      await fs.writeFile(path.join(stateRoot, 'ecosystems', body.ecosystemId, 'pipelines', `${pipelineResumeMatch[1].replace(/[:/]+/g, '-')}.json`), `${JSON.stringify(state, null, 2)}\n`, 'utf8');
+      sendJson(response, 200, state, allowedOrigin);
       return;
     }
 
@@ -478,6 +749,136 @@ async function handler(request, response) {
       }
       const plan = await withTimeout(createPlan(body), criticalTimeoutMs);
       sendJson(response, 201, plan, allowedOrigin);
+      return;
+    }
+
+    if (request.method === 'POST' && pathname === '/operator/workspace-target') {
+      const body = await readBody(request);
+      const payloadIssue = validateCriticalPayload(pathname, body);
+      if (payloadIssue) {
+        sendJson(response, 400, { error: payloadIssue }, allowedOrigin);
+        return;
+      }
+      const candidates = resolveWorkspaceCandidates(body);
+      const selected = chooseWorkspaceTarget({ candidates, targetId: body.targetId, source: body.source });
+      const saved = await saveWorkspaceTarget(body.ecosystemId, selected);
+      sendJson(response, 201, { target: saved, candidates, ambiguous: candidates.length > 1 }, allowedOrigin);
+      return;
+    }
+
+    const workspaceTargetMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/workspace-target$/);
+    if (request.method === 'GET' && workspaceTargetMatch) {
+      sendJson(response, 200, await loadWorkspaceTarget(workspaceTargetMatch[1]), allowedOrigin);
+      return;
+    }
+
+    const contextCartCollectionMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/context-carts$/);
+    if (request.method === 'GET' && contextCartCollectionMatch) {
+      sendJson(response, 200, await listContextCarts(contextCartCollectionMatch[1]), allowedOrigin);
+      return;
+    }
+    if (request.method === 'POST' && contextCartCollectionMatch) {
+      const body = await readBody(request);
+      let cart = createContextCart(body);
+      for (const item of body.items ?? []) {
+        cart = addContextCartItem(cart, item);
+      }
+      sendJson(response, 201, await saveContextCart(contextCartCollectionMatch[1], cart), allowedOrigin);
+      return;
+    }
+
+    const contextCartMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/context-carts\/([^/]+)$/);
+    if (request.method === 'GET' && contextCartMatch) {
+      sendJson(response, 200, await loadContextCart(contextCartMatch[1], contextCartMatch[2]), allowedOrigin);
+      return;
+    }
+
+    const contextCartItemMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/context-carts\/([^/]+)\/items$/);
+    if (request.method === 'POST' && contextCartItemMatch) {
+      const body = await readBody(request);
+      const current = await loadContextCart(contextCartItemMatch[1], contextCartItemMatch[2]);
+      if (!current) {
+        sendJson(response, 404, { error: 'context_cart_not_found' }, allowedOrigin);
+        return;
+      }
+      const next = addContextCartItem(current, body);
+      sendJson(response, 200, await saveContextCart(contextCartItemMatch[1], next), allowedOrigin);
+      return;
+    }
+
+    const refinementCollectionMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/refinement-sessions$/);
+    if (request.method === 'GET' && refinementCollectionMatch) {
+      sendJson(response, 200, await listRefinementSessions(refinementCollectionMatch[1]), allowedOrigin);
+      return;
+    }
+    if (request.method === 'POST' && refinementCollectionMatch) {
+      const body = await readBody(request);
+      const cart = await loadContextCart(refinementCollectionMatch[1], body.contextCartId);
+      const session = createRefinementSession({
+        ...body,
+        contextCart: cart
+      });
+      sendJson(response, 201, await saveRefinementSession(refinementCollectionMatch[1], session), allowedOrigin);
+      return;
+    }
+
+    const refinementMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/refinement-sessions\/([^/]+)$/);
+    if (request.method === 'GET' && refinementMatch) {
+      sendJson(response, 200, await loadRefinementSession(refinementMatch[1], refinementMatch[2]), allowedOrigin);
+      return;
+    }
+
+    const visualArtifactCollectionMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/visual-artifacts$/);
+    if (request.method === 'GET' && visualArtifactCollectionMatch) {
+      sendJson(response, 200, await listVisualArtifacts(visualArtifactCollectionMatch[1]), allowedOrigin);
+      return;
+    }
+    if (request.method === 'POST' && visualArtifactCollectionMatch) {
+      const body = await readBody(request);
+      const artifact = buildVisualArtifact(body);
+      sendJson(response, 201, await saveVisualArtifact(visualArtifactCollectionMatch[1], artifact), allowedOrigin);
+      return;
+    }
+
+    const visualArtifactMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/visual-artifacts\/([^/]+)$/);
+    if (request.method === 'GET' && visualArtifactMatch) {
+      sendJson(response, 200, await loadVisualArtifact(visualArtifactMatch[1], visualArtifactMatch[2]), allowedOrigin);
+      return;
+    }
+
+    const budgetSnapshotMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/budget-snapshot$/);
+    if (request.method === 'GET' && budgetSnapshotMatch) {
+      const target = await loadWorkspaceTarget(budgetSnapshotMatch[1]);
+      sendJson(response, 200, buildAdvisoryBudgetSnapshot({ workspaceTargetId: target?.targetId }), allowedOrigin);
+      return;
+    }
+
+    const sessionBoardMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/session-board$/);
+    if (request.method === 'GET' && sessionBoardMatch) {
+      const ecosystemId = sessionBoardMatch[1];
+      const [plans, runs, refinements] = await Promise.all([
+        listPlans(ecosystemId),
+        listRuns(ecosystemId),
+        listRefinementSessions(ecosystemId)
+      ]);
+      const budgetSnapshot = buildAdvisoryBudgetSnapshot({
+        workspaceTargetId: (await loadWorkspaceTarget(ecosystemId))?.targetId
+      });
+      sendJson(response, 200, buildExecutionSessionBoard({
+        plans,
+        runs,
+        refinements,
+        budgetSnapshots: [budgetSnapshot]
+      }), allowedOrigin);
+      return;
+    }
+
+    const planningBoardMatch = pathname.match(/^\/ecosystems\/([^/]+)\/operator\/planning-board$/);
+    if (request.method === 'GET' && planningBoardMatch) {
+      const ecosystemId = planningBoardMatch[1];
+      const plans = await listPlans(ecosystemId);
+      const details = await Promise.all(plans.slice(0, 5).map(async (planHeader) => projectPlanForBoard(await loadPlan(planHeader.id))));
+      sendJson(response, 200, details, allowedOrigin);
       return;
     }
 
@@ -566,6 +967,16 @@ async function handler(request, response) {
       return;
     }
 
+    if (request.method === 'GET' && pathname === '/pipelines') {
+      const ecosystemIdFilter = url.searchParams.get('ecosystemId') ?? null;
+      if (!ecosystemIdFilter) {
+        sendJson(response, 400, { error: 'ecosystemId query required' }, allowedOrigin);
+        return;
+      }
+      sendJson(response, 200, await listPipelines(ecosystemIdFilter), allowedOrigin);
+      return;
+    }
+
     const runMatch = pathname.match(/^\/runs\/([^/]+)$/);
     if (request.method === 'GET' && runMatch) {
       sendJson(response, 200, await loadRun(runMatch[1]), allowedOrigin);
@@ -617,6 +1028,21 @@ async function handler(request, response) {
         return;
       }
       sendJson(response, 200, await buildLayeredPlanningContext(ecosystemId, knowledgeBaseId), allowedOrigin);
+      return;
+    }
+
+    if (request.method === 'GET' && pathname === '/planning/readiness') {
+      const ecosystemId = url.searchParams.get('ecosystemId');
+      const sessionId = url.searchParams.get('sessionId');
+      if (!ecosystemId || !sessionId) {
+        sendJson(response, 400, { error: 'ecosystemId and sessionId query required' }, allowedOrigin);
+        return;
+      }
+      const session = await loadRefinementSession(ecosystemId, sessionId);
+      sendJson(response, 200, {
+        ready: canGeneratePlanFromRefinement(session),
+        session
+      }, allowedOrigin);
       return;
     }
 

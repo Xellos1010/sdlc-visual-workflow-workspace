@@ -34,6 +34,12 @@ function dedupeSections(sections) {
   return [...byPath.values()].sort((left, right) => left.path.localeCompare(right.path));
 }
 
+function resolveInputPath(inputPath) {
+  if (!inputPath) return null;
+  if (path.isAbsolute(inputPath)) return inputPath;
+  return path.resolve(repoRoot, inputPath);
+}
+
 function splitBundleSections(text, sourceLabel) {
   const headerPattern = /^==== (?:RULE FILE|FILE): (.+?) ====$/gm;
   const matches = [...text.matchAll(headerPattern)];
@@ -60,22 +66,27 @@ function splitBundleSections(text, sourceLabel) {
 
 async function loadSectionsFromExportBundle(source) {
   const sections = [];
-  if (source.codeExportPath && await exists(source.codeExportPath)) {
-    sections.push(...splitBundleSections(await readText(source.codeExportPath), 'code-export'));
+  const codeExportPath = resolveInputPath(source.codeExportPath);
+  const configExportPath = resolveInputPath(source.configExportPath);
+  const rulesExportPath = resolveInputPath(source.rulesExportPath);
+  const chromeDocsPath = resolveInputPath(source.chromeDocsPath);
+
+  if (codeExportPath && await exists(codeExportPath)) {
+    sections.push(...splitBundleSections(await readText(codeExportPath), 'code-export'));
   }
-  if (source.configExportPath && await exists(source.configExportPath)) {
-    sections.push(...splitBundleSections(await readText(source.configExportPath), 'config-export'));
+  if (configExportPath && await exists(configExportPath)) {
+    sections.push(...splitBundleSections(await readText(configExportPath), 'config-export'));
   }
-  if (source.rulesExportPath && await exists(source.rulesExportPath)) {
-    sections.push(...splitBundleSections(await readText(source.rulesExportPath), 'rules-export'));
+  if (rulesExportPath && await exists(rulesExportPath)) {
+    sections.push(...splitBundleSections(await readText(rulesExportPath), 'rules-export'));
   }
-  if (source.chromeDocsPath && await exists(source.chromeDocsPath)) {
+  if (chromeDocsPath && await exists(chromeDocsPath)) {
     sections.push({
       source: 'chrome-api-docs',
       path: 'documentation/chrome-ext-api-documentation.md',
-      rawPath: source.chromeDocsPath,
+      rawPath: chromeDocsPath,
       skipped: false,
-      content: await readText(source.chromeDocsPath)
+      content: await readText(chromeDocsPath)
     });
   }
   return dedupeSections(sections);
@@ -95,7 +106,8 @@ function shouldReadFilesystemPath(relativePath) {
 }
 
 async function loadSectionsFromFilesystem(source) {
-  const workspaceRoot = source.workspaceRoot;
+  const workspaceRoot = resolveInputPath(source.workspaceRoot);
+  if (!workspaceRoot) return [];
   const files = await listFilesRecursive(workspaceRoot, {
     includeMatcher: (fullPath) => {
       const relativePath = path.relative(workspaceRoot, fullPath).replace(/\\/g, '/');
@@ -183,6 +195,8 @@ function detectTopology(sections, rootPackage) {
   const reasons = [];
   let kind = 'single-repo';
   let confidence = 0.6;
+  const projectManifests = sections.filter((section) => section.path.endsWith('/project.json'));
+  const packageCount = sections.filter((section) => section.path.endsWith('/package.json') || section.path === 'package.json').length;
 
   if (sections.some((section) => section.path === 'nx.json')) {
     kind = 'nx-monorepo';
@@ -193,12 +207,12 @@ function detectTopology(sections, rootPackage) {
     reasons.push('pnpm-workspace.yaml present');
     confidence = Math.max(confidence, 0.9);
   }
-  if (rootPackage?.workspaces || sections.some((section) => section.path.endsWith('/project.json'))) {
+  if (rootPackage?.workspaces || projectManifests.length > 1 || packageCount > 3) {
     reasons.push('multiple package/project manifests detected');
     confidence = Math.max(confidence, 0.85);
+    kind = 'nx-monorepo';
   }
   if (kind !== 'nx-monorepo') {
-    const packageCount = sections.filter((section) => section.path.endsWith('/package.json') || section.path === 'package.json').length;
     if (packageCount > 3) {
       kind = 'polyrepo-or-loose-monorepo';
       reasons.push('multiple package.json files without Nx control plane');
@@ -810,6 +824,9 @@ async function writeEcosystemArtifacts(ecosystem, graph) {
 }
 
 export async function importWorkspace(request) {
+  if (!request?.source?.type) {
+    throw new Error('import request source is required');
+  }
   const sections = request.source.type === 'filesystem'
     ? await loadSectionsFromFilesystem(request.source)
     : await loadSectionsFromExportBundle(request.source);

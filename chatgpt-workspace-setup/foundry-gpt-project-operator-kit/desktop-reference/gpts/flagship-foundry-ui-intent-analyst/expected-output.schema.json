@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry — UI Intent Analyst Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "intentPacket",
+    "taskCorpus",
+    "styleArchetypeRecommendation"
+  ],
+  "properties": {
+    "intentPacket": {
+      "type": "object",
+      "required": [
+        "goal",
+        "scopeIn",
+        "scopeOut",
+        "acceptanceCriteria",
+        "nonGoals"
+      ],
+      "properties": {
+        "goal": { "type": "string" },
+        "scopeIn": { "type": "array", "items": { "type": "string" } },
+        "scopeOut": { "type": "array", "items": { "type": "string" } },
+        "acceptanceCriteria": { "type": "array", "items": { "type": "string" } },
+        "nonGoals": { "type": "array", "items": { "type": "string" } },
+        "emotionalDesignTargets": {
+          "type": "object",
+          "properties": {
+            "visceral": { "type": "string" },
+            "behavioral": { "type": "string" },
+            "reflective": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "taskCorpus": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "jobToBeDone",
+          "decisionRequired",
+          "failureCost"
+        ],
+        "properties": {
+          "jobToBeDone": { "type": "string" },
+          "decisionRequired": { "type": "string" },
+          "decisionTiming": { "type": "string" },
+          "informationNeeded": { "type": "string" },
+          "failureCost": { "type": "string" },
+          "cognitiveLoadEstimate": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "styleArchetypeRecommendation": {
+      "type": "object",
+      "required": [
+        "primary",
+        "justification"
+      ],
+      "properties": {
+        "primary": { "type": "string" },
+        "secondary": { "type": "string" },
+        "justification": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "riskRegister": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "risk",
+          "severity",
+          "mitigation"
+        ],
+        "properties": {
+          "risk": { "type": "string" },
+          "severity": { "type": "string", "enum": ["critical", "high", "medium", "low"] },
+          "mitigation": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blockersEncountered": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

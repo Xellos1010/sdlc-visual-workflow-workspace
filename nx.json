@@ -25,6 +25,39 @@
     },
     "dev": {
       "cache": false
+    },
+    "companion:dev": {
+      "cache": false
+    },
+    "companion:dev:native": {
+      "cache": false
+    },
+    "companion:serve": {
+      "cache": false
+    },
+    "companion:watch": {
+      "cache": false
+    },
+    "companion:watch:docker": {
+      "cache": false
+    },
+    "companion:watch:serve": {
+      "cache": false
+    },
+    "companion:watch:docker:serve": {
+      "cache": false
+    },
+    "watch": {
+      "cache": false
+    },
+    "watch-docker": {
+      "cache": false
+    },
+    "watch-serve": {
+      "cache": false
+    },
+    "watch-docker-serve": {
+      "cache": false
     }
   }
 }

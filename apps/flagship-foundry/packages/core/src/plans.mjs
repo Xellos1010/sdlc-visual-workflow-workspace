@@ -92,6 +92,27 @@ function buildPlanHeader(plan) {
   };
 }
 
+export function projectPlanForBoard(plan) {
+  const dependencies = (plan.projectPlans ?? []).flatMap((projectPlan) =>
+    (projectPlan.tasks ?? []).map((task) => ({
+      taskId: task.id,
+      title: task.title,
+      projectPlanId: projectPlan.projectId,
+      dependsOn: task.dependsOn ?? [],
+      fileScope: task.fileScope ?? [],
+      acceptanceCriteria: task.acceptanceCriteria ?? []
+    }))
+  );
+
+  return {
+    header: buildPlanHeader(plan),
+    approval: plan.approval ?? null,
+    dependencies,
+    reviewPolicy: plan.reviewPolicy ?? null,
+    sourceSignal: plan.sourceSignal ?? null
+  };
+}
+
 // ── Approval defaults ─────────────────────────────────────────────────────────
 
 function defaultApprovalFor(changeRequest) {

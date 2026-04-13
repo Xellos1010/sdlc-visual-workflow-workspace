@@ -1,0 +1,7 @@
+{
+  "id": "chatgpt-phone-project-bundle-2026-04-10",
+  "bundleType": "project-knowledge-kit",
+  "target": "ChatGPT Project",
+  "notes": "Manual setup on mobile or web. Optimized for project-scoped knowledge, prompts, and output contracts.",
+  "artifactManifest": "artifact-manifest.json"
+}

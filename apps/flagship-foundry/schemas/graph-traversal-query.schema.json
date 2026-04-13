@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/graph-traversal-query.schema.json",
+  "title": "Graph Traversal Query",
+  "type": "object",
+  "required": ["queryId", "ecosystemId", "startNodeIds", "direction", "maxDepth"],
+  "properties": {
+    "queryId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "startNodeIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "direction": {
+      "type": "string",
+      "enum": ["in", "out", "both"]
+    },
+    "maxDepth": { "type": "integer", "minimum": 1 },
+    "typeFilters": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "phaseFilters": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "projectFilters": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "dateRange": {
+      "type": "object",
+      "properties": {
+        "from": { "type": ["string", "null"], "format": "date-time" },
+        "to": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
+

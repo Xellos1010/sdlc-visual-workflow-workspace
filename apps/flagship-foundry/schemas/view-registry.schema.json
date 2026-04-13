@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/view-registry.schema.json",
+  "title": "View Registry",
+  "type": "object",
+  "required": [
+    "registryId",
+    "stateKind",
+    "version",
+    "peerViews",
+    "objectTypes",
+    "desktopShell",
+    "savedLayoutIds",
+    "drillDownPath",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "registryId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stateKind": {
+      "type": "string",
+      "enum": [
+        "declared",
+        "observed"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "workspaceTargetId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "peerViews": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/peerViewId"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "objectTypes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "preferredViews",
+          "questions",
+          "drillDownTargets"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "preferredViews": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/peerViewId"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "drillDownTargets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/drillDownTarget"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "desktopShell": {
+      "type": "object",
+      "required": [
+        "topBar",
+        "leftRail",
+        "centerCanvasPeerViews",
+        "rightInspector",
+        "bottomUtility"
+      ],
+      "properties": {
+        "topBar": {
+          "$ref": "#/$defs/stringList"
+        },
+        "leftRail": {
+          "$ref": "#/$defs/stringList"
+        },
+        "centerCanvasPeerViews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/peerViewId"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "rightInspector": {
+          "$ref": "#/$defs/stringList"
+        },
+        "bottomUtility": {
+          "$ref": "#/$defs/stringList"
+        }
+      },
+      "additionalProperties": false
+    },
+    "savedLayoutIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "drillDownPath": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/drillDownStep"
+      },
+      "minItems": 2
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "peerViewId": {
+      "type": "string",
+      "enum": [
+        "map",
+        "board",
+        "timeline",
+        "diff",
+        "inspector",
+        "evidence",
+        "chat",
+        "pseudocode",
+        "session-board"
+      ]
+    },
+    "stringList": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1
+    },
+    "drillDownTarget": {
+      "type": "object",
+      "required": [
+        "targetType",
+        "viaView",
+        "label"
+      ],
+      "properties": {
+        "targetType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "viaView": {
+          "$ref": "#/$defs/peerViewId"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "drillDownStep": {
+      "type": "object",
+      "required": [
+        "stepId",
+        "label",
+        "viaView"
+      ],
+      "properties": {
+        "stepId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objectTypeId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "viaView": {
+          "$ref": "#/$defs/peerViewId"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

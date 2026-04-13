@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/rag-query.schema.json",
+  "title": "RAG Query",
+  "type": "object",
+  "required": ["queryId", "ecosystemId", "query", "maxResults", "tokenBudget"],
+  "properties": {
+    "queryId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "query": { "type": "string" },
+    "artifactTypes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "phases": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "maxResults": { "type": "integer", "minimum": 1 },
+    "tokenBudget": { "type": "integer", "minimum": 1 },
+    "includePinnedOnly": { "type": "boolean" },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
+

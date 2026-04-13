@@ -1,0 +1,25 @@
+{
+  "name": "Flagship Foundry — Accessibility & Platform Reviewer",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "accessibility-reviewer",
+  "source_agent_title": "Accessibility & Platform Reviewer",
+  "read_only": true,
+  "primary_phases": [
+    "verify"
+  ],
+  "recommended_model_hint": "balanced model for compliance verification",
+  "capabilities_hint": [
+    "Web search recommended for WCAG reference",
+    "Data analysis recommended"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/uiux-agent-routing.json",
+    "../../shared/knowledge-seeds/uiux-doctrine.md"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/rag-result.schema.json",
+  "title": "RAG Result",
+  "type": "object",
+  "required": ["queryId", "ecosystemId", "results", "totalTokenCount", "createdAt"],
+  "properties": {
+    "queryId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "resultId",
+          "artifactId",
+          "chunkIndex",
+          "chunkText",
+          "similarityScore",
+          "tokenCount",
+          "provenance"
+        ],
+        "properties": {
+          "resultId": { "type": "string" },
+          "artifactId": { "type": "string" },
+          "chunkIndex": { "type": "integer", "minimum": 0 },
+          "chunkText": { "type": "string" },
+          "similarityScore": { "type": "number", "minimum": 0, "maximum": 1 },
+          "tokenCount": { "type": "integer", "minimum": 0 },
+          "rank": { "type": "integer", "minimum": 0 },
+          "provenance": {
+            "type": "object",
+            "required": ["sourcePath", "retrievedAt"],
+            "properties": {
+              "sourcePath": { "type": "string" },
+              "sourceArtifactType": { "type": "string" },
+              "retrievedAt": { "type": "string", "format": "date-time" },
+              "sourceAgent": { "type": ["string", "null"] },
+              "sessionId": { "type": ["string", "null"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "totalTokenCount": { "type": "integer", "minimum": 0 },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
+
