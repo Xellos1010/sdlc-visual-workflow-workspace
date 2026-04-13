@@ -1,0 +1,37 @@
+C4Container
+  title Container Diagram: Cursor Companion SDLC Operator
+
+  Person(operator, "Operator", "Uses the companion to manage one open workspace at a time")
+
+  Boundary(editorBoundary, "Local Editor Window") {
+    Container(webview, "Operator Cockpit Webview", "HTML/CSS/JS + Mermaid", "Renders diagrams, context cart, plan board, provider dashboard, and run monitor")
+    Container(extensionHost, "Extension Host", "CommonJS + VS Code Extension API", "Registers commands, resolves workspace target, mediates webview actions")
+  }
+
+  Boundary(foundryBoundary, "Local Foundry Control Boundary") {
+    Container(controlPlane, "Control Plane API", "Node.js", "Owns plans, approvals, runs, knowledge ingestion, gap analysis, and focus generation")
+    Container(coreProjection, "Projection + Contract Services", "Node.js modules", "Shapes planning context, graph views, continuity, evidence, and imported artifacts")
+    ContainerDb(stateStore, "State Store", "Filesystem JSON", "internal/operator-sensitive: plans, runs, continuity, analysis, evidence")
+    Container(modelGateway, "Model Gateway", "Node.js HTTP proxy", "Routes provider/model requests and returns usage telemetry")
+    Container(adapterLayer, "Runtime Adapters", "CLI / MCP adapters", "Codex, Claude Code, Cursor, Gemini, local shell")
+  }
+
+  System_Ext(repo, "Opened Repository", "Filesystem workspace")
+  System_Ext(cloudProviders, "Cloud Providers", "OpenAI / Anthropic / Gemini")
+  System_Ext(localModels, "Local Model Hosts", "Ollama / OpenAI-compatible")
+  System_Ext(connectors, "Connectors / MCP", "GitHub, Google, local servers")
+
+  Rel(operator, webview, "Uses", "UI interaction")
+  Rel(webview, extensionHost, "Posts actions and receives state", "webview messaging")
+  Rel(extensionHost, repo, "Resolves files, selections, workspace metadata", "VS Code workspace API")
+  Rel(extensionHost, controlPlane, "Calls control-plane routes", "HTTP/JSON localhost")
+  Rel(controlPlane, coreProjection, "Loads projections and contracts", "in-process module calls")
+  Rel(coreProjection, stateStore, "Reads/writes lifecycle artifacts", "Filesystem JSON")
+  Rel(controlPlane, modelGateway, "Resolves provider routes and usage", "HTTP/JSON localhost")
+  Rel(controlPlane, adapterLayer, "Launches approved sessions", "CLI / MCP / stdio")
+  Rel(adapterLayer, cloudProviders, "Executes remote model work", "HTTPS/API key")
+  Rel(adapterLayer, localModels, "Executes local model work", "HTTP / stdio")
+  Rel(controlPlane, connectors, "Loads approved external context", "MCP / HTTPS")
+
+  UpdateLayoutConfig($c4ShapeInRow="3", $c4BoundaryInRow="2")
+

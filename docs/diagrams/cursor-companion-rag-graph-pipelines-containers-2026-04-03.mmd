@@ -1,0 +1,94 @@
+C4Container
+  title Container Diagram: Cursor Companion — RAG, Graph, Pipelines
+
+  Person(operator, "Operator", "SDLC operator in Cursor")
+
+  Boundary(editorBoundary, "Editor Window") {
+    Container(webview, "Operator Cockpit Webview", "HTML/JS/Mermaid", "Panels: context cart, requirements, plan board, system overview, session board, provider dashboard, knowledge search")
+    Container(extensionHost, "Extension Host", "CommonJS + VS Code API", "Commands, workspace target, webview mediation, RAG search trigger, graph navigation, pipeline launch")
+  }
+
+  Boundary(controlBoundary, "Foundry Control Plane") {
+    Container(apiServer, "Control Plane API", "Node.js HTTP", "Routes for lifecycle, knowledge, graph queries, pipeline control, export/import")
+
+    Boundary(ragBoundary, "Stream A: RAG Engine") {
+      Container(embeddingPipeline, "Embedding Pipeline", "Node.js", "Chunks artifacts by type, generates embeddings via local or cloud provider, indexes into vector store")
+      Container(retrievalEngine, "Retrieval Engine", "Node.js", "Ranked search with artifact-type filtering, phase filtering, and token-budget enforcement")
+      ContainerDb(vectorStore, "Vector Store", "Local file-based index", "Embedded artifact chunks with provenance metadata")
+    }
+
+    Boundary(graphBoundary, "Stream B: Artifact Graph") {
+      Container(graphBuilder, "Graph Builder", "Node.js", "Scans canonical state, extracts cross-references, builds typed node/edge graph")
+      Container(graphQuery, "Graph Query Engine", "Node.js", "Traversal: connected-to, lifecycle-trace, phase-filter, date-range, subgraph-export")
+      ContainerDb(graphProjection, "Graph Projection", "In-memory + cached JSON", "Derived artifact graph — nodes, edges, relationship labels")
+    }
+
+    Boundary(pipelineBoundary, "Stream C: Pipeline Orchestrator") {
+      Container(pipelineComposer, "Pipeline Composer", "Node.js", "Parses pipeline definitions, validates stage ordering, binds adapters and token budgets")
+      Container(contextAssembler, "Context Packet Assembler", "Node.js", "Merges RAG hits + context cart + graph-adjacent artifacts, enforces token budgets, produces validated manifest")
+      Container(resultIngestor, "Result Ingestor", "Node.js", "Schema-validates agent outputs, creates typed artifacts, binds to work order, updates continuity")
+      Container(stageDispatcher, "Stage Dispatcher", "Node.js", "Executes pipeline stages in order, handles halt/skip/retry policies, collects evidence per stage")
+    }
+
+    Container(coreModules, "Core Projection Services", "Node.js modules", "Plans, runs, context carts, visual artifacts, continuity, evidence, knowledge packs")
+    Container(modelGateway, "Model Gateway", "Node.js HTTP proxy", "Routes model/embedding requests by task class and provider policy")
+    ContainerDb(stateStore, "State Store", "Filesystem JSON/MD", "Canonical: plans, runs, evidence, ADRs, schemas, knowledge docs, continuity, fix-memory")
+  }
+
+  Boundary(adapterBoundary, "Runtime Adapters") {
+    Container(cursorAdapter, "Cursor Agent", "MCP/CLI", "Work-order dispatch to Cursor")
+    Container(claudeAdapter, "Claude Code", "CLI", "Work-order dispatch to Claude Code")
+    Container(codexAdapter, "Codex CLI", "CLI", "Work-order dispatch to Codex")
+    Container(geminiAdapter, "Gemini CLI", "CLI", "Work-order dispatch to Gemini")
+    Container(openclawAdapter, "OpenClaw", "CLI", "Work-order dispatch to OpenClaw")
+    Container(localAdapter, "Local Shell", "Sandbox/Shell", "Bounded local execution")
+  }
+
+  System_Ext(repo, "Workspace Repository", "Filesystem")
+  System_Ext(cloudAI, "Cloud AI Providers", "Anthropic/OpenAI/Google")
+  System_Ext(localModels, "Local Models", "Ollama")
+  System_Ext(mcp, "MCP Connectors", "External knowledge")
+
+  Rel(operator, webview, "Operates", "UI")
+  Rel(webview, extensionHost, "Actions/state", "Webview messaging")
+  Rel(extensionHost, apiServer, "HTTP calls", "localhost:4010")
+  Rel(extensionHost, repo, "Workspace files", "VS Code API")
+
+  Rel(apiServer, embeddingPipeline, "Index artifacts", "In-process")
+  Rel(apiServer, retrievalEngine, "RAG query", "In-process")
+  Rel(retrievalEngine, vectorStore, "Search", "Read")
+  Rel(embeddingPipeline, vectorStore, "Write embeddings", "Write")
+  Rel(embeddingPipeline, modelGateway, "Get embeddings", "HTTP")
+
+  Rel(apiServer, graphBuilder, "Rebuild graph", "In-process")
+  Rel(apiServer, graphQuery, "Traverse", "In-process")
+  Rel(graphBuilder, stateStore, "Scan artifacts", "Read")
+  Rel(graphBuilder, graphProjection, "Update graph", "Write")
+  Rel(graphQuery, graphProjection, "Query", "Read")
+
+  Rel(apiServer, pipelineComposer, "Parse pipeline", "In-process")
+  Rel(apiServer, stageDispatcher, "Launch pipeline", "In-process")
+  Rel(stageDispatcher, contextAssembler, "Build context packet", "In-process")
+  Rel(contextAssembler, retrievalEngine, "RAG hits", "In-process")
+  Rel(contextAssembler, graphQuery, "Adjacent artifacts", "In-process")
+  Rel(contextAssembler, coreModules, "Context cart items", "In-process")
+  Rel(stageDispatcher, cursorAdapter, "Dispatch", "MCP/CLI")
+  Rel(stageDispatcher, claudeAdapter, "Dispatch", "CLI")
+  Rel(stageDispatcher, codexAdapter, "Dispatch", "CLI")
+  Rel(stageDispatcher, geminiAdapter, "Dispatch", "CLI")
+  Rel(stageDispatcher, openclawAdapter, "Dispatch", "CLI")
+  Rel(stageDispatcher, localAdapter, "Dispatch", "Shell")
+  Rel(stageDispatcher, resultIngestor, "Stage results", "In-process")
+  Rel(resultIngestor, stateStore, "Write artifacts", "Filesystem")
+  Rel(resultIngestor, coreModules, "Update continuity", "In-process")
+
+  Rel(cursorAdapter, cloudAI, "Inference", "HTTPS")
+  Rel(claudeAdapter, cloudAI, "Inference", "HTTPS")
+  Rel(codexAdapter, cloudAI, "Inference", "HTTPS")
+  Rel(geminiAdapter, cloudAI, "Inference", "HTTPS")
+  Rel(localAdapter, localModels, "Local inference", "HTTP/stdio")
+  Rel(modelGateway, cloudAI, "Cloud embeddings", "HTTPS")
+  Rel(modelGateway, localModels, "Local embeddings", "HTTP")
+  Rel(apiServer, mcp, "External context", "MCP/HTTPS")
+
+  UpdateLayoutConfig($c4ShapeInRow="4", $c4BoundaryInRow="3")
