@@ -1,0 +1,26 @@
+{
+  "name": "ts-to-rust-foundry-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Free starter pipeline for TypeScript/TSX reverse engineering to UML, pseudocode, and Rust.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "full": "tsx src/cli.ts full",
+    "analyze": "tsx src/cli.ts analyze",
+    "generate:rust": "tsx src/cli.ts generate-rust",
+    "example": "tsx src/cli.ts full --input ./examples/src --output ./artifacts --use-tsuml2 auto",
+    "viewer": "node viewer-server.mjs",
+    "viewer:example": "ARTIFACT_ROOT=./artifacts node viewer-server.mjs",
+    "viewer:night-agent": "ARTIFACT_ROOT=../../.foundry/staging/ts-to-rust-foundry-starter/artifacts node viewer-server.mjs"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "open": "^11.0.0",
+    "ts-morph": "^25.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
