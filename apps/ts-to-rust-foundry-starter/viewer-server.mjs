@@ -1,5 +1,5 @@
 import express from 'express';
-import { readFileSync, readdirSync, existsSync } from 'fs';
+import { readFileSync, readdirSync, existsSync, writeFileSync } from 'fs';
 import { join, relative, extname, basename, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -88,6 +88,22 @@ app.get('/api/file', (req, res) => {
   }
   const content = readFileSync(absPath, 'utf8');
   res.json({ content, ext: extname(absPath).replace('.', '') });
+});
+
+app.put('/api/file', express.json(), (req, res) => {
+  const { path: filePath, content } = req.body ?? {};
+  if (!filePath || content === undefined) {
+    return res.status(400).json({ error: 'path and content required' });
+  }
+  const absPath = resolve(join(ARTIFACT_ROOT, filePath));
+  if (!absPath.startsWith(ARTIFACT_ROOT)) {
+    return res.status(403).json({ error: 'forbidden' });
+  }
+  if (!existsSync(absPath)) {
+    return res.status(404).json({ error: 'file not found' });
+  }
+  writeFileSync(absPath, content, 'utf8');
+  res.json({ ok: true });
 });
 
 app.listen(PORT, async () => {
