@@ -1,0 +1,77 @@
+{
+  "initiative": {
+    "name": "TS→Rust Migration — Stage 2: Port TUI Layer",
+    "slug": "ts-react-rust-migration-porter-tui",
+    "objective": "Port the tui-repl subsystem to idiomatic Rust in the night-agent-runner-tui crate. 4 porter teammates split by UI concern work in parallel on non-overlapping file sets.",
+    "sdlcCycle": "monorepo/.foundry",
+    "startingPhase": "implement",
+    "status": "pending",
+    "pipelineStage": 2,
+    "pipelineTotal": 6
+  },
+  "team": {
+    "planApprovalRequired": true,
+    "teammates": [
+      {
+        "name": "porter-screens",
+        "objective": "Port all screen files (screens/) to Ratatui Widget implementations in night-agent-runner-tui/src/screens/",
+        "subagentType": "rust-porter",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/screens/",
+          "apps/agent-runner-rust/crates/night-agent-runner-tui/src/screens/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "porter-components",
+        "objective": "Port all component files (components/) to Ratatui Widget + StatefulWidget implementations in night-agent-runner-tui/src/components/",
+        "subagentType": "rust-porter",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/components/",
+          "apps/agent-runner-rust/crates/night-agent-runner-tui/src/components/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "porter-ink-hooks",
+        "objective": "Port the Ink render layer and hooks (ink/, hooks/, ink.ts, replLauncher.tsx) to a Tokio event loop + Crossterm terminal driver in night-agent-runner-tui/src/runtime/",
+        "subagentType": "rust-porter",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/ink/",
+          "apps/night-agent-runner/src/hooks/",
+          "apps/night-agent-runner/src/ink.ts",
+          "apps/night-agent-runner/src/replLauncher.tsx",
+          "apps/agent-runner-rust/crates/night-agent-runner-tui/src/runtime/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "porter-dialogs",
+        "objective": "Port dialog launchers and interactive helpers (dialogLaunchers.tsx, interactiveHelpers.tsx) to modal overlay implementations in night-agent-runner-tui/src/dialogs/",
+        "subagentType": "rust-porter",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/dialogLaunchers.tsx",
+          "apps/night-agent-runner/src/interactiveHelpers.tsx",
+          "apps/agent-runner-rust/crates/night-agent-runner-tui/src/dialogs/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": true
+      }
+    ]
+  },
+  "doneCriteria": [
+    "cargo test -p night-agent-runner-tui passes",
+    "cargo check -p night-agent-runner-tui passes",
+    "No TS screen, component, or hook file is unported",
+    "Ratatui Widget trait implemented for all screens and components"
+  ],
+  "leadPromptPath": ".foundry/staging/ts-react-rust-migration/pipeline/02-porter-tui/lead-prompt.md",
+  "continuityPath": ".foundry/projects/ts-react-rust-migration/current-task.json"
+}

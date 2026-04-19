@@ -1,0 +1,87 @@
+{
+  "agents": [
+    {
+      "name": "orchestration-lead",
+      "mindset": "sequencing, gating, continuity",
+      "inputs": [
+        "initiative brief",
+        "continuity state",
+        "work orders"
+      ],
+      "outputs": [
+        "routing decisions",
+        "phase transitions",
+        "approval requests"
+      ],
+      "mutationAuthority": "none"
+    },
+    {
+      "name": "repository-cartographer",
+      "mindset": "taxonomic, exhaustive",
+      "inputs": [
+        "repo files",
+        "imports",
+        "configs"
+      ],
+      "outputs": [
+        "module graph",
+        "dependency graph",
+        "subsystem map"
+      ],
+      "mutationAuthority": "read-only"
+    },
+    {
+      "name": "diagram-architect",
+      "mindset": "viewpoint-driven",
+      "inputs": [
+        "IR",
+        "brief"
+      ],
+      "outputs": [
+        "C4/UML/DFD/sequence/state diagrams"
+      ],
+      "mutationAuthority": "artifacts only"
+    },
+    {
+      "name": "pseudocode-extractor",
+      "mindset": "logic normalization",
+      "inputs": [
+        "AST",
+        "tests",
+        "source code"
+      ],
+      "outputs": [
+        "pseudocode ledger"
+      ],
+      "mutationAuthority": "artifacts only"
+    },
+    {
+      "name": "migration-strategist",
+      "mindset": "target-aware, risk-sensitive",
+      "inputs": [
+        "pseudocode",
+        "contracts",
+        "gap matrix"
+      ],
+      "outputs": [
+        "target map",
+        "migration sequence"
+      ],
+      "mutationAuthority": "planning artifacts only"
+    },
+    {
+      "name": "verifier",
+      "mindset": "skeptical, evidence-first",
+      "inputs": [
+        "source and target behavior",
+        "tests",
+        "evidence"
+      ],
+      "outputs": [
+        "pass/fail verdicts",
+        "evidence bundle"
+      ],
+      "mutationAuthority": "read-only"
+    }
+  ]
+}

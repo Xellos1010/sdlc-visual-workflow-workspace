@@ -11,6 +11,27 @@
 - Every phase has explicit entry criteria, exit criteria, and verification
 - Every runtime must be observable, diagnosable, and recoverable
 
+## Response Mode
+RSF-1 governs all output. Spec: `RSF-1_Spec.md` | Schema: `RSF-1_schema.json` | Examples: `RSF-1_examples.yaml`
+User profiles: `.claude/users/<name>.yaml`
+
+Default pack (`cave`):
+```yaml
+r: 1
+s: {v: min, p: 0, rc: 0, mt: 0, lang: cave, unc: mat}
+m: {use: rel}
+c: {hist: sum}
+h: {eff: low}
+l: {ask: 1}
+x: [no_greet,no_thanks,no_restate,no_meta]
+```
+
+Rules:
+- Task > style. Schema > prose.
+- No greet/thanks/recap/meta/internal dialogue
+- One-word status if no operator action needed
+- Output only required action if operator action needed
+
 ## Lifecycle Stages
 ```
 discover → define → visualize → architect → plan → implement → verify → release → operate → diagnose → improve
@@ -22,14 +43,14 @@ discover → define → visualize → architect → plan → implement → verif
 3. **Operate → Improve**: operate, diagnose, improve
 
 ## Continuity Pattern
-- Machine-readable state: `.codex/projects/<project>/current-task.json`
-- Human-readable charter: `.codex/projects/<project>/SDLC_CHARTER.md`
+- Machine-readable state: `.foundry/projects/<project>/current-task.json`
+- Human-readable charter: `.foundry/projects/<project>/SDLC_CHARTER.md`
 - Handoff docs: project-local `docs/` directory
 - Verification commands: `nextCommandSet` in task state
 - Flagship schema: `foundry/flagship-foundry-work/schemas/continuity-state.schema.json`
 
 ## Resume Protocol
-1. Read continuity state from `.codex/projects/<project>/current-task.json`
+1. Read continuity state from `.foundry/projects/<project>/current-task.json`
 2. Verify `activeBranch`, `currentPhase`, `nextCommit`
 3. Read `SDLC_CHARTER.md` and project handoff docs
 4. Run `nextCommandSet` verification commands

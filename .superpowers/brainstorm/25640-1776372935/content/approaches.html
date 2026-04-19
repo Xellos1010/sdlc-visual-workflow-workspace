@@ -1,0 +1,83 @@
+<h2>Three Architecture Approaches</h2>
+<p class="subtitle">Same destination — different build order and tradeoffs. Pick the one that matches how you want to prove value fastest.</p>
+
+<div class="options" style="flex-direction:column;">
+
+  <!-- Approach A -->
+  <div class="option" data-choice="a" onclick="toggleSelect(this)" style="flex-direction:column;align-items:flex-start;gap:14px;">
+    <div style="display:flex;align-items:center;gap:14px;width:100%;">
+      <div class="letter">A</div>
+      <div style="flex:1;">
+        <h3 style="margin:0;">Nx Monorepo — Skills First, Everything Together <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399;margin-left:8px;font-weight:400">Recommended</span></h3>
+        <p style="margin:6px 0 0;color:#94a3b8;font-size:13px;">One repo. Skills prove the loop first. Web app and Rust services added in the same workspace. Nx handles affected builds — change a Rust crate, only that crate rebuilds.</p>
+      </div>
+    </div>
+    <div style="width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding-left:52px;">
+      <div style="background:#0f1320;border-radius:8px;padding:10px 12px;border-top:2px solid #34d399;">
+        <div style="color:#34d399;font-size:10px;font-weight:700;margin-bottom:6px">PHASE 1 — PROVE</div>
+        <div style="color:#e2e8f0;font-size:12px;line-height:1.5">Skills + visual companion<br>Hello world loop<br>Local artifact sync</div>
+      </div>
+      <div style="background:#0f1320;border-radius:8px;padding:10px 12px;border-top:2px solid #7c8cf8;">
+        <div style="color:#7c8cf8;font-size:10px;font-weight:700;margin-bottom:6px">PHASE 2 — CONNECT</div>
+        <div style="color:#e2e8f0;font-size:12px;line-height:1.5">PAL + AWS infra<br>Event-driven sync<br>Auth + workspaces</div>
+      </div>
+      <div style="background:#0f1320;border-radius:8px;padding:10px 12px;border-top:2px solid #f59e0b;">
+        <div style="color:#f59e0b;font-size:10px;font-weight:700;margin-bottom:6px">PHASE 3 — ACCELERATE</div>
+        <div style="color:#e2e8f0;font-size:12px;line-height:1.5">Rust agent runner<br>Confidence engine<br>IR pipeline</div>
+      </div>
+      <div style="background:#0f1320;border-radius:8px;padding:10px 12px;border-top:2px solid #a78bfa;">
+        <div style="color:#a78bfa;font-size:10px;font-weight:700;margin-bottom:6px">PHASE 4 — SCALE</div>
+        <div style="color:#e2e8f0;font-size:12px;line-height:1.5">Web app + collab<br>Marketplace<br>ML training loop</div>
+      </div>
+    </div>
+    <div style="padding-left:52px;width:100%;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ You already have an Nx workspace</span>
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ Skills testable in minutes</span>
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ Rust crates + TS apps coexist</span>
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ Nx affected = CI only runs what changed</span>
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ One place to find everything</span>
+    </div>
+  </div>
+
+  <!-- Approach B -->
+  <div class="option" data-choice="b" onclick="toggleSelect(this)" style="flex-direction:column;align-items:flex-start;gap:14px;">
+    <div style="display:flex;align-items:center;gap:14px;width:100%;">
+      <div class="letter">B</div>
+      <div style="flex:1;">
+        <h3 style="margin:0;">Polyrepo Services — API First</h3>
+        <p style="margin:6px 0 0;color:#94a3b8;font-size:13px;">Separate repos for each service: skills repo, web-app repo, agent-runner repo. Each deploys independently. API contract is the boundary. More DevOps overhead before you can run anything end-to-end.</p>
+      </div>
+    </div>
+    <div style="width:100%;padding-left:52px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ Services deploy and scale independently</span>
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ Strong boundary enforcement</span>
+      <span style="background:#f8717120;border:1px solid #f8717160;border-radius:4px;padding:2px 8px;font-size:11px;color:#f87171">⚠ Cross-repo changes require coordinated PRs</span>
+      <span style="background:#f8717120;border:1px solid #f8717160;border-radius:4px;padding:2px 8px;font-size:11px;color:#f87171">⚠ Nothing runs end-to-end until API is stable</span>
+      <span style="background:#f8717120;border:1px solid #f8717160;border-radius:4px;padding:2px 8px;font-size:11px;color:#f87171">⚠ Slower iteration at this stage</span>
+    </div>
+  </div>
+
+  <!-- Approach C -->
+  <div class="option" data-choice="c" onclick="toggleSelect(this)" style="flex-direction:column;align-items:flex-start;gap:14px;">
+    <div style="display:flex;align-items:center;gap:14px;width:100%;">
+      <div class="letter">C</div>
+      <div style="flex:1;">
+        <h3 style="margin:0;">Skills-Only First — Web App Never</h3>
+        <p style="margin:6px 0 0;color:#94a3b8;font-size:13px;">Commit fully to the terminal + visual companion model. No web app — everything lives in Claude Code. Cloud sync is background artifact backup only. Rust services added when TypeScript skills hit perf limits.</p>
+      </div>
+    </div>
+    <div style="width:100%;padding-left:52px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ Maximum iteration speed</span>
+      <span style="background:#34d39920;border:1px solid #34d39960;border-radius:4px;padding:2px 8px;font-size:11px;color:#34d399">✓ Zero infra until needed</span>
+      <span style="background:#f8717120;border:1px solid #f8717160;border-radius:4px;padding:2px 8px;font-size:11px;color:#f87171">⚠ No team collaboration surface</span>
+      <span style="background:#f8717120;border:1px solid #f8717160;border-radius:4px;padding:2px 8px;font-size:11px;color:#f87171">⚠ Approval pipelines need a web UI</span>
+      <span style="background:#f8717120;border:1px solid #f8717160;border-radius:4px;padding:2px 8px;font-size:11px;color:#f87171">⚠ Blocks the collaboration vision entirely</span>
+    </div>
+  </div>
+
+</div>
+
+<div style="background:#0f1320;border:1px solid #34d399;border-radius:10px;padding:16px 20px;margin-top:16px;">
+  <strong style="color:#34d399;font-size:13px">Why A: you already have the monorepo and the proof-of-loop is one skill invocation away</strong>
+  <p style="color:#94a3b8;font-size:13px;margin:8px 0 0;line-height:1.6">The existing <code style="color:#7c8cf8;font-size:12px">SDLC - Visual - Workflow - SoftwareEngineering-NewAge</code> workspace is already Nx. The skills are already there. The diagram-driven pipeline is staged. Phase 1 means writing one new skill set and proving the hello-world loop fires end to end — <em>today</em>. The web app, Rust services, and AWS infra get added in the same workspace as capabilities, not as separate projects to coordinate. Nx affected builds mean the CI bill stays near zero while you're iterating.</p>
+</div>

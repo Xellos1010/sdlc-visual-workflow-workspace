@@ -23,7 +23,7 @@
 ## Scope
 
 - This charter governs all Claude Code and Cursor agent work in this workspace
-- Projects under `.codex/projects/` each have their own `SDLC_CHARTER.md`
+- Projects under `.foundry/projects/` each have their own `SDLC_CHARTER.md`
 - Project charters inherit from this charter and may add constraints but not relax them
 
 ## 11-Phase Lifecycle
@@ -83,6 +83,14 @@ discover → define → visualize → architect → plan → implement → verif
 6. Release agents consume evidence, not assumptions
 7. Context is minimized per microtask and reset after completion
 8. Extracted evidence and declared truth remain distinguishable
+
+## Operator Language Mode
+
+- Default to `.foundry/agents/OPERATOR_LANGUAGE_MODE.md`
+- Use ultra-token output for all operator-facing responses unless safety or task clarity requires more
+- No internal dialogue, no fluff, no chatty recaps
+- If no operator action is needed, respond with one-word status only when possible
+- If operator action is needed, state only the required action
 
 ## Guardrails
 

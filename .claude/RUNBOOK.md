@@ -37,7 +37,7 @@ Human → reviews and approves architecture
 ```
 User → "resume remote-notary" (or any project name)
   ↓
-@orchestrator → reads .codex/projects/<project>/current-task.json
+@orchestrator → reads .foundry/projects/<project>/current-task.json
   ↓
 @orchestrator → verifies activeBranch matches worktree
   ↓
@@ -145,8 +145,8 @@ See full matrix: `.claude/skills/sdlc-phase-router/reference/phase-gate-matrix.m
 
 | File | Purpose |
 |------|---------|
-| `.codex/projects/<project>/current-task.json` | Machine-readable phase state |
-| `.codex/projects/<project>/SDLC_CHARTER.md` | Project operating rules |
+| `.foundry/projects/<project>/current-task.json` | Machine-readable phase state |
+| `.foundry/projects/<project>/SDLC_CHARTER.md` | Project operating rules |
 | `.codex/schemas/task-state.schema.json` | Task state schema (7-phase) |
 | `foundry/flagship-foundry-work/schemas/continuity-state.schema.json` | Flagship schema (11-phase) |
 | `foundry/flagship-foundry-work/schemas/agent-work-order.schema.json` | Work order contract |
@@ -161,7 +161,7 @@ See full matrix: `.claude/skills/sdlc-phase-router/reference/phase-gate-matrix.m
 - Verify the agent is referenced in `.claude/CLAUDE.md`
 
 ### Continuity state is stale
-- Run `cat .codex/projects/<project>/current-task.json` to inspect
+- Run `cat .foundry/projects/<project>/current-task.json` to inspect
 - Check `currentPhase.updatedAt` — if old, use `/continuity-writer` to refresh
 - Verify `activeBranch` matches `git branch --show-current`
 

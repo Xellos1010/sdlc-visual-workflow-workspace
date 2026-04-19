@@ -10,6 +10,7 @@
   },
   "scripts": {
     "dev": "nx run platform-dev:dev",
+    "scaffold": "node tools/scaffold/generate-workspace.mjs",
     "nx": "nx",
     "export:ai:all": "node tools/ai-context/exporter.mjs --mode all",
     "export:ai:latest": "node tools/ai-context/exporter.mjs --mode latest",

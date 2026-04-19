@@ -1,0 +1,9 @@
+{
+  "project": {
+    "name": "",
+    "slug": "",
+    "mode": "analysis|migration|optimization|greenfield"
+  },
+  "artifacts": [],
+  "generatedAt": ""
+}

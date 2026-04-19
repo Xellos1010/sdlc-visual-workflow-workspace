@@ -1,0 +1,68 @@
+{
+  "requiredArtifacts": [
+    {
+      "path": "project-intake.md",
+      "purpose": "scope, goals, constraints"
+    },
+    {
+      "path": "artifact-manifest.json",
+      "purpose": "inventory and ownership"
+    },
+    {
+      "path": "architecture/c4-context.mmd",
+      "purpose": "ecosystem view"
+    },
+    {
+      "path": "architecture/c4-container.mmd",
+      "purpose": "container view"
+    },
+    {
+      "path": "architecture/component-map.mmd",
+      "purpose": "component view"
+    },
+    {
+      "path": "code/module-graph.json",
+      "purpose": "module relationships"
+    },
+    {
+      "path": "code/dependency-graph.json",
+      "purpose": "dependency relationships"
+    },
+    {
+      "path": "code/pseudocode-ledger.md",
+      "purpose": "normalized logic"
+    },
+    {
+      "path": "contracts/io-contracts.json",
+      "purpose": "boundary inventory"
+    },
+    {
+      "path": "migration/gap-matrix.json",
+      "purpose": "target mismatch analysis"
+    },
+    {
+      "path": "migration/target-map.json",
+      "purpose": "keep/adapt/rewrite/defer decisions"
+    },
+    {
+      "path": "execution/team-config.json",
+      "purpose": "team routing"
+    },
+    {
+      "path": "execution/work-orders.md",
+      "purpose": "bounded execution slices"
+    },
+    {
+      "path": "verify/verification-plan.md",
+      "purpose": "checks and parity criteria"
+    },
+    {
+      "path": "evidence/",
+      "purpose": "proof bundle"
+    },
+    {
+      "path": "release/handoff.md",
+      "purpose": "resumable handoff"
+    }
+  ]
+}

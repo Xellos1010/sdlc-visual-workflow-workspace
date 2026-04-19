@@ -1677,6 +1677,308 @@
       "nx/target-defaults"
     ]
   },
+  "apps/ts-to-rust-foundry-starter": {
+    "root": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "name": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "tags": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "tags.npm:private": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.0": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.1": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.2": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.3": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.4": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.5": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.6": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.7": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.description": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.packageName": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.js.isInPackageManagerWorkspaces": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.full": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.full.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.full.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.full.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.full.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.full.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.full.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.analyze": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.analyze.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.analyze.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.analyze.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.analyze.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.analyze.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.analyze.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.generate:rust": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.generate:rust.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.generate:rust.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.generate:rust.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.generate:rust.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.generate:rust.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.generate:rust.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.example": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.example.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.example.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.example.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.example.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.example.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.example.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:example": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:example.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:example.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:example.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:example.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:example.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:example.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:night-agent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:night-agent.executor": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:night-agent.options": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:night-agent.metadata": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:night-agent.options.script": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:night-agent.metadata.scriptContent": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.viewer:night-agent.metadata.runCommand": [
+      "apps/ts-to-rust-foundry-starter/package.json",
+      "nx/core/package-json"
+    ]
+  },
   "tools/ai-context": {
     "root": [
       "tools/ai-context/project.json",

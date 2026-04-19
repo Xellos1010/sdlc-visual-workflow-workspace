@@ -326,6 +326,135 @@
         "implicitDependencies": []
       }
     },
+    "ts-to-rust-foundry-starter": {
+      "name": "ts-to-rust-foundry-starter",
+      "type": "lib",
+      "data": {
+        "root": "apps/ts-to-rust-foundry-starter",
+        "name": "ts-to-rust-foundry-starter",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build",
+              "full",
+              "analyze",
+              "generate:rust",
+              "example",
+              "viewer",
+              "viewer:example",
+              "viewer:night-agent"
+            ]
+          },
+          "description": "Free starter pipeline for TypeScript/TSX reverse engineering to UML, pseudocode, and Rust.",
+          "js": {
+            "packageName": "ts-to-rust-foundry-starter",
+            "isInPackageManagerWorkspaces": true
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "tsc -p tsconfig.json",
+              "runCommand": "pnpm run build"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "full": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "full"
+            },
+            "metadata": {
+              "scriptContent": "tsx src/cli.ts full",
+              "runCommand": "pnpm run full"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "analyze": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "analyze"
+            },
+            "metadata": {
+              "scriptContent": "tsx src/cli.ts analyze",
+              "runCommand": "pnpm run analyze"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "generate:rust": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "generate:rust"
+            },
+            "metadata": {
+              "scriptContent": "tsx src/cli.ts generate-rust",
+              "runCommand": "pnpm run generate:rust"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "example": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "example"
+            },
+            "metadata": {
+              "scriptContent": "tsx src/cli.ts full --input ./examples/src --output ./artifacts --use-tsuml2 auto",
+              "runCommand": "pnpm run example"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "viewer": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "viewer"
+            },
+            "metadata": {
+              "scriptContent": "node viewer-server.mjs",
+              "runCommand": "pnpm run viewer"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "viewer:example": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "viewer:example"
+            },
+            "metadata": {
+              "scriptContent": "ARTIFACT_ROOT=./artifacts node viewer-server.mjs",
+              "runCommand": "pnpm run viewer:example"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "viewer:night-agent": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "viewer:night-agent"
+            },
+            "metadata": {
+              "scriptContent": "ARTIFACT_ROOT=../../.foundry/staging/ts-to-rust-foundry-starter/artifacts node viewer-server.mjs",
+              "runCommand": "pnpm run viewer:night-agent"
+            },
+            "configurations": {},
+            "parallelism": true
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
     "flagship-foundry": {
       "name": "flagship-foundry",
       "type": "app",
@@ -2017,6 +2146,18 @@
   "dependencies": {
     "import-bridge": [],
     "cursor-companion": [],
+    "ts-to-rust-foundry-starter": [
+      {
+        "source": "ts-to-rust-foundry-starter",
+        "target": "npm:@types/node",
+        "type": "static"
+      },
+      {
+        "source": "ts-to-rust-foundry-starter",
+        "target": "npm:typescript",
+        "type": "static"
+      }
+    ],
     "flagship-foundry": [],
     "ai-context": [],
     "platform-dev": [],
@@ -3008,5 +3149,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1776039982436
+  "computedAt": 1776567689737
 }

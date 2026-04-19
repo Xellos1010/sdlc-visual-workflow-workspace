@@ -1,0 +1,202 @@
+<svg version="1.1" baseProfile="full" width="2048.0" height="759.0" viewBox="0 0 2048 759" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+
+[&lt;type&gt;InlineGhostText|+text: string;+fullCommand: string;+insertPosition: number|]
+[&lt;type&gt;BaseTextInputProps|+onHistoryUp?: () =&gt; void;+onHistoryDown?: () =&gt; void;+placeholder?: string;+multiline?: boolean;+focus?: boolean;+mask?: string;+showCursor?: boolean;+highlightPastedText?: boolean;+value: string;+onChange: (value: string) =&gt; void;+onSubmit?: (value: string) =&gt; void;+onExit?: () =&gt; void;+onExitMessage?: (show: boolean, key?: string) =&gt; void;+onHistoryReset?: () =&gt; void;+onClearInput?: () =&gt; void;+columns: number;+maxVisibleLines?: number;+onImagePaste?: (base64Image: string, mediaType?: string, filename?: string, dimensions?: ImageDimensions, sourcePath?: string) =&gt; void;+onPaste?: (text: string) =&gt; void;+onIsPastingChange?: (isPasting: boolean) =&gt; void;+disableCursorMovementForUpDownKeys?: boolean;+disableEscapeDoublePress?: boolean;+cursorOffset: number;+onChangeCursorOffset: (offset: number) =&gt; void;+argumentHint?: string;+onUndo?: () =&gt; void;+dimColor?: boolean;+highlights?: TextHighlight\[\];+placeholderElement?: React.ReactNode;+inlineGhostText?: InlineGhostText;+inputFilter?: (input: string, key: Key) =&gt; string|]
+[&lt;type&gt;BaseInputState|+onInput: (input: string, key: Key) =&gt; void;+renderedValue: string;+offset: number;+setOffset: (offset: number) =&gt; void;+cursorLine: number;+cursorColumn: number;+viewportCharOffset: number;+viewportCharEnd: number;+isPasting?: boolean;+pasteState?: { chunks: string\[\]; timeoutId: Timeout; }|]
+[&lt;type&gt;QueuedCommand|+value: string \| ContentBlockParam\[\];+mode: PromptInputMode;+priority?: QueuePriority;+uuid?: `${string}-${string}-${string}-${string}-${string}`;+orphanedPermission?: OrphanedPermission;+pastedContents?: Record&lt;number, PastedContent&gt;;+preExpansionValue?: string;+skipSlashCommands?: boolean;+bridgeOrigin?: boolean;+isMeta?: boolean;+origin?: MessageOrigin;+workload?: string;+agentId?: AgentId|]
+[&lt;type&gt;OrphanedPermission|+permissionResult: PermissionResult;+assistantMessage: AssistantMessage|]
+[BaseTextInputProps]  -  [InlineGhostText]
+[QueuedCommand]  -  [OrphanedPermission]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="759.0" width="2048.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#33322E" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<path d="M562.0 558.0 L562 578 L562 598 L562.0 598.0 " fill="none"></path>
+<path d="M1769.0 412.5 L1769 578 L1769 606.5 L1769.0 606.5 " fill="none"></path>
+<g data-name="InlineGhostText">
+<g fill="lightgray" stroke="#33322E" data-name="InlineGhostText">
+<rect x="460.5" y="598.0" height="105.0" width="203.0" data-name="InlineGhostText"></rect>
+<path d="M460.5 630.0 L663.5 630.0" fill="none" data-name="InlineGhostText"></path>
+<path d="M460.5 695.0 L663.5 695.0" fill="none" data-name="InlineGhostText"></path>
+</g>
+<g transform="translate(460.5, 598)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="InlineGhostText" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="InlineGhostText" data-compartment="0">
+<a id="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts.InlineGhostText" xlink:href="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts"><text x="93.5" y="14.1" stroke="none" text-anchor="middle" data-name="InlineGhostText" data-compartment="0">InlineGhostText</text></a>
+
+</g>
+</g>
+<g transform="translate(460.5, 630)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="InlineGhostText" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="InlineGhostText" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="InlineGhostText" data-compartment="1">+text: string</text>
+<text x="0.0" y="30.3" stroke="none" data-name="InlineGhostText" data-compartment="1">+fullCommand: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="InlineGhostText" data-compartment="1">+insertPosition: number</text>
+
+</g>
+</g>
+<g transform="translate(460.5, 695)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="InlineGhostText" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="InlineGhostText" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="BaseTextInputProps">
+<g fill="lightgray" stroke="#33322E" data-name="BaseTextInputProps">
+<rect x="0.0" y="0.0" height="558.0" width="1124.0" data-name="BaseTextInputProps"></rect>
+<path d="M0.0 32.0 L1124.0 32.0" fill="none" data-name="BaseTextInputProps"></path>
+<path d="M0.0 550.0 L1124.0 550.0" fill="none" data-name="BaseTextInputProps"></path>
+</g>
+<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseTextInputProps" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="BaseTextInputProps" data-compartment="0">
+<a id="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts.BaseTextInputProps" xlink:href="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts"><text x="554.0" y="14.1" stroke="none" text-anchor="middle" data-name="BaseTextInputProps" data-compartment="0">BaseTextInputProps</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 32)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseTextInputProps" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BaseTextInputProps" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onHistoryUp?: () =&gt; void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onHistoryDown?: () =&gt; void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+placeholder?: string</text>
+<text x="0.0" y="62.7" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+multiline?: boolean</text>
+<text x="0.0" y="78.9" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+focus?: boolean</text>
+<text x="0.0" y="95.1" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+mask?: string</text>
+<text x="0.0" y="111.3" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+showCursor?: boolean</text>
+<text x="0.0" y="127.5" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+highlightPastedText?: boolean</text>
+<text x="0.0" y="143.7" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+value: string</text>
+<text x="0.0" y="159.9" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onChange: (value: string) =&gt; void</text>
+<text x="0.0" y="176.1" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onSubmit?: (value: string) =&gt; void</text>
+<text x="0.0" y="192.3" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onExit?: () =&gt; void</text>
+<text x="0.0" y="208.5" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onExitMessage?: (show: boolean, key?: string) =&gt; void</text>
+<text x="0.0" y="224.7" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onHistoryReset?: () =&gt; void</text>
+<text x="0.0" y="240.9" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onClearInput?: () =&gt; void</text>
+<text x="0.0" y="257.1" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+columns: number</text>
+<text x="0.0" y="273.3" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+maxVisibleLines?: number</text>
+<text x="0.0" y="289.5" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onImagePaste?: (base64Image: string, mediaType?: string, filename?: string, dimensions?: ImageDimensions, sourcePath?: string) =&gt; void</text>
+<text x="0.0" y="305.7" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onPaste?: (text: string) =&gt; void</text>
+<text x="0.0" y="321.9" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onIsPastingChange?: (isPasting: boolean) =&gt; void</text>
+<text x="0.0" y="338.1" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+disableCursorMovementForUpDownKeys?: boolean</text>
+<text x="0.0" y="354.3" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+disableEscapeDoublePress?: boolean</text>
+<text x="0.0" y="370.5" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+cursorOffset: number</text>
+<text x="0.0" y="386.7" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onChangeCursorOffset: (offset: number) =&gt; void</text>
+<text x="0.0" y="402.9" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+argumentHint?: string</text>
+<text x="0.0" y="419.1" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+onUndo?: () =&gt; void</text>
+<text x="0.0" y="435.3" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+dimColor?: boolean</text>
+<text x="0.0" y="451.5" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+highlights?: TextHighlight[]</text>
+<text x="0.0" y="467.7" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+placeholderElement?: React.ReactNode</text>
+<text x="0.0" y="483.9" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+inlineGhostText?: InlineGhostText</text>
+<text x="0.0" y="500.1" stroke="none" data-name="BaseTextInputProps" data-compartment="1">+inputFilter?: (input: string, key: Key) =&gt; string</text>
+
+</g>
+</g>
+<g transform="translate(0, 550)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseTextInputProps" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="BaseTextInputProps" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="BaseInputState">
+<g fill="lightgray" stroke="#33322E" data-name="BaseInputState">
+<rect x="1164.0" y="154.0" height="250.0" width="342.0" data-name="BaseInputState"></rect>
+<path d="M1164.0 186.0 L1506.0 186.0" fill="none" data-name="BaseInputState"></path>
+<path d="M1164.0 396.0 L1506.0 396.0" fill="none" data-name="BaseInputState"></path>
+</g>
+<g transform="translate(1164, 154)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseInputState" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="BaseInputState" data-compartment="0">
+<a id="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts.BaseInputState" xlink:href="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts"><text x="163.0" y="14.1" stroke="none" text-anchor="middle" data-name="BaseInputState" data-compartment="0">BaseInputState</text></a>
+
+</g>
+</g>
+<g transform="translate(1164, 186)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseInputState" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="BaseInputState" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="BaseInputState" data-compartment="1">+onInput: (input: string, key: Key) =&gt; void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="BaseInputState" data-compartment="1">+renderedValue: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="BaseInputState" data-compartment="1">+offset: number</text>
+<text x="0.0" y="62.7" stroke="none" data-name="BaseInputState" data-compartment="1">+setOffset: (offset: number) =&gt; void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="BaseInputState" data-compartment="1">+cursorLine: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="BaseInputState" data-compartment="1">+cursorColumn: number</text>
+<text x="0.0" y="111.3" stroke="none" data-name="BaseInputState" data-compartment="1">+viewportCharOffset: number</text>
+<text x="0.0" y="127.5" stroke="none" data-name="BaseInputState" data-compartment="1">+viewportCharEnd: number</text>
+<text x="0.0" y="143.7" stroke="none" data-name="BaseInputState" data-compartment="1">+isPasting?: boolean</text>
+<text x="0.0" y="159.9" stroke="none" data-name="BaseInputState" data-compartment="1">+pasteState?: { chunks: string[]</text>
+<text x="0.0" y="176.1" stroke="none" data-name="BaseInputState" data-compartment="1">timeoutId: Timeout</text>
+<text x="0.0" y="192.3" stroke="none" data-name="BaseInputState" data-compartment="1">}</text>
+
+</g>
+</g>
+<g transform="translate(1164, 396)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="BaseInputState" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="BaseInputState" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="QueuedCommand">
+<g fill="lightgray" stroke="#33322E" data-name="QueuedCommand">
+<rect x="1546.0" y="145.5" height="267.0" width="446.0" data-name="QueuedCommand"></rect>
+<path d="M1546.0 177.5 L1992.0 177.5" fill="none" data-name="QueuedCommand"></path>
+<path d="M1546.0 404.5 L1992.0 404.5" fill="none" data-name="QueuedCommand"></path>
+</g>
+<g transform="translate(1546, 145.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="QueuedCommand" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="QueuedCommand" data-compartment="0">
+<a id="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts.QueuedCommand" xlink:href="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts"><text x="215.0" y="14.1" stroke="none" text-anchor="middle" data-name="QueuedCommand" data-compartment="0">QueuedCommand</text></a>
+
+</g>
+</g>
+<g transform="translate(1546, 177.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="QueuedCommand" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="QueuedCommand" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="QueuedCommand" data-compartment="1">+value: string | ContentBlockParam[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="QueuedCommand" data-compartment="1">+mode: PromptInputMode</text>
+<text x="0.0" y="46.5" stroke="none" data-name="QueuedCommand" data-compartment="1">+priority?: QueuePriority</text>
+<text x="0.0" y="62.7" stroke="none" data-name="QueuedCommand" data-compartment="1">+uuid?: `${string}-${string}-${string}-${string}-${string}`</text>
+<text x="0.0" y="78.9" stroke="none" data-name="QueuedCommand" data-compartment="1">+orphanedPermission?: OrphanedPermission</text>
+<text x="0.0" y="95.1" stroke="none" data-name="QueuedCommand" data-compartment="1">+pastedContents?: Record&lt;number, PastedContent&gt;</text>
+<text x="0.0" y="111.3" stroke="none" data-name="QueuedCommand" data-compartment="1">+preExpansionValue?: string</text>
+<text x="0.0" y="127.5" stroke="none" data-name="QueuedCommand" data-compartment="1">+skipSlashCommands?: boolean</text>
+<text x="0.0" y="143.7" stroke="none" data-name="QueuedCommand" data-compartment="1">+bridgeOrigin?: boolean</text>
+<text x="0.0" y="159.9" stroke="none" data-name="QueuedCommand" data-compartment="1">+isMeta?: boolean</text>
+<text x="0.0" y="176.1" stroke="none" data-name="QueuedCommand" data-compartment="1">+origin?: MessageOrigin</text>
+<text x="0.0" y="192.3" stroke="none" data-name="QueuedCommand" data-compartment="1">+workload?: string</text>
+<text x="0.0" y="208.5" stroke="none" data-name="QueuedCommand" data-compartment="1">+agentId?: AgentId</text>
+
+</g>
+</g>
+<g transform="translate(1546, 404.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="QueuedCommand" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="QueuedCommand" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="OrphanedPermission">
+<g fill="lightgray" stroke="#33322E" data-name="OrphanedPermission">
+<rect x="1607.5" y="606.5" height="88.0" width="323.0" data-name="OrphanedPermission"></rect>
+<path d="M1607.5 638.5 L1930.5 638.5" fill="none" data-name="OrphanedPermission"></path>
+<path d="M1607.5 686.5 L1930.5 686.5" fill="none" data-name="OrphanedPermission"></path>
+</g>
+<g transform="translate(1607.5, 606.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="OrphanedPermission" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="OrphanedPermission" data-compartment="0">
+<a id="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts.OrphanedPermission" xlink:href="../../../Night-Agent/monorepo/apps/night-agent-runner/types/textInputTypes.ts"><text x="153.5" y="14.1" stroke="none" text-anchor="middle" data-name="OrphanedPermission" data-compartment="0">OrphanedPermission</text></a>
+
+</g>
+</g>
+<g transform="translate(1607.5, 638.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="OrphanedPermission" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="OrphanedPermission" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="OrphanedPermission" data-compartment="1">+permissionResult: PermissionResult</text>
+<text x="0.0" y="30.3" stroke="none" data-name="OrphanedPermission" data-compartment="1">+assistantMessage: AssistantMessage</text>
+
+</g>
+</g>
+<g transform="translate(1607.5, 686.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="OrphanedPermission" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="OrphanedPermission" data-compartment="2">
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

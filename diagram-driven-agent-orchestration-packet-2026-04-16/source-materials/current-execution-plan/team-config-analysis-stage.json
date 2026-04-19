@@ -1,0 +1,146 @@
+{
+  "initiative": {
+    "name": "TS→Rust Migration — Stage 1: Source Analysis",
+    "slug": "ts-react-rust-migration-analysis",
+    "objective": "Analyze every TypeScript and TSX file in apps/night-agent-runner/src/ and produce a unified migration ledger with subsystem classification, IO contracts, migration risk, and Rust target crate for each file. 7 analyzer teammates split by subsystem to cover ~1900 files in parallel.",
+    "sdlcCycle": "monorepo/.foundry",
+    "startingPhase": "implement",
+    "status": "ready",
+    "pipelineStage": 1,
+    "pipelineTotal": 6
+  },
+  "team": {
+    "planApprovalRequired": false,
+    "teammates": [
+      {
+        "name": "analyzer-tui",
+        "objective": "Analyze tui-repl subsystem: screens/, components/, ink/, hooks/, ink.ts, replLauncher.tsx, dialogLaunchers.tsx, interactiveHelpers.tsx",
+        "subagentType": "ts-react-rust-analyzer",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/screens/",
+          "apps/night-agent-runner/src/components/",
+          "apps/night-agent-runner/src/ink/",
+          "apps/night-agent-runner/src/hooks/",
+          "apps/night-agent-runner/src/ink.ts",
+          "apps/night-agent-runner/src/replLauncher.tsx",
+          "apps/night-agent-runner/src/dialogLaunchers.tsx",
+          "apps/night-agent-runner/src/interactiveHelpers.tsx"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "analyzer-cli",
+        "objective": "Analyze command-surface subsystem: commands/, commands.ts, entrypoints/, cli/",
+        "subagentType": "ts-react-rust-analyzer",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/commands/",
+          "apps/night-agent-runner/src/commands.ts",
+          "apps/night-agent-runner/src/entrypoints/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "analyzer-query",
+        "objective": "Analyze runtime-core subsystem: QueryEngine.ts, query.ts, query/, assistant/, tools/, tools.ts, Task.ts, Tool.ts",
+        "subagentType": "ts-react-rust-analyzer",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/QueryEngine.ts",
+          "apps/night-agent-runner/src/query.ts",
+          "apps/night-agent-runner/src/query/",
+          "apps/night-agent-runner/src/assistant/",
+          "apps/night-agent-runner/src/tools/",
+          "apps/night-agent-runner/src/tools.ts",
+          "apps/night-agent-runner/src/Task.ts",
+          "apps/night-agent-runner/src/Tool.ts"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "analyzer-session",
+        "objective": "Analyze session-compaction subsystem: state/, bootstrap/, context/, context.ts, history.ts, tasks/, tasks.ts, migrations/, cost-tracker.ts, costHook.ts",
+        "subagentType": "ts-react-rust-analyzer",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/state/",
+          "apps/night-agent-runner/src/bootstrap/",
+          "apps/night-agent-runner/src/context/",
+          "apps/night-agent-runner/src/context.ts",
+          "apps/night-agent-runner/src/history.ts",
+          "apps/night-agent-runner/src/tasks/",
+          "apps/night-agent-runner/src/tasks.ts",
+          "apps/night-agent-runner/src/migrations/",
+          "apps/night-agent-runner/src/cost-tracker.ts",
+          "apps/night-agent-runner/src/costHook.ts"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "analyzer-plugins",
+        "objective": "Analyze skills-and-plugins subsystem: skills/, outputStyles/, plugins/, keybindings/, vim/",
+        "subagentType": "ts-react-rust-analyzer",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/skills/",
+          "apps/night-agent-runner/src/outputStyles/",
+          "apps/night-agent-runner/src/plugins/",
+          "apps/night-agent-runner/src/keybindings/",
+          "apps/night-agent-runner/src/vim/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "analyzer-remote",
+        "objective": "Analyze mcp-integrations and remote-connectivity subsystems: bridge/, remote/, server/, upstreamproxy/, voice/",
+        "subagentType": "ts-react-rust-analyzer",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/bridge/",
+          "apps/night-agent-runner/src/remote/",
+          "apps/night-agent-runner/src/server/",
+          "apps/night-agent-runner/src/upstreamproxy/",
+          "apps/night-agent-runner/src/voice/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "analyzer-utils",
+        "objective": "Analyze utilities, types, schemas, and native integrations: utils/, types/, schemas/, constants/, coordinator/, setup.ts, native-ts/, moreright/, memdir/, buddy/",
+        "subagentType": "ts-react-rust-analyzer",
+        "model": "sonnet",
+        "scope": [
+          "apps/night-agent-runner/src/utils/",
+          "apps/night-agent-runner/src/types/",
+          "apps/night-agent-runner/src/schemas/",
+          "apps/night-agent-runner/src/constants/",
+          "apps/night-agent-runner/src/coordinator/",
+          "apps/night-agent-runner/src/setup.ts",
+          "apps/night-agent-runner/src/native-ts/",
+          "apps/night-agent-runner/src/moreright/",
+          "apps/night-agent-runner/src/memdir/",
+          "apps/night-agent-runner/src/buddy/",
+          "apps/night-agent-runner/src/main.tsx",
+          "apps/night-agent-runner/src/projectOnboardingState.ts"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      }
+    ]
+  },
+  "doneCriteria": [
+    "All 7 analyzer teammates have completed their scopes",
+    "migration-ledger.json exists at .foundry/projects/ts-react-rust-migration/migration-ledger.json",
+    "Every .ts/.tsx file in apps/night-agent-runner/src/ appears in the ledger",
+    "Each entry has: file, subsystem, runtimeSurfaces, ioContracts, migrationRisk, rustTarget"
+  ],
+  "leadPromptPath": ".foundry/staging/ts-react-rust-migration/pipeline/01-analysis/lead-prompt.md",
+  "continuityPath": ".foundry/projects/ts-react-rust-migration/current-task.json"
+}

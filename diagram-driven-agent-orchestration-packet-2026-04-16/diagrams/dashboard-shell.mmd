@@ -1,0 +1,17 @@
+flowchart TB
+  top[Top Bar
+Workspace | Search | Command Palette | Approvals | Alerts]
+  left[Left Rail
+Overview | Architecture | Behavior | Migration | Work Orders | Evidence]
+  canvas[Center Canvas
+Map / Board / Timeline / Diff / Diagram View]
+  inspector[Right Inspector
+Selected object
+meaning + actions]
+  drawer[Bottom Drawer
+logs | chat | verifier | evidence | continuity]
+
+  top --> canvas
+  left --> canvas
+  canvas --> inspector
+  canvas --> drawer

@@ -1,0 +1,24 @@
+{
+  "project": "diagram-driven-agent-orchestration-dashboard",
+  "sdlcPhase": "discover",
+  "currentPhase": {
+    "id": "foundation",
+    "status": "in_progress",
+    "summary": "Packet generated. Awaiting operator approval to launch foundation work orders."
+  },
+  "doneCriteria": [
+    "artifact contract approved",
+    "team config and lead prompt approved",
+    "skill.zip validated and stored",
+    "pilot use case selected"
+  ],
+  "nextCommandSet": [
+    "Review 01-executive-summary.md",
+    "Review 11-work-orders.md",
+    "Review machine/lead-prompt.md",
+    "Approve stage-01 foundation launch"
+  ],
+  "blockedBy": [],
+  "activeBranch": "plan/diagram-driven-agent-orchestration-dashboard",
+  "nextCommit": "docs(plan): add diagram-driven agent orchestration packet"
+}

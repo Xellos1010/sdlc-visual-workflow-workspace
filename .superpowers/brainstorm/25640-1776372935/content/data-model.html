@@ -1,0 +1,214 @@
+<h2>Data Model & Event Schema</h2>
+<p class="subtitle">Section 2 of 8 — Core entities, relationships, and the event backbone that drives sync, confidence, and realtime collaboration.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+
+  <!-- Entity map left -->
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div style="color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:.06em">CORE ENTITIES</div>
+
+    <div style="background:#1a1f2e;border:1px solid #7c8cf8;border-radius:8px;padding:12px 14px;">
+      <div style="color:#7c8cf8;font-size:11px;font-weight:700;margin-bottom:8px">IDENTITY LAYER</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">User</span>
+          <span style="color:#64748b;font-size:10px">id · email · github_id · avatar</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">Workspace</span>
+          <span style="color:#64748b;font-size:10px">id · name · owner_id · plan · config</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">WorkspaceMember</span>
+          <span style="color:#64748b;font-size:10px">workspace_id · user_id · role</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">Project</span>
+          <span style="color:#64748b;font-size:10px">id · workspace_id · name · goal · repo_url</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e;border:1px solid #34d399;border-radius:8px;padding:12px 14px;">
+      <div style="color:#34d399;font-size:11px;font-weight:700;margin-bottom:8px">ARTIFACT LAYER</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#e2e8f0;font-size:12px;font-weight:600">Artifact</span>
+            <span style="color:#64748b;font-size:10px">id · project_id · type · version</span>
+          </div>
+          <div style="margin-top:4px;display:flex;gap:4px;flex-wrap:wrap;">
+            <span style="background:#34d39915;border-radius:3px;padding:1px 6px;color:#34d399;font-size:10px">spec</span>
+            <span style="background:#34d39915;border-radius:3px;padding:1px 6px;color:#34d399;font-size:10px">diagram</span>
+            <span style="background:#34d39915;border-radius:3px;padding:1px 6px;color:#34d399;font-size:10px">schema</span>
+            <span style="background:#34d39915;border-radius:3px;padding:1px 6px;color:#34d399;font-size:10px">runbook</span>
+            <span style="background:#34d39915;border-radius:3px;padding:1px 6px;color:#34d399;font-size:10px">code</span>
+            <span style="background:#34d39915;border-radius:3px;padding:1px 6px;color:#34d399;font-size:10px">evidence</span>
+            <span style="background:#34d39915;border-radius:3px;padding:1px 6px;color:#34d399;font-size:10px">template</span>
+          </div>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">ArtifactVersion</span>
+          <span style="color:#64748b;font-size:10px">artifact_id · version · content_url · diff</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">Task</span>
+          <span style="color:#64748b;font-size:10px">id · project_id · assignee · labels · parent_id</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">Comment</span>
+          <span style="color:#64748b;font-size:10px">id · artifact_id · task_id · author_id · body</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e;border:1px solid #f59e0b;border-radius:8px;padding:12px 14px;">
+      <div style="color:#f59e0b;font-size:11px;font-weight:700;margin-bottom:8px">EXECUTION LAYER</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">Runbook</span>
+          <span style="color:#64748b;font-size:10px">id · project_id · steps (JSONB) · version</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">RunbookRun</span>
+          <span style="color:#64748b;font-size:10px">id · runbook_id · status · current_step</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">WorkOrder</span>
+          <span style="color:#64748b;font-size:10px">id · run_id · agent_type · scope · status</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">TestRun</span>
+          <span style="color:#64748b;font-size:10px">id · work_order_id · results · dep_tree (JSONB)</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e;border:1px solid #f87171;border-radius:8px;padding:12px 14px;">
+      <div style="color:#f87171;font-size:11px;font-weight:700;margin-bottom:8px">INTELLIGENCE LAYER</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">ApprovalGate</span>
+          <span style="color:#64748b;font-size:10px">id · run_id · step_id · threshold · status</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">ApprovalDecision</span>
+          <span style="color:#64748b;font-size:10px">id · gate_id · user_id · decision · rationale</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">ConfidenceScore</span>
+          <span style="color:#64748b;font-size:10px">id · workspace_id · gate_type · score · samples</span>
+        </div>
+        <div style="background:#0f1320;border-radius:5px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:#e2e8f0;font-size:12px;font-weight:600">Template</span>
+          <span style="color:#64748b;font-size:10px">id · workspace_id · type · schema · published</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event schema right -->
+  <div style="display:flex;flex-direction:column;gap:8px;">
+    <div style="color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:.06em">EVENT BACKBONE</div>
+
+    <div style="background:#1a1f2e;border:1px solid #a78bfa;border-radius:8px;padding:12px 14px;">
+      <div style="color:#a78bfa;font-size:11px;font-weight:700;margin-bottom:8px">UNIVERSAL EVENT SCHEMA</div>
+      <pre style="color:#94a3b8;font-size:11px;margin:0;line-height:1.7;background:#0f1320;border-radius:6px;padding:10px;">{
+  id:           uuid,
+  workspace_id: uuid,       <span style="color:#64748b">// always scoped</span>
+  project_id:   uuid?,      <span style="color:#64748b">// optional</span>
+  type:         EventType,  <span style="color:#64748b">// see taxonomy</span>
+  actor_id:     uuid,       <span style="color:#64748b">// user or agent</span>
+  actor_type:   <span style="color:#34d399">'user'</span> | <span style="color:#f59e0b">'agent'</span>,
+  payload:      JSONB,      <span style="color:#64748b">// type-specific</span>
+  timestamp:    timestamptz,
+  conf_delta:   float?      <span style="color:#64748b">// confidence impact</span>
+}</pre>
+    </div>
+
+    <div style="background:#1a1f2e;border:1px solid #a78bfa;border-radius:8px;padding:12px 14px;">
+      <div style="color:#a78bfa;font-size:11px;font-weight:700;margin-bottom:8px">EVENT TYPE TAXONOMY</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div>
+          <div style="color:#7c8cf8;font-size:10px;font-weight:700;margin-bottom:4px">WORKSPACE</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">workspace.created</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">member.invited</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">project.created</code>
+          </div>
+        </div>
+        <div>
+          <div style="color:#34d399;font-size:10px;font-weight:700;margin-bottom:4px">ARTIFACTS</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">spec.drafted</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">spec.published</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">diagram.generated</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">schema.defined</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">artifact.commented</code>
+          </div>
+        </div>
+        <div>
+          <div style="color:#f59e0b;font-size:10px;font-weight:700;margin-bottom:4px">EXECUTION</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">run.started</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">step.completed</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">agent.spawned</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">agent.completed</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">run.failed</code>
+          </div>
+        </div>
+        <div>
+          <div style="color:#f87171;font-size:10px;font-weight:700;margin-bottom:4px">GENERATION & TESTING</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">code.generated</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">code.compiled</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">test.passed</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">test.failed</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">test.root_cause</code>
+          </div>
+        </div>
+        <div>
+          <div style="color:#a78bfa;font-size:10px;font-weight:700;margin-bottom:4px">INTELLIGENCE</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap;">
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">gate.opened</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">approval.decided</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">approval.auto</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">confidence.updated</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">threshold.crossed</code>
+            <code style="background:#0f1320;border-radius:3px;padding:2px 6px;color:#94a3b8;font-size:10px">template.published</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e;border:1px solid #f87171;border-radius:8px;padding:12px 14px;">
+      <div style="color:#f87171;font-size:11px;font-weight:700;margin-bottom:8px">CONFIDENCE MODEL</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="background:#0f1320;border-radius:6px;padding:8px 10px;color:#94a3b8;font-size:11px;line-height:1.6">
+          <span style="color:#f87171">Score</span> = weighted rolling avg of <span style="color:#e2e8f0">ApprovalDecisions</span> for a given <span style="color:#e2e8f0">gate_type</span> in a workspace.<br>
+          <span style="color:#f87171">conf_delta</span> on each event = how much this decision shifts the score.<br>
+          When <span style="color:#f87171">score ≥ threshold</span> → <code style="color:#34d399;font-size:10px">approval.auto</code> event fires — no human needed.<br>
+          <span style="color:#64748b">Human can override any auto-approval, which feeds back into delta.</span>
+        </div>
+        <div style="display:flex;gap:6px;align-items:center;padding:6px 10px;background:#0f1320;border-radius:6px;">
+          <span style="color:#64748b;font-size:11px">Per workspace, per gate_type:</span>
+          <code style="color:#f87171;font-size:11px;background:#f8717115;padding:2px 8px;border-radius:4px">score ∈ [0, 1]</code>
+          <span style="color:#64748b;font-size:11px">Default threshold:</span>
+          <code style="color:#a78bfa;font-size:11px;background:#a78bfa15;padding:2px 8px;border-radius:4px">0.85</code>
+          <span style="color:#64748b;font-size:11px">Configurable per gate</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1f2e;border:1px solid #34d399;border-radius:8px;padding:12px 14px;">
+      <div style="color:#34d399;font-size:11px;font-weight:700;margin-bottom:8px">DESIGN RULES</div>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <div style="color:#94a3b8;font-size:12px;">→ Every write to the DB emits a corresponding event — no silent mutations</div>
+        <div style="color:#94a3b8;font-size:12px;">→ Events are append-only — never deleted, full audit trail always available</div>
+        <div style="color:#94a3b8;font-size:12px;">→ All entities scoped to <code style="color:#7c8cf8;font-size:11px">workspace_id</code> — row-level security enforces isolation</div>
+        <div style="color:#94a3b8;font-size:12px;">→ <code style="color:#34d399;font-size:11px">content_url</code> on artifacts points to S3 — DB holds metadata only, not file content</div>
+        <div style="color:#94a3b8;font-size:12px;">→ <code style="color:#34d399;font-size:11px">dep_tree</code> on TestRun is a JSONB DAG — root-cause failures computed by Rust test-runner</div>
+      </div>
+    </div>
+  </div>
+</div>

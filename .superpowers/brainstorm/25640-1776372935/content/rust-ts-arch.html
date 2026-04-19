@@ -1,0 +1,96 @@
+<h2>TypeScript + Rust: Split by Responsibility</h2>
+<p class="subtitle">TypeScript is not a ceiling — it's a boundary. The agent runner, orchestration engine, and confidence loop belong in Rust. TypeScript handles the surfaces that require it.</p>
+
+<div style="background:#0f1320;border:1px solid #2d3550;border-radius:12px;padding:20px;margin-bottom:20px;">
+
+  <div style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;align-items:stretch;">
+
+    <!-- TypeScript column -->
+    <div style="background:#1a1f2e;border:1px solid #7c8cf8;border-radius:10px;padding:20px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <div style="background:#7c8cf820;border:1px solid #7c8cf860;border-radius:6px;padding:4px 10px;color:#7c8cf8;font-size:12px;font-weight:700">TypeScript</div>
+        <span style="color:#94a3b8;font-size:12px">required surfaces</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #7c8cf8;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">Claude Code Skills</div>
+          <div style="color:#64748b;font-size:11px;margin-top:3px">Claude Code constraint — JS/TS only. Thin layer: invoke, display visual companion, emit events.</div>
+        </div>
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #7c8cf8;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">Web App UI</div>
+          <div style="color:#64748b;font-size:11px;margin-top:3px">Next.js 14 — browser is the bottleneck, not the language. React, Tailwind, shadcn.</div>
+        </div>
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #7c8cf8;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">API Gateway (thin)</div>
+          <div style="color:#64748b;font-size:11px;margin-top:3px">Auth, session, routing requests to Rust services. Next.js API routes or lightweight proxy.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrow column -->
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;">
+      <div style="color:#f59e0b;font-size:20px">⟷</div>
+      <div style="background:#f59e0b20;border:1px solid #f59e0b60;border-radius:4px;padding:3px 6px;color:#f59e0b;font-size:10px;writing-mode:vertical-lr;text-orientation:mixed;white-space:nowrap">gRPC · HTTP</div>
+    </div>
+
+    <!-- Rust column -->
+    <div style="background:#1a1f2e;border:2px solid #f59e0b;border-radius:10px;padding:20px;">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+        <div style="background:#f59e0b20;border:1px solid #f59e0b60;border-radius:6px;padding:4px 10px;color:#f59e0b;font-size:12px;font-weight:700">Rust</div>
+        <span style="color:#94a3b8;font-size:12px">where performance is the feature</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #f59e0b;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">Agent Runner / Orchestration Engine</div>
+          <div style="color:#64748b;font-size:11px;margin-top:3px">Tokio async runtime — schedules work orders, coordinates agent teams, manages task state, handles failures and retries. Sub-millisecond task dispatch.</div>
+        </div>
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #f59e0b;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">Event Processor</div>
+          <div style="color:#64748b;font-size:11px;margin-top:3px">Consumes Supabase Realtime stream, routes events to subscribers, enforces workspace isolation. Zero-copy parsing with serde.</div>
+        </div>
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #f59e0b;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">Confidence Engine</div>
+          <div style="color:#64748b;font-size:11px;margin:3px 0 0">Aggregates decision history, computes confidence scores, applies threshold rules. High-frequency reads/writes — Rust keeps this hot.</div>
+        </div>
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #f59e0b;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">Generation Pipeline</div>
+          <div style="color:#64748b;font-size:11px;margin-top:3px">Artifact → target framework code gen. TDD test runner integration. Dependency-aware failure aggregation. IR parsing.</div>
+        </div>
+        <div style="background:#0f1320;border-radius:6px;padding:10px 14px;border-left:3px solid #f59e0b;">
+          <div style="color:#e2e8f0;font-size:13px;font-weight:600">Diagram & IR Engine</div>
+          <div style="color:#64748b;font-size:11px;margin-top:3px">Repo ingestion, symbol graph extraction, pseudocode normalization. Parallelized with Rayon. Results streamed back via gRPC.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared layer -->
+  <div style="background:#34d39910;border:1px solid #34d39940;border-radius:8px;padding:12px 16px;margin-top:16px;display:flex;align-items:center;gap:16px;">
+    <div style="color:#34d399;font-size:12px;font-weight:700;white-space:nowrap">SHARED LAYER</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="background:#0f1320;border:1px solid #2d3550;border-radius:4px;padding:4px 10px;color:#94a3b8;font-size:12px">Supabase Postgres (event store + artifact registry)</span>
+      <span style="background:#0f1320;border:1px solid #2d3550;border-radius:4px;padding:4px 10px;color:#94a3b8;font-size:12px">Supabase Realtime (broadcast channel)</span>
+      <span style="background:#0f1320;border:1px solid #2d3550;border-radius:4px;padding:4px 10px;color:#94a3b8;font-size:12px">Supabase Storage (artifact files)</span>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+  <div style="background:#0f1320;border:1px solid #34d399;border-radius:8px;padding:14px 16px;">
+    <div style="color:#34d399;font-size:12px;font-weight:700;margin-bottom:8px">WHY TYPESCRIPT IS NOT A PERFORMANCE PROBLEM</div>
+    <ul style="color:#94a3b8;font-size:12px;list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;">
+      <li>→ Skills are thin invocation wrappers — they call Rust services, not compute themselves</li>
+      <li>→ Web UI is browser-bound — JS perf is irrelevant at that layer</li>
+      <li>→ Auth/routing is I/O-bound — latency is network, not CPU</li>
+    </ul>
+  </div>
+  <div style="background:#0f1320;border:1px solid #f59e0b;border-radius:8px;padding:14px 16px;">
+    <div style="color:#f59e0b;font-size:12px;font-weight:700;margin-bottom:8px">WHY RUST IS THE RIGHT CHOICE FOR THE CORE</div>
+    <ul style="color:#94a3b8;font-size:12px;list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;">
+      <li>→ Agent orchestration is CPU + memory intensive — Tokio handles thousands of concurrent tasks</li>
+      <li>→ Confidence loop is hot path — computed on every decision, needs to be fast</li>
+      <li>→ IR / symbol graph parsing is parallelizable — Rayon saturates all cores</li>
+      <li>→ You already have the rust-porter pipeline — the codebase is already Rust-ready</li>
+    </ul>
+  </div>
+</div>

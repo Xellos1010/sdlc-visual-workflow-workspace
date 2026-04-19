@@ -1,0 +1,18 @@
+flowchart LR
+  src[TypeScript / React Codebase]
+  map[Repo Map + Dependency Graph]
+  pseudo[Pseudocode Ledger]
+  contracts[IO Contracts]
+  diagrams[Architecture + Behavior Diagrams]
+  gaps[Dependency Gap Matrix]
+  target[Target Rust Mapping]
+  wo[Work Orders]
+  port[Porter Teams]
+  verify[Parity Verification]
+
+  src --> map --> pseudo
+  map --> diagrams
+  pseudo --> gaps
+  contracts --> gaps
+  diagrams --> target
+  gaps --> target --> wo --> port --> verify

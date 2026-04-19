@@ -1,0 +1,24 @@
+{
+  "name": "diagram-driven-agent-orchestration-packet",
+  "version": "2026-04-16",
+  "contents": [
+    "README.md",
+    "01-executive-summary.md",
+    "02-software-ideas-modeler-analysis.md",
+    "03-diagram-catalog.md",
+    "04-product-architecture.md",
+    "05-agent-personas.md",
+    "06-skills-matrix.md",
+    "07-knowledge-base-blueprint.md",
+    "08-artifact-contract.md",
+    "09-dashboard-ux.md",
+    "10-execution-roadmap.md",
+    "11-work-orders.md",
+    "12-sources.md",
+    "machine/",
+    "diagrams/",
+    "source-materials/",
+    "skill-source/",
+    "skill.zip"
+  ]
+}

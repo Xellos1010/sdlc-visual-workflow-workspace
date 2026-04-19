@@ -5,52 +5,6 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
-      "ai-context": [
-        {
-          "file": "tools/ai-context/README.md",
-          "hash": "879393752637350590"
-        },
-        {
-          "file": "tools/ai-context/chunk-export.mjs",
-          "hash": "9257958076463718484"
-        },
-        {
-          "file": "tools/ai-context/exporter.mjs",
-          "hash": "6440552238918179164"
-        },
-        {
-          "file": "tools/ai-context/generate-profile.mjs",
-          "hash": "13049109533647596046"
-        },
-        {
-          "file": "tools/ai-context/profiles/current-project.json",
-          "hash": "17096737595311052128"
-        },
-        {
-          "file": "tools/ai-context/profiles/default-ignore.json",
-          "hash": "16145079501181117260"
-        },
-        {
-          "file": "tools/ai-context/profiles/example-agent-pipelines-ralph.json",
-          "hash": "14717169397332724055"
-        },
-        {
-          "file": "tools/ai-context/profiles/example-agent-pipelines-ruflo.json",
-          "hash": "851500701914907670"
-        },
-        {
-          "file": "tools/ai-context/profiles/full-repo.json",
-          "hash": "4084947604348170756"
-        },
-        {
-          "file": "tools/ai-context/profiles/latest.json",
-          "hash": "6603408680051193847"
-        },
-        {
-          "file": "tools/ai-context/project.json",
-          "hash": "94991551809072170"
-        }
-      ],
       "flagship-foundry": [
         {
           "file": "apps/flagship-foundry/.dockerignore",
@@ -1557,6 +1511,52 @@
           "hash": "5455785303283733333"
         }
       ],
+      "ai-context": [
+        {
+          "file": "tools/ai-context/README.md",
+          "hash": "879393752637350590"
+        },
+        {
+          "file": "tools/ai-context/chunk-export.mjs",
+          "hash": "9257958076463718484"
+        },
+        {
+          "file": "tools/ai-context/exporter.mjs",
+          "hash": "6440552238918179164"
+        },
+        {
+          "file": "tools/ai-context/generate-profile.mjs",
+          "hash": "13049109533647596046"
+        },
+        {
+          "file": "tools/ai-context/profiles/current-project.json",
+          "hash": "17096737595311052128"
+        },
+        {
+          "file": "tools/ai-context/profiles/default-ignore.json",
+          "hash": "16145079501181117260"
+        },
+        {
+          "file": "tools/ai-context/profiles/example-agent-pipelines-ralph.json",
+          "hash": "14717169397332724055"
+        },
+        {
+          "file": "tools/ai-context/profiles/example-agent-pipelines-ruflo.json",
+          "hash": "851500701914907670"
+        },
+        {
+          "file": "tools/ai-context/profiles/full-repo.json",
+          "hash": "4084947604348170756"
+        },
+        {
+          "file": "tools/ai-context/profiles/latest.json",
+          "hash": "6603408680051193847"
+        },
+        {
+          "file": "tools/ai-context/project.json",
+          "hash": "94991551809072170"
+        }
+      ],
       "cursor-companion": [
         {
           "file": "apps/flagship-foundry/apps/cursor-companion/README.md",
@@ -1687,6 +1687,108 @@
         {
           "file": "tools/system/setup.sh",
           "hash": "14494095874766575439"
+        }
+      ],
+      "ts-to-rust-foundry-starter": [
+        {
+          "file": "apps/ts-to-rust-foundry-starter/.gitignore",
+          "hash": "7769229407871958127"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/README.md",
+          "hash": "8318742917347588443"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/artifact-manifest.json",
+          "hash": "16224335398729959724"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/contracts/io-contracts.json",
+          "hash": "3048960216067911124"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/docs/architecture.md",
+          "hash": "15129537207707112619"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/examples/src/components/TodoList.tsx",
+          "hash": "7133596584632695560"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/examples/src/domain/Todo.ts",
+          "hash": "5978795023729163005"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/execution/work-orders.md",
+          "hash": "2296368961177666231"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/package.json",
+          "hash": "4665513859124073457",
+          "deps": [
+            "npm:@types/node",
+            "npm:typescript"
+          ]
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/project-intake.md",
+          "hash": "18021515383119165276"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/release/handoff.md",
+          "hash": "1634605472590418775"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/cli.ts",
+          "hash": "6696285562238156855"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/extract-model.ts",
+          "hash": "8327701721555324415"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/pipeline.ts",
+          "hash": "15555976730804412815"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/pseudocode.ts",
+          "hash": "11971477120012009623"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/render-uml.ts",
+          "hash": "1042614473429390143"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/rust-generator.ts",
+          "hash": "9807380570301597085"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/scan.ts",
+          "hash": "5034780090212463314"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/types.ts",
+          "hash": "16376102096769539409"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/tsconfig.json",
+          "hash": "16429133855067056496"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/verify/verification-plan.md",
+          "hash": "10050614922751319753"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/yellicode/codegenconfig.json",
+          "hash": "12697876353778950901"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/yellicode/models/example-uml-ir.json",
+          "hash": "11931391277726823296"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/yellicode/rust-from-uml.template.ts",
+          "hash": "1782160258616081901"
         }
       ],
       "import-bridge": [
@@ -1935,15 +2037,15 @@
     "nonProjectFiles": [
       {
         "file": ".claude/CHARTER.md",
-        "hash": "5727339847724687297"
+        "hash": "10164042463744729243"
       },
       {
         "file": ".claude/CLAUDE.md",
-        "hash": "11870863324715951622"
+        "hash": "13487735709685418357"
       },
       {
         "file": ".claude/RUNBOOK.md",
-        "hash": "4334516832555493501"
+        "hash": "10596883106070596846"
       },
       {
         "file": ".claude/agents/builder.md",
@@ -1990,12 +2092,40 @@
         "hash": "7915378122684642543"
       },
       {
+        "file": ".claude/skills/agent-team-builder/SKILL.md",
+        "hash": "16970213405442596109"
+      },
+      {
+        "file": ".claude/skills/agent-team-builder/references/role-catalog.md",
+        "hash": "14361168222493159687"
+      },
+      {
+        "file": ".claude/skills/agent-team-builder/references/sdlc-phases.md",
+        "hash": "17412910807762758657"
+      },
+      {
+        "file": ".claude/skills/agent-team-launcher/SKILL.md",
+        "hash": "9325433070304583018"
+      },
+      {
         "file": ".claude/skills/c4-diagram-generator/SKILL.md",
         "hash": "2419723660016984803"
       },
       {
+        "file": ".claude/skills/c4-synthesizer/SKILL.md",
+        "hash": "12198298983761626930"
+      },
+      {
         "file": ".claude/skills/continuity-writer/SKILL.md",
         "hash": "10225310775871619458"
+      },
+      {
+        "file": ".claude/skills/contract-inventory-builder/SKILL.md",
+        "hash": "3648984740650514883"
+      },
+      {
+        "file": ".claude/skills/dashboard-projection-planner/SKILL.md",
+        "hash": "14092509697331060969"
       },
       {
         "file": ".claude/skills/define-intent/SKILL.md",
@@ -2006,8 +2136,48 @@
         "hash": "1823275652930690005"
       },
       {
+        "file": ".claude/skills/dependency-gap-researcher/SKILL.md",
+        "hash": "2736247039742964554"
+      },
+      {
+        "file": ".claude/skills/diagram-decision-matrix/SKILL.md",
+        "hash": "13484505941921203582"
+      },
+      {
+        "file": ".claude/skills/diagram-driven-migration-foundry/SKILL.md",
+        "hash": "11526220625569193957"
+      },
+      {
+        "file": ".claude/skills/diagram-driven-migration-foundry/references/agent-personas.md",
+        "hash": "14712624339974157114"
+      },
+      {
+        "file": ".claude/skills/diagram-driven-migration-foundry/references/artifact-contract.md",
+        "hash": "3358669770224139396"
+      },
+      {
+        "file": ".claude/skills/diagram-driven-migration-foundry/references/diagram-catalog.md",
+        "hash": "4997505795440420374"
+      },
+      {
+        "file": ".claude/skills/diagram-driven-migration-foundry/references/foundry-alignment.md",
+        "hash": "11837570134885596336"
+      },
+      {
+        "file": ".claude/skills/diagram-driven-migration-foundry/references/knowledge-base-design.md",
+        "hash": "5426223451845396926"
+      },
+      {
+        "file": ".claude/skills/diagram-driven-migration/SKILL.md",
+        "hash": "9518829897829163777"
+      },
+      {
         "file": ".claude/skills/evidence-collector/SKILL.md",
         "hash": "1110392051022481491"
+      },
+      {
+        "file": ".claude/skills/evidence-packer/SKILL.md",
+        "hash": "10026872275835553868"
       },
       {
         "file": ".claude/skills/handoff-generator/SKILL.md",
@@ -2018,12 +2188,40 @@
         "hash": "8107339332510799264"
       },
       {
+        "file": ".claude/skills/migration-map-builder/SKILL.md",
+        "hash": "12971188758167831045"
+      },
+      {
         "file": ".claude/skills/model-router/SKILL.md",
         "hash": "8018559187252992181"
       },
       {
         "file": ".claude/skills/nx-verification/SKILL.md",
         "hash": "12972863775957107781"
+      },
+      {
+        "file": ".claude/skills/parity-verifier-planner/SKILL.md",
+        "hash": "8229211792067534707"
+      },
+      {
+        "file": ".claude/skills/pseudocode-ledger-writer/SKILL.md",
+        "hash": "14786049716212833655"
+      },
+      {
+        "file": ".claude/skills/repository-cartographer/SKILL.md",
+        "hash": "16004819408619176885"
+      },
+      {
+        "file": ".claude/skills/runtime-sequence-synthesizer/SKILL.md",
+        "hash": "13945928692776626024"
+      },
+      {
+        "file": ".claude/skills/rust-migration-verifier/SKILL.md",
+        "hash": "7976802688175314751"
+      },
+      {
+        "file": ".claude/skills/rust-porter/SKILL.md",
+        "hash": "3324195863112174371"
       },
       {
         "file": ".claude/skills/scope-chunker/SKILL.md",
@@ -2040,6 +2238,34 @@
       {
         "file": ".claude/skills/sdlc-phase-router/reference/phase-gate-matrix.md",
         "hash": "3402271707333648489"
+      },
+      {
+        "file": ".claude/skills/state-machine-synthesizer/SKILL.md",
+        "hash": "7258062370772789995"
+      },
+      {
+        "file": ".claude/skills/target-profile-router/SKILL.md",
+        "hash": "16032565412013060047"
+      },
+      {
+        "file": ".claude/skills/ts-react-rust-analyzer/SKILL.md",
+        "hash": "2151069336954586401"
+      },
+      {
+        "file": ".claude/skills/ts-react-rust-analyzer/evals/evals.json",
+        "hash": "12594197446123215765"
+      },
+      {
+        "file": ".claude/skills/ts-react-rust-analyzer/references/dep-replacements.md",
+        "hash": "3534363230142875920"
+      },
+      {
+        "file": ".claude/skills/work-order-graph-builder/SKILL.md",
+        "hash": "12542544430388780313"
+      },
+      {
+        "file": ".claude/users/matthew-leet-cave.yaml",
+        "hash": "8372189902821954946"
       },
       {
         "file": ".codex/README copy.md",
@@ -2262,6 +2488,10 @@
         "hash": "16611838831207803638"
       },
       {
+        "file": ".foundry/skills/diagram-driven-migration/SKILL.md",
+        "hash": "10565630365156137253"
+      },
+      {
         "file": ".foundry/skills/evidence-collector/SKILL.md",
         "hash": "9805975460141323035"
       },
@@ -2308,6 +2538,58 @@
       {
         "file": ".mcp.json",
         "hash": "653467951365882739"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/action-map.html",
+        "hash": "4275760224790884166"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/approaches.html",
+        "hash": "3827685812201234673"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/arch-c4.html",
+        "hash": "15337628868233089867"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/data-model.html",
+        "hash": "11465314631802084957"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/database-scale.html",
+        "hash": "6541601425821748641"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/identity.html",
+        "hash": "6379273357945707531"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/platform-adapter.html",
+        "hash": "17287004277233455592"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/rust-ts-arch.html",
+        "hash": "10847715471884596676"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/scope-map.html",
+        "hash": "4642918826384140706"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/sync-model.html",
+        "hash": "12827887612948700810"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/content/tech-stack.html",
+        "hash": "11830354260201212792"
+      },
+      {
+        "file": ".superpowers/brainstorm/25640-1776372935/state/server-stopped",
+        "hash": "2553801833144203657"
+      },
+      {
+        "file": "ECO-SYSTEM-SDLC.code-workspace",
+        "hash": "16777414690974737831"
       },
       {
         "file": "Example/Plans/adversarial-plan.json",
@@ -5694,6 +5976,298 @@
         "hash": "7743136901842387768"
       },
       {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/01-executive-summary.md",
+        "hash": "12111214770305924783"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/02-software-ideas-modeler-analysis.md",
+        "hash": "14346954436859907194"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/03-diagram-catalog.md",
+        "hash": "18166384295637884406"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/04-product-architecture.md",
+        "hash": "10065733056491924477"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/05-agent-personas.md",
+        "hash": "17107304061309076343"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/06-skills-matrix.md",
+        "hash": "5426062217214372630"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/07-knowledge-base-blueprint.md",
+        "hash": "14622721128986802603"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/08-artifact-contract.md",
+        "hash": "18326017334037987075"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/09-dashboard-ux.md",
+        "hash": "10449665386310067836"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/10-execution-roadmap.md",
+        "hash": "13744423536607652112"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/11-work-orders.md",
+        "hash": "10944918324384576428"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/12-sources.md",
+        "hash": "7160535037731471461"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/README.md",
+        "hash": "4309786007241523161"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/bundle-manifest.json",
+        "hash": "17923115668021569638"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/diagrams/dashboard-shell.mmd",
+        "hash": "16460524756734935231"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/diagrams/knowledge-base-map.mmd",
+        "hash": "10492129649286167796"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/diagrams/pilot-migration-pipeline.mmd",
+        "hash": "17554905019946392073"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/diagrams/product-overview.mmd",
+        "hash": "5389136912419971561"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/diagrams/work-order-graph.mmd",
+        "hash": "6150708386717333747"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/agent-pack.json",
+        "hash": "8341866094744954769"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/artifact-contract.json",
+        "hash": "13722207036010292632"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/current-task.json",
+        "hash": "5826076620073098810"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/knowledge-base-blueprint.json",
+        "hash": "14756540846833545800"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/launch-checklist.md",
+        "hash": "7863944193780672370"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/lead-prompt.md",
+        "hash": "16654090236132885683"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/pipeline.json",
+        "hash": "7607844012067376911"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/skill-specs.json",
+        "hash": "5057678024920252451"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/machine/team-config.json",
+        "hash": "16825281469264697203"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/SKILL.md",
+        "hash": "11526220625569193957"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/agents/openai.yaml",
+        "hash": "3143565770078830943"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/assets/templates/artifact-manifest-template.json",
+        "hash": "2063010563961653051"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/assets/templates/project-intake-template.md",
+        "hash": "7838737433980848694"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/assets/templates/work-order-template.md",
+        "hash": "17178977156297295706"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/references/agent-personas.md",
+        "hash": "14712624339974157114"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/references/artifact-contract.md",
+        "hash": "3358669770224139396"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/references/diagram-catalog.md",
+        "hash": "4997505795440420374"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/references/foundry-alignment.md",
+        "hash": "11837570134885596336"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/references/knowledge-base-design.md",
+        "hash": "5426223451845396926"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/scripts/init_project_packet.py",
+        "hash": "8840471826676325265"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill-source/diagram-driven-migration-foundry/scripts/validate_packet.py",
+        "hash": "17180473414178752228"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/skill.zip",
+        "hash": "9066787002234409206"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/charter.md",
+        "hash": "10164042463744729243"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/claude-config.md",
+        "hash": "13487735709685418357"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/lead-prompt-analysis-stage.md",
+        "hash": "10946325675939146097"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/lead-prompt-porter-tui-stage.md",
+        "hash": "17836119085486833555"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/lead-prompt-verifier-stage.md",
+        "hash": "10330956356567819288"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/lead-prompt.md",
+        "hash": "9353335277217869798"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/pipeline.json",
+        "hash": "8740014254206566042"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/runbook.md",
+        "hash": "10596883106070596846"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/skill-agent-team-builder.md",
+        "hash": "16970213405442596109"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/skill-agent-team-launcher.md",
+        "hash": "9325433070304583018"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/skill-define-intent.md",
+        "hash": "3516342876501647097"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/skill-model-router.md",
+        "hash": "8018559187252992181"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/skill-scope-chunker.md",
+        "hash": "5464045891610943490"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/skill-sdlc-phase-router.md",
+        "hash": "3939909608247963627"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/skill-ts-react-rust-analyzer.md",
+        "hash": "2151069336954586401"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/team-config-analysis-stage.json",
+        "hash": "7168118378375301557"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/team-config-porter-tui-stage.json",
+        "hash": "8702289702989281500"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/team-config-verifier-stage.json",
+        "hash": "10517432661223393773"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/team-config.json",
+        "hash": "10545630831589691722"
+      },
+      {
+        "file": "diagram-driven-agent-orchestration-packet-2026-04-16/source-materials/current-execution-plan/work-orders.md",
+        "hash": "17369263742860066804"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/SKILL.md",
+        "hash": "11526220625569193957"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/agents/openai.yaml",
+        "hash": "3143565770078830943"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/assets/templates/artifact-manifest-template.json",
+        "hash": "2063010563961653051"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/assets/templates/project-intake-template.md",
+        "hash": "7838737433980848694"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/assets/templates/work-order-template.md",
+        "hash": "17178977156297295706"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/references/agent-personas.md",
+        "hash": "14712624339974157114"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/references/artifact-contract.md",
+        "hash": "3358669770224139396"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/references/diagram-catalog.md",
+        "hash": "4997505795440420374"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/references/foundry-alignment.md",
+        "hash": "11837570134885596336"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/references/knowledge-base-design.md",
+        "hash": "5426223451845396926"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/scripts/init_project_packet.py",
+        "hash": "8840471826676325265"
+      },
+      {
+        "file": "diagram-driven-migration-foundry/scripts/validate_packet.py",
+        "hash": "17180473414178752228"
+      },
+      {
         "file": "docs/3rd-party/claude-code-docs-combined.md",
         "hash": "5532532072511487215"
       },
@@ -5954,12 +6528,32 @@
         "hash": "17401530455266644404"
       },
       {
+        "file": "docs/superpowers/plans/2026-04-16-phase-1-foundation-hello-world.md",
+        "hash": "2122413107428193961"
+      },
+      {
+        "file": "docs/superpowers/plans/2026-04-16-phase-2-web-app.md",
+        "hash": "16787938791658772492"
+      },
+      {
+        "file": "docs/superpowers/plans/2026-04-16-phase-3-rust-services.md",
+        "hash": "7176617434342934825"
+      },
+      {
+        "file": "docs/superpowers/plans/2026-04-16-phase-4-aws-cdk-infrastructure.md",
+        "hash": "16028135999825189153"
+      },
+      {
+        "file": "docs/superpowers/specs/2026-04-16-diagram-driven-collaborative-workspace-design.md",
+        "hash": "15240450848330396912"
+      },
+      {
         "file": "nx.json",
         "hash": "8187897767167719884"
       },
       {
         "file": "package.json",
-        "hash": "11808746551504203473"
+        "hash": "3683206795021003141"
       },
       {
         "file": "pnpm-lock.yaml",
@@ -5968,6 +6562,14 @@
       {
         "file": "pnpm-workspace.yaml",
         "hash": "13108396804214547201"
+      },
+      {
+        "file": "tools/scaffold/generate-workspace.mjs",
+        "hash": "5461590482479555773"
+      },
+      {
+        "file": "tools/scaffold/sync-claude-folder.sh",
+        "hash": "11688796579543097213"
       },
       {
         "file": "tools/setup/setup-nx-pnpm.sh",
