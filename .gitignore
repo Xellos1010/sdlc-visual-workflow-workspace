@@ -134,3 +134,5 @@ target/
 *.tar.gz
 *.zip
 !.github/**/*.zip
+# Packaged Cursor/Claude skills (source of truth is often the zip + SKILL.md alongside)
+!**/skill.zip
