@@ -1,0 +1,253 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/inspector-selection.schema.json",
+  "title": "Inspector Selection",
+  "type": "object",
+  "required": [
+    "selectionId",
+    "stateKind",
+    "workspaceTargetId",
+    "selectionSource",
+    "primarySelection",
+    "breadcrumbs",
+    "validActions",
+    "currentState",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "selectionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stateKind": {
+      "type": "string",
+      "enum": [
+        "declared",
+        "observed"
+      ]
+    },
+    "workspaceTargetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selectionSource": {
+      "type": "string",
+      "enum": [
+        "map",
+        "board",
+        "timeline",
+        "diff",
+        "inspector",
+        "evidence",
+        "chat",
+        "command-palette"
+      ]
+    },
+    "selectedViewId": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "map",
+        "board",
+        "timeline",
+        "diff",
+        "inspector",
+        "evidence",
+        "chat",
+        "pseudocode",
+        "session-board",
+        null
+      ]
+    },
+    "primarySelection": {
+      "$ref": "#/$defs/objectRef"
+    },
+    "secondarySelections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/objectRef"
+      }
+    },
+    "breadcrumbs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/breadcrumb"
+      },
+      "minItems": 1
+    },
+    "drillDown": {
+      "type": "object",
+      "required": [
+        "currentStep",
+        "nextTargets"
+      ],
+      "properties": {
+        "currentStep": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nextTargets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/objectRef"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "validActions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/actionRef"
+      }
+    },
+    "currentState": {
+      "type": "object",
+      "required": [
+        "status",
+        "summary"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "active",
+            "blocked",
+            "warning",
+            "loading",
+            "stale",
+            "ready"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "declaredStateRef": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/objectRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observedStateRef": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/objectRef"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "observedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "objectRef": {
+      "type": "object",
+      "required": [
+        "objectType",
+        "objectId",
+        "label"
+      ],
+      "properties": {
+        "objectType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objectId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "breadcrumb": {
+      "type": "object",
+      "required": [
+        "stepKind",
+        "label",
+        "objectRef"
+      ],
+      "properties": {
+        "stepKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objectRef": {
+          "$ref": "#/$defs/objectRef"
+        }
+      },
+      "additionalProperties": false
+    },
+    "actionRef": {
+      "type": "object",
+      "required": [
+        "actionId",
+        "title",
+        "actionKind",
+        "approvalSensitivity"
+      ],
+      "properties": {
+        "actionId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actionKind": {
+          "type": "string",
+          "enum": [
+            "navigation",
+            "command",
+            "toggle",
+            "chat-suggestion"
+          ]
+        },
+        "approvalSensitivity": {
+          "type": "string",
+          "enum": [
+            "none",
+            "review-required",
+            "approval-required"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,21 @@
+{
+  "verdict": "pass | fail | not_run | inconclusive | blocked",
+  "commands": [
+    {
+      "command": "string",
+      "cwd": "string",
+      "purpose": "string",
+      "status": "passed | failed | not_run | skipped | inconclusive",
+      "exit_code": "number | unknown",
+      "evidence": ["string"],
+      "summary": "string"
+    }
+  ],
+  "coverage_against_spec": {
+    "covered": [],
+    "missing": [],
+    "out_of_scope": []
+  },
+  "next_fix_work_order": null,
+  "next_skill_handoff": {}
+}

@@ -1,0 +1,19 @@
+sequenceDiagram
+  autonumber
+  participant Agent
+  participant Continuity as current-task.json
+  participant Locks as File Locks
+  participant GitHub as PR/Issues
+  participant Evidence
+  Agent->>Continuity: read current project state
+  Agent->>GitHub: inspect active PR/issues
+  Agent->>Locks: request file/work-order lock
+  alt lock granted
+    Agent->>Agent: execute bounded work
+    Agent->>Evidence: write command/diff/test evidence
+    Agent->>Continuity: patch status, branch, PR, blockers, next action
+    Agent->>Locks: release or extend lock
+  else lock conflict
+    Agent->>Continuity: record blocked/parallel conflict
+    Agent->>GitHub: update issue if human decision needed
+  end

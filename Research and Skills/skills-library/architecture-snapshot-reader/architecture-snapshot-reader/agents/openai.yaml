@@ -1,0 +1,3 @@
+interface:
+  display_name: "Architecture Snapshot Reader"
+  short_description: "Summarize current architecture before insertion planning."

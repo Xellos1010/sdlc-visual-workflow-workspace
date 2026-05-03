@@ -1,0 +1,39 @@
+{
+  "requestId": "CR-0001",
+  "type": "feature",
+  "title": "Introduce telemetry-driven task remediation loop",
+  "summary": "When runtime errors surface, route them through the ecosystem orchestrator and generate bounded remediation work orders.",
+  "requestedBy": "founder",
+  "riskLevel": "high",
+  "impactedSystems": [
+    "control-plane",
+    "telemetry-intake",
+    "repo-orchestrator"
+  ],
+  "impactedComponents": [
+    "graph-store",
+    "incident-intake",
+    "work-order-planner"
+  ],
+  "constraints": [
+    "keep the architecture provider-agnostic",
+    "do not assume a specific IDE implementation",
+    "capture reusable fix memory for future training"
+  ],
+  "requestedOutcomes": [
+    "derive change requests from telemetry",
+    "identify impacted systems through graph relationships",
+    "create verification and learning tasks automatically"
+  ],
+  "acceptanceCriteria": [
+    "incident input can produce a valid change request",
+    "planner emits ecosystem, system, repo, verification, handoff, and learning orders",
+    "graph patch preview identifies impacted systems"
+  ],
+  "telemetryRefs": [],
+  "artifacts": [
+    "docs/FOUNDRY_ECOSYSTEM_SPEC.md",
+    "schemas/agent-work-order.schema.json",
+    "schemas/continuity-state.schema.json"
+  ]
+}

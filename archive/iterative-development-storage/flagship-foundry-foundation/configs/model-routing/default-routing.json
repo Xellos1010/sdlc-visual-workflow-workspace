@@ -1,0 +1,73 @@
+{
+  "taskClassRouting": {
+    "strategic_reasoning": {
+      "preferredTier": "frontier_reasoner",
+      "fallbackTiers": [
+        "balanced_reasoner"
+      ],
+      "reasoningStyle": "deep-tradeoff-analysis"
+    },
+    "constraint_interpretation": {
+      "preferredTier": "balanced_reasoner",
+      "fallbackTiers": [
+        "frontier_reasoner"
+      ],
+      "reasoningStyle": "policy-and-constraint-parsing"
+    },
+    "deterministic_transformation": {
+      "preferredTier": "low_cost_executor",
+      "fallbackTiers": [
+        "balanced_reasoner"
+      ],
+      "reasoningStyle": "bounded-editing"
+    },
+    "structured_generation": {
+      "preferredTier": "balanced_reasoner",
+      "fallbackTiers": [
+        "low_cost_executor"
+      ],
+      "reasoningStyle": "schema-constrained-generation"
+    },
+    "verification": {
+      "preferredTier": "balanced_reasoner",
+      "fallbackTiers": [
+        "frontier_reasoner"
+      ],
+      "reasoningStyle": "adversarial-validation"
+    },
+    "diagnostics": {
+      "preferredTier": "frontier_reasoner",
+      "fallbackTiers": [
+        "balanced_reasoner"
+      ],
+      "reasoningStyle": "root-cause-and-impact-analysis"
+    },
+    "learning": {
+      "preferredTier": "balanced_reasoner",
+      "fallbackTiers": [
+        "frontier_reasoner"
+      ],
+      "reasoningStyle": "pattern-synthesis"
+    }
+  },
+  "tierRouting": {
+    "frontier_reasoner": [
+      "provider:openai-cloud",
+      "provider:anthropic-cloud",
+      "provider:gemini-cloud"
+    ],
+    "balanced_reasoner": [
+      "provider:openai-compatible-remote",
+      "provider:openai-cloud",
+      "provider:gemini-cloud"
+    ],
+    "low_cost_executor": [
+      "provider:ollama-local",
+      "provider:openai-compatible-remote",
+      "provider:gemini-cli-local"
+    ],
+    "deterministic_rule_engine": [
+      "provider:local-rule-engine"
+    ]
+  }
+}

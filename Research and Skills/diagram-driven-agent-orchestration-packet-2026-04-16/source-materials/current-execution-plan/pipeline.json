@@ -1,0 +1,68 @@
+{
+  "initiative": "ts-react-rust-migration",
+  "description": "Sequential pipeline of agent teams. Each team completes before the next launches. Within each team, teammates work in parallel.",
+  "currentStage": 1,
+  "stages": [
+    {
+      "order": 1,
+      "id": "analysis",
+      "name": "Source Analysis",
+      "path": ".foundry/staging/ts-react-rust-migration/pipeline/01-analysis",
+      "status": "ready",
+      "dependsOn": [],
+      "outputArtifact": ".foundry/projects/ts-react-rust-migration/migration-ledger.json",
+      "completionSignal": "migration-ledger.json exists and contains entries for all TS/TSX files"
+    },
+    {
+      "order": 2,
+      "id": "porter-tui",
+      "name": "Port TUI Layer",
+      "path": ".foundry/staging/ts-react-rust-migration/pipeline/02-porter-tui",
+      "status": "pending",
+      "dependsOn": ["analysis"],
+      "outputArtifact": "apps/agent-runner-rust/crates/night-agent-runner-tui/src/",
+      "completionSignal": "cargo test -p night-agent-runner-tui passes"
+    },
+    {
+      "order": 3,
+      "id": "porter-cli",
+      "name": "Port CLI Layer",
+      "path": ".foundry/staging/ts-react-rust-migration/pipeline/03-porter-cli",
+      "status": "pending",
+      "dependsOn": ["analysis"],
+      "outputArtifact": "apps/agent-runner-rust/crates/night-agent-runner-cli/src/",
+      "completionSignal": "cargo test -p night-agent-runner-cli passes"
+    },
+    {
+      "order": 4,
+      "id": "porter-core",
+      "name": "Port Core Runtime",
+      "path": ".foundry/staging/ts-react-rust-migration/pipeline/04-porter-core",
+      "status": "pending",
+      "dependsOn": ["analysis"],
+      "outputArtifact": "apps/agent-runner-rust/crates/night-agent-runner-core/src/",
+      "completionSignal": "cargo test -p night-agent-runner-core passes"
+    },
+    {
+      "order": 5,
+      "id": "porter-extensions",
+      "name": "Port Extension Layer",
+      "path": ".foundry/staging/ts-react-rust-migration/pipeline/05-porter-extensions",
+      "status": "pending",
+      "dependsOn": ["analysis"],
+      "outputArtifact": "apps/agent-runner-rust/crates/night-agent-runner-plugins/src/",
+      "completionSignal": "cargo test -p night-agent-runner-plugins -p night-agent-runner-integrations -p night-agent-runner-remote passes"
+    },
+    {
+      "order": 6,
+      "id": "verifier",
+      "name": "Behavioral Parity Verification",
+      "path": ".foundry/staging/ts-react-rust-migration/pipeline/06-verifier",
+      "status": "pending",
+      "dependsOn": ["porter-tui", "porter-cli", "porter-core", "porter-extensions"],
+      "outputArtifact": ".foundry/projects/ts-react-rust-migration/verification-report.md",
+      "completionSignal": "rust-migration-verifier PASS for all 6 crates"
+    }
+  ],
+  "note": "Stages 2-5 (porter teams) can run concurrently after stage 1 (analysis) completes. Stage 6 (verifier) requires all porter stages complete."
+}

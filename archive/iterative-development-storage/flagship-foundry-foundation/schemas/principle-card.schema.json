@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/principle-card.schema.json",
+  "title": "Principle Card",
+  "type": "object",
+  "required": [
+    "principleId",
+    "domain",
+    "name",
+    "description"
+  ],
+  "properties": {
+    "principleId": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "visualHints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "antiPatterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relatedBugClasses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

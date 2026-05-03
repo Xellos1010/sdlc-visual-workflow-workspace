@@ -1,0 +1,22 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "ai-context",
+  "projectType": "application",
+  "root": "tools/ai-context",
+  "sourceRoot": "tools/ai-context",
+  "tags": ["scope:tools", "type:util"],
+  "targets": {
+    "extract-full-repo": {
+      "executor": "nx:run-commands",
+      "metadata": {
+        "description": "Export AI context for the full curated repo scope (orchestration dirs, apps, docs, Runbooks, tools, root manifests). Honors tools/ai-context/profiles/default-ignore.json excludes.",
+        "technologies": ["node"]
+      },
+      "options": {
+        "cwd": "{workspaceRoot}",
+        "command": "node tools/ai-context/exporter.mjs --mode profile --profile tools/ai-context/profiles/full-repo.json",
+        "forwardAllArgs": true
+      }
+    }
+  }
+}

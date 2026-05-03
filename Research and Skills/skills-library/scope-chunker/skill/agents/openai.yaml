@@ -1,0 +1,5 @@
+interface:
+  display_name: "Scope Chunker"
+  short_description: "Splits features into bounded work orders with locks, tests, dependencies, and handoffs."
+  icon: "scissors"
+  color: blue

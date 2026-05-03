@@ -1,0 +1,3 @@
+- Verify whether this task is actually complete.
+- Map the acceptance criteria to evidence and give a verdict.
+- Re-run verification logically and tell me what proof is missing.

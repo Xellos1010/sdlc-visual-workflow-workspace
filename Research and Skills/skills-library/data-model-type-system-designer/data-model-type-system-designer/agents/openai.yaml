@@ -1,0 +1,5 @@
+interface:
+  display_name: Data Model Type System Designer
+  short_description: Maps IO schemas into safe language and framework types.
+  icon: code
+  color: blue

@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/chat-command-session.schema.json",
+  "title": "Chat Command Session",
+  "type": "object",
+  "required": [
+    "sessionId",
+    "stateKind",
+    "workspaceTargetId",
+    "source",
+    "status",
+    "command",
+    "approvalSensitivity",
+    "evidenceImpact",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stateKind": {
+      "type": "string",
+      "enum": [
+        "declared",
+        "observed"
+      ]
+    },
+    "workspaceTargetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "command-palette",
+        "chat-panel",
+        "quick-action",
+        "agent-suggestion"
+      ]
+    },
+    "prompt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "objective": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "suggested",
+        "ready",
+        "blocked",
+        "submitted",
+        "running",
+        "completed",
+        "cancelled",
+        "failed"
+      ]
+    },
+    "command": {
+      "type": "object",
+      "required": [
+        "verb",
+        "title",
+        "controlKind",
+        "targetRefs"
+      ],
+      "properties": {
+        "verb": {
+          "type": "string",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "controlKind": {
+          "type": "string",
+          "enum": [
+            "command",
+            "navigation",
+            "toggle"
+          ]
+        },
+        "targetRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/objectRef"
+          }
+        },
+        "arguments": {
+          "type": "object"
+        },
+        "requiresConfirmation": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "approvalSensitivity": {
+      "type": "string",
+      "enum": [
+        "none",
+        "review-required",
+        "approval-required"
+      ]
+    },
+    "evidenceImpact": {
+      "type": "string",
+      "enum": [
+        "none",
+        "read-only",
+        "evidence-producing",
+        "execution-affecting"
+      ]
+    },
+    "result": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "outcome",
+        "summary"
+      ],
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "enum": [
+            "accepted",
+            "rejected",
+            "executed",
+            "failed"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/objectRef"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "command": {
+            "properties": {
+              "controlKind": {
+                "const": "toggle"
+              }
+            },
+            "required": [
+              "controlKind"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "approvalSensitivity": {
+            "const": "none"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "objectRef": {
+      "type": "object",
+      "required": [
+        "objectType",
+        "objectId"
+      ],
+      "properties": {
+        "objectType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "objectId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

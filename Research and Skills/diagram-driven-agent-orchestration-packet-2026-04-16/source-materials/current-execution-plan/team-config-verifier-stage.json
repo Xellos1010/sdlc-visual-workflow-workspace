@@ -1,0 +1,105 @@
+{
+  "initiative": {
+    "name": "TS→Rust Migration — Stage 6: Behavioral Parity Verification",
+    "slug": "ts-react-rust-migration-verifier",
+    "objective": "Verify all 6 ported Rust crates for behavioral parity against their TypeScript originals. 6 verifier teammates run in parallel — one per crate. Produce a unified verification report.",
+    "sdlcCycle": "monorepo/.foundry",
+    "startingPhase": "verify",
+    "status": "pending",
+    "pipelineStage": 6,
+    "pipelineTotal": 6
+  },
+  "team": {
+    "planApprovalRequired": false,
+    "teammates": [
+      {
+        "name": "verifier-tui",
+        "objective": "Verify night-agent-runner-tui for behavioral parity with the tui-repl subsystem. Confirm all screens and components render equivalently.",
+        "subagentType": "rust-migration-verifier",
+        "model": "sonnet",
+        "scope": [
+          "apps/agent-runner-rust/crates/night-agent-runner-tui/",
+          "apps/night-agent-runner/src/screens/",
+          "apps/night-agent-runner/src/components/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "verifier-cli",
+        "objective": "Verify night-agent-runner-cli for behavioral parity with the command-surface subsystem. Confirm all CLI commands have equivalent Clap implementations.",
+        "subagentType": "rust-migration-verifier",
+        "model": "sonnet",
+        "scope": [
+          "apps/agent-runner-rust/crates/night-agent-runner-cli/",
+          "apps/night-agent-runner/src/commands/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "verifier-core",
+        "objective": "Verify night-agent-runner-core for behavioral parity. Focus on QueryEngine semantics, session state round-trips, and compaction pipeline correctness.",
+        "subagentType": "rust-migration-verifier",
+        "model": "sonnet",
+        "scope": [
+          "apps/agent-runner-rust/crates/night-agent-runner-core/",
+          "apps/night-agent-runner/src/QueryEngine.ts",
+          "apps/night-agent-runner/src/state/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "verifier-plugins",
+        "objective": "Verify night-agent-runner-plugins: Plugin trait coverage, skill implementations, and output style parity.",
+        "subagentType": "rust-migration-verifier",
+        "model": "sonnet",
+        "scope": [
+          "apps/agent-runner-rust/crates/night-agent-runner-plugins/",
+          "apps/night-agent-runner/src/skills/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "verifier-integrations",
+        "objective": "Verify night-agent-runner-integrations: MCP client correctness, message serialization, and protocol compliance.",
+        "subagentType": "rust-migration-verifier",
+        "model": "sonnet",
+        "scope": [
+          "apps/agent-runner-rust/crates/night-agent-runner-integrations/",
+          "apps/night-agent-runner/src/bridge/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "verifier-remote",
+        "objective": "Verify night-agent-runner-remote: TCP server, WebSocket, SSH tunnel, and upstream proxy behavioral correctness.",
+        "subagentType": "rust-migration-verifier",
+        "model": "sonnet",
+        "scope": [
+          "apps/agent-runner-rust/crates/night-agent-runner-remote/",
+          "apps/night-agent-runner/src/remote/",
+          "apps/night-agent-runner/src/server/"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": false
+      }
+    ]
+  },
+  "doneCriteria": [
+    "rust-migration-verifier PASS for night-agent-runner-tui",
+    "rust-migration-verifier PASS for night-agent-runner-cli",
+    "rust-migration-verifier PASS for night-agent-runner-core",
+    "rust-migration-verifier PASS for night-agent-runner-plugins",
+    "rust-migration-verifier PASS for night-agent-runner-integrations",
+    "rust-migration-verifier PASS for night-agent-runner-remote",
+    "cargo test --workspace passes in apps/agent-runner-rust/",
+    "pnpm exec nx run-many -t typecheck,test,build --projects=agent-runner-rust passes",
+    "verification-report.md written to .foundry/projects/ts-react-rust-migration/"
+  ],
+  "leadPromptPath": ".foundry/staging/ts-react-rust-migration/pipeline/06-verifier/lead-prompt.md",
+  "continuityPath": ".foundry/projects/ts-react-rust-migration/current-task.json"
+}

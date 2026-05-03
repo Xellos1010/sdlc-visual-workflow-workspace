@@ -1,0 +1,3 @@
+interface:
+  display_name: "ADR Indexer"
+  short_description: "Indexes ADRs, cross-links artifacts, and prepares decision-ledger handoffs."

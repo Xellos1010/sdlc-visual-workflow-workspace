@@ -1,0 +1,27 @@
+{
+  "name": "Flagship Foundry \u2014 Docs & Release Agent",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "docs-release-agent",
+  "source_agent_title": "Docs & Release Agent",
+  "read_only": false,
+  "primary_phases": [
+    "release",
+    "improve"
+  ],
+  "recommended_model_hint": "fast balanced model available in your workspace",
+  "capabilities_hint": [
+    "Web search optional",
+    "Data analysis recommended"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/global-agent-routing.json",
+    "../../shared/routing/skill-routing-matrix.json",
+    "../../shared/repo-schema-catalog/repo-schema-catalog.json"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

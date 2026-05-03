@@ -1,0 +1,11 @@
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+web_search = "cached"
+
+[sandbox_workspace_write]
+network_access = false
+
+[otel]
+environment = "dev"
+exporter = "none"
+log_user_prompt = false

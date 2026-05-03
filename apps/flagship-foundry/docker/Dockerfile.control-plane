@@ -1,0 +1,40 @@
+# Flagship Foundry — Control Plane
+# Build context: apps/flagship-foundry/
+#
+# Usage (standalone):
+#   docker build -f docker/Dockerfile.control-plane -t foundry-control-plane .
+#   docker run -p 4010:4010 -v foundry-state:/app/state foundry-control-plane
+#
+# Typically used via docker compose (see apps/cursor-companion/docker-compose.yml).
+
+FROM node:20-slim
+
+LABEL maintainer="flagship-foundry"
+LABEL description="Foundry control-plane API server"
+
+WORKDIR /app
+
+# Copy only what the control-plane needs at runtime.
+# The server uses relative imports so the directory layout must mirror the repo.
+COPY package.json ./
+COPY apps/control-plane/        apps/control-plane/
+COPY packages/core/             packages/core/
+COPY packages/model-gateway/    packages/model-gateway/
+COPY services/system-orchestrator/ services/system-orchestrator/
+COPY configs/                   configs/
+
+# State directory — mount a volume here for persistence
+RUN mkdir -p /app/state
+
+# Dev-mode defaults: no auth required, permissive CORS
+ENV FLAGSHIP_DEV_MODE=1
+ENV FLAGSHIP_ALLOW_LOOPBACK_NO_AUTH=1
+ENV FLAGSHIP_CORS_ORIGINS="http://localhost:3000,http://localhost:4010,http://localhost:5174,http://127.0.0.1:3000,http://127.0.0.1:4010,http://127.0.0.1:5174"
+ENV NODE_ENV=development
+
+EXPOSE 4010
+
+HEALTHCHECK --interval=5s --timeout=3s --start-period=8s --retries=3 \
+  CMD node -e "fetch('http://localhost:4010/health').then(r=>{if(!r.ok)throw r.status}).catch(()=>process.exit(1))"
+
+CMD ["node", "apps/control-plane/src/server.mjs"]

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Independent Verifier"
+  short_description: "Performs independent pass/fail verification before integration or release."
+  icon: "check-circle"
+  color: blue

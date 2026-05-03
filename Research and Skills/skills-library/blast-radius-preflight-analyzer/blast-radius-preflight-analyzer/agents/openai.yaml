@@ -1,0 +1,3 @@
+interface:
+  display_name: "Blast Radius Preflight Analyzer"
+  short_description: "Score change risk and identify review/test gates."

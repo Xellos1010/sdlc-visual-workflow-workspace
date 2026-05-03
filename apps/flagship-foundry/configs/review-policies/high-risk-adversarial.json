@@ -1,0 +1,12 @@
+{
+  "id": "review-policy:high-risk-adversarial",
+  "debateRounds": 2,
+  "reviewerPersonaId": "persona:adversarial-architect",
+  "enableArchitectureChallenge": true,
+  "requireReconciliationMemo": true,
+  "stopConditions": [
+    "blast radius stabilized",
+    "critical objections answered",
+    "rollback path documented"
+  ]
+}

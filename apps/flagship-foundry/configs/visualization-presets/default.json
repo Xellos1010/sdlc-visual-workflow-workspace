@@ -1,0 +1,14 @@
+{
+  "id": "visualization-preset:default",
+  "views": [
+    "ecosystem-overview",
+    "framework-platform-map",
+    "orchestration-control-flow",
+    "existing-visualizations-index"
+  ],
+  "renderTargets": [
+    "dashboard",
+    "ide-overlay",
+    "artifact export"
+  ]
+}

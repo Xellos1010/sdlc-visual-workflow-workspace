@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry \u2014 Builder Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "changedArtifacts",
+    "verificationResults",
+    "notesForVerifier"
+  ],
+  "properties": {
+    "changedArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "changeSummary"
+        ],
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "changeSummary": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "verificationResults": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "command",
+          "status"
+        ],
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "FAIL",
+              "SKIPPED"
+            ]
+          },
+          "details": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "notesForVerifier": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockersEncountered": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suggestedContinuityUpdate": {
+      "type": "object"
+    }
+  }
+}

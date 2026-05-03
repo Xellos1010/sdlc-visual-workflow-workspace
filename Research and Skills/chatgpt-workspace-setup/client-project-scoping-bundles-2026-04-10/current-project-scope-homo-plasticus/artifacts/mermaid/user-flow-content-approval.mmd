@@ -1,0 +1,11 @@
+flowchart LR
+    A[Content idea / topic] --> B[AI draft generated]
+    B --> C[Confidence score]
+    C --> D{Above publish threshold?}
+    D -- No --> E[Human review / edit]
+    D -- Yes --> E
+    E --> F[Approve / reject]
+    F -- Approve --> G[Schedule or publish]
+    F -- Reject --> H[Revise draft]
+    G --> I[Live blog post]
+    I --> J[Analytics + campaign distribution]

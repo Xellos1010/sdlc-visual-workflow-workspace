@@ -1,0 +1,3 @@
+- Review this change for performance regressions.
+- Profile likely hot paths and bundle-size risks.
+- Produce a release-focused performance findings report.

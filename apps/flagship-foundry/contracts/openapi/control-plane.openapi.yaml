@@ -1,0 +1,105 @@
+openapi: 3.1.0
+info:
+  title: Flagship Foundry Control Plane
+  version: 0.1.0
+  description: >-
+    Minimum executable slice for a graph-native SDLC orchestration control plane.
+servers:
+  - url: http://localhost:4000
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Service health
+  /graph:
+    get:
+      summary: Fetch the current graph state
+      responses:
+        '200':
+          description: Graph document
+  /graph/patch:
+    post:
+      summary: Apply graph patch operations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [patches]
+              properties:
+                patches:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Patched graph summary
+  /change-requests:
+    post:
+      summary: Persist a change request envelope
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../../schemas/change-request.schema.json
+      responses:
+        '201':
+          description: Stored request
+  /orchestration/plan:
+    post:
+      summary: Generate an orchestration plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../../schemas/change-request.schema.json
+      responses:
+        '200':
+          description: Generated plan
+  /telemetry/intake:
+    post:
+      summary: Convert telemetry/incident into a change request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ../../schemas/incident-record.schema.json
+      responses:
+        '200':
+          description: Derived change request
+  /catalogs/runbooks:
+    get:
+      summary: List runbooks
+      responses:
+        '200':
+          description: Runbook catalog
+  /catalogs/personas:
+    get:
+      summary: List personas
+      responses:
+        '200':
+          description: Persona catalog
+  /catalogs/providers:
+    get:
+      summary: List providers
+      responses:
+        '200':
+          description: Provider catalog
+  /catalogs/adapters:
+    get:
+      summary: List terminal/IDE adapters
+      responses:
+        '200':
+          description: Adapter catalog
+  /catalogs/guardrails:
+    get:
+      summary: List guardrail packs
+      responses:
+        '200':
+          description: Guardrail catalog

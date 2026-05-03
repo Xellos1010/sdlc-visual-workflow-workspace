@@ -1,0 +1,3 @@
+- Produce the architecture packet for this approved intent packet.
+- Generate C4 diagrams, ADRs, contracts, and function IO schemas for this change.
+- Show the decomposition plan and trust boundaries before implementation.

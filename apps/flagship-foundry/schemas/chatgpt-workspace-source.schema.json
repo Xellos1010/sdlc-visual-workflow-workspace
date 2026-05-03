@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/chatgpt-workspace-source.schema.json",
+  "title": "ChatGPT Workspace Source",
+  "type": "object",
+  "required": [
+    "workspaceRoot",
+    "manifestPath",
+    "artifactPaths",
+    "importStage",
+    "targetWorkspace"
+  ],
+  "properties": {
+    "workspaceRoot": {
+      "type": "string",
+      "minLength": 1
+    },
+    "manifestPath": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifactPaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "importStage": {
+      "type": "string",
+      "enum": [
+        "pre_implementation",
+        "post_verification",
+        "knowledge_base_only"
+      ]
+    },
+    "targetWorkspace": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceAuthority": {
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "https://flagship-foundry.local/schemas/provenance-record.schema.json"
+    }
+  },
+  "additionalProperties": false
+}

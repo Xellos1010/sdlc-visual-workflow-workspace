@@ -1,0 +1,12 @@
+{
+  "catalog": "guardrails",
+  "items": [
+    {"id": "guardrail:typescript-core", "path": "guardrails/language/typescript-core.json", "summary": "TypeScript implementation and validation guardrails."},
+    {"id": "guardrail:chrome-extension-mv3", "path": "guardrails/platform/chrome-extension-mv3.json", "summary": "Manifest V3 extension rules and safety checks."},
+    {"id": "guardrail:android-app", "path": "guardrails/platform/android-app.json", "summary": "Android lifecycle and permission guardrails."},
+    {"id": "guardrail:ios-app", "path": "guardrails/platform/ios-app.json", "summary": "iOS entitlement and privacy guardrails."},
+    {"id": "guardrail:web-frontend", "path": "guardrails/platform/web-frontend.json", "summary": "Web accessibility and performance guardrails."},
+    {"id": "guardrail:aws-serverless", "path": "guardrails/cloud/aws-serverless.json", "summary": "AWS serverless design and release guardrails."},
+    {"id": "guardrail:azure-containerized", "path": "guardrails/cloud/azure-containerized.json", "summary": "Azure containerized deployment guardrails."}
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Client Project Pitch Proposal",
+  "type": "object",
+  "required": [
+    "project_name",
+    "executive_summary",
+    "objectives",
+    "current_state",
+    "active_resources",
+    "recommended_stack",
+    "uiux_artifacts",
+    "flow_artifacts",
+    "integrations",
+    "release_phases",
+    "pricing",
+    "invoice",
+    "assumptions",
+    "risks"
+  ],
+  "properties": {
+    "project_name": {
+      "type": "string"
+    },
+    "executive_summary": {
+      "type": "string"
+    },
+    "objectives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "current_state": {
+      "type": "object",
+      "properties": {
+        "confirmed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "unknowns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "active_resources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommended_stack": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uiux_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "flow_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "status",
+          "phase"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "confirmed",
+              "required",
+              "optional",
+              "unknown"
+            ]
+          },
+          "phase": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "release_phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "phase",
+          "title",
+          "deliverables",
+          "timeline"
+        ],
+        "properties": {
+          "phase": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "deliverables": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "timeline": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "required": [
+        "standard_market",
+        "recommended_offer"
+      ],
+      "properties": {
+        "standard_market": {
+          "type": "array"
+        },
+        "recommended_offer": {
+          "type": "array"
+        }
+      }
+    },
+    "invoice": {
+      "type": "array"
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

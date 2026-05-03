@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ParityReport",
+  "type": "object",
+  "required": ["workOrderId", "artifacts", "outOfSync", "status"],
+  "properties": {
+    "workOrderId": {"type": "string"},
+    "artifacts": {"type": "array"},
+    "outOfSync": {"type": "array"},
+    "syncPatches": {"type": "array"},
+    "humanReviewNeeded": {"type": "boolean"},
+    "status": {"enum": ["in_sync", "out_of_sync", "blocked"]}
+  }
+}

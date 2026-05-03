@@ -1,0 +1,67 @@
+{
+  "bundleName": "gpt-specific-project-bundle",
+  "generatedAt": "2026-04-10T00:00:00Z",
+  "variant": "custom_gpt",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 849
+    },
+    {
+      "path": "gpt-builder-instructions.md",
+      "size": 1104
+    },
+    {
+      "path": "system-prompt.txt",
+      "size": 1929
+    },
+    {
+      "path": "conversation-starters.md",
+      "size": 474
+    },
+    {
+      "path": "expected-output-contract.md",
+      "size": 546
+    },
+    {
+      "path": "knowledge-manifest.json",
+      "size": 320
+    },
+    {
+      "path": "gpt-actions-roadmap.md",
+      "size": 335
+    },
+    {
+      "path": "knowledge/01-scoping-method.md",
+      "size": 871
+    },
+    {
+      "path": "knowledge/02-uiux-artifacts.md",
+      "size": 261
+    },
+    {
+      "path": "knowledge/03-integrations-and-architecture.md",
+      "size": 308
+    },
+    {
+      "path": "knowledge/04-pricing-framework.md",
+      "size": 332
+    },
+    {
+      "path": "knowledge/05-output-contract.md",
+      "size": 165
+    },
+    {
+      "path": "knowledge/06-example-homo-plasticus.md",
+      "size": 368
+    },
+    {
+      "path": "sample-expected-output/proposal-outline.md",
+      "size": 193
+    },
+    {
+      "path": "sample-expected-output/pricing-output-shape.json",
+      "size": 330
+    }
+  ]
+}

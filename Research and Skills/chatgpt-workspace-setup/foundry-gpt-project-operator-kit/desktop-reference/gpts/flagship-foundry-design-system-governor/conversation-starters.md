@@ -1,0 +1,3 @@
+- Audit the design tokens for drift across web, iOS, and Android surfaces.
+- Define the component state matrix: every component with all required states and platform variants.
+- Derive the token set from the selected style archetype with density and reduced-motion variants.

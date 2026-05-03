@@ -1,0 +1,23 @@
+flowchart LR
+  brief[Project Brief or Repository]
+  ingest[Repository Ingestion Engine]
+  ir[Canonical IR / Knowledge Graph]
+  artifacts[Artifact Engine]
+  research[Gap Research]
+  planning[Migration Planner]
+  execution[Agent Orchestration]
+  verify[Verification Harness]
+  dash[Dashboard Projections]
+  evidence[Evidence Bundle]
+
+  brief --> ingest --> ir
+  ir --> artifacts
+  ir --> research
+  artifacts --> planning
+  research --> planning
+  planning --> execution
+  execution --> verify --> evidence
+  artifacts --> dash
+  planning --> dash
+  execution --> dash
+  evidence --> dash

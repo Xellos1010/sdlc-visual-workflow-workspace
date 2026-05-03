@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArchitectureSnapshot",
+  "type": "object",
+  "required": ["project", "systems", "modules", "entryPoints", "boundaries"],
+  "properties": {
+    "project": {"type": "string"},
+    "systems": {"type": "array"},
+    "modules": {"type": "array"},
+    "entryPoints": {"type": "array"},
+    "boundaries": {"type": "array"},
+    "knownTradeoffs": {"type": "array"},
+    "gaps": {"type": "array"}
+  }
+}

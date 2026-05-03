@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Environment Scaffold Request",
+  "type": "object",
+  "required": [
+    "preset",
+    "targetDir"
+  ],
+  "properties": {
+    "preset": {
+      "enum": [
+        "claude-project",
+        "codex-project",
+        "cursor-project"
+      ]
+    },
+    "targetDir": {
+      "type": "string"
+    },
+    "dryRun": {
+      "type": "boolean"
+    },
+    "approveUserOwnedConflicts": {
+      "type": "boolean",
+      "description": "Explicit approval to overwrite user-owned conflicts during parity projection"
+    }
+  },
+  "additionalProperties": true
+}

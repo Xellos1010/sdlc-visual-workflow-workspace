@@ -1,0 +1,3 @@
+interface:
+  display_name: "Semantic Diff Explainer"
+  short_description: "Explains diffs in reviewer-ready semantic, risk, and validation terms."

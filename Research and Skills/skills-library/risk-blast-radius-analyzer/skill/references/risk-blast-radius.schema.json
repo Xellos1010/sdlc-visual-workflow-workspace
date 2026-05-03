@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "risk_blast_radius_report",
+  "type": "object",
+  "required": ["schema_version", "risk_level", "affected_systems", "review_gates", "validation_requirements", "next_skill_handoff"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "run_id": {"type": "string"},
+    "project": {"type": "string"},
+    "repository": {"type": "string"},
+    "source_inputs": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "confidence": {"type": "string"},
+    "blocking_gaps": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

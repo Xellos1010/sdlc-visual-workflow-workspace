@@ -1,0 +1,12 @@
+{
+  "edges": [
+    "contains",
+    "depends-on",
+    "uses-framework",
+    "targets-platform",
+    "governed-by",
+    "visualized-by",
+    "has-state",
+    "shares-pattern"
+  ]
+}

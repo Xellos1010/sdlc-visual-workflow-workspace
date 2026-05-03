@@ -1,0 +1,3 @@
+interface:
+  display_name: "ADR Draft Writer"
+  short_description: "Drafts inspectable architecture decision records and metadata for cloud-agent SDLC decisions."

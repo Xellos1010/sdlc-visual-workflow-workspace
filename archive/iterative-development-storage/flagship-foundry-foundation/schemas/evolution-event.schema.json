@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/evolution-event.schema.json",
+  "title": "Evolution Event",
+  "type": "object",
+  "required": [
+    "eventId",
+    "requestId",
+    "workOrderId",
+    "scope",
+    "summary",
+    "artifactRefs"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string"
+    },
+    "requestId": {
+      "type": "string"
+    },
+    "workOrderId": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "artifactRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "versioningBackend": {
+      "type": "string"
+    }
+  }
+}

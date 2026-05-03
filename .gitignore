@@ -1,0 +1,136 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+.yarn/
+.npm/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.vite/
+.storybook-out/
+.turbo/
+.parcel-cache/
+.svelte-kit/
+.vercel/
+.vercel_build_output/
+*.tsbuildinfo
+.eslintcache
+*.map
+
+# Environment and secrets (avoid overly broad *token* patterns that ignore source files)
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+.secrets/
+secrets/
+*-secrets.json
+*-credentials.json
+.aws/credentials
+.aws/config
+.direnv/
+.envrc
+
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+Thumbs.db
+Desktop.ini
+
+# Windows
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# Editors and IDEs
+.idea/
+*.swp
+*.swo
+*~
+.vscode/settings.json
+.vscode/launch.json
+.vscode/*.code-workspace
+*.sublime-*
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Test and coverage
+coverage/
+.nyc_output/
+*.lcov
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# Nx
+.nx/cache/
+.nx/workspace-data/
+
+# Local app / agent state
+.claude/settings.local.json
+.claude/settings.local.*
+.cursor/cursor-experiments/
+.cursor/plans/
+.cursor/chat/
+.foundry/staging/
+.foundry/projects/
+Example/AI Agent Pipelines/
+.superpowers/
+
+# Runtime and temp
+tmp/
+temp/
+.cache/
+logs/
+exports/
+*.pid
+archive.zip
+*.orig
+*.rej
+
+# Python (if used by tools/)
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Rust (if present)
+target/
+**/target/
+
+# Databases and dumps (local only)
+*.sqlite
+*.sqlite3
+*.db
+
+# OS / misc
+*.tgz
+*.tar.gz
+*.zip
+!.github/**/*.zip

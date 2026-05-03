@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "required": ["authority_stack", "hard_constraints", "approval_boundaries", "non_goals", "quality_bar", "blocked_actions", "next_skill_handoff"],
+  "properties": {
+    "authority_stack": {"type": "array", "items": {"type": "object"}},
+    "hard_constraints": {"type": "array", "items": {"type": "object"}},
+    "soft_preferences": {"type": "array", "items": {"type": "object"}},
+    "approval_boundaries": {"type": "array", "items": {"type": "object"}},
+    "non_goals": {"type": "array", "items": {"type": "string"}},
+    "security_boundaries": {"type": "array", "items": {"type": "object"}},
+    "runtime_restrictions": {"type": "array", "items": {"type": "object"}},
+    "quality_bar": {"type": "object"},
+    "blocked_actions": {"type": "array", "items": {"type": "object"}},
+    "unresolved_conflicts": {"type": "array", "items": {"type": "object"}},
+    "next_skill_handoff": {"type": "object"}
+  }
+}

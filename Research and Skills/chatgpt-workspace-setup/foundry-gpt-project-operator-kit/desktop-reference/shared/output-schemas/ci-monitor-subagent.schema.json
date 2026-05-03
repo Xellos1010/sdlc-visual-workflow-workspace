@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry \u2014 CI Monitor Subagent Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "iterations",
+    "elapsed",
+    "ciAttemptDetails"
+  ],
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "iterations": {
+      "type": "integer"
+    },
+    "elapsed": {
+      "type": "string"
+    },
+    "ciAttemptDetails": {
+      "type": "object"
+    },
+    "selfHealingDetails": {
+      "type": "object"
+    },
+    "fixInformation": {
+      "type": "object"
+    },
+    "hints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

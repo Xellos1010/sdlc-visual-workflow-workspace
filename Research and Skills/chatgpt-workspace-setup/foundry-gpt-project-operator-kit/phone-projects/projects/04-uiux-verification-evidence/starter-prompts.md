@@ -1,0 +1,3 @@
+- Run scenario-based verification against the acceptance criteria. Test reachability, comprehension, safe action, recovery, and drill-down. Produce evidence bundle, accessibility report, and release recommendation.
+- I have a built UI/UX implementation. Verify it against the interaction contract, motion spec, and accessibility baseline. Produce scenario verdicts and gap list.
+- Perform accessibility review: keyboard navigation, focus management, reduced motion, touch targets, contrast, and screen reader compatibility. Produce blocking findings and remediation plan.

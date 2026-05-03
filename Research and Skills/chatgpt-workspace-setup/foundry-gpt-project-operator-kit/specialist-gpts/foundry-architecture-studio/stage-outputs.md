@@ -1,0 +1,14 @@
+## Expected outputs
+- system-impact-statement.md
+- c4-context.mmd
+- c4-container.mmd
+- trust-boundaries.mmd
+- expected-output-sequence.mmd
+- component-change-uml.mmd
+- contracts/*.json
+- function-io-schemas/*.json
+- adr-001-*.md
+- decomposition-plan.md
+- artifact-manifest.json
+- foundry-import-manifest.json
+- next-workspace.txt

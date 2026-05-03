@@ -1,0 +1,138 @@
+{
+  "orchestrator": [
+    {
+      "skill_id": "sdlc-phase-router",
+      "use_when": [
+        "new work starts",
+        "user asks to resume",
+        "phase is unclear",
+        "triage required"
+      ],
+      "canonical_path": ".foundry/skills/sdlc-phase-router/SKILL.md"
+    },
+    {
+      "skill_id": "continuity-writer",
+      "use_when": [
+        "phase transition",
+        "branch switch",
+        "verification status changes",
+        "session handoff"
+      ],
+      "canonical_path": ".foundry/skills/continuity-writer/SKILL.md"
+    },
+    {
+      "skill_id": "handoff-generator",
+      "use_when": [
+        "work interruption",
+        "phase completion",
+        "delegate to another GPT",
+        "context recovery needed"
+      ],
+      "canonical_path": ".foundry/skills/handoff-generator/SKILL.md"
+    },
+    {
+      "skill_id": "scope-chunker",
+      "use_when": [
+        "approved architecture exists",
+        "implementation slices are needed",
+        "task tree needed"
+      ],
+      "canonical_path": ".foundry/skills/scope-chunker/SKILL.md"
+    },
+    {
+      "skill_id": "model-router",
+      "use_when": [
+        "task class unclear",
+        "provider/model choice needed",
+        "cost/performance balancing needed"
+      ],
+      "canonical_path": ".foundry/skills/model-router/SKILL.md"
+    }
+  ],
+  "context-curator": [],
+  "systems-architect": [
+    {
+      "skill_id": "define-intent",
+      "use_when": [
+        "new feature discovery",
+        "major change discovery",
+        "scope and acceptance criteria are unclear"
+      ],
+      "canonical_path": ".foundry/skills/define-intent/SKILL.md"
+    },
+    {
+      "skill_id": "c4-diagram-generator",
+      "use_when": [
+        "system visualization requested",
+        "trust boundaries needed",
+        "container or component view requested"
+      ],
+      "canonical_path": ".foundry/skills/c4-diagram-generator/SKILL.md"
+    },
+    {
+      "skill_id": "adr-writer",
+      "use_when": [
+        "structural decision needs record",
+        "tradeoffs must be documented",
+        "architecture approval artifact needed"
+      ],
+      "canonical_path": ".foundry/skills/adr-writer/SKILL.md"
+    }
+  ],
+  "builder": [
+    {
+      "skill_id": "nx-verification",
+      "use_when": [
+        "typecheck/test/build required",
+        "verification commands reference Nx",
+        "release gate needs structured verification"
+      ],
+      "canonical_path": ".foundry/skills/nx-verification/SKILL.md"
+    }
+  ],
+  "verifier": [
+    {
+      "skill_id": "nx-verification",
+      "use_when": [
+        "typecheck/test/build required",
+        "verification commands reference Nx",
+        "release gate needs structured verification"
+      ],
+      "canonical_path": ".foundry/skills/nx-verification/SKILL.md"
+    },
+    {
+      "skill_id": "evidence-collector",
+      "use_when": [
+        "verification evidence bundle needed",
+        "release gate needs proof",
+        "criteria-to-evidence mapping needed"
+      ],
+      "canonical_path": ".foundry/skills/evidence-collector/SKILL.md"
+    }
+  ],
+  "security-reviewer": [],
+  "performance-reviewer": [],
+  "docs-release-agent": [
+    {
+      "skill_id": "handoff-generator",
+      "use_when": [
+        "work interruption",
+        "phase completion",
+        "delegate to another GPT",
+        "context recovery needed"
+      ],
+      "canonical_path": ".foundry/skills/handoff-generator/SKILL.md"
+    },
+    {
+      "skill_id": "continuity-writer",
+      "use_when": [
+        "phase transition",
+        "branch switch",
+        "verification status changes",
+        "session handoff"
+      ],
+      "canonical_path": ".foundry/skills/continuity-writer/SKILL.md"
+    }
+  ],
+  "ci-monitor-subagent": []
+}

@@ -1,0 +1,7 @@
+{
+  "id": "review-policy:default",
+  "debateRounds": 0,
+  "reviewerPersonaId": "persona:adversarial-architect",
+  "enableArchitectureChallenge": false,
+  "requireReconciliationMemo": false
+}

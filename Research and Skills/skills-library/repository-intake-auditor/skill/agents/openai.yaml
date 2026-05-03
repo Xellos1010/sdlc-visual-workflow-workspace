@@ -1,0 +1,5 @@
+interface:
+  display_name: "Repository Intake Auditor"
+  short_description: "Audits repository structure, state, docs, tests, tooling, branches, and readiness."
+  icon: "search"
+  color: blue

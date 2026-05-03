@@ -1,0 +1,9 @@
+---
+description: foundry orchestration overlay and planning alignment
+alwaysApply: true
+---
+
+- Read project continuity files before making changes.
+- Expand blast radius beyond touched files when shared contracts or patterns are involved.
+- Ask for or generate evidence before declaring a phase complete.
+- Prefer short rules here and move specialized workflows into skills.

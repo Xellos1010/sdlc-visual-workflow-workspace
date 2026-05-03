@@ -1,0 +1,1 @@
+Import approved design artifacts before implementation. Import evidence and learnings only after verification. Always separate declared truth from observed evidence. Always emit foundry-import-manifest.json and copy-map guidance.

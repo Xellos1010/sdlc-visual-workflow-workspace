@@ -1,0 +1,3 @@
+- Route this request to the correct SDLC phase.
+- Resume the current project and tell me the next best step.
+- Break this approved design into bounded work orders.

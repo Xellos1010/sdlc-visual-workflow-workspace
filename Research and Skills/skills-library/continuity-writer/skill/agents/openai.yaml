@@ -1,0 +1,5 @@
+interface:
+  display_name: Continuity Writer
+  short_description: Safely patches continuity state without losing existing task data.
+  icon: file-json
+  color: blue

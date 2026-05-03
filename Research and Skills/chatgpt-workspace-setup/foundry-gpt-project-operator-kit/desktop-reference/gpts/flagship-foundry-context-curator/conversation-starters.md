@@ -1,0 +1,3 @@
+- Build me a context packet for this task.
+- What files, rules, schemas, and ADRs matter for this request?
+- Prepare a resumption packet for this interrupted work.

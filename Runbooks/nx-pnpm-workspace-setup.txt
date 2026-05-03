@@ -1,0 +1,88 @@
+Nx + pnpm workspace quick setup (macOS, Cursor, Nx Console)
+
+Goal
+- Ensure `pnpm` is available to both terminal shells and GUI apps (Cursor/Nx Console).
+- Keep `nx.json` on `cli.packageManager = "pnpm"` for installs and generators.
+- Keep Nx daemon **off** in `nx.json` (`useDaemonProcess: false` at root and under `tasksRunnerOptions.default.options`) so Nx Console does not shell out to `pnpm exec nx daemon --start` when `pnpm` is missing from the GUI PATH (common with nvm). You still use `pnpm` for all package work; only the background Nx daemon is disabled by default.
+
+Stabilization (2026-03-27) — Nx Console / nx.json “pnpm: command not found”
+- Root cause: With the daemon enabled, Nx Language Server runs `pnpm exec nx daemon --start` (package manager from `nx.json` → `cli.packageManager`, else lockfile). Cursor is a GUI process on macOS and often does not inherit your shell PATH, so `/bin/sh` cannot find `pnpm` even when the integrated terminal can.
+- In-repo fix (primary): Set `useDaemonProcess` to `false` in `nx.json` (workspace-level and default tasks runner options). That stops the Nx LS from invoking the daemon start command and clears the error while keeping `"cli": { "packageManager": "pnpm" }`.
+- Supporting repo alignment:
+  - `package.json` includes a Corepack `packageManager` pin so `corepack install` and installs use the same pnpm major across machines.
+  - `.vscode/settings.json` enables `nxConsole.showNodeVersionOnStartup` so mismatched Node/pnpm vs the IDE shows up early.
+  - `tools/setup/setup-nx-pnpm.sh` uses `corepack install` when `packageManager` is present, otherwise falls back to `pnpm@latest`.
+- Optional: If you re-enable the daemon (`useDaemonProcess: true`) for faster local CLI runs, you must have `pnpm` on the PATH that GUI apps see (launchctl PATH, Homebrew `pnpm`, or launch Cursor from a shell), or the Nx Console error can return.
+
+Fastest path (recommended)
+1) From repo root run:
+   - ./tools/setup/setup-nx-pnpm.sh
+2) If Cursor/Nx Console still cannot find pnpm:
+   - launchctl setenv PATH "$HOME/.nvm/versions/node/$(nvm version default)/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+   - Fully quit and relaunch Cursor.
+
+One-time machine setup
+1) Install Node LTS (if missing)
+   - Use nvm (example):
+     curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+     source ~/.nvm/nvm.sh
+     nvm install --lts
+     nvm alias default lts/*
+
+2) Enable Corepack and activate pnpm
+   - corepack enable
+   - corepack prepare pnpm@latest --activate
+   - pnpm --version
+
+3) Make pnpm visible to GUI apps (important for Cursor extensions)
+   - Add this to `~/.zprofile`:
+     export NVM_DIR="$HOME/.nvm"
+     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+     export PATH="$HOME/.nvm/versions/node/$(nvm version default)/bin:$PATH"
+   - Start Cursor from terminal at least once:
+     open -a Cursor
+   - If Nx Console still cannot find pnpm, set launchd PATH:
+     launchctl setenv PATH "$HOME/.nvm/versions/node/$(nvm version default)/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+   - Then fully quit and relaunch Cursor.
+
+Per-project bootstrap
+1) From repo root:
+   - pnpm --version
+   - pnpm install
+   - pnpm exec nx --version
+   - (Optional) If you set `useDaemonProcess` to `true` in `nx.json`: `pnpm exec nx daemon --start`
+
+2) Ensure Nx package manager is pinned:
+   - In `nx.json`:
+     "cli": { "packageManager": "pnpm" }
+
+3) Recommended cleanup/restart if daemon issues persist (only when daemon is enabled):
+   - pnpm exec nx daemon --stop
+   - rm -rf .nx/cache .nx/workspace-data
+   - pnpm exec nx daemon --start
+
+Quick smoke checks
+- pnpm exec nx show projects
+- pnpm exec nx run-many -t lint --all --parallel
+
+Template for new Nx projects (copy/paste)
+1) corepack enable && corepack prepare pnpm@latest --activate
+2) pnpm --version
+3) pnpm create nx-workspace@latest
+4) cd <workspace>
+5) pnpm install
+6) confirm `nx.json` has `"cli": { "packageManager": "pnpm" }`
+7) (Optional) if using the Nx daemon: `pnpm exec nx daemon --start`
+
+Troubleshooting matrix
+- Error: `/bin/sh: pnpm: command not found` (often on `nx.json` / Nx Language Server)
+  - Cause: Nx Console tries to run `pnpm exec nx daemon --start` with a GUI PATH that does not include `pnpm` (typical with nvm-only installs).
+  - Fix (this repo): Keep `useDaemonProcess: false` in `nx.json` so the LS does not start the daemon via `pnpm`. Optionally fix GUI PATH (Corepack + `launchctl setenv PATH ...`, Homebrew `pnpm`, or launch Cursor from a terminal) if you turn the daemon back on.
+
+- Error: daemon start fails after updates
+  - Cause: stale Nx daemon/cache state.
+  - Fix: stop daemon, clear `.nx/cache` and `.nx/workspace-data`, restart daemon.
+
+- Error: wrong package manager used
+  - Cause: `nx.json` missing `cli.packageManager`.
+  - Fix: set `"packageManager": "pnpm"` in `nx.json`.

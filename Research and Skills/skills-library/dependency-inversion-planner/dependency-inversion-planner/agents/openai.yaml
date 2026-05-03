@@ -1,0 +1,5 @@
+interface:
+  display_name: Dependency Inversion Planner
+  short_description: Plans allowed imports, disallowed imports, ports, and refactor steps.
+  icon: code
+  color: blue

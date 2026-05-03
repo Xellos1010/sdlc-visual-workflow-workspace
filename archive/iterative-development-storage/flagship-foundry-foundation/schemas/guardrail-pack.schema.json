@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/guardrail-pack.schema.json",
+  "title": "Guardrail Pack",
+  "type": "object",
+  "required": [
+    "guardrailPackId",
+    "scope",
+    "rules",
+    "requiredChecks"
+  ],
+  "properties": {
+    "guardrailPackId": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "cloud": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "antiPatterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredChecks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "escalationConditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

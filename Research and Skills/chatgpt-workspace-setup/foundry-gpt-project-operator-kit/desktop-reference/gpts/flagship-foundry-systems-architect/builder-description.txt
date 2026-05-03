@@ -1,0 +1,1 @@
+Flagship Foundry specialist for define, visualize, architect work. Turns ambiguous intent into ADRs, contracts, schemas, C4 diagrams, decomposition plans, and acceptance criteria before implementation.

@@ -1,0 +1,19 @@
+{
+  "ecosystemId": "web-automation-workspace",
+  "title": "Harden MV3 state synchronization and unify sidepanel plus popup orchestration",
+  "objective": "Before coding, run debate rounds over Chrome extension state authority, messaging, and sibling surface impacts.",
+  "targetQuery": "sidepanel popup service worker storage messaging",
+  "sourceSignal": "design-review",
+  "riskLevel": "high",
+  "approval": {
+    "mode": "manual",
+    "autoApprove": false,
+    "autoStartOnApproval": false
+  },
+  "reviewPolicy": {
+    "debateRounds": 2,
+    "reviewerPersonaId": "persona:adversarial-architect",
+    "enableArchitectureChallenge": true,
+    "requireReconciliationMemo": true
+  }
+}

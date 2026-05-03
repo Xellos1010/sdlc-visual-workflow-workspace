@@ -1,0 +1,5 @@
+interface:
+  display_name: "Trace Evidence Collector"
+  short_description: "Collects and normalizes evidence across commands, diffs, PRs, ADRs, and reports."
+  icon: "file-search"
+  color: blue

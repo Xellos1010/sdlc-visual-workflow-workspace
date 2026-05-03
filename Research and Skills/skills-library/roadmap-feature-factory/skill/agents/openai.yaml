@@ -1,0 +1,5 @@
+interface:
+  display_name: "Roadmap Feature Factory"
+  short_description: "Creates and refreshes feature roadmap entries from repo state, issues, docs, and strategy."
+  icon: "list-checks"
+  color: blue

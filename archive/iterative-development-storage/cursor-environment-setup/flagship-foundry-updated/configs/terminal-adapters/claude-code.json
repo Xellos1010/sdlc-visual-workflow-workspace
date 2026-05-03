@@ -1,0 +1,8 @@
+{
+  "id": "adapter:claude-code",
+  "name": "Claude Code Adapter",
+  "kind": "terminal-agent",
+  "transport": "cli",
+  "entrypointTemplate": "claude",
+  "notes": "Map work-order role and evidence expectations into command-line sessions."
+}

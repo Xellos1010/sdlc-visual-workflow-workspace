@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent Work Order",
+  "type": "object",
+  "required": ["id", "projectId", "phase", "title", "status", "fileScope", "acceptanceCriteria", "verificationPlan"],
+  "properties": {
+    "id": { "type": "string" },
+    "projectId": { "type": "string" },
+    "featureSetId": { "type": "string" },
+    "phase": { "type": "string" },
+    "title": { "type": "string" },
+    "taskClass": { "type": "string" },
+    "agentRole": { "type": "string" },
+    "personaIds": { "type": "array", "items": { "type": "string" } },
+    "modelTier": { "type": "string" },
+    "status": { "enum": ["queued", "ready", "in_progress", "blocked", "blocked_requires_human_decision", "blocked_runtime_validation", "done", "verified", "superseded"] },
+    "dependsOn": { "type": "array", "items": { "type": "string" } },
+    "fileScope": { "type": "array", "items": { "type": "string" } },
+    "constraints": { "type": "array", "items": { "type": "string" } },
+    "acceptanceCriteria": { "type": "array", "items": { "type": "string" } },
+    "verificationPlan": { "type": "array", "items": { "type": "string" } },
+    "rollbackNotes": { "type": "string" },
+    "approvalRequired": { "type": "boolean", "default": false }
+  }
+}

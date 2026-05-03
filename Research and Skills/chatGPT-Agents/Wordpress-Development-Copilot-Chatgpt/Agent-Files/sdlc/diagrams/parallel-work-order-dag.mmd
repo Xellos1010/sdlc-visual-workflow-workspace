@@ -1,0 +1,9 @@
+flowchart TD
+  F[Feature Set] --> A[WO-001: architecture contract]
+  A --> B[WO-002: interface/schema]
+  B --> C[WO-003: implementation slice A]
+  B --> D[WO-004: implementation slice B]
+  C --> E[WO-005: tests/evidence]
+  D --> E
+  E --> G[WO-006: blast radius and integration]
+  G --> H[Single Active PR Review]

@@ -1,0 +1,28 @@
+{
+  "principles": [
+    {
+      "id": "artifact-authority",
+      "statement": "Artifacts, schemas, and graph state outrank freeform prompts."
+    },
+    {
+      "id": "blast-radius-before-build",
+      "statement": "Every plan expands the affected surface before execution begins."
+    },
+    {
+      "id": "approval-at-plan-boundary",
+      "statement": "Humans approve plans unless explicit auto-approval policy says otherwise."
+    },
+    {
+      "id": "independent-verification",
+      "statement": "Verifier roles are separate from builder roles."
+    },
+    {
+      "id": "continuity-is-mandatory",
+      "statement": "Every task emits resumable state, evidence, and handoff context."
+    },
+    {
+      "id": "fix-memory-compounds",
+      "statement": "Resolved bugs become reusable guardrails and future training data."
+    }
+  ]
+}

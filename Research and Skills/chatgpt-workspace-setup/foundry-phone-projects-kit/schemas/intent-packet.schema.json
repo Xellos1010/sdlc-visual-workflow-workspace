@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Intent Packet",
+  "type": "object",
+  "required": [
+    "projectName",
+    "changeSummary",
+    "businessOutcome",
+    "scope",
+    "acceptanceCriteria",
+    "risks",
+    "rollback",
+    "testOutline",
+    "impactedSystems",
+    "requiredArtifacts",
+    "nextWorkspace"
+  ],
+  "properties": {
+    "projectName": {
+      "type": "string"
+    },
+    "changeSummary": {
+      "type": "string"
+    },
+    "businessOutcome": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "in",
+        "out"
+      ],
+      "properties": {
+        "in": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "out": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rollback": {
+      "type": "string"
+    },
+    "testOutline": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "impactedSystems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredArtifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextWorkspace": {
+      "type": "string"
+    }
+  }
+}

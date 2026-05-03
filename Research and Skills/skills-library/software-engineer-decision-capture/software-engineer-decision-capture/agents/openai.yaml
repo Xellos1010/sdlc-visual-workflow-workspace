@@ -1,0 +1,3 @@
+interface:
+  display_name: "Software Engineer Decision Capture"
+  short_description: "Captures human engineering decisions and prepares ADR update candidates."

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/workspace-target.schema.json",
+  "title": "Workspace Target",
+  "type": "object",
+  "required": [
+    "targetId",
+    "workspaceRoot",
+    "displayName",
+    "hostKind",
+    "bindingMode",
+    "source",
+    "selectedAt",
+    "status"
+  ],
+  "properties": {
+    "targetId": {
+      "type": "string"
+    },
+    "workspaceRoot": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "workspaceFolderName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ecosystemId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "foundryRoot": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hostKind": {
+      "type": "string",
+      "enum": [
+        "cursor",
+        "vscode",
+        "vscode-compatible"
+      ]
+    },
+    "bindingMode": {
+      "type": "string",
+      "enum": [
+        "single-root",
+        "multi-root-explicit",
+        "restored-session"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "active-workspace",
+        "manual-selection",
+        "rehydrated-session"
+      ]
+    },
+    "hostWindowId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "selectionEvidence": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selectedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "selectedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "retargeted",
+        "archived"
+      ]
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

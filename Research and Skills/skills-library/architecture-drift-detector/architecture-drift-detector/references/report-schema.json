@@ -1,0 +1,18 @@
+{
+  "verdict": "no_material_drift | acceptable_drift | repair_required | adr_required | blocked",
+  "drift_severity": "none | low | medium | high | critical",
+  "findings": [
+    {
+      "id": "drift-001",
+      "category": "boundary | layering | contract | data_model | adapter | persistence | observability | security | performance | tests | docs",
+      "severity": "low | medium | high | critical",
+      "intended_state": "string",
+      "code_reality": "string",
+      "evidence": ["string"],
+      "repair_candidate": "string",
+      "adr_update_needed": false,
+      "confidence": "low | medium | high"
+    }
+  ],
+  "next_skill_handoff": {}
+}

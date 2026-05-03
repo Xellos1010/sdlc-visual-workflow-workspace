@@ -1,0 +1,9 @@
+{
+  "id": "adapter:openclaw",
+  "name": "OpenClaw Adapter",
+  "kind": "gateway-orchestrator",
+  "transport": "skills-or-plugin",
+  "entrypointTemplate": "openclaw",
+  "supportsMcp": false,
+  "notes": "Treat OpenClaw as a gateway or orchestration runtime, not as the ecosystem doctrine itself."
+}

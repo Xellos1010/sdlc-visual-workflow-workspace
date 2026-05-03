@@ -1,0 +1,35 @@
+{
+  "name": "flagship-foundry",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Graph-native SDLC control plane, workspace importer, and Cursor companion for human plus AI orchestration.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "api": "node apps/control-plane/src/server.mjs",
+    "cli": "node apps/orchestrator-cli/src/main.mjs",
+    "import:sample": "node apps/orchestrator-cli/src/main.mjs import examples/current-workspace/import-config.json",
+    "visualize:sample": "node apps/orchestrator-cli/src/main.mjs visualize examples/current-workspace/import-config.json",
+    "profiles:sample": "node apps/orchestrator-cli/src/main.mjs profiles examples/current-workspace/import-config.json",
+    "blast:sample": "node apps/orchestrator-cli/src/main.mjs blast examples/current-workspace/requests/blast-radius-target.json",
+    "plan:sample": "node apps/orchestrator-cli/src/main.mjs plan examples/current-workspace/requests/initialize-sdlc-pipeline.json",
+    "bootstrap:sample": "node apps/orchestrator-cli/src/main.mjs bootstrap examples/current-workspace/import-config.json examples/current-workspace/requests/initialize-sdlc-pipeline.json",
+    "test": "node --test",
+    "ci:targeted": "npm run visualize:sample",
+    "knowledge:sample": "node apps/orchestrator-cli/src/main.mjs knowledge examples/knowledge-sources/input/foundry-foundational-docs.manifest.json",
+    "gap:sample": "node apps/orchestrator-cli/src/main.mjs gap examples/current-workspace/requests/gap-analysis.json",
+    "focus:sample": "node apps/orchestrator-cli/src/main.mjs focus examples/current-workspace/requests/focus-query.json",
+    "bootstrap:full-sample": "node apps/orchestrator-cli/src/main.mjs bootstrap examples/current-workspace/import-config.json examples/current-workspace/requests/adversarial-change-request.json examples/knowledge-sources/input/foundry-foundational-docs.manifest.json",
+    "companion:dev": "bash apps/cursor-companion/scripts/dev.sh",
+    "companion:dev:native": "bash apps/cursor-companion/scripts/dev.sh --native",
+    "companion:serve": "bash apps/cursor-companion/scripts/dev.sh --serve-only",
+    "companion:teardown": "docker compose -f apps/cursor-companion/docker-compose.yml down --remove-orphans",
+    "companion:package": "bash apps/cursor-companion/scripts/package.sh",
+    "companion:watch": "bash apps/cursor-companion/scripts/watch-dev.sh --native",
+    "companion:watch:docker": "bash apps/cursor-companion/scripts/watch-dev.sh --docker",
+    "companion:watch:serve": "bash apps/cursor-companion/scripts/watch-dev.sh --native --serve-only",
+    "companion:watch:docker:serve": "bash apps/cursor-companion/scripts/watch-dev.sh --docker --serve-only"
+  }
+}

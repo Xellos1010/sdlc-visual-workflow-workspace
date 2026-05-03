@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/operator-quick-action.schema.json",
+  "title": "Operator Quick Action",
+  "type": "object",
+  "required": [
+    "actionId",
+    "stateKind",
+    "title",
+    "description",
+    "actionKind",
+    "placement",
+    "urgency",
+    "frequency",
+    "approvalSensitivity",
+    "visibility",
+    "targetObjectTypes",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "actionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stateKind": {
+      "type": "string",
+      "enum": [
+        "declared",
+        "observed"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actionKind": {
+      "type": "string",
+      "enum": [
+        "navigation",
+        "command",
+        "toggle",
+        "chat-suggestion"
+      ]
+    },
+    "placement": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "top-bar",
+          "left-rail",
+          "center-canvas",
+          "inspector",
+          "quick-action-strip",
+          "utility-drawer",
+          "command-palette",
+          "chat"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "urgency": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "frequency": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "approvalSensitivity": {
+      "type": "string",
+      "enum": [
+        "none",
+        "review-required",
+        "approval-required"
+      ]
+    },
+    "targetObjectTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "toggleSettingKey": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "visibility": {
+      "type": "object",
+      "required": [
+        "requiresSelection",
+        "allowedSelectionStates",
+        "hiddenWhenBlocked"
+      ],
+      "properties": {
+        "requiresSelection": {
+          "type": "boolean"
+        },
+        "allowedSelectionStates": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "active",
+              "blocked",
+              "warning",
+              "loading",
+              "stale",
+              "ready"
+            ]
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "hiddenWhenBlocked": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "actionKind": {
+            "const": "toggle"
+          }
+        },
+        "required": [
+          "actionKind"
+        ]
+      },
+      "then": {
+        "required": [
+          "toggleSettingKey"
+        ],
+        "properties": {
+          "approvalSensitivity": {
+            "const": "none"
+          }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false
+}

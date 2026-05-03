@@ -1,0 +1,1 @@
+Flagship Foundry specialist for information architecture. Defines first-class objects, navigation model, view registry, drill-down paths, and state authority boundaries for UI/UX systems.

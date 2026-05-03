@@ -1,0 +1,20 @@
+# .dockerignore for flagship-foundry Docker builds
+# Place in the build context root (apps/flagship-foundry/)
+
+node_modules/
+.git/
+state/
+*.log
+.DS_Store
+*.vsix
+
+# Apps not needed by the control-plane
+apps/cursor-companion/
+apps/graph-viewer/
+apps/orchestrator-cli/
+apps/foundry-mcp-server/
+
+# Dev tooling
+examples/
+docs/
+.codex/

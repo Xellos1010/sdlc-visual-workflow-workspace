@@ -1,0 +1,31 @@
+{
+  "patch_id": "adr-index-patch-YYYYMMDD-slug",
+  "generated_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "project_slug": "unknown",
+  "adr_entries": [
+    {
+      "adr_id": "ADR-XXX",
+      "title": "decision title",
+      "status": "Proposed | Accepted | Superseded | Rejected | Unknown",
+      "path": "docs/adr/adr-xxx-title.md",
+      "decision_type": "architecture | abstraction | schema | performance | persistence | integration | tool | workflow | codegen | other",
+      "summary": "short decision summary",
+      "relationships": [
+        {
+          "type": "decides | supersedes | superseded_by | depends_on | validates | updates | references",
+          "target_type": "work_order | pseudocode | schema | code | test | evidence | prior_adr | diagram | memory | unknown",
+          "target": "path, id, commit, pr, or unresolved reference",
+          "status": "verified | unverified | missing | unresolved"
+        }
+      ],
+      "inspection_tags": [],
+      "parity_risks": [],
+      "followup_actions": []
+    }
+  ],
+  "next_skill_handoff": {
+    "next_skill": "decision-tradeoff-ledger",
+    "reason": "record the indexed decision and tradeoffs in the durable decision ledger",
+    "inputs": ["adr_metadata.json", "adr_index_patch.json", "decision_context", "agent_reasoning_summary"]
+  }
+}

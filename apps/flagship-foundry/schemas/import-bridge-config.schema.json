@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/import-bridge-config.schema.json",
+  "title": "Import Bridge Config",
+  "type": "object",
+  "required": [
+    "featureFlagEnvVar",
+    "stagingRoot",
+    "workspaceOrdersRoot",
+    "defaultTargetProject",
+    "allowOverwrite"
+  ],
+  "properties": {
+    "featureFlagEnvVar": {
+      "type": "string",
+      "const": "FOUNDRY_IMPORT_BRIDGE_ENABLED"
+    },
+    "stagingRoot": {
+      "type": "string",
+      "pattern": "^\\.foundry/staging(?:/.*)?$"
+    },
+    "workspaceOrdersRoot": {
+      "type": "string",
+      "pattern": "^chatgpt-workspace-orders(?:/.*)?$"
+    },
+    "defaultTargetProject": {
+      "type": "string",
+      "minLength": 1
+    },
+    "allowOverwrite": {
+      "type": "boolean"
+    },
+    "supportedImportStages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "pre_implementation",
+          "post_verification",
+          "knowledge_base_only"
+        ]
+      },
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false
+}

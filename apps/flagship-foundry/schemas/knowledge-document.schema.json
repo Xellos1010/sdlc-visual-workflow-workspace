@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Knowledge Document",
+  "type": "object",
+  "required": [
+    "id",
+    "sourceId",
+    "title",
+    "kind",
+    "content"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "sourceId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "knowledgePackIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "frameworkIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "platformIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

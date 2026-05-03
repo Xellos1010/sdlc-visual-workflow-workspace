@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "type_system_plan",
+  "type": "object",
+  "required": ["schema_version", "language", "types_to_create", "types_to_reuse", "type_safety_gates", "next_skill_handoff"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "work_order_id": {"type": "string"},
+    "source_inputs": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "confidence": {"type": "string", "enum": ["high", "medium", "low", "mixed"]},
+    "gaps": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

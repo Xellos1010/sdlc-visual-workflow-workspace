@@ -1,0 +1,21 @@
+{
+  "name": "flagship-foundry",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Graph-native SDLC control plane, workspace importer, and Cursor companion for human plus AI orchestration.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "api": "node apps/control-plane/src/server.mjs",
+    "cli": "node apps/orchestrator-cli/src/main.mjs",
+    "import:sample": "node apps/orchestrator-cli/src/main.mjs import examples/current-workspace/import-config.json",
+    "visualize:sample": "node apps/orchestrator-cli/src/main.mjs visualize examples/current-workspace/import-config.json",
+    "profiles:sample": "node apps/orchestrator-cli/src/main.mjs profiles examples/current-workspace/import-config.json",
+    "blast:sample": "node apps/orchestrator-cli/src/main.mjs blast examples/current-workspace/requests/blast-radius-target.json",
+    "plan:sample": "node apps/orchestrator-cli/src/main.mjs plan examples/current-workspace/requests/initialize-sdlc-pipeline.json",
+    "bootstrap:sample": "node apps/orchestrator-cli/src/main.mjs bootstrap examples/current-workspace/import-config.json examples/current-workspace/requests/initialize-sdlc-pipeline.json",
+    "test": "node --test"
+  }
+}

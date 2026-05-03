@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry — Visualization Architect Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "viewRegistry",
+    "shellLayout"
+  ],
+  "properties": {
+    "viewRegistry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "operatorQuestion",
+          "viewType",
+          "rationale"
+        ],
+        "properties": {
+          "operatorQuestion": { "type": "string" },
+          "viewType": { "type": "string" },
+          "rationale": { "type": "string" },
+          "objects": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "shellLayout": {
+      "type": "object",
+      "properties": {
+        "topBar": { "type": "array", "items": { "type": "string" } },
+        "leftRail": { "type": "array", "items": { "type": "string" } },
+        "centerCanvas": { "type": "array", "items": { "type": "string" } },
+        "rightInspector": { "type": "array", "items": { "type": "string" } },
+        "bottomUtility": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": false
+    },
+    "savedLayouts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "panels"
+        ],
+        "properties": {
+          "name": { "type": "string" },
+          "panels": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "graphInteractionSpec": {
+      "type": "object"
+    },
+    "blockersEncountered": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

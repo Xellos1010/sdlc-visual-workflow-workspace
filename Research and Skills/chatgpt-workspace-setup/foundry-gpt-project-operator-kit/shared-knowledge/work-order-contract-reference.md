@@ -1,0 +1,1 @@
+Work orders must include lifecycleStage, phaseId, systemId, taskClass, agentRole, agentPersona, modelTier, sourceArtifacts, allowedTools, constraints, expectedOutputs, acceptanceCriteria, verificationPlan, approvalRequirements, status, and fileScope.

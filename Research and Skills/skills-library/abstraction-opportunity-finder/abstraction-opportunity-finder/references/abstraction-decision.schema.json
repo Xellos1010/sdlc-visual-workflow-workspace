@@ -1,0 +1,22 @@
+{
+  "artifact": "abstraction_decision.json",
+  "required_fields": [
+    "primary_shape",
+    "decision_status",
+    "rationale",
+    "abstraction_candidates",
+    "reuse_justification",
+    "do_not_abstract_notes",
+    "blocked_paths",
+    "next_skill_handoff"
+  ],
+  "primary_shape": "direct_implementation | extend_existing_abstraction | new_interface_or_port | new_base_class_or_trait | adapter_or_facade | composition_helper | defer_abstraction | blocked",
+  "candidate": {
+    "name": "candidate abstraction or direct insertion name",
+    "type": "interface | base_class | trait | adapter | facade | helper | direct | deferred",
+    "evidence": "specific repetition, variation, boundary, testability, or contract evidence",
+    "decision": "accept | reject | defer | blocked",
+    "reason": "why this candidate is or is not justified"
+  },
+  "next_skill_handoff": "base-interface-class-planner | contract-first-io-schema-writer | pseudocode-planning skill | human-review"
+}

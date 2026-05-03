@@ -1,0 +1,2 @@
+- Using the implementation outputs and work-order batch, produce an independent verification report, evidence bundle, release notes, handoff, continuity patch guidance, and a learning record candidate. Create downloadable files and zip them.
+- Do not trust builder claims without evidence. Map each acceptance criterion to explicit proof.

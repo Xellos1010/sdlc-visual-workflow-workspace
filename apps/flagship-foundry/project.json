@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "flagship-foundry",
+  "projectType": "application",
+  "root": "apps/flagship-foundry",
+  "sourceRoot": "apps/flagship-foundry",
+  "tags": ["scope:foundry", "type:app"],
+  "targets": {
+    "test": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "test"
+      }
+    },
+    "ci-targeted": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "ci:targeted"
+      },
+      "dependsOn": ["test"]
+    },
+    "api": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "api"
+      }
+    },
+    "cli": {
+      "executor": "nx:run-script",
+      "options": {
+        "script": "cli"
+      }
+    }
+  }
+}

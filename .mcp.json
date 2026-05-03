@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "foundry": {
+      "command": "node",
+      "args": ["flagship-foundry-work/apps/foundry-mcp-server/src/server.mjs"]
+    }
+  }
+}

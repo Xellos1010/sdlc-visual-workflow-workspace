@@ -1,0 +1,12 @@
+{
+  "name": "@flagship-foundry/import-bridge",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bidirectional import and export bridge between ChatGPT workspace artifacts and Foundry-native artifacts.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/__tests__/*.test.mjs dist/__tests__/integration/*.test.mjs"
+  }
+}

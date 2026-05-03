@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RequestEnvelope",
+  "type": "object",
+  "required": ["id", "source", "rawRequest", "repo", "objectiveStatus"],
+  "properties": {
+    "id": {"type": "string"},
+    "source": {"enum": ["human", "scheduled_task", "issue", "pr", "repo_event", "external_doc"]},
+    "rawRequest": {"type": "string"},
+    "repo": {"type": "string"},
+    "projectSlug": {"type": "string"},
+    "actor": {"type": "string"},
+    "cadence": {"type": ["string", "null"]},
+    "objectiveStatus": {"enum": ["unclassified", "classified"]},
+    "createdAt": {"type": "string"}
+  }
+}

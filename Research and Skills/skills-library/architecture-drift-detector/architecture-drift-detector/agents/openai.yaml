@@ -1,0 +1,3 @@
+interface:
+  display_name: "Architecture Drift Detector"
+  short_description: "Detects divergence between intended architecture, ADRs, schemas, diagrams, and code reality."

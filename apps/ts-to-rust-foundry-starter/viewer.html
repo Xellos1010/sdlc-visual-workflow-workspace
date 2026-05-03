@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artifact Viewer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/rust.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117;--surface:#161b22;--border:#30363d;
+  --text:#e6edf3;--muted:#8b949e;--accent:#58a6ff;
+  --red:#f85149;--red-bg:rgba(248,81,73,.10);
+  --amber:#d29922;--amber-bg:rgba(210,153,34,.12);
+  --green:#3fb950;--green-bg:rgba(63,185,80,.12);
+  --purple:#bc8cff;--purple-bg:rgba(188,140,255,.10);
+  --sidebar-w:260px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+#header{display:flex;align-items:center;gap:16px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+#header h1{font-size:15px;font-weight:600;letter-spacing:.02em}
+#todo-banner{font-size:13px;font-weight:500;padding:3px 10px;border-radius:12px}
+#todo-banner.has-todos{background:var(--amber-bg);color:var(--amber)}
+#todo-banner.no-todos{background:var(--green-bg);color:var(--green)}
+#artifact-root{font-size:11px;color:var(--muted);margin-left:auto;font-family:monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:40vw}
+#layout{display:flex;flex:1;overflow:hidden}
+#sidebar{width:var(--sidebar-w);background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0}
+#sidebar-header{padding:10px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:1}
+.module-row{display:flex;align-items:center;padding:7px 12px;cursor:pointer;font-size:13px;border-left:3px solid transparent;gap:8px;transition:background .1s}
+.module-row:hover{background:rgba(255,255,255,.04)}
+.module-row.active{background:rgba(88,166,255,.08);border-left-color:var(--accent)}
+.module-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.todo-badge{background:var(--red);color:#fff;font-size:10px;font-weight:700;border-radius:10px;padding:1px 6px;flex-shrink:0}
+.todo-badge.done{background:var(--green)}
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+#empty-state{flex:1;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;text-align:center;padding:32px}
+#viewer{display:none;flex-direction:column;flex:1;overflow:hidden}
+#tabs{display:flex;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;padding:0 16px;gap:2px}
+.tab{padding:10px 14px;font-size:13px;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;transition:color .1s;white-space:nowrap}
+.tab:hover:not(.disabled){color:var(--text)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab.disabled{color:var(--border);cursor:not-allowed}
+#content{flex:1;overflow:auto}
+/* rust toolbar */
+#rust-toolbar{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+#rust-toolbar .toolbar-label{font-size:12px;color:var(--muted);flex:1}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;background:transparent;color:var(--text);transition:background .1s,opacity .1s}
+.btn:hover:not(:disabled){background:rgba(255,255,255,.06)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-apply{color:var(--purple);border-color:var(--purple-bg)}
+.btn-apply:hover:not(:disabled){background:var(--purple-bg)}
+.btn-save{color:var(--accent);border-color:rgba(88,166,255,.3)}
+.btn-save:hover:not(:disabled){background:rgba(88,166,255,.12)}
+.btn-save.saved{color:var(--green);border-color:rgba(63,185,80,.3)}
+.btn-copy{color:var(--muted);border-color:var(--border)}
+/* todo panel */
+#todo-panel{background:var(--red-bg);border-bottom:1px solid rgba(248,81,73,.3);padding:10px 16px;flex-shrink:0}
+.todo-panel-header{font-size:12px;font-weight:600;color:var(--red);cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px}
+.todo-list{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.todo-item{font-size:12px;font-family:monospace;color:var(--text);padding:3px 6px;border-radius:3px;display:flex;align-items:center;gap:8px}
+.todo-item:hover{background:rgba(255,255,255,.04)}
+.line-ref{color:var(--red);font-weight:700;flex-shrink:0;cursor:pointer;min-width:40px}
+.line-ref:hover{text-decoration:underline}
+.todo-text{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.insert-btn{flex-shrink:0;padding:2px 8px;border-radius:4px;border:1px solid rgba(188,140,255,.4);font-size:11px;font-weight:600;cursor:pointer;background:var(--purple-bg);color:var(--purple);transition:background .1s}
+.insert-btn:hover{background:rgba(188,140,255,.2)}
+.applied-label{flex-shrink:0;font-size:11px;color:var(--green);font-weight:600}
+.no-match-label{flex-shrink:0;font-size:11px;color:var(--muted)}
+/* code */
+#code-container pre{margin:0;background:#0d1117!important;border-radius:0;font-size:13px;line-height:1.55}
+#code-container pre code{padding:12px 0!important;display:block}
+.code-line{display:flex;min-height:1.55em}
+.code-line.todo-line{background:var(--red-bg)}
+.code-line.pseudo-block{background:var(--purple-bg)}
+.line-num{min-width:52px;padding:0 12px;color:var(--muted);text-align:right;user-select:none;flex-shrink:0;font-size:12px;line-height:1.55}
+.code-line.todo-line .line-num{color:var(--red)}
+.code-line.pseudo-block .line-num{color:var(--purple)}
+.line-code{flex:1;padding-right:16px;white-space:pre}
+/* other renderers */
+#md-container{padding:24px 32px;max-width:860px;line-height:1.7;font-size:14px}
+#md-container h1,#md-container h2,#md-container h3{margin:20px 0 10px;color:var(--text)}
+#md-container p{margin-bottom:12px;color:var(--text)}
+#md-container code{background:var(--surface);padding:2px 5px;border-radius:3px;font-size:12px;font-family:monospace}
+#md-container pre{background:var(--surface);padding:12px;border-radius:6px;overflow-x:auto;margin:12px 0}
+#md-container pre code{background:transparent;padding:0}
+#md-container ul,#md-container ol{padding-left:20px;margin-bottom:12px}
+#md-container li{margin-bottom:4px;color:var(--text)}
+#md-container blockquote{border-left:3px solid var(--border);padding-left:12px;color:var(--muted);margin:12px 0}
+#md-container table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13px}
+#md-container th,#md-container td{border:1px solid var(--border);padding:6px 10px;text-align:left}
+#md-container th{background:var(--surface)}
+#mmd-container{padding:24px;display:flex;justify-content:center;overflow:auto}
+#raw-container{padding:16px;font-family:monospace;font-size:12px;white-space:pre-wrap;color:var(--muted);line-height:1.6}
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>Artifact Viewer</h1>
+  <div id="todo-banner" class="no-todos">Loading…</div>
+  <div id="artifact-root"></div>
+</div>
+<div id="layout">
+  <aside id="sidebar">
+    <div id="sidebar-header">Modules</div>
+    <div id="module-list"></div>
+  </aside>
+  <main id="main">
+    <div id="empty-state">Select a module from the sidebar to inspect its artifacts</div>
+    <div id="viewer">
+      <div id="tabs"></div>
+      <div id="content"></div>
+    </div>
+  </main>
+</div>
+<script>
+mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+
+// ── state ──────────────────────────────────────────────────────────────
+let treeData = null;
+let activeModule = null;
+let currentRustContent = null;
+let rustFilePath = null;
+let pseudoSections = null; // Map<normalizedName, section>
+let isDirty = false;
+
+// ── boot ───────────────────────────────────────────────────────────────
+async function boot() {
+  const res = await fetch('/api/tree');
+  if (!res.ok) { showError('Server error ' + res.status); return; }
+  treeData = await res.json();
+  if (treeData.error) { showError(treeData.error); return; }
+  renderBanner();
+  renderSidebar();
+}
+
+function showError(msg) { document.getElementById('empty-state').textContent = 'Error: ' + msg; }
+
+function renderBanner() {
+  const b = document.getElementById('todo-banner');
+  const { totalTodos, totalModules } = treeData.summary;
+  b.textContent = totalTodos > 0
+    ? totalTodos + ' todo!() remaining across ' + totalModules + ' modules'
+    : 'All clear — ' + totalModules + ' modules, 0 todos';
+  b.className = totalTodos > 0 ? 'has-todos' : 'no-todos';
+}
+
+function renderSidebar() {
+  const list = document.getElementById('module-list');
+  list.textContent = '';
+  for (const mod of treeData.modules) {
+    const row = document.createElement('div');
+    row.className = 'module-row';
+    row.dataset.path = mod.path;
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'module-name';
+    nameSpan.textContent = mod.name;
+    nameSpan.title = mod.path;
+    row.appendChild(nameSpan);
+    if (mod.todoCount > 0) {
+      const badge = document.createElement('span');
+      badge.className = 'todo-badge';
+      badge.textContent = String(mod.todoCount);
+      row.appendChild(badge);
+    }
+    row.addEventListener('click', () => selectModule(mod));
+    list.appendChild(row);
+  }
+}
+
+function selectModule(mod) {
+  activeModule = mod;
+  currentRustContent = null;
+  rustFilePath = null;
+  pseudoSections = null;
+  isDirty = false;
+  document.querySelectorAll('.module-row').forEach(r =>
+    r.classList.toggle('active', r.dataset.path === mod.path));
+  document.getElementById('empty-state').style.display = 'none';
+  const viewer = document.getElementById('viewer');
+  viewer.style.display = 'flex';
+  renderTabs(mod);
+  const preferredTab = mod.todoCount > 0 ? 'rust' : 'model';
+  const pick = mod.artifacts.find(a => a.tab === preferredTab && a.exists)
+            ?? mod.artifacts.find(a => a.exists);
+  if (pick) selectTab(pick.tab);
+}
+
+function renderTabs(mod) {
+  const tabsEl = document.getElementById('tabs');
+  tabsEl.textContent = '';
+  for (const art of mod.artifacts) {
+    const tab = document.createElement('div');
+    tab.className = 'tab' + (art.exists ? '' : ' disabled');
+    tab.textContent = art.tab;
+    tab.dataset.tab = art.tab;
+    if (art.exists) tab.addEventListener('click', () => selectTab(art.tab));
+    tabsEl.appendChild(tab);
+  }
+}
+
+async function selectTab(tabName) {
+  if (!activeModule) return;
+  document.querySelectorAll('.tab').forEach(t =>
+    t.classList.toggle('active', t.dataset.tab === tabName));
+  const art = activeModule.artifacts.find(a => a.tab === tabName);
+  if (!art || !art.exists) return;
+  const filePath = activeModule.path + '/' + art.file;
+  const res = await fetch('/api/file?path=' + encodeURIComponent(filePath));
+  const contentEl = document.getElementById('content');
+  contentEl.textContent = '';
+  if (!res.ok) { contentEl.textContent = 'Error loading: ' + res.status; return; }
+  const { content, ext } = await res.json();
+  if (ext === 'rs') {
+    rustFilePath = filePath;
+    currentRustContent = content;
+    isDirty = false;
+    await renderRust(contentEl);
+  } else if (ext === 'md')   renderMarkdown(content, contentEl);
+  else if (ext === 'mmd')    renderMermaid(content, contentEl);
+  else if (ext === 'json')   renderJson(content, contentEl);
+  else                       renderRaw(content, contentEl);
+}
+
+// ── pseudocode parsing ─────────────────────────────────────────────────
+function normalizeName(name) {
+  return name.toLowerCase().replace(/[_\s\-]/g, '');
+}
+
+function parsePseudocode(mdContent) {
+  const map = new Map();
+  const fnRegion = mdContent.match(/## Top-level Functions([\s\S]*?)(?=\n## |$)/);
+  if (!fnRegion) return map;
+  const raw = fnRegion[1];
+  const blocks = raw.split(/\n(?=### )/);
+  for (const block of blocks) {
+    const titleMatch = block.match(/^### (.+)/);
+    if (!titleMatch) continue;
+    const title = titleMatch[1].trim();
+    const kindMatch   = block.match(/- Kind: (.+)/);
+    const returnMatch = block.match(/- Return: (.+)/);
+    const paramsMatch = block.match(/- Parameters: (.+)/);
+    // Collect pseudocode steps: lines after "- Pseudocode:\n" that start with "  - "
+    const pseudoIdx = block.indexOf('- Pseudocode:\n');
+    let steps = [];
+    if (pseudoIdx >= 0) {
+      const afterPseudo = block.slice(pseudoIdx + '- Pseudocode:\n'.length);
+      for (const line of afterPseudo.split('\n')) {
+        if (/^\s{2,}- /.test(line)) steps.push(line.trim());
+        else if (line.startsWith('- ') && !line.startsWith('- Pseudocode')) break;
+      }
+    }
+    map.set(normalizeName(title), {
+      title,
+      kind:    kindMatch?.[1]?.trim() ?? '',
+      returns: returnMatch?.[1]?.trim() ?? '',
+      params:  paramsMatch?.[1]?.trim() ?? '',
+      steps,
+    });
+  }
+  return map;
+}
+
+// Walk backwards from lineNum (0-based array idx) to find enclosing fn name
+function findFnAboveLine(lines, lineIdx) {
+  for (let i = lineIdx; i >= 0; i--) {
+    const m = lines[i].match(/pub\s+(?:async\s+)?fn\s+(\w+)/);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+// Returns true if a PSEUDOCODE comment block already exists immediately before lineIdx
+function alreadyApplied(lines, lineIdx) {
+  for (let i = lineIdx - 1; i >= 0; i--) {
+    const t = lines[i].trim();
+    if (t.startsWith('// PSEUDOCODE [')) return true;
+    if (t === '' || t.startsWith('//')) continue;
+    break;
+  }
+  return false;
+}
+
+function buildCommentBlock(section) {
+  const out = ['// PSEUDOCODE [' + section.title + '] ' + '─'.repeat(Math.max(0, 56 - section.title.length))];
+  if (section.kind)    out.push('// Kind: ' + section.kind);
+  if (section.returns) out.push('// Returns: ' + section.returns);
+  if (section.params)  out.push('// Params: ' + section.params);
+  if (section.steps.length) {
+    out.push('//');
+    out.push('// Steps:');
+    for (const s of section.steps) out.push('//   ' + s);
+  }
+  out.push('// ' + '─'.repeat(70));
+  return out.join('\n');
+}
+
+function extractTodos(content) {
+  const todos = [];
+  const lines = content.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].includes('todo!(')) {
+      const fnName = findFnAboveLine(lines, i);
+      todos.push({
+        lineNum: i + 1,
+        text: lines[i].trim(),
+        fnName,
+        applied: alreadyApplied(lines, i),
+        section: fnName ? (pseudoSections?.get(normalizeName(fnName)) ?? null) : null,
+      });
+    }
+  }
+  return todos;
+}
+
+// ── mutation ───────────────────────────────────────────────────────────
+function insertPseudocodeForFn(fnName) {
+  const lines = currentRustContent.split('\n');
+  // find fn declaration
+  let fnIdx = -1;
+  for (let i = 0; i < lines.length; i++) {
+    const m = lines[i].match(/pub\s+(?:async\s+)?fn\s+(\w+)/);
+    if (m && m[1] === fnName) { fnIdx = i; break; }
+  }
+  if (fnIdx < 0) return false;
+  // find next todo!() after fn
+  let todoIdx = -1;
+  for (let i = fnIdx + 1; i < lines.length; i++) {
+    if (lines[i].includes('todo!(')) { todoIdx = i; break; }
+    if (lines[i].trim() === '}') break;
+  }
+  if (todoIdx < 0) return false;
+  if (alreadyApplied(lines, todoIdx)) return 'already';
+  const section = pseudoSections?.get(normalizeName(fnName));
+  if (!section) return false;
+  const indent = lines[todoIdx].match(/^(\s*)/)[1];
+  const commentLines = buildCommentBlock(section).split('\n').map(l => indent + l);
+  const newTodo = indent + 'todo!("implement: ' + fnName + '")';
+  lines.splice(todoIdx, 1, ...commentLines, newTodo);
+  currentRustContent = lines.join('\n');
+  isDirty = true;
+  return true;
+}
+
+async function applyAllPseudocode(todos) {
+  // collect unmatched, uninserted todos — process in reverse so line numbers stay valid
+  const targets = todos
+    .filter(t => t.fnName && t.section && !t.applied)
+    .reverse();
+  for (const t of targets) insertPseudocodeForFn(t.fnName);
+  if (isDirty) {
+    const contentEl = document.getElementById('content');
+    contentEl.textContent = '';
+    await renderRust(contentEl);
+  }
+}
+
+async function saveRustFile() {
+  if (!rustFilePath || !currentRustContent) return;
+  const btn = document.getElementById('save-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+  try {
+    const res = await fetch('/api/file', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path: rustFilePath, content: currentRustContent }),
+    });
+    if (res.ok) {
+      isDirty = false;
+      btn.textContent = 'Saved ✓';
+      btn.classList.add('saved');
+      setTimeout(() => {
+        btn.textContent = 'Save';
+        btn.classList.remove('saved');
+        btn.disabled = true;
+      }, 2000);
+    } else {
+      btn.textContent = 'Error';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Error';
+    btn.disabled = false;
+  }
+}
+
+function copyRustToClipboard() {
+  if (!currentRustContent) return;
+  navigator.clipboard.writeText(currentRustContent).then(() => {
+    const btn = document.getElementById('copy-btn');
+    const orig = btn.textContent;
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => { btn.textContent = orig; }, 1500);
+  });
+}
+
+// ── rust renderer ──────────────────────────────────────────────────────
+async function renderRust(contentEl) {
+  // load pseudocode if needed
+  if (!pseudoSections && activeModule.todoCount > 0) {
+    const pseudoArt = activeModule.artifacts.find(a => a.tab === 'pseudocode' && a.exists);
+    if (pseudoArt) {
+      const pr = await fetch('/api/file?path=' + encodeURIComponent(activeModule.path + '/' + pseudoArt.file));
+      if (pr.ok) {
+        const { content: pContent } = await pr.json();
+        pseudoSections = parsePseudocode(pContent);
+      }
+    }
+  }
+
+  const todos = extractTodos(currentRustContent);
+  const hasTodos = todos.length > 0;
+  const hasSection = todos.some(t => t.section && !t.applied);
+
+  // ── toolbar ──
+  const toolbar = document.createElement('div');
+  toolbar.id = 'rust-toolbar';
+  const label = document.createElement('span');
+  label.className = 'toolbar-label';
+  label.textContent = hasTodos
+    ? todos.length + ' todo!() — click Insert to embed pseudocode context'
+    : 'No todos — file ready';
+  toolbar.appendChild(label);
+
+  if (hasSection) {
+    const applyBtn = document.createElement('button');
+    applyBtn.className = 'btn btn-apply';
+    applyBtn.textContent = 'Apply All';
+    applyBtn.title = 'Insert pseudocode for all matched todos';
+    applyBtn.addEventListener('click', () => applyAllPseudocode(todos));
+    toolbar.appendChild(applyBtn);
+  }
+
+  const copyBtn = document.createElement('button');
+  copyBtn.className = 'btn btn-copy';
+  copyBtn.id = 'copy-btn';
+  copyBtn.textContent = 'Copy';
+  copyBtn.title = 'Copy file content to clipboard';
+  copyBtn.addEventListener('click', copyRustToClipboard);
+  toolbar.appendChild(copyBtn);
+
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'btn btn-save';
+  saveBtn.id = 'save-btn';
+  saveBtn.textContent = 'Save';
+  saveBtn.disabled = !isDirty;
+  saveBtn.title = 'Write changes to disk';
+  saveBtn.addEventListener('click', saveRustFile);
+  toolbar.appendChild(saveBtn);
+
+  contentEl.appendChild(toolbar);
+
+  // ── todo panel ──
+  if (hasTodos) {
+    const panel = document.createElement('div');
+    panel.id = 'todo-panel';
+    const header = document.createElement('div');
+    header.className = 'todo-panel-header';
+    header.textContent = '\u25BE  todo!() in this file (' + todos.length + ')';
+    panel.appendChild(header);
+
+    const listEl = document.createElement('div');
+    listEl.className = 'todo-list';
+
+    for (const t of todos) {
+      const item = document.createElement('div');
+      item.className = 'todo-item';
+
+      const ref = document.createElement('span');
+      ref.className = 'line-ref';
+      ref.textContent = 'L' + t.lineNum;
+      ref.addEventListener('click', () => {
+        const lineEl = contentEl.querySelector('#L' + t.lineNum);
+        if (lineEl) lineEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+      item.appendChild(ref);
+
+      const textEl = document.createElement('span');
+      textEl.className = 'todo-text';
+      textEl.textContent = t.fnName ? 'fn ' + t.fnName : t.text;
+      item.appendChild(textEl);
+
+      if (t.applied) {
+        const lbl = document.createElement('span');
+        lbl.className = 'applied-label';
+        lbl.textContent = 'Applied ✓';
+        item.appendChild(lbl);
+      } else if (t.section) {
+        const btn = document.createElement('button');
+        btn.className = 'insert-btn';
+        btn.textContent = 'Insert';
+        btn.title = 'Insert pseudocode for ' + t.fnName;
+        btn.addEventListener('click', async () => {
+          const result = insertPseudocodeForFn(t.fnName);
+          if (result) {
+            contentEl.textContent = '';
+            await renderRust(contentEl);
+          }
+        });
+        item.appendChild(btn);
+      } else {
+        const lbl = document.createElement('span');
+        lbl.className = 'no-match-label';
+        lbl.textContent = t.fnName ? 'no pseudocode match' : 'no fn context';
+        item.appendChild(lbl);
+      }
+
+      listEl.appendChild(item);
+    }
+
+    let panelOpen = true;
+    header.addEventListener('click', () => {
+      panelOpen = !panelOpen;
+      listEl.style.display = panelOpen ? '' : 'none';
+      header.textContent = (panelOpen ? '\u25BE' : '\u25B8') + '  todo!() in this file (' + todos.length + ')';
+    });
+    panel.appendChild(listEl);
+    contentEl.appendChild(panel);
+  }
+
+  // ── code block ──
+  const todoLineNums = new Set(todos.map(t => t.lineNum));
+  const pseudoLineNums = buildPseudoLineNums(currentRustContent);
+  contentEl.appendChild(buildCodeBlock(currentRustContent, 'rust', todoLineNums, pseudoLineNums));
+}
+
+function buildPseudoLineNums(content) {
+  const nums = new Set();
+  const lines = content.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim().startsWith('// PSEUDOCODE [')) {
+      // mark this line and all comment lines until a non-comment
+      for (let j = i; j < lines.length; j++) {
+        const t = lines[j].trim();
+        if (t.startsWith('//')) nums.add(j + 1);
+        else break;
+      }
+    }
+  }
+  return nums;
+}
+
+function buildCodeBlock(content, language, todoLineNums, pseudoLineNums) {
+  const highlighted = hljs.highlight(content, { language }).value;
+  const rawLines = content.split('\n');
+  const hlLines = highlighted.split('\n');
+  const codeContainer = document.createElement('div');
+  codeContainer.id = 'code-container';
+  const pre = document.createElement('pre');
+  const code = document.createElement('code');
+  for (let i = 0; i < rawLines.length; i++) {
+    const lineNum = i + 1;
+    const isTodo   = todoLineNums?.has(lineNum);
+    const isPseudo = pseudoLineNums?.has(lineNum);
+    const lineEl = document.createElement('div');
+    lineEl.className = 'code-line' + (isTodo ? ' todo-line' : isPseudo ? ' pseudo-block' : '');
+    lineEl.id = 'L' + lineNum;
+    const numSpan = document.createElement('span');
+    numSpan.className = 'line-num';
+    numSpan.textContent = String(lineNum);
+    lineEl.appendChild(numSpan);
+    const codeSpan = document.createElement('span');
+    codeSpan.className = 'line-code';
+    codeSpan.innerHTML = DOMPurify.sanitize(hlLines[i] ?? '');
+    lineEl.appendChild(codeSpan);
+    code.appendChild(lineEl);
+  }
+  pre.appendChild(code);
+  codeContainer.appendChild(pre);
+  return codeContainer;
+}
+
+// ── other renderers ────────────────────────────────────────────────────
+function renderMarkdown(content, contentEl) {
+  const div = document.createElement('div');
+  div.id = 'md-container';
+  div.innerHTML = DOMPurify.sanitize(marked.parse(content));
+  contentEl.appendChild(div);
+}
+
+async function renderMermaid(content, contentEl) {
+  const outer = document.createElement('div');
+  outer.id = 'mmd-container';
+  const mmdDiv = document.createElement('div');
+  mmdDiv.className = 'mermaid';
+  mmdDiv.textContent = content;
+  outer.appendChild(mmdDiv);
+  contentEl.appendChild(outer);
+  try { await mermaid.run({ nodes: [mmdDiv] }); }
+  catch (e) { mmdDiv.textContent = 'Mermaid render error: ' + e.message + '\n\n' + content; }
+}
+
+function renderJson(content, contentEl) {
+  let pretty = content;
+  try { pretty = JSON.stringify(JSON.parse(content), null, 2); } catch { /* use raw */ }
+  contentEl.appendChild(buildCodeBlock(pretty, 'json', null, null));
+}
+
+function renderRaw(content, contentEl) {
+  const div = document.createElement('div');
+  div.id = 'raw-container';
+  div.textContent = content;
+  contentEl.appendChild(div);
+}
+
+boot();
+</script>
+</body>
+</html>

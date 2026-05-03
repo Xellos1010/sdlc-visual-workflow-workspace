@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": ["candidate_paths", "relevant_docs", "tests_and_evidence", "missing_context", "next_skill_handoff"],
+  "properties": {
+    "candidate_paths": {"type": "array", "items": {"type": "object"}},
+    "relevant_docs": {"type": "array", "items": {"type": "object"}},
+    "prior_decisions": {"type": "array", "items": {"type": "object"}},
+    "tests_and_evidence": {"type": "array", "items": {"type": "object"}},
+    "runtime_surfaces": {"type": "array", "items": {"type": "object"}},
+    "missing_context": {"type": "array", "items": {"type": "object"}},
+    "staleness_risks": {"type": "array", "items": {"type": "object"}},
+    "searches_performed": {"type": "array", "items": {"type": "object"}},
+    "next_skill_handoff": {"type": "object"}
+  }
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: Code From Pseudocode Generator
+  short_description: Generates implementation diffs from approved pseudocode and codegen contracts.
+  icon: code
+  color: blue

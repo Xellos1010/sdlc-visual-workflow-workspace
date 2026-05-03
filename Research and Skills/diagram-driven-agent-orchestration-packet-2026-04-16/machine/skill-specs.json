@@ -1,0 +1,148 @@
+{
+  "skills": [
+    {
+      "name": "repository-cartographer",
+      "trigger": [
+        "map this repo",
+        "reverse engineer codebase",
+        "show module/dependency graph"
+      ],
+      "outputs": [
+        "module graph",
+        "dependency graph",
+        "subsystem classification"
+      ]
+    },
+    {
+      "name": "pseudocode-ledger-writer",
+      "trigger": [
+        "extract pseudocode",
+        "normalize logic before migration"
+      ],
+      "outputs": [
+        "pseudocode ledger"
+      ]
+    },
+    {
+      "name": "diagram-decision-matrix",
+      "trigger": [
+        "which diagrams should we create",
+        "pick the right views"
+      ],
+      "outputs": [
+        "diagram set with rationale"
+      ]
+    },
+    {
+      "name": "c4-synthesizer",
+      "trigger": [
+        "show context/container/component views"
+      ],
+      "outputs": [
+        "C4 diagrams"
+      ]
+    },
+    {
+      "name": "runtime-sequence-synthesizer",
+      "trigger": [
+        "show runtime flow",
+        "show message order"
+      ],
+      "outputs": [
+        "sequence diagrams"
+      ]
+    },
+    {
+      "name": "state-machine-synthesizer",
+      "trigger": [
+        "show lifecycle or state transitions"
+      ],
+      "outputs": [
+        "state machine diagrams"
+      ]
+    },
+    {
+      "name": "contract-inventory-builder",
+      "trigger": [
+        "extract APIs and boundaries",
+        "inventory IO"
+      ],
+      "outputs": [
+        "IO contract inventory"
+      ]
+    },
+    {
+      "name": "dependency-gap-researcher",
+      "trigger": [
+        "what blocks migration",
+        "research dependency gaps"
+      ],
+      "outputs": [
+        "gap matrix"
+      ]
+    },
+    {
+      "name": "migration-map-builder",
+      "trigger": [
+        "plan TS to Rust",
+        "map source to target"
+      ],
+      "outputs": [
+        "keep/adapt/rewrite/defer ledger",
+        "target mapping"
+      ]
+    },
+    {
+      "name": "target-profile-router",
+      "trigger": [
+        "choose framework/runtime profile"
+      ],
+      "outputs": [
+        "target platform profile"
+      ]
+    },
+    {
+      "name": "work-order-graph-builder",
+      "trigger": [
+        "split this initiative for agents"
+      ],
+      "outputs": [
+        "work-order DAG",
+        "team config"
+      ]
+    },
+    {
+      "name": "dashboard-projection-planner",
+      "trigger": [
+        "design dashboard UI/UX"
+      ],
+      "outputs": [
+        "screen map",
+        "shell layout",
+        "interaction model"
+      ]
+    },
+    {
+      "name": "parity-verifier-planner",
+      "trigger": [
+        "define parity checks",
+        "create verification plan"
+      ],
+      "outputs": [
+        "verification matrix",
+        "evidence bundle structure"
+      ]
+    },
+    {
+      "name": "evidence-packer",
+      "trigger": [
+        "package findings",
+        "create handoff bundle"
+      ],
+      "outputs": [
+        "handoff bundle",
+        "release packet"
+      ]
+    }
+  ]
+}

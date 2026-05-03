@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/import-receipt.schema.json",
+  "title": "Import Receipt",
+  "type": "object",
+  "required": [
+    "receiptId",
+    "packetId",
+    "ecosystemId",
+    "importedAt",
+    "createdArtifactIds",
+    "validation",
+    "provenance"
+  ],
+  "properties": {
+    "receiptId": { "type": "string" },
+    "packetId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "importedAt": { "type": "string", "format": "date-time" },
+    "createdArtifactIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "type": "string", "enum": ["passed", "passed-with-warnings", "failed"] },
+        "warnings": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "errors": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["sourceAgent", "sessionId"],
+      "properties": {
+        "sourceAgent": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "sourceRunId": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
+

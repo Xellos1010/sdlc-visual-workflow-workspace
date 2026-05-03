@@ -1,0 +1,87 @@
+{
+  "workspace_name": "Flagship Foundry ChatGPT Workspace",
+  "project_name": "Flagship Foundry",
+  "lifecycle_phases": [
+    "discover",
+    "define",
+    "visualize",
+    "architect",
+    "plan",
+    "implement",
+    "verify",
+    "release",
+    "operate",
+    "diagnose",
+    "improve"
+  ],
+  "phase_map": {
+    "discover": {
+      "primary_agent": "orchestrator",
+      "supporting_agents": [
+        "context-curator"
+      ]
+    },
+    "define": {
+      "primary_agent": "systems-architect",
+      "supporting_agents": [
+        "context-curator"
+      ]
+    },
+    "visualize": {
+      "primary_agent": "systems-architect",
+      "supporting_agents": [
+        "context-curator"
+      ]
+    },
+    "architect": {
+      "primary_agent": "systems-architect",
+      "supporting_agents": [
+        "security-reviewer"
+      ]
+    },
+    "plan": {
+      "primary_agent": "orchestrator",
+      "supporting_agents": [
+        "systems-architect"
+      ]
+    },
+    "implement": {
+      "primary_agent": "builder",
+      "supporting_agents": [
+        "context-curator"
+      ]
+    },
+    "verify": {
+      "primary_agent": "verifier",
+      "supporting_agents": [
+        "security-reviewer",
+        "performance-reviewer"
+      ]
+    },
+    "release": {
+      "primary_agent": "docs-release-agent",
+      "supporting_agents": [
+        "verifier"
+      ]
+    },
+    "operate": {
+      "primary_agent": "orchestrator",
+      "supporting_agents": [
+        "performance-reviewer"
+      ]
+    },
+    "diagnose": {
+      "primary_agent": "orchestrator",
+      "supporting_agents": [
+        "verifier",
+        "security-reviewer"
+      ]
+    },
+    "improve": {
+      "primary_agent": "docs-release-agent",
+      "supporting_agents": [
+        "orchestrator"
+      ]
+    }
+  }
+}

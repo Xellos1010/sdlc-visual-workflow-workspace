@@ -1,0 +1,7 @@
+{
+  "id": "gpt-specific-project-bundle-2026-04-10",
+  "bundleType": "custom-gpt-kit",
+  "target": "ChatGPT GPT builder",
+  "notes": "Build on web, use on mobile or web after creation.",
+  "artifactManifest": "artifact-manifest.json"
+}

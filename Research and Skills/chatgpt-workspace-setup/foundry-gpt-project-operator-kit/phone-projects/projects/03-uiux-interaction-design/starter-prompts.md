@@ -1,0 +1,3 @@
+- Consume the architecture artifacts (object model, view registry, screen map, drill-down chain, style archetype). Produce interaction contracts, motion spec, quick-action matrix, design tokens, platform adaptation, and work orders.
+- I have a screen map and object model. Define the interaction rules, motion system, and design tokens for the selected style archetype. Include platform adaptation for mobile.
+- Take these architecture artifacts and produce a complete work-order batch with dependency graph and verification plan for the UI/UX implementation.

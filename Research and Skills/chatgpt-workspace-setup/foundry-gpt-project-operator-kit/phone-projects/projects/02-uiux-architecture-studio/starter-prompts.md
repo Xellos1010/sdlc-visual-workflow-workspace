@@ -1,0 +1,3 @@
+- Consume the intent packet and task corpus. Produce the full architecture: object model, state authority matrix, view registry, screen map, drill-down chain, ADRs, diagrams, and design token seeds.
+- I have an intent packet for a UI/UX initiative. Define the first-class objects, map views to operator questions, and design the shell layout with drill-down paths.
+- Analyze this intent packet and produce architecture artifacts with the selected style archetype applied to design tokens.

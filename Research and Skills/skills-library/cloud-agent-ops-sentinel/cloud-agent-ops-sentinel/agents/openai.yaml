@@ -1,0 +1,5 @@
+interface:
+  display_name: "Cloud Agent Ops Sentinel"
+  short_description: "Monitors operational health, blockers, drift, and scheduled-run safety."
+  icon: "activity"
+  color: blue

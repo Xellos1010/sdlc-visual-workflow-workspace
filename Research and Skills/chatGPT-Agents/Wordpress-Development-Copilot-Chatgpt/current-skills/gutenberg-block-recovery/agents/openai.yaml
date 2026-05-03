@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gutenberg Block Recovery"
+  short_description: "Handles invalid blocks, serialization, and editor recovery"
+  default_prompt: "Use $gutenberg-block-recovery to diagnose invalid Gutenberg content, serialization issues, and editor recovery paths."

@@ -1,0 +1,357 @@
+[
+  {
+    "path": ".codex/schemas/task-state.schema.json",
+    "title": "Codex Task State",
+    "schema_id": "https://web-automation-workspace.local/.codex/schemas/task-state.schema.json",
+    "category": "workflow",
+    "required": [
+      "project",
+      "objective",
+      "sdlcPhase",
+      "activeBranch",
+      "currentPhase",
+      "nextCommit",
+      "nextCommandSet",
+      "blockedBy",
+      "artifacts",
+      "doneCriteria"
+    ],
+    "properties": [
+      "project",
+      "objective",
+      "sdlcPhase",
+      "lifecycleStage",
+      "activeBranch",
+      "currentPhase",
+      "nextCommit",
+      "nextCommandSet",
+      "blockedBy",
+      "artifacts",
+      "doneCriteria"
+    ],
+    "logical_name": "task-state.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": ".foundry/schemas/task-state.schema.json",
+    "title": "Codex Task State",
+    "schema_id": "https://web-automation-workspace.local/.codex/schemas/task-state.schema.json",
+    "category": "workflow",
+    "required": [
+      "project",
+      "objective",
+      "sdlcPhase",
+      "activeBranch",
+      "currentPhase",
+      "nextCommit",
+      "nextCommandSet",
+      "blockedBy",
+      "artifacts",
+      "doneCriteria"
+    ],
+    "properties": [
+      "project",
+      "objective",
+      "sdlcPhase",
+      "activeBranch",
+      "currentPhase",
+      "nextCommit",
+      "nextCommandSet",
+      "blockedBy",
+      "artifacts",
+      "doneCriteria"
+    ],
+    "logical_name": "task-state.schema.json",
+    "duplicate_of": ".codex/schemas/task-state.schema.json"
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/adapter-manifest.schema.json",
+    "title": "Adapter Manifest",
+    "schema_id": "https://flagship.local/schemas/adapter-manifest.schema.json",
+    "category": "environment",
+    "required": [
+      "adapterId",
+      "displayName",
+      "runtime",
+      "executionModel"
+    ],
+    "properties": [
+      "adapterId",
+      "displayName",
+      "runtime",
+      "supportsMcp",
+      "supportsParallelAgents",
+      "supportsWorktrees",
+      "supportsProviderSwap",
+      "executionModel"
+    ],
+    "logical_name": "adapter-manifest.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/agent-work-order.schema.json",
+    "title": "Agent Work Order",
+    "schema_id": "https://flagship-foundry.local/schemas/agent-work-order.schema.json",
+    "category": "workflow",
+    "required": [
+      "id",
+      "projectId",
+      "phase",
+      "title",
+      "personaIds",
+      "acceptanceCriteria"
+    ],
+    "properties": [
+      "id",
+      "projectId",
+      "phase",
+      "title",
+      "personaIds",
+      "commands",
+      "acceptanceCriteria",
+      "status"
+    ],
+    "logical_name": "agent-work-order.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/continuity-state.schema.json",
+    "title": "Continuity State",
+    "schema_id": "https://flagship-foundry.local/schemas/continuity-state.schema.json",
+    "category": "workflow",
+    "required": [
+      "authority",
+      "project",
+      "objective",
+      "sdlcPhase",
+      "lifecycleStage",
+      "currentPhase",
+      "activeBranch",
+      "nextCommit",
+      "nextCommandSet",
+      "blockedBy",
+      "artifacts",
+      "doneCriteria"
+    ],
+    "properties": [
+      "authority",
+      "project",
+      "objective",
+      "sdlcPhase",
+      "lifecycleStage",
+      "currentPhase",
+      "activeBranch",
+      "nextCommit",
+      "nextCommandSet",
+      "blockedBy",
+      "artifacts",
+      "doneCriteria"
+    ],
+    "logical_name": "continuity-state.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/ecosystem-import-request.schema.json",
+    "title": "Ecosystem Import Request",
+    "schema_id": "https://flagship-foundry.local/schemas/ecosystem-import-request.schema.json",
+    "category": "environment",
+    "required": [
+      "source"
+    ],
+    "properties": [
+      "ecosystemId",
+      "name",
+      "source"
+    ],
+    "logical_name": "ecosystem-import-request.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/ecosystem-manifest.schema.json",
+    "title": "Ecosystem Manifest",
+    "schema_id": "https://flagship-foundry.local/schemas/ecosystem-manifest.schema.json",
+    "category": "environment",
+    "required": [
+      "id",
+      "name",
+      "topology",
+      "projects",
+      "systems",
+      "frameworks",
+      "platforms"
+    ],
+    "properties": [
+      "id",
+      "name",
+      "topology",
+      "projects",
+      "systems",
+      "frameworks",
+      "platforms",
+      "ruleFiles",
+      "existingVisualizations",
+      "taskStates"
+    ],
+    "logical_name": "ecosystem-manifest.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/environment-scaffold-request.schema.json",
+    "title": "Environment Scaffold Request",
+    "schema_id": null,
+    "category": "environment",
+    "required": [
+      "preset",
+      "targetDir"
+    ],
+    "properties": [
+      "preset",
+      "targetDir",
+      "dryRun",
+      "approveUserOwnedConflicts"
+    ],
+    "logical_name": "environment-scaffold-request.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/evidence-bundle.schema.json",
+    "title": "Evidence bundle",
+    "schema_id": "https://flagship-foundry.local/schemas/evidence-bundle.schema.json",
+    "category": "execution",
+    "required": [
+      "id",
+      "runId",
+      "assembledAt",
+      "correlation",
+      "summary",
+      "tasks"
+    ],
+    "properties": [
+      "id",
+      "runId",
+      "planId",
+      "ecosystemId",
+      "adapterId",
+      "assembledAt",
+      "correlation",
+      "summary",
+      "telemetryReferences",
+      "tasks"
+    ],
+    "logical_name": "evidence-bundle.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/guardrail-pack.schema.json",
+    "title": "Guardrail Pack",
+    "schema_id": "https://flagship-foundry.local/schemas/guardrail-pack.schema.json",
+    "category": "governance",
+    "required": [
+      "id",
+      "name",
+      "scope",
+      "rules"
+    ],
+    "properties": [
+      "id",
+      "name",
+      "scope",
+      "rules",
+      "evidenceRequirements"
+    ],
+    "logical_name": "guardrail-pack.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/persona-pack.schema.json",
+    "title": "Persona Pack",
+    "schema_id": "https://flagship-foundry.local/schemas/persona-pack.schema.json",
+    "category": "governance",
+    "required": [
+      "id",
+      "name",
+      "category",
+      "purpose"
+    ],
+    "properties": [
+      "id",
+      "name",
+      "category",
+      "purpose",
+      "activationCriteria",
+      "guardrailPackIds",
+      "runbookIds"
+    ],
+    "logical_name": "persona-pack.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/provider-profile.schema.json",
+    "title": "Provider Profile",
+    "schema_id": "https://flagship.local/schemas/provider-profile.schema.json",
+    "category": "environment",
+    "required": [
+      "providerId",
+      "displayName",
+      "protocol",
+      "transport"
+    ],
+    "properties": [
+      "providerId",
+      "displayName",
+      "protocol",
+      "transport",
+      "suitableForCritical",
+      "riskFit",
+      "roles"
+    ],
+    "logical_name": "provider-profile.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/runbook.schema.json",
+    "title": "Runbook",
+    "schema_id": "https://flagship-foundry.local/schemas/runbook.schema.json",
+    "category": "governance",
+    "required": [
+      "id",
+      "name",
+      "purpose",
+      "phases"
+    ],
+    "properties": [
+      "id",
+      "name",
+      "purpose",
+      "triggers",
+      "phases",
+      "handoffArtifacts"
+    ],
+    "logical_name": "runbook.schema.json",
+    "duplicate_of": null
+  },
+  {
+    "path": "apps/flagship-foundry/schemas/sme-profile.schema.json",
+    "title": "Subject Matter Expert Profile",
+    "schema_id": "https://flagship-foundry.local/schemas/sme-profile.schema.json",
+    "category": "knowledge",
+    "required": [
+      "id",
+      "domain",
+      "title",
+      "mandatoryQuestions",
+      "blastRadiusChecklist"
+    ],
+    "properties": [
+      "id",
+      "domain",
+      "title",
+      "detectedFrom",
+      "mandatoryQuestions",
+      "blastRadiusChecklist",
+      "trainingSignals"
+    ],
+    "logical_name": "sme-profile.schema.json",
+    "duplicate_of": null
+  }
+]

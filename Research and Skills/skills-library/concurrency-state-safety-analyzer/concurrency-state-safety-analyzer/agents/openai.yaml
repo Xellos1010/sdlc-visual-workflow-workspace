@@ -1,0 +1,5 @@
+interface:
+  display_name: Concurrency State Safety Analyzer
+  short_description: Reviews async, shared-state, lock, cancellation, event-ordering, and transaction safety.
+  icon: code
+  color: blue

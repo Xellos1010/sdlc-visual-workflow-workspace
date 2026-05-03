@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Bundle",
+  "type": "object",
+  "required": ["id", "repo", "project", "workOrderId", "timestamp", "commitSha", "commands", "result"],
+  "properties": {
+    "id": { "type": "string" },
+    "repo": { "type": "string" },
+    "project": { "type": "string" },
+    "workOrderId": { "type": "string" },
+    "agentRunId": { "type": "string" },
+    "timestamp": { "type": "string" },
+    "commitSha": { "type": "string" },
+    "changedFiles": { "type": "array", "items": { "type": "string" } },
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["command", "exitCode", "result"],
+        "properties": {
+          "command": { "type": "string" },
+          "exitCode": { "type": "integer" },
+          "stdoutSummary": { "type": "string" },
+          "stderrSummary": { "type": "string" },
+          "result": { "enum": ["pass", "fail", "blocked", "skipped"] }
+        }
+      }
+    },
+    "result": { "enum": ["pass", "fail", "blocked", "partial"] },
+    "residualRisks": { "type": "array", "items": { "type": "string" } }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/change-request.schema.json",
+  "title": "Change Request",
+  "type": "object",
+  "required": [
+    "ecosystemId",
+    "title",
+    "objective"
+  ],
+  "properties": {
+    "ecosystemId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "targetQuery": {
+      "type": "string"
+    },
+    "sourceSignal": {
+      "type": "string",
+      "enum": [
+        "request",
+        "telemetry",
+        "inspection"
+      ]
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "approval": {
+      "type": "object"
+    }
+  }
+}

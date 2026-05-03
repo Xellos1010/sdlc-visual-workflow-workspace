@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Flagship Foundry — IA Architect Expected Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "objectModel",
+    "stateAuthorityMatrix",
+    "viewRegistry"
+  ],
+  "properties": {
+    "objectModel": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "authority"
+        ],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string", "enum": ["declared", "observed"] },
+          "authority": { "type": "string" },
+          "writeSurface": { "type": "string" },
+          "relationships": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "stateAuthorityMatrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "object",
+          "canonicalSource",
+          "writeAuthority"
+        ],
+        "properties": {
+          "object": { "type": "string" },
+          "canonicalSource": { "type": "string" },
+          "writeAuthority": { "type": "string" },
+          "readSurfaces": { "type": "array", "items": { "type": "string" } },
+          "freshnessRequirement": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "viewRegistry": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "operatorQuestion",
+          "viewType"
+        ],
+        "properties": {
+          "operatorQuestion": { "type": "string" },
+          "viewType": { "type": "string" },
+          "objects": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "drillDownChain": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "screenMap": {
+      "type": "object"
+    },
+    "adrDrafts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "decision",
+          "rationale"
+        ],
+        "properties": {
+          "title": { "type": "string" },
+          "decision": { "type": "string" },
+          "rationale": { "type": "string" },
+          "consequences": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "blockersEncountered": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

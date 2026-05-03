@@ -1,0 +1,11 @@
+## Expected outputs
+- work-order-batch.json
+- dependency-graph.mmd
+- parallel-execution-groups.md
+- work-orders/wo-*.yaml
+- verification-work-orders/wo-*.yaml
+- docs-work-orders/wo-*.yaml
+- learning-work-orders/wo-*.yaml
+- artifact-manifest.json
+- foundry-import-manifest.json
+- next-workspace.txt

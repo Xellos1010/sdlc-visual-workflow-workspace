@@ -1,0 +1,63 @@
+{
+  "$schema": "https://cdn.nx.dev/schemas/nx-schema.json",
+  "cli": {
+    "packageManager": "pnpm"
+  },
+  "useDaemonProcess": false,
+  "defaultBase": "main",
+  "nxCloudAccessToken": "",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "useDaemonProcess": false,
+        "cacheableOperations": ["test", "lint", "build", "ci-targeted"]
+      }
+    }
+  },
+  "targetDefaults": {
+    "test": {
+      "cache": true
+    },
+    "ci-targeted": {
+      "cache": true,
+      "dependsOn": ["test"]
+    },
+    "dev": {
+      "cache": false
+    },
+    "companion:dev": {
+      "cache": false
+    },
+    "companion:dev:native": {
+      "cache": false
+    },
+    "companion:serve": {
+      "cache": false
+    },
+    "companion:watch": {
+      "cache": false
+    },
+    "companion:watch:docker": {
+      "cache": false
+    },
+    "companion:watch:serve": {
+      "cache": false
+    },
+    "companion:watch:docker:serve": {
+      "cache": false
+    },
+    "watch": {
+      "cache": false
+    },
+    "watch-docker": {
+      "cache": false
+    },
+    "watch-serve": {
+      "cache": false
+    },
+    "watch-docker-serve": {
+      "cache": false
+    }
+  }
+}

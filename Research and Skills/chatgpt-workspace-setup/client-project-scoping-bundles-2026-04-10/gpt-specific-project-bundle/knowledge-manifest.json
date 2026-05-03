@@ -1,0 +1,11 @@
+{
+  "gptName": "Project Pitch Architect",
+  "uploadOrder": [
+    "knowledge/01-scoping-method.md",
+    "knowledge/02-uiux-artifacts.md",
+    "knowledge/03-integrations-and-architecture.md",
+    "knowledge/04-pricing-framework.md",
+    "knowledge/05-output-contract.md",
+    "knowledge/06-example-homo-plasticus.md"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "foundry/diagram-structure.schema.json",
+  "title": "Diagram Structure",
+  "type": "object",
+  "properties": {
+    "diagramId": { "type": "string" },
+    "type": { "type": "string", "enum": ["system", "component", "flow", "state", "deployment"] },
+    "mermaidContent": { "type": "string", "description": "Raw Mermaid.js syntax for this diagram" },
+    "interactiveBinds": {
+      "type": "array",
+      "description": "Mapping of AST nodes in the diagram to source files",
+      "items": {
+        "type": "object",
+        "properties": {
+          "nodeId": { "type": "string" },
+          "filePath": { "type": "string" }
+        },
+        "required": ["nodeId", "filePath"]
+      }
+    }
+  },
+  "required": ["diagramId", "type", "mermaidContent"],
+  "additionalProperties": false
+}

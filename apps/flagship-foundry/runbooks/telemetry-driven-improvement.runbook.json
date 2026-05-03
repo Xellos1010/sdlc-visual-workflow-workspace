@@ -1,0 +1,48 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:telemetry-driven-improvement",
+  "name": "Telemetry Driven Improvement",
+  "purpose": "Promote runtime signals into plans that improve reliability, design quality, and guardrails.",
+  "triggers": [
+    "alert",
+    "warning trend",
+    "recurring operational pain"
+  ],
+  "phases": [
+    {
+      "id": "triage",
+      "personaId": "persona:telemetry-and-learning-curator",
+      "steps": [
+        "classify signal",
+        "link impacted systems",
+        "score urgency"
+      ]
+    },
+    {
+      "id": "plan",
+      "personaId": "persona:ecosystem-orchestrator",
+      "steps": [
+        "create improvement plan",
+        "bind SMEs",
+        "queue verification strategy"
+      ]
+    },
+    {
+      "id": "learn",
+      "personaId": "persona:telemetry-and-learning-curator",
+      "steps": [
+        "emit fix memory",
+        "update training corpus exports",
+        "adjust guardrail routing"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "incident-to-plan mapping",
+    "telemetry evidence bundle",
+    "fix memory",
+    "guardrail update proposal",
+    "correlation keys (runId/taskId/planId/ecosystemId/adapterId)",
+    "before/after telemetry references"
+  ]
+}

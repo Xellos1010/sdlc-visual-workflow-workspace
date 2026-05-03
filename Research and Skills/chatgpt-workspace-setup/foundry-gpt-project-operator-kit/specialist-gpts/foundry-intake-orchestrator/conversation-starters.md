@@ -1,0 +1,3 @@
+- Convert this change request into an intent packet and DoR checklist.
+- Identify impacted systems, risks, rollback, and pre-build artifacts for this request.
+- Tell me what is still missing before architecture can begin.

@@ -1,0 +1,370 @@
+/* ── HomeView Layout ──────────────────────────────────────────────────────── */
+
+.home-view {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 32px;
+  background: #0f1117;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.home-view-loading {
+  align-items: center;
+  justify-content: center;
+}
+
+.home-loading-text {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+
+.home-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.home-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+}
+
+.home-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.home-header-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.home-action-btn {
+  padding: 7px 14px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #1a1d27;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.home-action-btn:hover {
+  background: #252836;
+  color: #e2e8f0;
+  border-color: #475569;
+}
+
+.home-action-btn-primary {
+  background: #1e2456;
+  border-color: #3b4aaa;
+  color: #a5b4fc;
+}
+
+.home-action-btn-primary:hover {
+  background: #2a3380;
+  color: #c7d2fe;
+  border-color: #6366f1;
+}
+
+/* ── Sections ───────────────────────────────────────────────────────────────── */
+
+.home-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.home-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0;
+}
+
+.home-section-subtitle {
+  font-weight: 400;
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+}
+
+/* ── Project Cards ──────────────────────────────────────────────────────────── */
+
+.home-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.home-project-card {
+  background: #1a1d27;
+  border: 1px solid #252836;
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  outline: none;
+}
+
+.home-project-card:hover {
+  background: #1e2130;
+  border-color: #334155;
+}
+
+.home-project-card:focus-visible {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+
+.home-project-card-focused {
+  border-color: #3b4aaa;
+  background: #1a1f3a;
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+
+.home-project-card-focused:hover {
+  border-color: #6366f1;
+}
+
+.home-project-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.home-project-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-project-id {
+  font-size: 11px;
+  color: #4b5563;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.home-project-meta {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.home-project-card-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.home-card-btn {
+  flex: 1;
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #334155;
+  background: #252836;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  text-align: center;
+}
+
+.home-card-btn:hover {
+  background: #2d3452;
+  color: #e2e8f0;
+  border-color: #475569;
+}
+
+/* ── Empty states ────────────────────────────────────────────────────────────── */
+
+.home-empty {
+  padding: 24px;
+  text-align: center;
+  border: 1px dashed #252836;
+  border-radius: 8px;
+}
+
+.home-empty-title {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.home-empty-sub {
+  font-size: 12px;
+  color: #374151;
+}
+
+/* ── Recent Runs ─────────────────────────────────────────────────────────────── */
+
+.home-runs-loading,
+.home-runs-empty {
+  font-size: 13px;
+  color: #64748b;
+  padding: 8px 0;
+}
+
+.home-runs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.home-run-row {
+  display: grid;
+  grid-template-columns: 20px 1fr 100px 60px 70px;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  background: #1a1d27;
+  border-radius: 6px;
+  font-size: 12px;
+  border: 1px solid transparent;
+  transition: background 0.12s;
+}
+
+.home-run-row:hover {
+  background: #1e2130;
+  border-color: #252836;
+}
+
+.home-run-dot {
+  font-size: 13px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.home-run-label {
+  color: #cbd5e1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+
+.home-run-status {
+  font-size: 11px;
+  font-weight: 500;
+  text-align: right;
+}
+
+.home-run-tasks {
+  color: #64748b;
+  font-size: 11px;
+  text-align: right;
+}
+
+.home-run-time {
+  color: #4b5563;
+  font-size: 11px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Status colors */
+.status-completed { color: #4ade80; }
+.status-running { color: #60a5fa; }
+.status-failed { color: #f87171; }
+.status-paused { color: #fbbf24; }
+.status-stopped { color: #94a3b8; }
+.status-default { color: #64748b; }
+
+.home-view-all-btn {
+  margin-top: 6px;
+  padding: 6px 0;
+  background: transparent;
+  border: none;
+  color: #6366f1;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.12s;
+}
+
+.home-view-all-btn:hover {
+  color: #818cf8;
+}
+
+/* ── Quick Actions ───────────────────────────────────────────────────────────── */
+
+.home-quick-actions {
+  padding-bottom: 16px;
+}
+
+.home-actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.home-quick-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #1a1d27;
+  border: 1px solid #252836;
+  border-radius: 8px;
+  color: #94a3b8;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  position: relative;
+}
+
+.home-quick-btn:hover:not(:disabled) {
+  background: #252836;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+.home-quick-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.home-quick-btn-future {
+  border-style: dashed;
+}
+
+.home-quick-btn-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.home-quick-btn-label {
+  font-weight: 500;
+}
+
+.home-quick-btn-badge {
+  font-size: 10px;
+  padding: 1px 5px;
+  background: #1e2456;
+  color: #818cf8;
+  border-radius: 4px;
+  border: 1px solid #3b4aaa;
+  margin-left: 2px;
+}

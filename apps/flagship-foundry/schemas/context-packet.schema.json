@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/context-packet.schema.json",
+  "title": "Context Packet",
+  "type": "object",
+  "required": ["packetId", "workOrderRef", "ecosystemId", "items", "totalTokenCount", "manifest", "createdAt"],
+  "properties": {
+    "packetId": { "type": "string" },
+    "workOrderRef": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["itemId", "authority", "kind", "label", "tokenCount", "source"],
+        "properties": {
+          "itemId": { "type": "string" },
+          "authority": { "type": "string", "enum": ["rag-retrieval", "context-cart", "graph-query"] },
+          "kind": { "type": "string" },
+          "label": { "type": "string" },
+          "tokenCount": { "type": "integer", "minimum": 0 },
+          "source": {
+            "type": "object",
+            "required": ["ref"],
+            "properties": {
+              "ref": { "type": "string" },
+              "kind": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "sourcePath": { "type": ["string", "null"] },
+              "sourceAgent": { "type": ["string", "null"] },
+              "sessionId": { "type": ["string", "null"] },
+              "retrievedAt": { "type": ["string", "null"], "format": "date-time" }
+            },
+            "additionalProperties": false
+          },
+          "pinned": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "totalTokenCount": { "type": "integer", "minimum": 0 },
+    "manifest": {
+      "type": "object",
+      "required": ["schemaVersion"],
+      "properties": {
+        "schemaVersion": { "type": "string" },
+        "generatedAt": { "type": ["string", "null"], "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "createdAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
+

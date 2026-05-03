@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": ["route_family", "required_skills", "optional_skills_default_off", "blocked_paths", "model_tier_recommendation", "next_skill_handoff"],
+  "properties": {
+    "route_family": {"enum": ["implementation", "reverse_sync", "review", "diagnosis", "documentation", "release_ops", "planning"]},
+    "required_skills": {"type": "array", "items": {"type": "string"}},
+    "optional_skills_default_off": {"type": "array", "items": {"type": "object"}},
+    "blocked_paths": {"type": "array", "items": {"type": "object"}},
+    "model_tier_recommendation": {"type": "string"},
+    "authority_required": {"type": "array", "items": {"type": "string"}},
+    "context_required": {"type": "array", "items": {"type": "string"}},
+    "handoff_targets": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object"}
+  }
+}

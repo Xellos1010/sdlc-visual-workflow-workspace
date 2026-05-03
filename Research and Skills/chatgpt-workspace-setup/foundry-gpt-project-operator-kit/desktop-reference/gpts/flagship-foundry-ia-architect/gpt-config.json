@@ -1,0 +1,27 @@
+{
+  "name": "Flagship Foundry — Information Architecture Architect",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "ia-architect",
+  "source_agent_title": "Information Architecture Architect",
+  "read_only": false,
+  "primary_phases": [
+    "define",
+    "visualize",
+    "architect"
+  ],
+  "recommended_model_hint": "frontier reasoning model for structural architecture",
+  "capabilities_hint": [
+    "Web search optional",
+    "Data analysis recommended"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/uiux-agent-routing.json",
+    "../../shared/knowledge-seeds/uiux-doctrine.md"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

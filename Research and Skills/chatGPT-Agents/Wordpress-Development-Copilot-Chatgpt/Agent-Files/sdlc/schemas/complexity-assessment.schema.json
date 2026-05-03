@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ComplexityAssessment",
+  "type": "object",
+  "required": ["workOrderId", "timeComplexity", "spaceComplexity", "assumptions"],
+  "properties": {
+    "workOrderId": {"type": "string"},
+    "timeComplexity": {"type": "string"},
+    "spaceComplexity": {"type": "string"},
+    "assumptions": {"type": "array"},
+    "hotspots": {"type": "array"},
+    "performanceBudget": {"type": "object"}
+  }
+}

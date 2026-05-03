@@ -1,0 +1,46 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:adversarial-design-review",
+  "name": "Adversarial Design Review",
+  "purpose": "Run structured debate rounds before coding to expose hidden blast radius and trade-offs.",
+  "triggers": [
+    "high-risk change",
+    "architecture shift",
+    "permission change",
+    "auto approval disabled for risky work"
+  ],
+  "phases": [
+    {
+      "id": "propose",
+      "personaId": "persona:ecosystem-orchestrator",
+      "steps": [
+        "draft design",
+        "declare assumptions",
+        "list impacted systems"
+      ]
+    },
+    {
+      "id": "challenge",
+      "personaId": "persona:adversarial-architect",
+      "steps": [
+        "attack assumptions",
+        "find sibling impacts",
+        "identify rollback and security gaps"
+      ]
+    },
+    {
+      "id": "reconcile",
+      "personaId": "persona:plan-approval-governor",
+      "steps": [
+        "resolve objections",
+        "update blast radius",
+        "record go/no-go rationale"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "design memo",
+    "objection log",
+    "reconciliation memo"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "include": [
+    ".claude",
+    ".codex",
+    ".cursor",
+    ".foundry",
+    ".github",
+    ".nx",
+    "apps",
+    "docs",
+    "Runbooks",
+    "tools",
+    ".gitignore",
+    ".mcp.json",
+    "nx.json",
+    "package.json",
+    "pnpm-workspace.yaml",
+    "README.md"
+  ],
+  "exclude": [],
+  "extraIgnore": [],
+  "versioned": false,
+  "outputFileName": "latest.txt"
+}

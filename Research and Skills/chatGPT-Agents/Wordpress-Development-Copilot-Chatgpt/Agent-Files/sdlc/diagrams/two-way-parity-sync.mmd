@@ -1,0 +1,18 @@
+flowchart LR
+  A[Requirements] <--> B[IO Schemas]
+  B <--> C[Pseudocode]
+  C <--> D[Code]
+  D <--> E[Tests]
+  C <--> F[Diagrams]
+  D <--> G[Evidence]
+  H[Human Engineer Diff] --> I[Human Code Delta Ingestor]
+  I --> J[Code to Pseudocode Reconciler]
+  J --> K[Software Engineer Decision Capture]
+  K --> L[ADR Draft Writer]
+  L --> M[Decision Ledger]
+  M --> N[Parity Sync Manager]
+  N --> A
+  N --> B
+  N --> C
+  N --> E
+  N --> F

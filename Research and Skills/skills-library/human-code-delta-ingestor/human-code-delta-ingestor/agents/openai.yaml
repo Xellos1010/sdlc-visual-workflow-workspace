@@ -1,0 +1,3 @@
+interface:
+  display_name: "Human Code Delta Ingestor"
+  short_description: "Turns approved human code edits into reverse-sync records and downstream handoffs."

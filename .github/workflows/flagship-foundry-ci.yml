@@ -1,0 +1,58 @@
+# WO-FF-009 / ADR-009: blocking CI baseline for Flagship Foundry.
+# WO-NX-005: updated paths for Nx monorepo migration (flagship-foundry-work → apps/flagship-foundry).
+# Gate 1: npm test (automated test surface)
+# Gate 2: ci:targeted — orchestrator CLI smoke (non-unit integration path)
+name: flagship-foundry-ci
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'apps/flagship-foundry/**'
+      - '.github/workflows/flagship-foundry-ci.yml'
+  pull_request:
+    paths:
+      - 'apps/flagship-foundry/**'
+      - '.github/workflows/flagship-foundry-ci.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/flagship-foundry
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Gate 1 — automated tests
+        run: npm test
+
+      - name: Gate 2 — targeted CLI smoke (orchestrator visualize)
+        run: npm run ci:targeted
+
+      - name: Write CI evidence summary (artifact)
+        run: |
+          {
+            echo "repository=${{ github.repository }}"
+            echo "run_id=${{ github.run_id }}"
+            echo "run_url=${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+            echo "commit=${{ github.sha }}"
+            echo "gates=npm test, ci:targeted (visualize:sample)"
+            echo "doc=apps/flagship-foundry/docs/ci-release-gates.md"
+          } > ci-gate-evidence.txt
+
+      - name: Upload gate evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: flagship-foundry-ci-gates-${{ github.run_id }}
+          path: apps/flagship-foundry/ci-gate-evidence.txt
+          if-no-files-found: error

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Gap Report",
+  "type": "object",
+  "required": [
+    "ecosystemId",
+    "requiredPacks",
+    "coverage",
+    "recommendations"
+  ],
+  "properties": {
+    "ecosystemId": {
+      "type": "string"
+    },
+    "knowledgeBaseId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requiredPacks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "summary": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

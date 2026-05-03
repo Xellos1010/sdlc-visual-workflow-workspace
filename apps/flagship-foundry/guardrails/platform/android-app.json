@@ -1,0 +1,21 @@
+{
+  "guardrailPackId": "guardrail:android-app",
+  "scope": "platform",
+  "platform": "Android",
+  "rules": [
+    "respect activity and process lifecycle boundaries",
+    "treat permissions and background work as explicit design surfaces"
+  ],
+  "antiPatterns": [
+    "implicit background behavior",
+    "permission creep"
+  ],
+  "requiredChecks": [
+    "lifecycle-review",
+    "permission-review",
+    "device-smoke"
+  ],
+  "escalationConditions": [
+    "foreground/background execution changes"
+  ]
+}

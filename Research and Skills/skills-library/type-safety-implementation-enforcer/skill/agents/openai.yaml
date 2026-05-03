@@ -1,0 +1,5 @@
+interface:
+  display_name: Type Safety Implementation Enforcer
+  short_description: Checks implementation diffs against type and schema contracts.
+  icon: code
+  color: blue

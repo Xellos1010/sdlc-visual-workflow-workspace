@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/artifact-graph-edge.schema.json",
+  "title": "Artifact Graph Edge",
+  "type": "object",
+  "required": [
+    "edgeId",
+    "ecosystemId",
+    "sourceNodeId",
+    "targetNodeId",
+    "relationship",
+    "extractionMethod",
+    "createdAt"
+  ],
+  "properties": {
+    "edgeId": { "type": "string" },
+    "ecosystemId": { "type": "string" },
+    "sourceNodeId": { "type": "string" },
+    "targetNodeId": { "type": "string" },
+    "relationship": {
+      "type": "string",
+      "enum": ["produced-by", "depends-on", "verifies", "supersedes", "references"]
+    },
+    "extractionMethod": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "confidence": { "type": ["number", "null"], "minimum": 0, "maximum": 1 }
+  },
+  "additionalProperties": false
+}
+

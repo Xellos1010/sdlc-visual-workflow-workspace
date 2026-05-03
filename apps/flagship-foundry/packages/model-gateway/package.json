@@ -1,0 +1,10 @@
+{
+  "name": "@flagship-foundry/model-gateway",
+  "version": "0.1.0",
+  "description": "Normalizes API calls to Anthropic, Cursor, Codex, and local tunneled models",
+  "type": "module",
+  "main": "src/gateway.mjs",
+  "exports": {
+    ".": "./src/gateway.mjs"
+  }
+}

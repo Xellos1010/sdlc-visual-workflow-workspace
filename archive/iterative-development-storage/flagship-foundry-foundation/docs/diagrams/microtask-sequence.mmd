@@ -1,0 +1,23 @@
+sequenceDiagram
+    participant Human
+    participant Ecosystem as Ecosystem Orchestrator
+    participant System as System Orchestrator
+    participant Graph as System Graph
+    participant Queue as Work Order Queue
+    participant Builder as Low-Cost Builder Agent
+    participant Verifier as Independent Verifier
+    participant Evidence as Evidence Plane
+
+    Human->>Ecosystem: Submit change intent / incident / feature
+    Ecosystem->>Graph: Query impacted systems, artifacts, constraints
+    Graph-->>Ecosystem: Impact set + missing evidence + authorities
+    Ecosystem->>System: Approve system-scoped plan
+    System->>Queue: Emit typed micro work orders
+    Queue->>Builder: File-scoped task with bounded context
+    Builder->>Evidence: Emit patch, outputs, and execution evidence
+    Evidence->>Verifier: Provide outputs and expected criteria
+    Verifier->>Evidence: Emit pass/fail + defects + confidence
+    Evidence->>Graph: Update graph patch + continuity patch
+    Graph-->>System: New state, evidence refs, remaining blockers
+    System-->>Ecosystem: Progress summary / escalation / complete
+    Ecosystem-->>Human: Approval request or completion summary

@@ -1,0 +1,26 @@
+{
+  "name": "Flagship Foundry \u2014 CI Monitor Subagent",
+  "project_prefix": "Flagship Foundry",
+  "source_agent_id": "ci-monitor-subagent",
+  "source_agent_title": "CI Monitor Subagent",
+  "read_only": true,
+  "primary_phases": [
+    "verify",
+    "operate"
+  ],
+  "recommended_model_hint": "balanced execution-capable model available in your workspace",
+  "capabilities_hint": [
+    "Custom action or MCP connector required for live CI polling"
+  ],
+  "knowledge_files_to_upload": [
+    "personality.json",
+    "skill-routing.md",
+    "expected-output.schema.json"
+  ],
+  "shared_knowledge_to_add_if_space_allows": [
+    "../../shared/routing/global-agent-routing.json",
+    "../../shared/routing/skill-routing-matrix.json",
+    "../../shared/repo-schema-catalog/repo-schema-catalog.json"
+  ],
+  "conversation_starters_file": "conversation-starters.md"
+}

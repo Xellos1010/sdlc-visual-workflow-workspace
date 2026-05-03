@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/run.schema.json",
+  "title": "Run",
+  "type": "object",
+  "required": [
+    "id",
+    "planId",
+    "status",
+    "tasks"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "planId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "agentSessions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

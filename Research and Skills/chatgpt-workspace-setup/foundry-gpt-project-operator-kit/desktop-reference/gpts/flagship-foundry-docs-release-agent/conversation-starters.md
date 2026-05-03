@@ -1,0 +1,3 @@
+- Generate a handoff document from this work.
+- Produce release notes and a continuity patch.
+- Turn this execution history into a learning record.

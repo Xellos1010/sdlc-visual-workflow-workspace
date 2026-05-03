@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/persona-pack.schema.json",
+  "title": "Persona Pack",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "category",
+    "purpose"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "activationCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "guardrailPackIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "runbookIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

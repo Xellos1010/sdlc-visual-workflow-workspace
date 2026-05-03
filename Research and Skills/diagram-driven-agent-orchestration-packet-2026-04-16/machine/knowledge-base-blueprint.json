@@ -1,0 +1,59 @@
+{
+  "knowledgeBases": [
+    {
+      "id": "KB-01",
+      "name": "modeling-standards",
+      "sourceOfTruth": "versioned reference docs",
+      "updateRule": "update only on approved notation changes"
+    },
+    {
+      "id": "KB-02",
+      "name": "source-facts",
+      "sourceOfTruth": "repo extraction jobs",
+      "updateRule": "regenerate on repository changes"
+    },
+    {
+      "id": "KB-03",
+      "name": "behavior-evidence",
+      "sourceOfTruth": "verification and runtime jobs",
+      "updateRule": "append-only evidence model"
+    },
+    {
+      "id": "KB-04",
+      "name": "contracts",
+      "sourceOfTruth": "extracted and approved schemas",
+      "updateRule": "version on boundary changes"
+    },
+    {
+      "id": "KB-05",
+      "name": "target-platform-profiles",
+      "sourceOfTruth": "curated framework/runtime docs",
+      "updateRule": "version per target profile"
+    },
+    {
+      "id": "KB-06",
+      "name": "migration-patterns",
+      "sourceOfTruth": "curated internal playbooks",
+      "updateRule": "expand after completed migrations"
+    },
+    {
+      "id": "KB-07",
+      "name": "agent-doctrine",
+      "sourceOfTruth": "agent and skill docs",
+      "updateRule": "update under approval"
+    },
+    {
+      "id": "KB-08",
+      "name": "project-evidence-and-decisions",
+      "sourceOfTruth": "project-local artifacts",
+      "updateRule": "append and supersede via approval"
+    }
+  ],
+  "retrievalPriority": [
+    "project-local truth",
+    "approved ADRs and contracts",
+    "target platform profiles",
+    "migration patterns",
+    "general modeling standards"
+  ]
+}

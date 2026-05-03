@@ -1,0 +1,3 @@
+- Route this UI/UX initiative to the correct pipeline stage and assign specialist agents.
+- Check Definition of Ready for this UI/UX work and identify what's missing.
+- Produce a phase transition handoff from architecture to interaction design.

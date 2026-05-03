@@ -1,0 +1,38 @@
+[
+  {
+    "id": "preset:foundry-foundational-docs",
+    "title": "Foundry foundational docs",
+    "sources": [
+      {
+        "id": "source:claude-code-docs",
+        "type": "combined-markdown",
+        "path": "examples/knowledge-sources/input/claude-code-docs-combined.md",
+        "version": "2026-03-21"
+      },
+      {
+        "id": "source:openai-codex",
+        "type": "combined-markdown",
+        "path": "examples/knowledge-sources/input/openai-codex-combined.md",
+        "version": "2026-03-21"
+      },
+      {
+        "id": "source:cursor-learning-path",
+        "type": "combined-markdown",
+        "path": "examples/knowledge-sources/input/cursor-learning-path-combined.md",
+        "version": "2026-03-21"
+      },
+      {
+        "id": "source:generic-doc-scraper",
+        "type": "text-bundle",
+        "path": "examples/knowledge-sources/input/generic-doc-scraper.txt",
+        "version": "2026-03-22"
+      },
+      {
+        "id": "source:nx-context-bundle",
+        "type": "javascript-source",
+        "path": "examples/knowledge-sources/input/nx-context-bundle.mjs",
+        "version": "2026-03-22"
+      }
+    ]
+  }
+]

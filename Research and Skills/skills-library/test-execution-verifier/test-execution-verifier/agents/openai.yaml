@@ -1,0 +1,3 @@
+interface:
+  display_name: "Test Execution Verifier"
+  short_description: "Runs or interprets validation commands and produces evidence-backed pass/fail reports."

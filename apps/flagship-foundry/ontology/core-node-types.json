@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    "ecosystem",
+    "repo",
+    "system",
+    "project",
+    "framework",
+    "platform",
+    "rule-pack",
+    "diagram",
+    "task-state",
+    "plan",
+    "run",
+    "sme-profile"
+  ]
+}

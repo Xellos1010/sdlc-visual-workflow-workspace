@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/change-request.schema.json",
+  "title": "Change Request",
+  "type": "object",
+  "required": [
+    "requestId",
+    "type",
+    "title",
+    "summary",
+    "riskLevel",
+    "impactedSystems",
+    "constraints",
+    "acceptanceCriteria"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "feature",
+        "bug",
+        "incident",
+        "change",
+        "research"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "requestedBy": {
+      "type": "string"
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "impactedSystems": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "impactedComponents": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requestedOutcomes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "telemetryRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

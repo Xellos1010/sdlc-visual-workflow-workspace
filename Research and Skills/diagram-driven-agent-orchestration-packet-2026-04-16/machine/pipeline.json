@@ -1,0 +1,91 @@
+{
+  "initiative": "diagram-driven-agent-orchestration-dashboard",
+  "description": "Sequential program pipeline. Each stage produces artifacts consumed by the next. Some stages may run multiple teammates in parallel.",
+  "currentStage": 1,
+  "stages": [
+    {
+      "order": 1,
+      "id": "foundation",
+      "name": "Foundation and Artifact Contract",
+      "path": "machine/stage-01-foundation",
+      "status": "ready",
+      "dependsOn": [],
+      "outputArtifact": "08-artifact-contract.md",
+      "completionSignal": "artifact contract, team config, and lead prompt approved"
+    },
+    {
+      "order": 2,
+      "id": "reverse-engineering-engine",
+      "name": "Repository Ingestion and Reverse Engineering",
+      "path": "machine/stage-02-reverse-engineering",
+      "status": "pending",
+      "dependsOn": [
+        "foundation"
+      ],
+      "outputArtifact": "machine/artifact-contract.json",
+      "completionSignal": "repo can produce symbol graph, dependency graph, and pseudocode ledger"
+    },
+    {
+      "order": 3,
+      "id": "artifact-engine",
+      "name": "Diagram and Contract Synthesis",
+      "path": "machine/stage-03-artifact-engine",
+      "status": "pending",
+      "dependsOn": [
+        "reverse-engineering-engine"
+      ],
+      "outputArtifact": "03-diagram-catalog.md",
+      "completionSignal": "selected diagrams and ledgers can be generated for the pilot repo"
+    },
+    {
+      "order": 4,
+      "id": "migration-engine",
+      "name": "Migration Planning and Target Mapping",
+      "path": "machine/stage-04-migration-engine",
+      "status": "pending",
+      "dependsOn": [
+        "artifact-engine"
+      ],
+      "outputArtifact": "machine/skill-specs.json",
+      "completionSignal": "gap matrix and target mapping created for pilot migration"
+    },
+    {
+      "order": 5,
+      "id": "dashboard-mvp",
+      "name": "Dashboard MVP",
+      "path": "machine/stage-05-dashboard",
+      "status": "pending",
+      "dependsOn": [
+        "artifact-engine"
+      ],
+      "outputArtifact": "09-dashboard-ux.md",
+      "completionSignal": "operator can navigate architecture, migration, work orders, and evidence views"
+    },
+    {
+      "order": 6,
+      "id": "collaboration-server",
+      "name": "Collaboration Server and Shared Repository",
+      "path": "machine/stage-06-collaboration",
+      "status": "pending",
+      "dependsOn": [
+        "dashboard-mvp"
+      ],
+      "outputArtifact": "04-product-architecture.md",
+      "completionSignal": "shared projects, artifacts, approvals, and evidence modeled and implemented"
+    },
+    {
+      "order": 7,
+      "id": "pilot-verify-release",
+      "name": "Pilot, Verify, Release",
+      "path": "machine/stage-07-pilot",
+      "status": "pending",
+      "dependsOn": [
+        "migration-engine",
+        "dashboard-mvp",
+        "collaboration-server"
+      ],
+      "outputArtifact": "skill.zip",
+      "completionSignal": "pilot packet and verifier evidence complete; release packet prepared"
+    }
+  ]
+}

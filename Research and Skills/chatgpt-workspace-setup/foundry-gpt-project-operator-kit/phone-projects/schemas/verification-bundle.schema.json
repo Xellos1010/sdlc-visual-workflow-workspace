@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Verification Bundle",
+  "type": "object",
+  "required": [
+    "projectName",
+    "phaseId",
+    "overallVerdict",
+    "criteriaBreakdown",
+    "evidenceReferences",
+    "missingProof",
+    "recommendations",
+    "nextWorkspace"
+  ],
+  "properties": {
+    "projectName": {
+      "type": "string"
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "overallVerdict": {
+      "type": "string"
+    },
+    "criteriaBreakdown": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion",
+          "verdict",
+          "evidence"
+        ],
+        "properties": {
+          "criterion": {
+            "type": "string"
+          },
+          "verdict": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidenceReferences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missingProof": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextWorkspace": {
+      "type": "string"
+    }
+  }
+}

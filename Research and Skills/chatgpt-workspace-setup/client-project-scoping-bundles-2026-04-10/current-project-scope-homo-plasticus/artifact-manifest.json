@@ -1,0 +1,140 @@
+{
+  "bundleName": "current-project-scope-homo-plasticus",
+  "generatedAt": "2026-04-10T00:00:00Z",
+  "variant": "scoped_current_project",
+  "project": "Homo Plasticus",
+  "files": [
+    {
+      "path": "README.md",
+      "size": 411
+    },
+    {
+      "path": "discovery/current-project-brief.md",
+      "size": 1356
+    },
+    {
+      "path": "audit/current-state-audit.md",
+      "size": 1624
+    },
+    {
+      "path": "resources/active-resource-inventory.md",
+      "size": 1319
+    },
+    {
+      "path": "architecture/recommended-reusable-stack.md",
+      "size": 1686
+    },
+    {
+      "path": "architecture/systems-integration-analysis.md",
+      "size": 1707
+    },
+    {
+      "path": "artifacts/uiux-artifact-roadmap.md",
+      "size": 915
+    },
+    {
+      "path": "delivery/phased-release-schedule.md",
+      "size": 1265
+    },
+    {
+      "path": "delivery/work-orders.md",
+      "size": 973
+    },
+    {
+      "path": "proposal/project-pitch-proposal.md",
+      "size": 1748
+    },
+    {
+      "path": "seo/robots.txt.draft",
+      "size": 75
+    },
+    {
+      "path": "seo/sitemap.xml.draft",
+      "size": 433
+    },
+    {
+      "path": "seo/llms.txt.draft",
+      "size": 560
+    },
+    {
+      "path": "seo/llm-vs-llms-note.md",
+      "size": 233
+    },
+    {
+      "path": "pricing/standard-market-vs-offer-rates.csv",
+      "size": 722
+    },
+    {
+      "path": "pricing/phase-estimate-inputs.csv",
+      "size": 421
+    },
+    {
+      "path": "pricing/pricing-workbook.xlsx",
+      "size": 10756
+    },
+    {
+      "path": "pricing/pricing-summary.md",
+      "size": 846
+    },
+    {
+      "path": "pricing/itemized-invoice-by-phase.md",
+      "size": 884
+    },
+    {
+      "path": "pricing/benchmark-notes.md",
+      "size": 580
+    },
+    {
+      "path": "research/current-reference-notes.md",
+      "size": 746
+    },
+    {
+      "path": "references/emcnotary-reuse-summary.md",
+      "size": 712
+    },
+    {
+      "path": "references/input-assets/index.html",
+      "size": 23234
+    },
+    {
+      "path": "references/input-assets/impact.html",
+      "size": 26476
+    },
+    {
+      "path": "references/input-assets/solutions.html",
+      "size": 41426
+    },
+    {
+      "path": "references/input-assets/resources.html",
+      "size": 36265
+    },
+    {
+      "path": "references/input-assets/shop.html",
+      "size": 31767
+    },
+    {
+      "path": "references/input-assets/book-cover.jpg",
+      "size": 820287
+    },
+    {
+      "path": "pricing/recalc/pricing-workbook.xlsx",
+      "size": 10756
+    },
+    {
+      "path": "artifacts/mermaid/project-flow.mmd",
+      "size": 379
+    },
+    {
+      "path": "artifacts/mermaid/user-flow-book-purchase.mmd",
+      "size": 311
+    },
+    {
+      "path": "artifacts/mermaid/user-flow-content-approval.mmd",
+      "size": 378
+    },
+    {
+      "path": "artifacts/mermaid/system-integration-map.mmd",
+      "size": 451
+    }
+  ]
+}

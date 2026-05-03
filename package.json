@@ -1,0 +1,27 @@
+{
+  "private": true,
+  "name": "sdlc-visual-workflow-workspace",
+  "version": "0.0.0",
+  "description": "SDLC Visual Workflow — Nx monorepo root",
+  "packageManager": "pnpm@10.11.0",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "dev": "nx run platform-dev:dev",
+    "scaffold": "node tools/scaffold/generate-workspace.mjs",
+    "nx": "nx",
+    "export:ai:all": "node tools/ai-context/exporter.mjs --mode all",
+    "export:ai:latest": "node tools/ai-context/exporter.mjs --mode latest",
+    "export:ai:profile": "node tools/ai-context/exporter.mjs --mode profile",
+    "export:ai:profile:generate": "node tools/ai-context/generate-profile.mjs",
+    "extract:ai:full-repo": "nx run ai-context:extract-full-repo"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "ajv": "^8.17.1",
+    "nx": "^20.0.0",
+    "typescript": "^5.9.3"
+  }
+}

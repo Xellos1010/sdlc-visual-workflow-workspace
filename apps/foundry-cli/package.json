@@ -1,0 +1,23 @@
+{
+  "name": "foundry-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "foundry": "./dist/bin.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx src/bin.ts"
+  },
+  "dependencies": {
+    "@night-agent/ecosystem-scanner": "workspace:*",
+    "@night-agent/wiki-kb": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "tsx": "^4.19.2",
+    "typescript": "~5.6.3"
+  }
+}

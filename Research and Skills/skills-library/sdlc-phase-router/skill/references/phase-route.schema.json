@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "phase_route",
+  "type": "object",
+  "required": ["schema_version", "lifecycle_stage", "phase_gate_requirements", "required_skills", "blocked_prerequisites", "next_allowed_action"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "run_id": {"type": "string"},
+    "project": {"type": "string"},
+    "repository": {"type": "string"},
+    "lifecycle_stage": {"type": "string"},
+    "task_status": {"type": "string"},
+    "source_inputs": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "blocked_actions": {"type": "array", "items": {"type": "string"}},
+    "allowed_actions": {"type": "array", "items": {"type": "string"}},
+    "blocking_gaps": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

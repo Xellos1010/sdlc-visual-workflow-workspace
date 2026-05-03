@@ -1,0 +1,22 @@
+flowchart LR
+  kb1[Modeling Standards]
+  kb2[Source Facts]
+  kb3[Behavior Evidence]
+  kb4[Contracts]
+  kb5[Target Profiles]
+  kb6[Migration Patterns]
+  kb7[Agent Doctrine]
+  kb8[Project Decisions]
+  ir[Canonical IR]
+  planner[Planner]
+  verifier[Verifier]
+
+  kb2 --> ir
+  kb4 --> ir
+  kb1 --> planner
+  kb5 --> planner
+  kb6 --> planner
+  kb7 --> planner
+  kb8 --> planner
+  ir --> verifier
+  kb3 --> verifier

@@ -1,0 +1,3 @@
+- Turn this approved architecture packet into bounded work orders.
+- Decompose this change into parallel low-cost-model execution slices.
+- Generate work orders with file scope, tests-first, schemas, and pseudocode.

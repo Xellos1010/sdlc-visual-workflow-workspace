@@ -1,0 +1,5 @@
+interface:
+  display_name: Base Interface Class Planner
+  short_description: Plans justified interfaces, base types, traits, ports, and extension points.
+  icon: code
+  color: blue

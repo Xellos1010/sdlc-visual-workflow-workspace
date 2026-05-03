@@ -1,0 +1,10 @@
+{
+  "adapterId": "adapter:openai-compatible",
+  "displayName": "OpenAI-Compatible Provider Host",
+  "runtime": "http",
+  "supportsMcp": false,
+  "supportsParallelAgents": false,
+  "supportsWorktrees": false,
+  "supportsProviderSwap": true,
+  "executionModel": "provider-backend"
+}

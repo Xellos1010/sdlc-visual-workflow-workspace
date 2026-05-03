@@ -1,0 +1,29 @@
+<svg version="1.1" baseProfile="full" width="488.0" height="88.0" viewBox="0 0 488 88" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+
+[Could not process any class / interface / enum / type]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="bold" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="88.0" width="488.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)">
+<g data-name="Could not process any class / interface / enum / type">
+<g fill="#eee8d5" stroke="#33322E" data-name="Could not process any class / interface / enum / type">
+<rect x="0.0" y="0.0" height="32.0" width="432.0" data-name="Could not process any class / interface / enum / type"></rect>
+</g>
+<g transform="translate(0, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="Could not process any class / interface / enum / type" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="Could not process any class / interface / enum / type" data-compartment="0">
+<text x="208.0" y="14.1" stroke="none" text-anchor="middle" data-name="Could not process any class / interface / enum / type" data-compartment="0">Could not process any class / interface / enum / type</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>

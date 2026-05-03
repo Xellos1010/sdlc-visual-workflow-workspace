@@ -1,0 +1,3 @@
+- Take this change request and tell me which phase bundle to produce first.
+- Act as the intake operator, but separate outputs by phase.
+- Turn this request into the next artifact bundle and handoff.

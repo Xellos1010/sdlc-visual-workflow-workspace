@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "insertion_verification_report",
+  "type": "object",
+  "required": ["schema_version", "approved", "scope_violations", "layering_violations", "next_skill_handoff"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "approved": {"type": "boolean"},
+    "scope_violations": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "layering_violations": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

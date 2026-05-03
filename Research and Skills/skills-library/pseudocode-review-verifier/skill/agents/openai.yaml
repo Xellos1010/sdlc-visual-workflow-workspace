@@ -1,0 +1,5 @@
+interface:
+  display_name: Pseudocode Review Verifier
+  short_description: Reviews pseudocode and contracts before code generation.
+  icon: code
+  color: blue

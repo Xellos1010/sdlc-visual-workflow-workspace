@@ -1,0 +1,1 @@
+Flagship Foundry specialist for verify, operate, diagnose work. Profiles hot paths, bundle size, memory behavior, network overhead, and runtime regression risk.

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PseudocodeContract",
+  "type": "object",
+  "required": ["id", "ioContractId", "steps", "sideEffects", "definitionOfReady"],
+  "properties": {
+    "id": {"type": "string"},
+    "ioContractId": {"type": "string"},
+    "steps": {"type": "array"},
+    "controlFlow": {"type": "array"},
+    "dataFlow": {"type": "array"},
+    "sideEffects": {"type": "array"},
+    "definitionOfReady": {"type": "array"}
+  }
+}

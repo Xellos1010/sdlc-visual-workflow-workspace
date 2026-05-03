@@ -1,0 +1,23 @@
+{
+  "artifact": "blast_radius_report.json",
+  "required_fields": [
+    "risk_score",
+    "risk_class",
+    "risk_drivers",
+    "high_risk_files",
+    "manual_review_triggers",
+    "test_expansion_requirements",
+    "blocked_paths",
+    "confidence",
+    "next_skill_handoff"
+  ],
+  "risk_score": "integer from 0 to 10",
+  "risk_class": "low | medium | high | critical",
+  "risk_driver": {
+    "surface": "file, symbol, package, route, schema, migration, runtime, or owner boundary",
+    "reason": "why it increases blast radius",
+    "evidence": "path, graph edge, doc, test, or policy",
+    "severity": "low | medium | high | critical"
+  },
+  "next_skill_handoff": "architecture-snapshot-reader"
+}

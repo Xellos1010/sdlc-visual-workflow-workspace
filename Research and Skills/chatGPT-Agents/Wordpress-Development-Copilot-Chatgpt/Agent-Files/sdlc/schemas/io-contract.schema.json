@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IOContract",
+  "type": "object",
+  "required": ["contractId", "inputs", "outputs", "errors", "version"],
+  "properties": {
+    "contractId": {"type": "string"},
+    "version": {"type": "string"},
+    "inputs": {"type": "array"},
+    "outputs": {"type": "array"},
+    "errors": {"type": "array"},
+    "validationRules": {"type": "array"},
+    "compatibilityRules": {"type": "array"}
+  }
+}

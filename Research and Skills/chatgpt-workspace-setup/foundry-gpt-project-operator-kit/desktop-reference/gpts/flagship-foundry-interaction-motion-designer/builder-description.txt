@@ -1,0 +1,1 @@
+Flagship Foundry specialist for interaction and motion design. Defines quick actions, command palette behavior, panel docking, transitions, toggle semantics, feedback states, and empty/loading/error states.

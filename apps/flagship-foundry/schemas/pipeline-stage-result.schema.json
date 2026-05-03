@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/pipeline-stage-result.schema.json",
+  "title": "Pipeline Stage Result",
+  "type": "object",
+  "required": [
+    "stageResultId",
+    "pipelineId",
+    "stageId",
+    "adapterId",
+    "status",
+    "startedAt",
+    "completedAt"
+  ],
+  "properties": {
+    "stageResultId": { "type": "string" },
+    "pipelineId": { "type": "string" },
+    "stageId": { "type": "string" },
+    "adapterId": { "type": "string" },
+    "status": { "type": "string", "enum": ["pending", "running", "succeeded", "failed", "skipped", "paused"] },
+    "producedArtifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "telemetryRefs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "durationMs": { "type": ["integer", "null"], "minimum": 0 },
+    "failure": {
+      "type": ["object", "null"],
+      "properties": {
+        "message": { "type": "string" },
+        "code": { "type": ["string", "null"] },
+        "retryable": { "type": ["boolean", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "startedAt": { "type": "string", "format": "date-time" },
+    "completedAt": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}
+

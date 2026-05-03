@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/visual-artifact.schema.json",
+  "title": "Visual Artifact",
+  "type": "object",
+  "required": [
+    "artifactId",
+    "workspaceTargetId",
+    "kind",
+    "title",
+    "representation",
+    "content",
+    "sourceRefs",
+    "createdAt",
+    "status"
+  ],
+  "properties": {
+    "artifactId": {
+      "type": "string"
+    },
+    "workspaceTargetId": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "c4-context",
+        "c4-container",
+        "flow-control",
+        "component-uml",
+        "sequence",
+        "pseudocode",
+        "schema-view",
+        "data-contract",
+        "blast-radius",
+        "focus-view"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "representation": {
+      "type": "string",
+      "enum": [
+        "mermaid",
+        "markdown",
+        "json",
+        "text"
+      ]
+    },
+    "summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "content": {
+      "type": "object",
+      "required": [
+        "body",
+        "mimeType"
+      ],
+      "properties": {
+        "body": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind",
+          "ref"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "file",
+              "graph-node",
+              "artifact",
+              "contract",
+              "note"
+            ]
+          },
+          "ref": {
+            "type": "string"
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "interactiveBinds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "nodeId",
+          "target"
+        ],
+        "properties": {
+          "nodeId": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "rendererHint": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "mermaid",
+        "markdown",
+        "json",
+        "plaintext",
+        null
+      ]
+    },
+    "filePath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "generated",
+        "curated",
+        "superseded"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

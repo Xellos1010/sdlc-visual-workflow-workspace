@@ -1,0 +1,15 @@
+{
+  "$schema": "../schemas/guardrail-pack.schema.json",
+  "id": "guardrail:nx-monorepo",
+  "name": "Nx Monorepo Guardrails",
+  "scope": "Nx apps, libs, tools",
+  "rules": [
+    "Treat project.json, tags, and path aliases as blast-radius inputs.",
+    "Shared libs are mandatory review surfaces when patterns change.",
+    "Prefer affected verification first, then widen for shared-scope or shared-platform changes."
+  ],
+  "evidenceRequirements": [
+    "affected project list",
+    "verification commands run"
+  ]
+}

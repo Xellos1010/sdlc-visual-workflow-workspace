@@ -1,0 +1,39 @@
+{
+  "report_id": "parity-report-YYYYMMDD-short-slug",
+  "generated_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "project_slug": "unknown",
+  "work_order": "unknown",
+  "verdict": "in_sync | sync_needed | blocked | human_review_needed",
+  "artifact_inventory": [
+    {
+      "artifact_type": "requirements | work_order | schema | pseudocode | implementation | test | validation | adr | decision_ledger | diagram | memory | evidence",
+      "handle": "path, id, commit, pr, or unresolved reference",
+      "status": "available | missing | stale | unverified | not_applicable"
+    }
+  ],
+  "mismatches": [
+    {
+      "artifact": "path or id",
+      "mismatch_type": "missing_artifact | stale_artifact | contradiction | unverified_change | authority_conflict | acceptable_divergence",
+      "authority_source": "artifact or human approval that should govern",
+      "description": "specific mismatch",
+      "recommended_action": "patch_upstream_artifact | patch_downstream_artifact | create_followup_work_order | request_human_review | accept_with_rationale",
+      "risk": "low | medium | high | unknown"
+    }
+  ],
+  "sync_patches": [
+    {
+      "target_artifact": "path or id",
+      "patch_type": "apply_now | patch_candidate | followup_only",
+      "summary": "what should change",
+      "patch": "diff, json patch, prose instruction, or null"
+    }
+  ],
+  "human_review_needed": false,
+  "followup_work_orders": [],
+  "next_skill_handoff": {
+    "next_skill": "memory-continuity-manager",
+    "reason": "update durable task memory with parity status, evidence, blockers, and next work orders",
+    "inputs": ["parity_report.json", "sync_patches", "validation_report", "decision_ledger_entry.json", "current_memory_state"]
+  }
+}

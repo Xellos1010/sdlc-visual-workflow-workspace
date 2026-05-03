@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship-foundry.local/schemas/execution-budget-snapshot.schema.json",
+  "title": "Execution Budget Snapshot",
+  "type": "object",
+  "required": [
+    "snapshotId",
+    "workspaceTargetId",
+    "advisoryStatus",
+    "createdAt",
+    "usageWindow",
+    "defaultRoute",
+    "providers",
+    "adapters"
+  ],
+  "properties": {
+    "snapshotId": {
+      "type": "string"
+    },
+    "workspaceTargetId": {
+      "type": "string"
+    },
+    "advisoryStatus": {
+      "type": "string",
+      "enum": [
+        "informational",
+        "watch",
+        "constrained"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "usageWindow": {
+      "type": "object",
+      "required": [
+        "startedAt",
+        "endedAt"
+      ],
+      "properties": {
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    },
+    "defaultRoute": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "taskClass": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fallbackProvider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "providers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "providerId",
+          "displayName",
+          "riskFit",
+          "health",
+          "configured"
+        ],
+        "properties": {
+          "providerId": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "riskFit": {
+            "type": "string"
+          },
+          "health": {
+            "type": "string",
+            "enum": [
+              "healthy",
+              "degraded",
+              "unavailable",
+              "unknown"
+            ]
+          },
+          "configured": {
+            "type": "boolean"
+          },
+          "usage": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "promptTokens",
+              "completionTokens",
+              "totalTokens"
+            ],
+            "properties": {
+              "promptTokens": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "completionTokens": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "totalTokens": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": false
+          },
+          "thresholds": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "enum": [
+                  "tokens",
+                  "usd",
+                  "requests",
+                  "sessions"
+                ]
+              },
+              "softLimit": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "hardLimit": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "adapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "adapterId",
+          "displayName",
+          "transport",
+          "availability"
+        ],
+        "properties": {
+          "adapterId": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "transport": {
+            "type": "string"
+          },
+          "availability": {
+            "type": "string",
+            "enum": [
+              "available",
+              "degraded",
+              "unavailable",
+              "unknown"
+            ]
+          },
+          "supportsMcp": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "connectors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "connectorId",
+          "displayName",
+          "status"
+        ],
+        "properties": {
+          "connectorId": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "connected",
+              "degraded",
+              "disconnected",
+              "unknown"
+            ]
+          },
+          "notes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

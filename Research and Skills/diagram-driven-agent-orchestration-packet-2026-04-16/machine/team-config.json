@@ -1,0 +1,184 @@
+{
+  "initiative": {
+    "name": "Diagram-Driven Agent Orchestration Dashboard",
+    "slug": "diagram-driven-agent-orchestration-dashboard",
+    "objective": "Build a model-backed, diagram-driven agent orchestration platform that can reverse-engineer codebases, generate standardized architecture and migration artifacts, plan bounded execution work, and drive multi-agent implementation and verification across workstation and web surfaces.",
+    "sdlcCycle": "monorepo/.foundry",
+    "startingPhase": "discover",
+    "createdAt": "2026-04-16T00:00:00Z",
+    "status": "ready"
+  },
+  "team": {
+    "planApprovalRequired": true,
+    "teammates": [
+      {
+        "name": "systems-architect",
+        "objective": "Define product thesis, object model, and architecture doctrine.",
+        "subagentType": "systems-architect",
+        "model": "opus",
+        "scope": [
+          "product architecture",
+          "artifact authority stack",
+          "canonical IR"
+        ],
+        "dependsOn": [],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "repository-cartographer",
+        "objective": "Define repository ingestion, parser adapters, symbol extraction, and dependency graph requirements.",
+        "subagentType": "repository-cartographer",
+        "model": "sonnet",
+        "scope": [
+          "repo ingestion",
+          "parser adapters",
+          "symbol graph"
+        ],
+        "dependsOn": [
+          "systems-architect"
+        ],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "diagram-architect",
+        "objective": "Define diagram taxonomy, automation policy, and notation rules.",
+        "subagentType": "diagram-decision-matrix",
+        "model": "sonnet",
+        "scope": [
+          "diagram catalog",
+          "notation policy"
+        ],
+        "dependsOn": [
+          "systems-architect"
+        ],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "pseudocode-extractor",
+        "objective": "Standardize pseudocode ledger formats and source-to-logic traceability.",
+        "subagentType": "pseudocode-ledger-writer",
+        "model": "sonnet",
+        "scope": [
+          "pseudocode ledger",
+          "function normalization"
+        ],
+        "dependsOn": [
+          "repository-cartographer"
+        ],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "contract-analyst",
+        "objective": "Define IO contracts, schema extraction, and boundary analysis.",
+        "subagentType": "contract-inventory-builder",
+        "model": "sonnet",
+        "scope": [
+          "contracts",
+          "schemas",
+          "boundaries"
+        ],
+        "dependsOn": [
+          "repository-cartographer"
+        ],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "migration-strategist",
+        "objective": "Define migration map, gap matrix, target profiles, and risk model.",
+        "subagentType": "migration-map-builder",
+        "model": "opus",
+        "scope": [
+          "migration planning",
+          "target platform profiles"
+        ],
+        "dependsOn": [
+          "pseudocode-extractor",
+          "contract-analyst"
+        ],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "ux-dashboard-architect",
+        "objective": "Design the orchestration dashboard shell, views, and drill-down interactions.",
+        "subagentType": "dashboard-projection-planner",
+        "model": "opus",
+        "scope": [
+          "dashboard shell",
+          "view model",
+          "interaction patterns"
+        ],
+        "dependsOn": [
+          "systems-architect",
+          "diagram-architect"
+        ],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "skill-designer",
+        "objective": "Package the reusable ChatGPT skill for packet generation and planning.",
+        "subagentType": "skill-creator",
+        "model": "sonnet",
+        "scope": [
+          "skill package",
+          "templates",
+          "scripts"
+        ],
+        "dependsOn": [
+          "diagram-architect",
+          "pseudocode-extractor",
+          "contract-analyst",
+          "migration-strategist"
+        ],
+        "planApprovalRequired": false
+      },
+      {
+        "name": "collaboration-server-architect",
+        "objective": "Define project registry, artifact store, approvals, evidence, and multi-user sync.",
+        "subagentType": "systems-architect",
+        "model": "sonnet",
+        "scope": [
+          "collaboration server",
+          "artifact registry",
+          "approval model"
+        ],
+        "dependsOn": [
+          "systems-architect"
+        ],
+        "planApprovalRequired": true
+      },
+      {
+        "name": "verifier",
+        "objective": "Define platform verification matrix, evidence bundle, and pilot acceptance gates.",
+        "subagentType": "parity-verifier-planner",
+        "model": "sonnet",
+        "scope": [
+          "verification",
+          "evidence",
+          "pilot gate"
+        ],
+        "dependsOn": [
+          "repository-cartographer",
+          "diagram-architect",
+          "pseudocode-extractor",
+          "contract-analyst",
+          "migration-strategist",
+          "ux-dashboard-architect",
+          "skill-designer",
+          "collaboration-server-architect"
+        ],
+        "planApprovalRequired": true
+      }
+    ]
+  },
+  "doneCriteria": [
+    "canonical artifact contract approved",
+    "machine-readable team config, pipeline, and lead prompt present",
+    "dashboard shell and view model documented",
+    "knowledge-base blueprint documented",
+    "reusable skill packaged as skill.zip",
+    "pilot TS/React -> Rust use case defined with work orders and verification gates"
+  ],
+  "workOrdersPath": "machine/../11-work-orders.md",
+  "leadPromptPath": "machine/lead-prompt.md",
+  "continuityPath": ".foundry/projects/diagram-driven-agent-orchestration-dashboard/current-task.json"
+}

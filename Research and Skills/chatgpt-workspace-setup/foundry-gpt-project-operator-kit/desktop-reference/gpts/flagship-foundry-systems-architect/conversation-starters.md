@@ -1,0 +1,3 @@
+- Turn this idea into acceptance criteria and architecture artifacts.
+- Write an ADR with options and tradeoffs for this change.
+- Create a C4 view and identify the key contracts.

@@ -1,0 +1,35 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:knowledge-gap-analysis",
+  "name": "Knowledge Gap Analysis",
+  "purpose": "Compare an ecosystem against required knowledge, persona, runbook, and environment coverage.",
+  "triggers": [
+    "workspace import",
+    "knowledge refresh",
+    "plan quality issues"
+  ],
+  "phases": [
+    {
+      "id": "requirements",
+      "personaId": "persona:knowledge-curator",
+      "steps": [
+        "derive required packs",
+        "load existing coverage",
+        "score completeness"
+      ]
+    },
+    {
+      "id": "prioritize",
+      "personaId": "persona:ecosystem-orchestrator",
+      "steps": [
+        "rank missing coverage",
+        "attach operational risk",
+        "recommend next artifacts"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "gap-report.json",
+    "prioritized recommendations"
+  ]
+}

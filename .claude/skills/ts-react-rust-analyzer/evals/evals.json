@@ -1,0 +1,48 @@
+{
+  "skill_name": "ts-react-rust-analyzer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Analyze apps/night-agent-runner/screens/REPL.tsx for Rust migration. I need the subsystem, all runtime surfaces, IO contracts, migration risk level with reasons, and recommended Rust target crate and module path.",
+      "expected_output": "Structured analysis table covering: subsystem=tui-repl, surfaces including react-ui/ink-ui/streaming-queue/etc, IO contracts for terminal-input/terminal-output/remote-session, migration_risk=critical with reasons, rust_target=night-agent-runner-tui::repl, migration_decision=adapt",
+      "files": [],
+      "assertions": [
+        "identifies subsystem as tui-repl",
+        "lists ink-ui as a runtime surface",
+        "lists react-ui as a runtime surface",
+        "identifies terminal-input and terminal-output IO contracts",
+        "sets migration_risk to critical",
+        "recommends night-agent-runner-tui as the target crate",
+        "sets migration_decision to adapt",
+        "does NOT produce any Rust code"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm about to migrate apps/night-agent-runner/services/compact/compact.ts to Rust. Run the analyzer on it first — what are its runtime surfaces, IO contracts, migration risk, and Rust target?",
+      "expected_output": "Analysis showing: subsystem=session-compaction, surfaces including compaction/session-recovery/filesystem, IO contracts for filesystem-read/write and environment-gate, risk=high or critical, rust_target=night-agent-runner-core, migration_decision=adapt",
+      "files": [],
+      "assertions": [
+        "identifies subsystem as session-compaction",
+        "lists compaction as a runtime surface",
+        "identifies filesystem IO contract",
+        "sets migration_risk to high or critical",
+        "recommends night-agent-runner-core as target crate",
+        "does NOT produce Rust implementation code"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Quick analysis of apps/night-agent-runner/skills/loadSkillsDir.ts — what's the migration decision and why?",
+      "expected_output": "Analysis showing: subsystem=skills-and-plugins, skill-loader surface detected, migration_decision=adapt with rationale (dynamic discovery, trust checks, reload), rust_target=night-agent-runner-plugins",
+      "files": [],
+      "assertions": [
+        "identifies skill-loader as a runtime surface",
+        "identifies subsystem as skills-and-plugins",
+        "recommends adapt as migration decision",
+        "mentions discovery order or trust checks in rationale",
+        "recommends night-agent-runner-plugins as target crate"
+      ]
+    }
+  ]
+}

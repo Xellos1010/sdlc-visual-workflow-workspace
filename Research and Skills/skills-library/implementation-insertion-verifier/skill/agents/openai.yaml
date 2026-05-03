@@ -1,0 +1,5 @@
+interface:
+  display_name: Implementation Insertion Verifier
+  short_description: Checks implementation diffs against insertion boundaries and scope.
+  icon: code
+  color: blue

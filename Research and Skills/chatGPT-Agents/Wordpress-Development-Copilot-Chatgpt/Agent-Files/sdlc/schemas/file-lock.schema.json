@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agent File Lock",
+  "type": "object",
+  "required": ["lockId", "repo", "project", "workOrderId", "agentRunId", "status", "lockedFiles", "expiresAt"],
+  "properties": {
+    "lockId": { "type": "string" },
+    "repo": { "type": "string" },
+    "project": { "type": "string" },
+    "featureSetId": { "type": "string" },
+    "workOrderId": { "type": "string" },
+    "agentRunId": { "type": "string" },
+    "branch": { "type": "string" },
+    "prUrl": { "type": ["string", "null"] },
+    "lockedFiles": { "type": "array", "items": { "type": "string" } },
+    "lockedGlobs": { "type": "array", "items": { "type": "string" } },
+    "readDependencies": { "type": "array", "items": { "type": "string" } },
+    "writeIntent": { "type": "string" },
+    "status": { "enum": ["active", "released", "stale", "blocked", "superseded"] },
+    "createdAt": { "type": "string" },
+    "expiresAt": { "type": "string" }
+  }
+}

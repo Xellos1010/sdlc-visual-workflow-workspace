@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Architecture Packet",
+  "type": "object",
+  "required": [
+    "phaseId",
+    "impactStatement",
+    "options",
+    "selectedApproach",
+    "diagrams",
+    "adrs",
+    "contracts",
+    "functionSchemas",
+    "decompositionPlan",
+    "acceptanceCriteria",
+    "riskRegister",
+    "nextWorkspace"
+  ],
+  "properties": {
+    "phaseId": {
+      "type": "string"
+    },
+    "impactStatement": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "pros",
+          "cons"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "pros": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "cons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "selectedApproach": {
+      "type": "string"
+    },
+    "diagrams": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "adrs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "functionSchemas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decompositionPlan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "riskRegister": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextWorkspace": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+## Work Order: WO-<SLUG>-<NN>
+- **Initiative**: 
+- **Lifecycle Stage**: 
+- **Agent Role**: 
+- **Subagent Type**: 
+- **Model**: 
+- **Scope**: 
+- **Depends On**: 
+- **Objective**: 
+- **Acceptance Criteria**:
+  - [ ] 
+- **Verification**:
+  - 
+- **Plan Approval Required**: yes/no

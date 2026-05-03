@@ -1,0 +1,35 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:environment-scaffold",
+  "name": "Environment Scaffold",
+  "purpose": "Scaffold aligned Cursor, Codex, and Claude Code project artifacts from a shared Foundry intent.",
+  "triggers": [
+    "new project bootstrap",
+    "environment parity audit",
+    "tool migration"
+  ],
+  "phases": [
+    {
+      "id": "select",
+      "personaId": "persona:environment-migrator",
+      "steps": [
+        "choose tool preset",
+        "review parity matrix",
+        "resolve tool-specific deltas"
+      ]
+    },
+    {
+      "id": "materialize",
+      "personaId": "persona:environment-migrator",
+      "steps": [
+        "write config files",
+        "write instructions docs",
+        "validate paths and placeholders"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "generated environment files",
+    "parity audit note"
+  ]
+}

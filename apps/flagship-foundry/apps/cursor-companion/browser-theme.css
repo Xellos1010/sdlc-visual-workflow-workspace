@@ -1,0 +1,160 @@
+/*
+ * Base browser pop-out theme.
+ * Optional advanced theme layering can be added with an additional @import URL.
+ */
+
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --vscode-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --vscode-font-size: 14px;
+  --vscode-foreground: #cdd6f4;
+  --vscode-descriptionForeground: #a6adc8;
+  --vscode-errorForeground: #f38ba8;
+  --vscode-focusBorder: #89b4fa;
+  --vscode-textLink-foreground: #89b4fa;
+  --vscode-textLink-activeForeground: #b4befe;
+  --vscode-editor-background: #1e1e2e;
+  --vscode-editor-foreground: #cdd6f4;
+  --vscode-editorWidget-background: #181825;
+  --vscode-editorWidget-border: #313244;
+  --vscode-input-background: #11111b;
+  --vscode-input-foreground: #cdd6f4;
+  --vscode-input-border: #45475a;
+  --vscode-button-background: #89b4fa;
+  --vscode-button-foreground: #11111b;
+  --vscode-button-hoverBackground: #74c7ec;
+  --vscode-dropdown-background: #11111b;
+  --vscode-dropdown-foreground: #cdd6f4;
+  --vscode-dropdown-border: #45475a;
+  --vscode-sideBar-background: #181825;
+  --vscode-sideBar-foreground: #cdd6f4;
+  --vscode-sideBar-border: #313244;
+  --vscode-panel-background: #11111b;
+  --vscode-panel-border: #313244;
+  --vscode-badge-background: #89b4fa;
+  --vscode-badge-foreground: #11111b;
+  --vscode-list-hoverBackground: rgba(137, 180, 250, 0.12);
+  --vscode-list-activeSelectionBackground: rgba(137, 180, 250, 0.18);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(137, 180, 250, 0.14), transparent 36%),
+    linear-gradient(180deg, #1e1e2e 0%, #11111b 100%);
+  color: var(--vscode-editor-foreground);
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--vscode-textLink-foreground);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--vscode-button-hoverBackground);
+}
+
+input,
+select,
+textarea {
+  background: var(--vscode-input-background);
+  color: var(--vscode-input-foreground);
+  border: 1px solid var(--vscode-input-border);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+}
+
+.layout,
+.shell,
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.sidebar {
+  background: rgba(24, 24, 37, 0.92);
+  border: 1px solid var(--vscode-sideBar-border);
+  border-radius: 18px;
+  color: var(--vscode-sideBar-foreground);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+.card,
+.panel,
+.mermaid,
+.mermaid-container,
+pre,
+code {
+  background: rgba(17, 17, 27, 0.88);
+  border: 1px solid var(--vscode-panel-border);
+  border-radius: 16px;
+  color: inherit;
+}
+
+.card,
+.panel,
+.mermaid-container {
+  padding: 16px;
+}
+
+.status,
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--vscode-badge-background);
+  color: var(--vscode-badge-foreground);
+  padding: 0.2rem 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+pre {
+  overflow: auto;
+  padding: 16px;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--vscode-focusBorder);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .layout,
+  .shell,
+  main {
+    padding: 16px;
+  }
+
+  .sidebar,
+  .card,
+  .panel,
+  .mermaid-container {
+    border-radius: 14px;
+  }
+}

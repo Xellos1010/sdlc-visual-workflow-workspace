@@ -1,0 +1,3 @@
+interface:
+  display_name: "Parity Sync Manager"
+  short_description: "Checks and restores parity across requirements, code, tests, ADRs, evidence, and memory."

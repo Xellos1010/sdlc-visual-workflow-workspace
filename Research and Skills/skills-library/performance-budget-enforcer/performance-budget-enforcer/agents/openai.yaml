@@ -1,0 +1,3 @@
+interface:
+  display_name: "Performance Budget Enforcer"
+  short_description: "Checks complexity, runtime metrics, benchmark results, and code diffs against performance budgets."

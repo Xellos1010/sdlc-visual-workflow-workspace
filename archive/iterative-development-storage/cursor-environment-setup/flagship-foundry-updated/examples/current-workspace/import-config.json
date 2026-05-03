@@ -1,0 +1,11 @@
+{
+  "ecosystemId": "web-automation-workspace",
+  "name": "Web Automation Workspace",
+  "source": {
+    "type": "export-bundle",
+    "codeExportPath": "examples/current-workspace/input/master-codebase.txt",
+    "configExportPath": "examples/current-workspace/input/master-configs.txt",
+    "rulesExportPath": "examples/current-workspace/input/master-rules.txt",
+    "chromeDocsPath": "examples/current-workspace/input/master-chrome-ext-api-documentation.md"
+  }
+}

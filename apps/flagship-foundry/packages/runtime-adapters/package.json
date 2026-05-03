@@ -1,0 +1,10 @@
+{
+  "name": "@flagship-foundry/runtime-adapters",
+  "version": "0.1.0",
+  "description": "Provider registry and unified interface for Claude Code, Cursor, Codex, OpenClaw",
+  "type": "module",
+  "main": "src/registry.mjs",
+  "exports": {
+    ".": "./src/registry.mjs"
+  }
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Insertion Point Locator"
+  short_description: "Select bounded, approved insertion points and tests."

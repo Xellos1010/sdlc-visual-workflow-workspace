@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://flagship.local/schemas/adapter-manifest.schema.json",
+  "title": "Adapter Manifest",
+  "type": "object",
+  "required": [
+    "adapterId",
+    "displayName",
+    "runtime",
+    "executionModel"
+  ],
+  "properties": {
+    "adapterId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "string"
+    },
+    "supportsMcp": {
+      "type": "boolean"
+    },
+    "supportsParallelAgents": {
+      "type": "boolean"
+    },
+    "supportsWorktrees": {
+      "type": "boolean"
+    },
+    "supportsProviderSwap": {
+      "type": "boolean"
+    },
+    "executionModel": {
+      "type": "string"
+    }
+  }
+}

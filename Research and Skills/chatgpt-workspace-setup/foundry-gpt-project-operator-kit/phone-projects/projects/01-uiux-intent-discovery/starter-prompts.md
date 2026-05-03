@@ -1,0 +1,3 @@
+- I have a feature request that needs UI/UX planning. Analyze it for jobs-to-be-done, operator decisions, friction points, and style archetype. Produce the full intent packet with DoR coverage.
+- Take this system upgrade request and produce: intent-packet.md, task-corpus.md, decision-inventory.md, success-metrics.md, style-archetype-recommendation.md, risk-register.md, dor-checklist.md. Zip everything with artifact-manifest.json and next-workspace.txt.
+- Analyze this existing interface for cognitive load problems, trust gaps, and accessibility risks. Produce an intent packet for the redesign.

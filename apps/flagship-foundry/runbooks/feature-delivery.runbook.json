@@ -1,0 +1,46 @@
+{
+  "$schema": "../schemas/runbook.schema.json",
+  "id": "runbook:feature-delivery",
+  "name": "Feature Delivery",
+  "purpose": "Turn a human request into an approved, verifiable implementation plan across all impacted systems.",
+  "triggers": [
+    "feature request",
+    "new capability",
+    "design improvement"
+  ],
+  "phases": [
+    {
+      "id": "scope",
+      "personaId": "persona:ecosystem-orchestrator",
+      "steps": [
+        "define objective",
+        "expand blast radius",
+        "identify required SMEs"
+      ]
+    },
+    {
+      "id": "design",
+      "personaId": "persona:plan-approval-governor",
+      "steps": [
+        "write cross-system design",
+        "confirm acceptance criteria",
+        "prepare approval package"
+      ]
+    },
+    {
+      "id": "execute",
+      "personaId": "persona:independent-verifier",
+      "steps": [
+        "execute component tasks",
+        "run verifiers",
+        "collect evidence and handoff"
+      ]
+    }
+  ],
+  "handoffArtifacts": [
+    "plan.json",
+    "run.json",
+    "evidence bundle",
+    "fix-memory candidate"
+  ]
+}

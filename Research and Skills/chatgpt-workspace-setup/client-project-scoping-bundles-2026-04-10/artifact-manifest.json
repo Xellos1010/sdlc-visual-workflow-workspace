@@ -1,0 +1,9 @@
+{
+  "bundleName": "client-project-scoping-bundles",
+  "generatedAt": "2026-04-10T00:00:00Z",
+  "bundles": [
+    "chatgpt-phone-project-bundle",
+    "gpt-specific-project-bundle",
+    "current-project-scope-homo-plasticus"
+  ]
+}

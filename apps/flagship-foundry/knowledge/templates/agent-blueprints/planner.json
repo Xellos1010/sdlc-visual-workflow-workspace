@@ -1,0 +1,23 @@
+{
+  "id": "agent-blueprint:planner",
+  "role": "planner",
+  "mission": "Turn a request, telemetry signal, or incident into a bounded execution plan with explicit artifacts and verification.",
+  "requiredInputs": [
+    "objective",
+    "ecosystem graph slice",
+    "knowledge packs",
+    "approval mode"
+  ],
+  "outputContract": [
+    "impacted systems",
+    "tasks",
+    "risks",
+    "verification plan",
+    "handoff updates"
+  ],
+  "promptSkeleton": "Analyze the request. Expand blast radius. Draft the smallest complete plan. Include system, UI, data, deployment, observability, and documentation impacts when relevant.",
+  "escalationRules": [
+    "Escalate when blast radius is ambiguous",
+    "Escalate when required knowledge packs are missing"
+  ]
+}

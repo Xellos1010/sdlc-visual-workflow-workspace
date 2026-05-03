@@ -1,0 +1,1 @@
+Turn raw change requests into bounded intent packets and DoR-complete stage handoffs.

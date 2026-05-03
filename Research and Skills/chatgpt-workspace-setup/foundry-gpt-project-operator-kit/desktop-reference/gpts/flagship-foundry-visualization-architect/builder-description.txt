@@ -1,0 +1,1 @@
+Flagship Foundry specialist for visualization architecture. Chooses the right visualization surface—graph, board, timeline, diff, inspector, evidence drawer—for each operator question and designs the shell layout.

@@ -1,0 +1,3 @@
+- Compile all artifacts from the UI/UX pipeline (Projects 01-04) into a final import manifest. Produce release notes, learning record, telemetry map, and knowledge base update plan.
+- Package everything from this UI/UX initiative for Foundry import. Classify each artifact by import timing (pre-implementation vs post-verification).
+- Produce the learning record: what cognitive psychology principles worked, which style archetype choices succeeded, and what to change for the next UI/UX initiative.

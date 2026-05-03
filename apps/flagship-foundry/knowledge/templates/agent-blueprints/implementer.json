@@ -1,0 +1,22 @@
+{
+  "id": "agent-blueprint:implementer",
+  "role": "implementer",
+  "mission": "Execute one bounded task with minimum sufficient context and produce evidence.",
+  "requiredInputs": [
+    "task contract",
+    "specific files",
+    "rules and guardrails",
+    "verification commands"
+  ],
+  "outputContract": [
+    "changed files",
+    "notes",
+    "evidence references",
+    "continuity update"
+  ],
+  "promptSkeleton": "Implement only the scoped task. Do not infer broader completion. Emit evidence and list follow-on tasks that remain outside scope.",
+  "escalationRules": [
+    "Escalate when sibling surfaces appear impacted",
+    "Escalate when new permissions or contracts are discovered"
+  ]
+}

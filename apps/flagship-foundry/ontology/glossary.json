@@ -1,0 +1,3997 @@
+{
+  "version": "1.0.0",
+  "source": "Planning and Engineering Systems.md",
+  "categories": [
+    {
+      "id": "system-architecture",
+      "name": "System Architecture & Runtime",
+      "description": "High-level structure, components, boundaries, responsibilities, and data flow",
+      "terms": [
+        {
+          "term": "Architecture",
+          "definition": "The high-level structure of the system: components, boundaries, responsibilities, and data flow.",
+          "relatedTerms": ["runtime-architecture", "topology", "component", "system-design"],
+          "applicablePhases": ["discover", "visualize", "architect"]
+        },
+        {
+          "term": "Runtime Architecture",
+          "definition": "How the system behaves while running, not just how files are organized.",
+          "relatedTerms": ["architecture", "runtime", "execution-model"],
+          "applicablePhases": ["visualize", "architect", "operate"]
+        },
+        {
+          "term": "MV3 (Manifest V3)",
+          "definition": "The Chrome extension platform model centered on an extension service worker and event-driven execution.",
+          "relatedTerms": ["service-worker", "content-script", "sidepanel"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Service Worker",
+          "definition": "The extension's background orchestration layer and state authority.",
+          "relatedTerms": ["mv3", "content-script", "message-routing", "runtime-ownership"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Content Script",
+          "definition": "The code that runs in the page context and is allowed to inspect or interact with the DOM.",
+          "relatedTerms": ["service-worker", "dom-observation", "sidepanel"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Sidepanel",
+          "definition": "The operator console for settings, watch control, exports, and dev/test actions.",
+          "relatedTerms": ["operator-console", "popup", "service-worker"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Popup",
+          "definition": "The lightweight quick-launch UI for the extension.",
+          "relatedTerms": ["sidepanel", "operator-console", "quick-action"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Operator Console",
+          "definition": "The human-facing control surface for runtime actions.",
+          "relatedTerms": ["sidepanel", "popup", "operator-visible-behavior"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Separation of Concerns",
+          "definition": "Keeping orchestration, DOM work, and UI responsibilities in distinct layers.",
+          "relatedTerms": ["boundary", "runtime-ownership", "encapsulation"],
+          "applicablePhases": ["discover", "architect"]
+        },
+        {
+          "term": "Runtime Ownership",
+          "definition": "Explicit statement of which layer owns which responsibility.",
+          "relatedTerms": ["separation-of-concerns", "boundary", "ownership"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Message Routing",
+          "definition": "How commands and events move between sidepanel, service worker, and content runtime.",
+          "relatedTerms": ["message-bus", "command-path", "event-path"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Message Bus",
+          "definition": "The mechanism that carries commands and events between system components.",
+          "relatedTerms": ["message-routing", "event-bus", "publish-subscribe"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Command Path",
+          "definition": "The direction from operator action to system action.",
+          "relatedTerms": ["event-path", "message-routing", "operator-console"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Event Path",
+          "definition": "The direction from runtime detection back to logs, state, and UI.",
+          "relatedTerms": ["command-path", "message-routing", "telemetry"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Dependency Map",
+          "definition": "A view of which modules depend on which others.",
+          "relatedTerms": ["dependency-graph", "component", "module"],
+          "applicablePhases": ["discover", "visualize", "architect"]
+        },
+        {
+          "term": "Component",
+          "definition": "A discrete unit of a system with defined responsibilities and interfaces.",
+          "relatedTerms": ["module", "layer", "subsystem", "service"],
+          "applicablePhases": ["discover", "visualize", "architect"]
+        },
+        {
+          "term": "Module",
+          "definition": "A self-contained unit of code with a well-defined interface.",
+          "relatedTerms": ["component", "layer", "abstraction"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Layer",
+          "definition": "A horizontal slice of the system with a specific role such as UI, logic, or storage.",
+          "relatedTerms": ["component", "separation-of-concerns", "subsystem"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Subsystem",
+          "definition": "A group of related components that form a functional domain within the larger system.",
+          "relatedTerms": ["component", "layer", "system"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Service",
+          "definition": "A runtime unit that provides specific functionality, often addressable via an interface.",
+          "relatedTerms": ["component", "provider", "adapter"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Runtime",
+          "definition": "The environment in which code executes, including memory, thread, and lifecycle context.",
+          "relatedTerms": ["runtime-architecture", "execution-model", "environment"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Context",
+          "definition": "The execution environment or surrounding state in which a component operates.",
+          "relatedTerms": ["runtime", "environment", "scope"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Environment",
+          "definition": "The deployment target or execution setting such as browser, worker, or server.",
+          "relatedTerms": ["runtime", "context", "deployment"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Integration",
+          "definition": "The connection between two or more components or systems.",
+          "relatedTerms": ["interface", "contract", "adapter"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Interface",
+          "definition": "The defined contract through which a component communicates with others.",
+          "relatedTerms": ["contract", "schema", "boundary"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Contract",
+          "definition": "The expected shape and behavior of data or interactions between components.",
+          "relatedTerms": ["interface", "schema", "data-contract"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Schema",
+          "definition": "The formal definition of a data structure's fields, types, and constraints.",
+          "relatedTerms": ["contract", "interface", "data-contract"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Topology",
+          "definition": "The arrangement and connectivity of components in the system.",
+          "relatedTerms": ["architecture", "deployment", "dependency-graph"],
+          "applicablePhases": ["visualize", "architect"]
+        },
+        {
+          "term": "Composition",
+          "definition": "Building larger structures by combining smaller components.",
+          "relatedTerms": ["component", "abstraction", "dependency"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Orchestration",
+          "definition": "Coordinating multiple components or services to achieve a higher-level goal.",
+          "relatedTerms": ["coordination", "service-worker", "workflow"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Coordination",
+          "definition": "Managing the interaction and ordering between multiple concurrent or distributed parts.",
+          "relatedTerms": ["orchestration", "synchronization", "message-routing"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Dependency",
+          "definition": "A relationship where one component requires another to function.",
+          "relatedTerms": ["dependency-graph", "dependency-injection", "coupling"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Dependency Graph",
+          "definition": "A directed graph showing which components depend on which others.",
+          "relatedTerms": ["dependency", "dependency-map", "topology"],
+          "applicablePhases": ["visualize", "architect"]
+        },
+        {
+          "term": "Dependency Injection",
+          "definition": "Providing a component's dependencies from outside rather than having it create them internally.",
+          "relatedTerms": ["dependency", "abstraction", "provider"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Abstraction",
+          "definition": "A simplified view of a complex system that hides implementation details.",
+          "relatedTerms": ["interface", "encapsulation", "module"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Adapter",
+          "definition": "A component that translates between two incompatible interfaces or platforms.",
+          "relatedTerms": ["provider", "integration", "platform-registry"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Provider",
+          "definition": "A component that supplies a specific implementation behind a shared interface.",
+          "relatedTerms": ["adapter", "registry", "platform-adapter"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Registry",
+          "definition": "A lookup structure that maps identifiers to implementations or instances.",
+          "relatedTerms": ["provider", "platform-registry", "adapter"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Controller",
+          "definition": "A component that directs the behavior of other components in response to input.",
+          "relatedTerms": ["orchestration", "manager", "handler"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Manager",
+          "definition": "A component responsible for the lifecycle and coordination of a resource or set of components.",
+          "relatedTerms": ["controller", "platform-manager", "orchestration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Executor",
+          "definition": "A component responsible for carrying out a specific action or task.",
+          "relatedTerms": ["claim-executor", "handler", "pipeline"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Handler",
+          "definition": "A function or component that responds to a specific event, message, or condition.",
+          "relatedTerms": ["callback", "listener", "executor"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Pipeline",
+          "definition": "A sequence of processing stages where the output of one stage feeds the next.",
+          "relatedTerms": ["workflow", "executor", "data-flow"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Workflow",
+          "definition": "The defined sequence of steps or states that accomplish a business or operational goal.",
+          "relatedTerms": ["pipeline", "lifecycle", "state-machine"],
+          "applicablePhases": ["discover", "architect", "implement"]
+        },
+        {
+          "term": "Lifecycle",
+          "definition": "The defined sequence of states an object, session, or component passes through from creation to destruction.",
+          "relatedTerms": ["state-machine", "teardown", "hydration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "System Design",
+          "definition": "The process of defining the architecture, components, interfaces, and data for a system to satisfy requirements.",
+          "relatedTerms": ["architecture", "component", "interface"],
+          "applicablePhases": ["discover", "architect"]
+        }
+      ]
+    },
+    {
+      "id": "boundaries-and-responsibility",
+      "name": "Boundaries & Responsibility",
+      "description": "Rules, ownership, isolation, and trust constraints between components",
+      "terms": [
+        {
+          "term": "Boundary",
+          "definition": "A rule that restricts what a component may do, such as preventing the service worker from mutating the page DOM.",
+          "relatedTerms": ["separation-of-concerns", "encapsulation", "trust-boundary"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "System Boundary",
+          "definition": "The edge between the system being built and all external systems or users.",
+          "relatedTerms": ["boundary", "trust-boundary", "integration"],
+          "applicablePhases": ["discover", "architect"]
+        },
+        {
+          "term": "Component Boundary",
+          "definition": "The dividing line between two components defining what each owns and may access.",
+          "relatedTerms": ["boundary", "interface", "encapsulation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Trust Boundary",
+          "definition": "A line where privilege, authentication, or security assumptions change.",
+          "relatedTerms": ["boundary", "permission-boundary", "guardrail"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Responsibility Boundary",
+          "definition": "The explicit limit of what a component is allowed to own or modify.",
+          "relatedTerms": ["boundary", "runtime-ownership", "separation-of-concerns"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Ownership",
+          "definition": "The declaration of which component is responsible for a piece of state, action, or resource.",
+          "relatedTerms": ["runtime-ownership", "source-of-truth", "responsibility-boundary"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Source of Truth",
+          "definition": "The single authoritative location for a given piece of state or configuration.",
+          "relatedTerms": ["ownership", "settings-authority", "persisted-state"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Encapsulation",
+          "definition": "Hiding internal state and behavior behind a defined interface.",
+          "relatedTerms": ["abstraction", "boundary", "isolation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Isolation",
+          "definition": "Ensuring a component's failures or state do not unintentionally affect others.",
+          "relatedTerms": ["encapsulation", "boundary", "fault-tolerance"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Scope",
+          "definition": "The defined range of authority, visibility, or effect for a component or variable.",
+          "relatedTerms": ["boundary", "ownership", "encapsulation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Surface Area",
+          "definition": "The total set of entry points and interfaces exposed by a component.",
+          "relatedTerms": ["interface", "boundary", "scope"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Blast Radius",
+          "definition": "The scope of damage or disruption if a component fails.",
+          "relatedTerms": ["fault-tolerance", "isolation", "failure-mode"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Coupling",
+          "definition": "The degree to which components depend on each other's internals.",
+          "relatedTerms": ["cohesion", "dependency", "interface"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Cohesion",
+          "definition": "The degree to which elements within a component belong together and serve a common purpose.",
+          "relatedTerms": ["coupling", "separation-of-concerns", "module"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Interface Boundary",
+          "definition": "The explicit surface through which two components interact, enforcing what is public and what is internal.",
+          "relatedTerms": ["interface", "boundary", "contract"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Permission Boundary",
+          "definition": "The limit of what a component is allowed to access or perform based on granted permissions.",
+          "relatedTerms": ["trust-boundary", "boundary", "guardrail"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Capability Boundary",
+          "definition": "The limit of what a component is technically able to do within its runtime context.",
+          "relatedTerms": ["permission-boundary", "boundary", "runtime-ownership"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Control Plane",
+          "definition": "The part of the system responsible for managing and directing operations.",
+          "relatedTerms": ["data-plane", "orchestration", "service-worker"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Data Plane",
+          "definition": "The part of the system responsible for processing and moving actual data.",
+          "relatedTerms": ["control-plane", "pipeline", "data-flow"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Guardrail",
+          "definition": "A rule that constrains dangerous or unsupported behavior in the system.",
+          "relatedTerms": ["constraint", "invariant", "safety"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Constraint",
+          "definition": "A restriction that limits what values, behaviors, or operations are valid.",
+          "relatedTerms": ["guardrail", "invariant", "boundary"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Assumption",
+          "definition": "A condition taken for granted in the design that must hold for the system to work correctly.",
+          "relatedTerms": ["invariant", "constraint", "contract"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Invariant",
+          "definition": "A condition that must always be true regardless of system state or execution path.",
+          "relatedTerms": ["constraint", "assumption", "guardrail"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Runtime Boundary",
+          "definition": "The separation between different runtime execution contexts such as service worker, content script, and sidepanel.",
+          "relatedTerms": ["boundary", "runtime-ownership", "message-routing"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Data Boundary",
+          "definition": "The point at which ownership or access rights to data change between components.",
+          "relatedTerms": ["boundary", "data-contract", "source-of-truth"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Control Boundary",
+          "definition": "The point at which authority over execution or decision-making transfers between components.",
+          "relatedTerms": ["boundary", "control-plane", "runtime-ownership"],
+          "applicablePhases": ["architect", "implement"]
+        }
+      ]
+    },
+    {
+      "id": "state-and-storage",
+      "name": "State, Storage & Data Model",
+      "description": "How data is stored, retrieved, synchronized, and kept consistent across the system",
+      "terms": [
+        {
+          "term": "Watch State",
+          "definition": "The authoritative record of whether a tab/session is actively watching, paused, stopped, or in a terminal state.",
+          "relatedTerms": ["session-lease", "singleton-runtime", "persisted-state"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Session Lease",
+          "definition": "The per-tab ownership record that prevents duplicate watch runtimes.",
+          "relatedTerms": ["watch-state", "singleton-runtime", "idempotency"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Singleton Runtime",
+          "definition": "One active watch runtime per tab or session.",
+          "relatedTerms": ["session-lease", "watch-state", "idempotency"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Idempotency",
+          "definition": "Calling start or stop multiple times should not create duplicate side effects.",
+          "relatedTerms": ["singleton-runtime", "race-condition", "deduplication"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Hydration",
+          "definition": "Restoring UI or runtime state from persisted storage.",
+          "relatedTerms": ["rehydration", "persisted-state", "race-in-hydration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Rehydration",
+          "definition": "Restoring state after reload, navigation, or worker restart.",
+          "relatedTerms": ["hydration", "persisted-state", "recovery"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Persisted State",
+          "definition": "State intentionally written to storage for durability across sessions.",
+          "relatedTerms": ["ephemeral-state", "chrome-storage-local", "hydration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Ephemeral State",
+          "definition": "Temporary in-memory state that does not survive restarts.",
+          "relatedTerms": ["persisted-state", "runtime-state", "chrome-storage-session"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "chrome.storage.local",
+          "definition": "Persistent extension storage for durable operator settings and metadata.",
+          "relatedTerms": ["chrome-storage-session", "persisted-state", "settings-authority"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "chrome.storage.session",
+          "definition": "Session-scoped extension storage for active runtime data like logs, metrics, and DOM delta capture.",
+          "relatedTerms": ["chrome-storage-local", "ephemeral-state", "run-log"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Settings Authority",
+          "definition": "The single source of truth for operator settings.",
+          "relatedTerms": ["source-of-truth", "persisted-state", "state-drift"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "State Drift",
+          "definition": "UI state and stored state falling out of sync.",
+          "relatedTerms": ["reconciliation", "hydration", "race-in-hydration"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Race in Hydration",
+          "definition": "UI shows a temporary value, then gets overwritten by later authoritative state.",
+          "relatedTerms": ["state-drift", "hydration", "race-condition"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Safe Settings Snapshot",
+          "definition": "A sanitized export of current settings with sensitive values removed or minimized.",
+          "relatedTerms": ["redaction", "diagnostic-bundle", "state-snapshot"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Data Contract",
+          "definition": "The expected shape of data exchanged between components.",
+          "relatedTerms": ["schema", "contract", "interface"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Typed Summary",
+          "definition": "A structured export with defined fields, types, and data shape.",
+          "relatedTerms": ["data-contract", "schema", "diagnostic-bundle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "State",
+          "definition": "The current condition or value of a component or system at a given moment.",
+          "relatedTerms": ["application-state", "runtime-state", "persisted-state"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Application State",
+          "definition": "The complete set of data that defines the current state of the application.",
+          "relatedTerms": ["state", "runtime-state", "hydration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Runtime State",
+          "definition": "State held in memory during execution, reflecting current operation.",
+          "relatedTerms": ["state", "ephemeral-state", "application-state"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Session State",
+          "definition": "State scoped to a single user session or tab.",
+          "relatedTerms": ["state", "session-lease", "chrome-storage-session"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Shared State",
+          "definition": "State accessible by multiple components simultaneously.",
+          "relatedTerms": ["state", "source-of-truth", "race-condition"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Local State",
+          "definition": "State private to a single component or module.",
+          "relatedTerms": ["state", "encapsulation", "ephemeral-state"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Global State",
+          "definition": "State accessible across the entire application.",
+          "relatedTerms": ["shared-state", "source-of-truth", "global-retention"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Synchronization",
+          "definition": "Ensuring multiple representations of state agree with each other.",
+          "relatedTerms": ["state-drift", "reconciliation", "hydration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Drift",
+          "definition": "The divergence between two representations of the same state over time.",
+          "relatedTerms": ["state-drift", "synchronization", "reconciliation"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Reconciliation",
+          "definition": "The process of resolving differences between diverged state representations.",
+          "relatedTerms": ["drift", "synchronization", "state-drift"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Snapshot",
+          "definition": "A point-in-time capture of system or component state.",
+          "relatedTerms": ["state-snapshot", "checkpoint", "heap-snapshot"],
+          "applicablePhases": ["implement", "operate", "diagnose"]
+        },
+        {
+          "term": "Serialization",
+          "definition": "Converting structured data to a storable or transferable format.",
+          "relatedTerms": ["deserialization", "structured-clone", "serialization-overhead"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Deserialization",
+          "definition": "Converting stored or transferred data back into its structured form.",
+          "relatedTerms": ["serialization", "hydration", "structured-clone"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Cache",
+          "definition": "Stored data kept for faster future access, avoiding repeated computation or retrieval.",
+          "relatedTerms": ["cache-invalidation", "buffer", "memory-pool"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Buffer",
+          "definition": "A temporary memory area that holds data before it is processed or written.",
+          "relatedTerms": ["ring-buffer", "flush", "batching"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Ring Buffer",
+          "definition": "A fixed-size circular buffer that overwrites old entries when full.",
+          "relatedTerms": ["buffer", "pruning", "flush"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Queue",
+          "definition": "An ordered collection of items waiting to be processed.",
+          "relatedTerms": ["buffer", "task-queue", "backpressure"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Backlog",
+          "definition": "Accumulated work that has not yet been processed.",
+          "relatedTerms": ["queue", "queue-depth", "backpressure"],
+          "applicablePhases": ["architect", "operate"]
+        },
+        {
+          "term": "Retention",
+          "definition": "Keeping data in storage for a defined period before expiration.",
+          "relatedTerms": ["expiration", "eviction", "persisted-state"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Expiration",
+          "definition": "The automatic removal or invalidation of data after a time period or condition.",
+          "relatedTerms": ["retention", "eviction", "cache-invalidation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Eviction",
+          "definition": "Removing items from a cache or buffer to make space for new entries.",
+          "relatedTerms": ["expiration", "pruning", "cache"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Persistence",
+          "definition": "The ability of data to survive beyond the current execution context.",
+          "relatedTerms": ["persisted-state", "chrome-storage-local", "serialization"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Storage Adapter",
+          "definition": "A component that abstracts the details of a specific storage mechanism.",
+          "relatedTerms": ["adapter", "chrome-storage-local", "persistence"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "State Machine",
+          "definition": "A model that defines valid states and the transitions between them.",
+          "relatedTerms": ["workflow", "lifecycle", "watch-state"],
+          "applicablePhases": ["architect", "implement"]
+        }
+      ]
+    },
+    {
+      "id": "events-and-messaging",
+      "name": "Events & Messaging",
+      "description": "How signals, commands, and notifications flow between components",
+      "terms": [
+        {
+          "term": "Event",
+          "definition": "A signal indicating that something happened in the system.",
+          "relatedTerms": ["signal", "trigger", "event-path"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Signal",
+          "definition": "A class of telemetry data such as logs, metrics, or traces.",
+          "relatedTerms": ["event", "telemetry", "notification"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Trigger",
+          "definition": "A condition or event that initiates an action or workflow.",
+          "relatedTerms": ["event", "hook", "event-driven-detection"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Notification",
+          "definition": "A message informing a component or user that something occurred.",
+          "relatedTerms": ["event", "signal", "visual-notification"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Callback",
+          "definition": "A function passed to another component to be invoked when a condition is met.",
+          "relatedTerms": ["handler", "listener", "hook"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Message",
+          "definition": "A discrete unit of data sent from one component to another.",
+          "relatedTerms": ["message-bus", "message-routing", "event"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Event Bus",
+          "definition": "A shared channel through which components publish and subscribe to events.",
+          "relatedTerms": ["message-bus", "publish-subscribe", "event"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Publish/Subscribe",
+          "definition": "A messaging pattern where publishers emit events and subscribers receive those they registered for.",
+          "relatedTerms": ["event-bus", "subscription", "listener"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Dispatch",
+          "definition": "Sending a message or event to its intended recipient or handler.",
+          "relatedTerms": ["emit", "message-routing", "event-bus"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Emit",
+          "definition": "Producing and sending an event or signal from a component.",
+          "relatedTerms": ["dispatch", "publish-subscribe", "event-path"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Subscription",
+          "definition": "Registration to receive events or messages matching specific criteria.",
+          "relatedTerms": ["listener", "publish-subscribe", "subscription-leak"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Listener",
+          "definition": "A component or function registered to receive specific events.",
+          "relatedTerms": ["subscription", "callback", "handler"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Observer",
+          "definition": "A component that watches for state changes or events and reacts accordingly.",
+          "relatedTerms": ["mutation-observer", "listener", "dom-observation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Hook",
+          "definition": "An extension point that allows external code to react to lifecycle events.",
+          "relatedTerms": ["callback", "listener", "trigger"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Handshake",
+          "definition": "A mutual acknowledgment exchange establishing communication between two components.",
+          "relatedTerms": ["acknowledgment", "connection-state", "websocket"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Heartbeat",
+          "definition": "A periodic signal confirming that a runtime or component is still alive.",
+          "relatedTerms": ["health-check", "watchdog", "timeout"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Acknowledgment",
+          "definition": "A response confirming receipt or successful processing of a message.",
+          "relatedTerms": ["handshake", "message", "deduplication"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Correlation ID",
+          "definition": "An ID used to connect related events across components.",
+          "relatedTerms": ["run-id", "session-id", "traceability"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Session ID",
+          "definition": "An identifier for a specific watch or claim session.",
+          "relatedTerms": ["run-id", "correlation-id", "session-state"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Run ID",
+          "definition": "A unique identifier tying together logs, metrics, and DOM delta entries for a single run.",
+          "relatedTerms": ["session-id", "correlation-id", "run-log"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Event Stream",
+          "definition": "A continuous sequence of events emitted over time.",
+          "relatedTerms": ["event", "stream-processing", "subscription"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Replay",
+          "definition": "Re-processing previously captured events to reproduce behavior or recover state.",
+          "relatedTerms": ["event-stream", "fixture-replay", "deduplication"],
+          "applicablePhases": ["implement", "verify"]
+        },
+        {
+          "term": "Deduplication",
+          "definition": "Preventing the same session from being claimed or processed twice.",
+          "relatedTerms": ["idempotency", "ineligible-guard", "acknowledgment"],
+          "applicablePhases": ["architect", "implement"]
+        }
+      ]
+    },
+    {
+      "id": "detection-and-automation",
+      "name": "Detection & Automation",
+      "description": "How the system monitors page state and executes automated claim actions",
+      "terms": [
+        {
+          "term": "Watch Mode",
+          "definition": "The runtime behavior that continuously looks for claimable opportunities.",
+          "relatedTerms": ["watch-state", "mutation-first-detection", "dom-observation"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Mutation-First Detection",
+          "definition": "Detection driven primarily by DOM mutation events rather than only timed polling.",
+          "relatedTerms": ["mutation-observer", "event-driven-detection", "dom-observation"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Polling",
+          "definition": "Checking repeatedly on a timer for a condition or change.",
+          "relatedTerms": ["fixed-cadence-polling", "event-driven-detection", "api-polling"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Fixed-Cadence Polling",
+          "definition": "Polling at a regular interval regardless of detected activity.",
+          "relatedTerms": ["polling", "polling-interval-tuning", "rest-polling"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Event-Driven Detection",
+          "definition": "Reacting to changes or signals rather than repeatedly checking.",
+          "relatedTerms": ["mutation-first-detection", "mutation-observer", "polling"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "DOM Observation",
+          "definition": "Watching page structure or attributes for changes.",
+          "relatedTerms": ["mutation-observer", "mutation-first-detection", "container-resolution"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "MutationObserver",
+          "definition": "Browser API for DOM change detection that fires callbacks when nodes are added, removed, or modified.",
+          "relatedTerms": ["dom-observation", "mutation-first-detection", "observer-churn"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Container Resolution",
+          "definition": "Locating the correct region of the page to watch.",
+          "relatedTerms": ["watch-container", "candidate-discovery", "domain-watch-adapter"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Watch Container",
+          "definition": "The specific part of the page being monitored for claimable candidates.",
+          "relatedTerms": ["container-resolution", "dom-observation", "scoped-overlay"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Candidate Discovery",
+          "definition": "Identifying possible buttons or elements to act on.",
+          "relatedTerms": ["candidate-filtering", "container-resolution", "keyword-filter"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Candidate Filtering",
+          "definition": "Removing false positives using keywords and rules.",
+          "relatedTerms": ["candidate-discovery", "keyword-filter", "no-data-state-detection"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Keyword Filter",
+          "definition": "A text-based matching heuristic used to identify or exclude candidates.",
+          "relatedTerms": ["candidate-filtering", "candidate-discovery", "domain-watch-adapter"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "No-Data State Detection",
+          "definition": "Recognizing empty-state UIs such as 'No Data Available' to avoid false candidates.",
+          "relatedTerms": ["candidate-filtering", "dom-observation", "watch-mode"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Domain Watch Adapter",
+          "definition": "Platform-specific logic for resolving containers and candidates on a given site.",
+          "relatedTerms": ["adapter", "container-resolution", "platform-adapter"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Claim Executor",
+          "definition": "Component that performs the actual click or claim strategy.",
+          "relatedTerms": ["direct-click", "selector-refresh-click", "coordinate-click"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Direct Click",
+          "definition": "Acting on the originally detected element without reacquiring it.",
+          "relatedTerms": ["claim-executor", "selector-refresh-click", "stale-element"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Selector-Refresh Click",
+          "definition": "Reacquiring a fresh element from a selector before clicking to avoid stale references.",
+          "relatedTerms": ["direct-click", "stale-element", "claim-executor"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Coordinate Click",
+          "definition": "Clicking by screen or page position as a fallback when element references are unavailable.",
+          "relatedTerms": ["claim-executor", "fallback-strategy", "direct-click"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Fallback Strategy",
+          "definition": "Backup logic executed when the primary action fails.",
+          "relatedTerms": ["coordinate-click", "stale-element", "graceful-degradation"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Stale Element",
+          "definition": "An element handle that no longer points to a live DOM node.",
+          "relatedTerms": ["dom-replacement", "selector-refresh-click", "race-condition"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "DOM Replacement",
+          "definition": "A reactive UI swapping out elements during updates, causing stale element references.",
+          "relatedTerms": ["stale-element", "mutation-observer", "dom-observation"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Race Condition",
+          "definition": "System correctness depends on timing; for example, a button can disappear between detection and click.",
+          "relatedTerms": ["stale-element", "timing-window", "idempotency"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Cooldown Suppression",
+          "definition": "Temporarily suppressing repeated attempts after a recent detection or failure.",
+          "relatedTerms": ["cooldown", "debounce", "fallback-strategy"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Scoped Overlay",
+          "definition": "An overlay bounded to the watched container instead of the whole viewport.",
+          "relatedTerms": ["full-viewport-overlay", "watch-container", "operator-visible-behavior"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Full-Viewport Overlay",
+          "definition": "An overlay covering the entire page or tab.",
+          "relatedTerms": ["scoped-overlay", "operator-visible-behavior", "watch-container"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Teardown",
+          "definition": "Fully stopping observers, overlays, timers, and leases for a watch session.",
+          "relatedTerms": ["navigation-unmount", "teardown-failure", "cleanup"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Navigation Unmount",
+          "definition": "Removing watch UI and runtime state on page navigation.",
+          "relatedTerms": ["teardown", "cleanup", "navigation-race"],
+          "applicablePhases": ["implement", "operate"]
+        }
+      ]
+    },
+    {
+      "id": "observability-and-diagnostics",
+      "name": "Observability & Diagnostics",
+      "description": "Telemetry, logging, tracing, metrics, and diagnostic tooling for understanding runtime behavior",
+      "terms": [
+        {
+          "term": "Observability",
+          "definition": "The ability to understand internal system behavior from external outputs like logs, metrics, and traces.",
+          "relatedTerms": ["telemetry", "instrumentation", "diagnostics"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Telemetry",
+          "definition": "Machine-readable runtime signals collected from the system.",
+          "relatedTerms": ["observability", "structured-logging", "metrics"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Structured Logging",
+          "definition": "Logs written as consistent fields instead of free-form text.",
+          "relatedTerms": ["run-log", "log-schema", "log-level"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Run Log",
+          "definition": "Log stream for a single watch, test, or export run.",
+          "relatedTerms": ["run-id", "structured-logging", "diagnostic-bundle"],
+          "applicablePhases": ["implement", "operate", "diagnose"]
+        },
+        {
+          "term": "Run ID",
+          "definition": "Unique identifier tying together logs, metrics, and DOM delta entries for a single run.",
+          "relatedTerms": ["session-id", "correlation-id", "run-log"],
+          "applicablePhases": ["implement", "operate", "diagnose"]
+        },
+        {
+          "term": "Metrics",
+          "definition": "Numeric measurements such as counts, timings, errors, or throughput.",
+          "relatedTerms": ["telemetry", "latency", "throughput"],
+          "applicablePhases": ["implement", "operate", "diagnose"]
+        },
+        {
+          "term": "Diagnostic Bundle",
+          "definition": "Collected artifacts for later review: state, logs, metrics, DOM changes, and summary.",
+          "relatedTerms": ["export-bundle", "run-log", "safe-settings-snapshot"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Diagnostics Reset",
+          "definition": "Clearing old telemetry so a new run starts with coherent data.",
+          "relatedTerms": ["diagnostic-bundle", "run-log", "run-id"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "DOM Delta Capture",
+          "definition": "Recording meaningful DOM changes over time for diagnostic review.",
+          "relatedTerms": ["mutation-record", "attribute-diff", "style-diff"],
+          "applicablePhases": ["implement", "operate", "diagnose"]
+        },
+        {
+          "term": "Mutation Record",
+          "definition": "One observed DOM change entry produced by the MutationObserver.",
+          "relatedTerms": ["dom-delta-capture", "mutation-observer", "attribute-diff"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Attribute Diff",
+          "definition": "The record of which attribute values changed between two observed states.",
+          "relatedTerms": ["mutation-record", "style-diff", "dom-delta-capture"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Style Diff",
+          "definition": "The record of which CSS or computed style properties changed.",
+          "relatedTerms": ["attribute-diff", "mutation-record", "dom-delta-capture"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "State Snapshot",
+          "definition": "A point-in-time picture of current system or page state.",
+          "relatedTerms": ["snapshot", "diagnostic-bundle", "heap-snapshot"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Traceability",
+          "definition": "The ability to connect an outcome back to the events that caused it.",
+          "relatedTerms": ["correlation-id", "run-id", "observability"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Instrumentation",
+          "definition": "Adding code to emit telemetry such as logs, metrics, and traces.",
+          "relatedTerms": ["telemetry", "observability", "structured-logging"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Export Coordination",
+          "definition": "Ensuring exported logs, metrics, and state all correspond to the same run.",
+          "relatedTerms": ["diagnostic-bundle", "run-id", "correlation-id"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Redaction",
+          "definition": "Removing or masking secrets and sensitive data before export.",
+          "relatedTerms": ["safe-export", "sanitization", "diagnostic-bundle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Log Schema",
+          "definition": "The defined structure and fields for a log entry.",
+          "relatedTerms": ["structured-logging", "data-contract", "schema"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Log Level",
+          "definition": "A severity classification for log entries such as debug, info, warn, or error.",
+          "relatedTerms": ["structured-logging", "log-schema", "run-log"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Trace",
+          "definition": "A record of an end-to-end execution path through the system.",
+          "relatedTerms": ["span", "traceability", "correlation-id"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Span",
+          "definition": "A named, timed operation representing one step within a trace.",
+          "relatedTerms": ["trace", "traceability", "latency"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Audit Trail",
+          "definition": "A chronological record of actions and events for accountability and forensics.",
+          "relatedTerms": ["run-log", "traceability", "structured-logging"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Signal Quality",
+          "definition": "The usefulness and accuracy of telemetry signals relative to noise.",
+          "relatedTerms": ["noise", "signal", "cardinality"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Noise",
+          "definition": "Telemetry data that obscures useful signals without adding diagnostic value.",
+          "relatedTerms": ["signal-quality", "sampling", "pruning"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Cardinality",
+          "definition": "The number of distinct values a dimension or label can take, affecting storage and query cost.",
+          "relatedTerms": ["metrics", "sampling", "signal-quality"],
+          "applicablePhases": ["architect", "operate"]
+        },
+        {
+          "term": "Sampling",
+          "definition": "Recording only a subset of events to reduce volume while preserving signal.",
+          "relatedTerms": ["noise", "cardinality", "pruning"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Correlation",
+          "definition": "Linking related events or signals across components using shared identifiers.",
+          "relatedTerms": ["correlation-id", "traceability", "run-id"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Context Propagation",
+          "definition": "Passing trace or correlation context along with requests across component boundaries.",
+          "relatedTerms": ["correlation-id", "trace", "traceability"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Sanitization",
+          "definition": "Cleaning data to remove unsafe or sensitive content before processing or export.",
+          "relatedTerms": ["redaction", "safe-export", "safe-settings-snapshot"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Forensics",
+          "definition": "Post-incident investigation using logs, traces, and captured state.",
+          "relatedTerms": ["audit-trail", "postmortem", "diagnostic-bundle"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Postmortem",
+          "definition": "A structured review of an incident to identify root cause and prevent recurrence.",
+          "relatedTerms": ["forensics", "root-cause-analysis", "diagnostics"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Root Cause Analysis",
+          "definition": "Investigation to identify the fundamental cause of a failure.",
+          "relatedTerms": ["postmortem", "forensics", "symptom"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Symptom",
+          "definition": "An observable effect of an underlying problem.",
+          "relatedTerms": ["root-cause-analysis", "indicator", "diagnostics"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Indicator",
+          "definition": "A measurable signal used to assess system health.",
+          "relatedTerms": ["leading-indicator", "lagging-indicator", "metrics"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Leading Indicator",
+          "definition": "A signal that predicts future problems before they become failures.",
+          "relatedTerms": ["indicator", "lagging-indicator", "health-check"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Lagging Indicator",
+          "definition": "A signal that reflects conditions after they have already occurred.",
+          "relatedTerms": ["indicator", "leading-indicator", "postmortem"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Health Check",
+          "definition": "A test or probe confirming that a component is running and functional.",
+          "relatedTerms": ["heartbeat", "watchdog", "status-surface"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Status Surface",
+          "definition": "A UI or API endpoint that exposes current system health and operational state.",
+          "relatedTerms": ["health-check", "operator-console", "observability"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Diagnostics",
+          "definition": "The tools, processes, and data used to investigate and understand system behavior.",
+          "relatedTerms": ["observability", "diagnostic-bundle", "forensics"],
+          "applicablePhases": ["operate", "diagnose"]
+        }
+      ]
+    },
+    {
+      "id": "performance-and-capacity",
+      "name": "Performance & Capacity",
+      "description": "Efficiency, resource usage, throughput, latency, and stability under load",
+      "terms": [
+        {
+          "term": "Performance",
+          "definition": "How efficiently the system uses CPU, memory, storage, and time.",
+          "relatedTerms": ["latency", "throughput", "resource-ceiling"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Latency",
+          "definition": "Delay between input and result.",
+          "relatedTerms": ["detection-latency", "claim-latency", "response-time"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Detection Latency",
+          "definition": "Delay between an opportunity appearing and the system noticing it.",
+          "relatedTerms": ["latency", "claim-latency", "mutation-first-detection"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Claim Latency",
+          "definition": "Delay between detection and the actual claim attempt.",
+          "relatedTerms": ["detection-latency", "latency", "claim-executor"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Throughput",
+          "definition": "Amount of work the system can process in a time window.",
+          "relatedTerms": ["latency", "capacity", "bottleneck"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Write Amplification",
+          "definition": "Too many storage writes caused by logging or repeated state updates.",
+          "relatedTerms": ["storage-write-amplification", "log-churn", "state-churn"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Memory Leak",
+          "definition": "Memory that keeps growing because objects or resources are not released.",
+          "relatedTerms": ["retained-memory", "listener-leak", "teardown-failure"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Churn",
+          "definition": "Excessive repeated work with little value, such as constant re-renders or repeated observer callbacks.",
+          "relatedTerms": ["observer-churn", "log-churn", "state-churn"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Observer Churn",
+          "definition": "Too many mutation callbacks or re-arm cycles overwhelming the system.",
+          "relatedTerms": ["churn", "mutation-observer", "event-storm"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Log Churn",
+          "definition": "Too many logs written too frequently, causing write amplification.",
+          "relatedTerms": ["churn", "write-amplification", "sampling"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "State Churn",
+          "definition": "State changes happening excessively or redundantly.",
+          "relatedTerms": ["churn", "write-amplification", "debounce"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Event Storm",
+          "definition": "A burst of events large enough to overwhelm the runtime.",
+          "relatedTerms": ["observer-churn", "backpressure", "coalescing"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Browser Jank",
+          "definition": "Visible sluggishness caused by main-thread or extension overload.",
+          "relatedTerms": ["jank", "main-thread-blocking", "gc-pressure"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Coalescing",
+          "definition": "Merging many similar rapid events into one update.",
+          "relatedTerms": ["batching", "debounce", "event-storm"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Batching",
+          "definition": "Grouping multiple items into fewer writes or operations.",
+          "relatedTerms": ["coalescing", "flush", "buffer"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Flush",
+          "definition": "Writing buffered data to storage or output.",
+          "relatedTerms": ["buffer", "batching", "ring-buffer"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Pruning",
+          "definition": "Removing low-value or old events to cap memory or storage usage.",
+          "relatedTerms": ["eviction", "resource-ceiling", "ring-buffer"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Resource Ceiling",
+          "definition": "An explicit cap on memory, logs, entries, or processing rate.",
+          "relatedTerms": ["memory-ceiling", "backpressure", "pruning"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Backpressure",
+          "definition": "Slowing intake or work when the system is overloaded.",
+          "relatedTerms": ["resource-ceiling", "throttle", "queue-depth"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Debounce",
+          "definition": "Wait for activity to settle before running once.",
+          "relatedTerms": ["throttle", "coalescing", "state-churn"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Throttle",
+          "definition": "Limit how often something may run in a time window.",
+          "relatedTerms": ["debounce", "rate-limiting", "backpressure"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Backoff",
+          "definition": "Progressively waiting longer after repeated failure.",
+          "relatedTerms": ["exponential-backoff", "retry", "jitter"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Exponential Backoff",
+          "definition": "Increasing wait times multiplicatively after each failure.",
+          "relatedTerms": ["backoff", "jitter", "retry-policy"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Jitter",
+          "definition": "Random variation added to timings to avoid synchronized retries.",
+          "relatedTerms": ["exponential-backoff", "backoff", "retry"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Timeout",
+          "definition": "Maximum allowed time for an operation before it is considered failed.",
+          "relatedTerms": ["heartbeat", "retry", "recovery-path"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Recovery Path",
+          "definition": "The sequence of steps followed after a failure to restore normal operation.",
+          "relatedTerms": ["graceful-failure", "graceful-degradation", "rehydration"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Graceful Failure",
+          "definition": "Failing in a controlled, diagnosable way without crashing or corrupting state.",
+          "relatedTerms": ["graceful-degradation", "recovery-path", "safe-mode"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Graceful Degradation",
+          "definition": "Continuing to work with reduced capability when part of the system fails.",
+          "relatedTerms": ["graceful-failure", "fallback-strategy", "degraded-mode"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Response Time",
+          "definition": "The total time from a request being issued to a response being received.",
+          "relatedTerms": ["latency", "tail-latency", "throughput"],
+          "applicablePhases": ["verify", "operate"]
+        },
+        {
+          "term": "CPU Utilization",
+          "definition": "The fraction of CPU capacity being used.",
+          "relatedTerms": ["performance", "thrashing", "bottleneck"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Memory Usage",
+          "definition": "The amount of memory currently consumed by the process.",
+          "relatedTerms": ["heap-growth", "memory-leak", "memory-footprint"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Heap Growth",
+          "definition": "The heap size increasing over time.",
+          "relatedTerms": ["memory-leak", "unbounded-growth", "allocation-pressure"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Contention",
+          "definition": "Multiple components competing for the same resource simultaneously.",
+          "relatedTerms": ["lock-contention", "deadlock", "bottleneck"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Bottleneck",
+          "definition": "The component or resource that limits overall system throughput.",
+          "relatedTerms": ["contention", "hot-path", "saturation"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Capacity",
+          "definition": "The maximum amount of work the system can handle.",
+          "relatedTerms": ["throughput", "resource-ceiling", "capacity-planning"],
+          "applicablePhases": ["architect", "operate"]
+        },
+        {
+          "term": "Saturation",
+          "definition": "A resource is operating at or near its maximum capacity.",
+          "relatedTerms": ["capacity", "bottleneck", "resource-saturation"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Thrashing",
+          "definition": "Spending too much time managing overhead such as GC or memory rather than doing useful work.",
+          "relatedTerms": ["gc-pressure", "churn", "jank"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Freeze",
+          "definition": "The UI or runtime stops responding entirely.",
+          "relatedTerms": ["jank", "main-thread-blocking", "deadlock"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Stall",
+          "definition": "Execution pauses or slows unexpectedly, often due to contention or I/O.",
+          "relatedTerms": ["freeze", "deadlock", "livelock"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Deadlock",
+          "definition": "Two or more components are each waiting for the other to release a resource.",
+          "relatedTerms": ["livelock", "starvation", "lock-contention"],
+          "applicablePhases": ["architect", "verify", "diagnose"]
+        },
+        {
+          "term": "Livelock",
+          "definition": "Components are active but make no progress because they keep reacting to each other.",
+          "relatedTerms": ["deadlock", "starvation", "race-condition"],
+          "applicablePhases": ["architect", "verify", "diagnose"]
+        },
+        {
+          "term": "Starvation",
+          "definition": "A component is perpetually denied the resources it needs to make progress.",
+          "relatedTerms": ["deadlock", "livelock", "priority-scheduling"],
+          "applicablePhases": ["architect", "verify", "diagnose"]
+        },
+        {
+          "term": "Polling Interval Tuning",
+          "definition": "Balancing polling speed against server and browser load.",
+          "relatedTerms": ["fixed-cadence-polling", "backoff", "throttle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Allocation Pressure",
+          "definition": "Stress on the memory allocator caused by frequent object creation.",
+          "relatedTerms": ["object-churn", "gc-pressure", "heap-growth"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "GC Pressure",
+          "definition": "The workload imposed on the garbage collector by heavy allocation patterns.",
+          "relatedTerms": ["allocation-pressure", "thrashing", "pause-time"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Main-Thread Blocking",
+          "definition": "The UI thread becoming unresponsive because intensive work is running on it.",
+          "relatedTerms": ["jank", "freeze", "gc-pressure"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Hot Path",
+          "definition": "The most performance-sensitive execution route in the system.",
+          "relatedTerms": ["critical-path", "bottleneck", "throughput"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Critical Path",
+          "definition": "The minimum sequence of operations that determines total completion time.",
+          "relatedTerms": ["hot-path", "throughput", "latency"],
+          "applicablePhases": ["verify", "operate"]
+        },
+        {
+          "term": "Shedding",
+          "definition": "Dropping low-priority work under stress to protect system stability.",
+          "relatedTerms": ["load-shedding", "backpressure", "resource-ceiling"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Cooldown",
+          "definition": "A temporary pause after an action to prevent excessive repetition.",
+          "relatedTerms": ["cooldown-suppression", "debounce", "throttle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Signal-to-Noise Ratio",
+          "definition": "The proportion of useful signal relative to irrelevant noise in telemetry data.",
+          "relatedTerms": ["noise", "signal-quality", "sampling"],
+          "applicablePhases": ["operate", "diagnose"]
+        }
+      ]
+    },
+    {
+      "id": "reliability-and-failure",
+      "name": "Reliability & Failure",
+      "description": "Fault tolerance, error handling, recovery, and system resilience patterns",
+      "terms": [
+        {
+          "term": "Reliability",
+          "definition": "The probability that the system performs its required function under stated conditions.",
+          "relatedTerms": ["resilience", "fault-tolerance", "graceful-degradation"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Resilience",
+          "definition": "The ability to recover quickly from failures and continue operating.",
+          "relatedTerms": ["reliability", "fault-tolerance", "recovery"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Robustness",
+          "definition": "The ability to handle unexpected inputs and edge cases without failing.",
+          "relatedTerms": ["resilience", "fault-tolerance", "graceful-failure"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Fault Tolerance",
+          "definition": "The ability to continue operation in the presence of component failures.",
+          "relatedTerms": ["reliability", "graceful-degradation", "fallback"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Retry",
+          "definition": "Attempting a failed operation again after a delay.",
+          "relatedTerms": ["retry-policy", "backoff", "timeout"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Retry Policy",
+          "definition": "Rules governing when and how many times a failed operation is retried.",
+          "relatedTerms": ["retry", "backoff", "exponential-backoff"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Circuit Breaker",
+          "definition": "A pattern that temporarily stops repeated failing calls to allow recovery.",
+          "relatedTerms": ["fallback", "retry-policy", "graceful-degradation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Failover",
+          "definition": "Switching to a backup component or path when the primary fails.",
+          "relatedTerms": ["fallback", "circuit-breaker", "fault-tolerance"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Fallback",
+          "definition": "An alternative execution path used when the primary path fails.",
+          "relatedTerms": ["fallback-strategy", "circuit-breaker", "failover"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Error Budget",
+          "definition": "The allowable amount of failure before reliability commitments are breached.",
+          "relatedTerms": ["reliability", "graceful-degradation"],
+          "applicablePhases": ["architect", "operate"]
+        },
+        {
+          "term": "Failure Mode",
+          "definition": "The specific way a component can fail.",
+          "relatedTerms": ["blast-radius", "fault-tolerance", "degraded-mode"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Degraded Mode",
+          "definition": "Operating with reduced functionality after a partial failure.",
+          "relatedTerms": ["graceful-degradation", "failure-mode", "safe-mode"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Safe Mode",
+          "definition": "A restricted operational state that minimizes risk during failure.",
+          "relatedTerms": ["degraded-mode", "graceful-failure", "guardrail"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Crash Loop",
+          "definition": "A component repeatedly failing and restarting without recovering.",
+          "relatedTerms": ["retry", "failure-mode", "recovery"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Orphaned State",
+          "definition": "State left behind after a component was torn down or failed unexpectedly.",
+          "relatedTerms": ["teardown-failure", "cleanup", "orphaned-object"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Partial Failure",
+          "definition": "Only part of the system fails while the rest continues operating.",
+          "relatedTerms": ["failure-mode", "blast-radius", "graceful-degradation"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Consistency",
+          "definition": "All components see the same data at the same logical time.",
+          "relatedTerms": ["eventual-consistency", "idempotency", "source-of-truth"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Eventual Consistency",
+          "definition": "The system will become consistent over time, but may be temporarily inconsistent.",
+          "relatedTerms": ["consistency", "synchronization", "reconciliation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Reentrancy",
+          "definition": "A function or operation that can be safely called while it is still running.",
+          "relatedTerms": ["idempotency", "race-condition", "concurrency"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Determinism",
+          "definition": "Given the same inputs, the system always produces the same outputs.",
+          "relatedTerms": ["idempotency", "nondeterminism", "race-condition"],
+          "applicablePhases": ["architect", "verify"]
+        },
+        {
+          "term": "Nondeterminism",
+          "definition": "Behavior that varies based on timing, ordering, or external state.",
+          "relatedTerms": ["determinism", "race-condition", "jitter"],
+          "applicablePhases": ["architect", "verify", "diagnose"]
+        },
+        {
+          "term": "Stale State",
+          "definition": "State that no longer reflects current reality.",
+          "relatedTerms": ["stale-element", "state-drift", "stale-read"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Cleanup",
+          "definition": "Releasing resources, removing listeners, and resetting state after work completes.",
+          "relatedTerms": ["teardown", "teardown-failure", "orphaned-state"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Unmount",
+          "definition": "Removing a UI component or runtime observer from the active state.",
+          "relatedTerms": ["teardown", "navigation-unmount", "cleanup"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Recovery",
+          "definition": "Restoring normal operation after a failure.",
+          "relatedTerms": ["rehydration", "recovery-path", "graceful-failure"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Reconnect",
+          "definition": "Re-establishing a lost connection.",
+          "relatedTerms": ["websocket", "connection-state", "recovery"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Rollback",
+          "definition": "Reverting to a previous known-good state after a failed change.",
+          "relatedTerms": ["checkpoint", "release-checkpoint", "recovery"],
+          "applicablePhases": ["implement", "release", "operate"]
+        },
+        {
+          "term": "Self-Healing",
+          "definition": "Automatic detection and recovery from failures without human intervention.",
+          "relatedTerms": ["recovery", "health-check", "watchdog"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Watchdog",
+          "definition": "A component that monitors another and takes corrective action if it stops responding.",
+          "relatedTerms": ["heartbeat", "health-check", "self-healing"],
+          "applicablePhases": ["implement", "operate"]
+        }
+      ]
+    },
+    {
+      "id": "networking-and-realtime",
+      "name": "Networking & Realtime",
+      "description": "HTTP, WebSocket, polling, rate limits, and realtime data protocols",
+      "terms": [
+        {
+          "term": "API Polling",
+          "definition": "Checking a server endpoint repeatedly for updates.",
+          "relatedTerms": ["rest-polling", "websocket", "realtime-signaling"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "REST Polling",
+          "definition": "Repeated HTTP requests to REST-style endpoints to check for changes.",
+          "relatedTerms": ["api-polling", "fixed-cadence-polling", "adaptive-polling"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "WebSocket",
+          "definition": "A long-lived two-way connection for push-style updates without repeated polling.",
+          "relatedTerms": ["socket-monitor", "realtime-signaling", "reconnect"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Socket Monitor",
+          "definition": "Runtime that listens to socket events for changes.",
+          "relatedTerms": ["websocket", "realtime-signaling", "connection-state"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Realtime Signaling",
+          "definition": "Receiving updates as they happen rather than by repeated polling.",
+          "relatedTerms": ["websocket", "push-model", "socket-monitor"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Compare Mode",
+          "definition": "Observing two detection sources side-by-side to evaluate relative performance.",
+          "relatedTerms": ["race-mode", "api-polling", "websocket"],
+          "applicablePhases": ["implement", "verify"]
+        },
+        {
+          "term": "Race Mode",
+          "definition": "Comparing which detection or claim source is fastest.",
+          "relatedTerms": ["compare-mode", "claim-latency", "detection-latency"],
+          "applicablePhases": ["implement", "verify"]
+        },
+        {
+          "term": "Claim Verification Hop",
+          "definition": "Verifying claim eligibility immediately before the claim call.",
+          "relatedTerms": ["eligibility-check", "deduplication", "ineligible-guard"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Eligibility Check",
+          "definition": "Confirming a session can still be claimed before attempting.",
+          "relatedTerms": ["claim-verification-hop", "ineligible-guard", "deduplication"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Ineligible Guard",
+          "definition": "A block preventing repeated attempts on already-reassigned or invalid sessions.",
+          "relatedTerms": ["eligibility-check", "deduplication", "guardrail"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Rate Limit",
+          "definition": "A server-imposed cap on request frequency.",
+          "relatedTerms": ["429-handling", "retry-after-support", "throttle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "429 Handling",
+          "definition": "Logic for handling Too Many Requests responses from a server.",
+          "relatedTerms": ["rate-limit", "retry-after-support", "backoff"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Retry-After Support",
+          "definition": "Respecting server-provided retry timing in the Retry-After header.",
+          "relatedTerms": ["429-handling", "rate-limit", "backoff"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Token-Based Auth",
+          "definition": "Authenticating API calls with a token rather than credentials per request.",
+          "relatedTerms": ["auth-token", "header", "cookie"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Header",
+          "definition": "Metadata sent with an HTTP request or response.",
+          "relatedTerms": ["cookie", "auth-token", "request-metadata"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Cookie",
+          "definition": "Browser-managed state attached to requests when applicable.",
+          "relatedTerms": ["header", "session-cookie", "auth-token"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Session Tracking",
+          "definition": "Following the lifecycle of an accepted session through its states.",
+          "relatedTerms": ["session-state", "active-session-detection", "watch-state"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Active-Session Detection",
+          "definition": "Recognizing that the user is already in a live or assigned session.",
+          "relatedTerms": ["session-tracking", "eligibility-check", "ineligible-guard"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Request",
+          "definition": "A message sent from a client to a server asking for data or an action.",
+          "relatedTerms": ["response", "payload", "header"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Response",
+          "definition": "A message returned from a server to a client with a result or acknowledgment.",
+          "relatedTerms": ["request", "payload", "status-code"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Payload",
+          "definition": "The data content of a request or response.",
+          "relatedTerms": ["request", "response", "schema"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Status Code",
+          "definition": "A numeric code in an HTTP response indicating the outcome of the request.",
+          "relatedTerms": ["response", "429-handling"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Adaptive Polling",
+          "definition": "Polling that adjusts its interval based on activity or resource conditions.",
+          "relatedTerms": ["rest-polling", "polling-interval-tuning", "backoff"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Long Polling",
+          "definition": "An HTTP technique where the server holds the response until new data is available.",
+          "relatedTerms": ["api-polling", "websocket", "realtime-signaling"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Connection State",
+          "definition": "The current status of a network connection such as connecting, open, or closed.",
+          "relatedTerms": ["websocket", "reconnect", "socket-monitor"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Push Model",
+          "definition": "The server sends updates to the client without the client requesting them.",
+          "relatedTerms": ["websocket", "realtime-signaling", "pull-model"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Pull Model",
+          "definition": "The client requests updates from the server when it needs them.",
+          "relatedTerms": ["api-polling", "push-model", "rest-polling"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Endpoint",
+          "definition": "A specific URL or address at which a service can be reached.",
+          "relatedTerms": ["api-surface", "request", "integration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "API Surface",
+          "definition": "The set of all publicly available endpoints or interfaces a service exposes.",
+          "relatedTerms": ["endpoint", "interface", "surface-area"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Network Trace",
+          "definition": "A captured record of network requests and responses for diagnostic review.",
+          "relatedTerms": ["har", "diagnostic-bundle", "trace"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "HAR",
+          "definition": "HTTP Archive format: a standard JSON format for capturing HTTP session data.",
+          "relatedTerms": ["network-trace", "diagnostic-bundle"],
+          "applicablePhases": ["verify", "diagnose"]
+        }
+      ]
+    },
+    {
+      "id": "ui-and-ux",
+      "name": "UI, UX & Operator Workflow",
+      "description": "User interface patterns, operator controls, feedback, and browser rendering concepts",
+      "terms": [
+        {
+          "term": "Operator-Visible Behavior",
+          "definition": "Actions that are visible and understandable to the user with no hidden autonomous steps.",
+          "relatedTerms": ["consent-driven-workflow", "operator-console", "direct-claim-path"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Consent-Driven Workflow",
+          "definition": "Features that are explicitly enabled and controlled by the operator.",
+          "relatedTerms": ["feature-flag", "operator-visible-behavior", "guardrail"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Feature Flag",
+          "definition": "A switch that enables or disables a feature without removing code.",
+          "relatedTerms": ["flag-gated-tool", "dev-test-only-tool", "consent-driven-workflow"],
+          "applicablePhases": ["implement", "release"]
+        },
+        {
+          "term": "Flag-Gated Tool",
+          "definition": "A risky or experimental tool that stays off unless explicitly enabled via a feature flag.",
+          "relatedTerms": ["feature-flag", "risky-tools", "dev-test-only-tool"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Dev/Test-Only Tool",
+          "definition": "A feature intended for debugging or testing, not default production use.",
+          "relatedTerms": ["feature-flag", "flag-gated-tool", "test-harness"],
+          "applicablePhases": ["implement", "verify"]
+        },
+        {
+          "term": "Test Harness",
+          "definition": "Built-in UI or tools for exercising and validating system behavior.",
+          "relatedTerms": ["dev-test-only-tool", "regression-harness", "inspector"],
+          "applicablePhases": ["implement", "verify"]
+        },
+        {
+          "term": "Inspector",
+          "definition": "A UI for reviewing DOM, network, and interaction telemetry.",
+          "relatedTerms": ["test-harness", "diagnostic-bundle", "sidepanel"],
+          "applicablePhases": ["implement", "verify", "diagnose"]
+        },
+        {
+          "term": "Popout Window",
+          "definition": "A separate window that shares the same underlying state as the sidepanel.",
+          "relatedTerms": ["popup", "sidepanel", "operator-console"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Quick Action",
+          "definition": "A small operator-triggered action from popup or sidepanel.",
+          "relatedTerms": ["popup", "sidepanel", "operator-console"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Intuitive UX",
+          "definition": "UI that exposes the right controls in the right place with minimal confusion.",
+          "relatedTerms": ["information-architecture", "ux-affordance", "feedback-loop"],
+          "applicablePhases": ["discover", "architect"]
+        },
+        {
+          "term": "Information Architecture",
+          "definition": "How tabs, menus, and controls are organized in the UI.",
+          "relatedTerms": ["intuitive-ux", "ux-affordance", "operator-console"],
+          "applicablePhases": ["discover", "architect"]
+        },
+        {
+          "term": "Feedback Loop",
+          "definition": "How quickly the system informs the operator about what just happened.",
+          "relatedTerms": ["notification-chime", "visual-notification", "operator-visible-behavior"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Notification Chime",
+          "definition": "Audio feedback for important events.",
+          "relatedTerms": ["visual-notification", "feedback-loop", "operator-visible-behavior"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Visual Notification",
+          "definition": "Non-audio UI feedback for important events.",
+          "relatedTerms": ["notification-chime", "feedback-loop", "operator-visible-behavior"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Cursor Simulation",
+          "definition": "Visible pointer animation for dev/test demonstrations, treated as non-default in production.",
+          "relatedTerms": ["humanized-cursor-behavior", "dev-test-only-tool", "flag-gated-tool"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "DOM",
+          "definition": "The Document Object Model: the browser's in-memory tree representation of a page.",
+          "relatedTerms": ["dom-mutation", "dom-observation", "mutation-observer"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "DOM Mutation",
+          "definition": "A change to the DOM tree such as adding, removing, or modifying nodes.",
+          "relatedTerms": ["dom", "mutation-observer", "mutation-record"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "DOM Delta",
+          "definition": "The difference between two DOM states, captured for diagnostic review.",
+          "relatedTerms": ["dom-delta-capture", "mutation-record", "attribute-diff"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Observer Lifecycle",
+          "definition": "The connect, observe, disconnect, and reconnect sequence of a MutationObserver.",
+          "relatedTerms": ["mutation-observer", "teardown", "observer-leak"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Selector",
+          "definition": "A CSS or XPath expression used to locate DOM elements.",
+          "relatedTerms": ["selector-brittleness", "stale-element", "container-resolution"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Selector Brittleness",
+          "definition": "Selectors too dependent on fragile DOM structure that breaks with minor page changes.",
+          "relatedTerms": ["selector", "stale-element", "html-fixture-audit"],
+          "applicablePhases": ["implement", "verify"]
+        },
+        {
+          "term": "Overlay",
+          "definition": "A UI element placed on top of page content to indicate active state or block interaction.",
+          "relatedTerms": ["scoped-overlay", "full-viewport-overlay", "watch-container"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Render Loop",
+          "definition": "The cycle in which the browser recalculates layout and paints the screen.",
+          "relatedTerms": ["reflow", "repaint", "animation-frame"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Re-Render",
+          "definition": "A component updating its visual output in response to a state change.",
+          "relatedTerms": ["render-loop", "state-reflection", "observer-churn"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Repaint",
+          "definition": "The browser repainting pixels when visual properties change without affecting layout.",
+          "relatedTerms": ["reflow", "render-loop", "jank"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Reflow",
+          "definition": "The browser recalculating layout geometry when DOM structure or size changes.",
+          "relatedTerms": ["repaint", "render-loop", "jank"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Main Thread",
+          "definition": "The single thread in a browser tab that handles UI rendering and JavaScript execution.",
+          "relatedTerms": ["main-thread-blocking", "event-loop", "jank"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Event Loop",
+          "definition": "The runtime mechanism that schedules callbacks, tasks, and microtasks.",
+          "relatedTerms": ["microtask", "macrotask", "main-thread"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Microtask",
+          "definition": "High-priority queued work such as Promise callbacks, processed before the next task.",
+          "relatedTerms": ["event-loop", "macrotask", "promise"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Macrotask",
+          "definition": "Regular queued work such as timers and I/O events.",
+          "relatedTerms": ["event-loop", "microtask", "task-queue"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Animation Frame",
+          "definition": "A rendering opportunity synchronized with the browser's repaint cycle.",
+          "relatedTerms": ["render-loop", "repaint", "event-loop"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "View Model",
+          "definition": "The data and state prepared specifically for rendering in a UI component.",
+          "relatedTerms": ["state-reflection", "application-state", "hydration"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "UX Affordance",
+          "definition": "A design cue that signals to the user how an element can be interacted with.",
+          "relatedTerms": ["intuitive-ux", "information-architecture", "feedback-loop"],
+          "applicablePhases": ["discover", "architect"]
+        },
+        {
+          "term": "State Reflection",
+          "definition": "The UI accurately displaying current runtime state.",
+          "relatedTerms": ["view-model", "state-drift", "hydration"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Toggle Persistence",
+          "definition": "A UI toggle whose state is preserved across sessions.",
+          "relatedTerms": ["feature-flag", "persisted-state", "settings-authority"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Toolbar Action",
+          "definition": "An action triggered from the browser extension toolbar button.",
+          "relatedTerms": ["popup", "quick-action", "operator-console"],
+          "applicablePhases": ["implement"]
+        }
+      ]
+    },
+    {
+      "id": "safety-and-compliance",
+      "name": "Safety & Compliance",
+      "description": "Operational guardrails, safe behavior, transparency, and risk reduction",
+      "terms": [
+        {
+          "term": "Operator-Visible Claim Path",
+          "definition": "No hidden autonomous behavior; all claim actions remain visible to the user.",
+          "relatedTerms": ["direct-claim-path", "consent-driven-workflow", "guardrail"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Direct Claim Path",
+          "definition": "Claim logic acts directly rather than trying to imitate human behavior unnecessarily.",
+          "relatedTerms": ["operator-visible-claim-path", "claim-executor", "humanized-cursor-behavior"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Humanized Cursor Behavior",
+          "definition": "Simulated human-like mouse movement and click timing; treated as non-default and dev/test-oriented.",
+          "relatedTerms": ["cursor-simulation", "risky-tools", "direct-claim-path"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Risky Tools",
+          "definition": "Features like deep inspection or cursor simulation that require explicit opt-in.",
+          "relatedTerms": ["flag-gated-tool", "dev-test-only-tool", "guardrail"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Safe Export",
+          "definition": "A diagnostics bundle with sensitive values removed or minimized.",
+          "relatedTerms": ["redaction", "sanitization", "diagnostic-bundle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Workspace Preservation",
+          "definition": "A rule to not wipe or reset the user's existing working state.",
+          "relatedTerms": ["guardrail", "safe-mode", "constraint"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Release Checkpoint",
+          "definition": "The branch or HEAD used as the approved base for future work.",
+          "relatedTerms": ["checkpoint", "rollback", "phase-ledger"],
+          "applicablePhases": ["release"]
+        }
+      ]
+    },
+    {
+      "id": "testing-and-sdlc",
+      "name": "Testing & SDLC",
+      "description": "Software development lifecycle, testing strategies, verification, and delivery artifacts",
+      "terms": [
+        {
+          "term": "SDLC",
+          "definition": "Software Development Life Cycle: the stages of planning, building, validating, documenting, and releasing software.",
+          "relatedTerms": ["phase-ledger", "checkpoint", "verification-command-set"],
+          "applicablePhases": ["plan", "verify", "release"]
+        },
+        {
+          "term": "Phase Ledger",
+          "definition": "A branch-by-branch record of what each SDLC phase delivered.",
+          "relatedTerms": ["sdlc", "checkpoint", "handoff-docs"],
+          "applicablePhases": ["plan", "release"]
+        },
+        {
+          "term": "Checkpoint",
+          "definition": "A known good point in code, docs, or tests.",
+          "relatedTerms": ["release-checkpoint", "phase-ledger", "branch-chain"],
+          "applicablePhases": ["plan", "verify", "release"]
+        },
+        {
+          "term": "Verification Command Set",
+          "definition": "Standard commands that must pass before closing a work unit.",
+          "relatedTerms": ["typecheck", "unit-test", "e2e-test"],
+          "applicablePhases": ["plan", "verify"]
+        },
+        {
+          "term": "Typecheck",
+          "definition": "Compile-time validation of TypeScript types.",
+          "relatedTerms": ["verification-command-set", "unit-test", "build-artifact"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Unit Test",
+          "definition": "Tests that validate small modules in isolation.",
+          "relatedTerms": ["e2e-test", "regression-harness", "smoke-test"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "E2E Test",
+          "definition": "End-to-end tests that cover realistic user flows.",
+          "relatedTerms": ["unit-test", "smoke-test", "headed-mode"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Regression Harness",
+          "definition": "Tests built specifically to prevent old bugs from returning.",
+          "relatedTerms": ["unit-test", "fixture-replay", "smoke-test"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Fixture Replay",
+          "definition": "Using stored HTML or data to reproduce behavior deterministically.",
+          "relatedTerms": ["regression-harness", "html-fixture-audit", "replay"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Smoke Test",
+          "definition": "Basic test that checks the system starts and core paths work.",
+          "relatedTerms": ["unit-test", "e2e-test", "verification-command-set"],
+          "applicablePhases": ["verify", "release"]
+        },
+        {
+          "term": "Headed Mode",
+          "definition": "Running tests with the browser UI visible.",
+          "relatedTerms": ["headless-mode", "e2e-test", "test-harness"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Headless Mode",
+          "definition": "Running tests without a visible browser UI.",
+          "relatedTerms": ["headed-mode", "e2e-test"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Build Artifact",
+          "definition": "Generated output such as the extension bundle or compiled output.",
+          "relatedTerms": ["publication-artifact", "canonical-source", "release"],
+          "applicablePhases": ["verify", "release"]
+        },
+        {
+          "term": "Publication Artifact",
+          "definition": "An output document generated from source documents.",
+          "relatedTerms": ["build-artifact", "canonical-source", "handoff-docs"],
+          "applicablePhases": ["release"]
+        },
+        {
+          "term": "Canonical Source",
+          "definition": "The file that should be edited directly, as opposed to its generated output.",
+          "relatedTerms": ["build-artifact", "publication-artifact", "source-of-truth"],
+          "applicablePhases": ["implement", "release"]
+        },
+        {
+          "term": "Branch Chain",
+          "definition": "A sequence of dependent implementation branches.",
+          "relatedTerms": ["phase-ledger", "checkpoint", "handoff-docs"],
+          "applicablePhases": ["plan", "implement"]
+        },
+        {
+          "term": "Handoff Docs",
+          "definition": "Documents used to transfer work safely between sessions or contributors.",
+          "relatedTerms": ["sdlc", "phase-ledger", "runbook"],
+          "applicablePhases": ["plan", "release"]
+        },
+        {
+          "term": "Acceptance Criteria",
+          "definition": "The conditions that must be met for a work item to be considered complete.",
+          "relatedTerms": ["sdlc", "verification-command-set", "use-case"],
+          "applicablePhases": ["plan", "verify"]
+        },
+        {
+          "term": "Use Case",
+          "definition": "A specific scenario describing how an actor interacts with the system.",
+          "relatedTerms": ["acceptance-criteria", "requirements", "workflow"],
+          "applicablePhases": ["discover", "plan"]
+        },
+        {
+          "term": "Requirements",
+          "definition": "The stated needs a system must satisfy.",
+          "relatedTerms": ["acceptance-criteria", "use-case", "sdlc"],
+          "applicablePhases": ["discover", "plan"]
+        },
+        {
+          "term": "Test Case",
+          "definition": "A specific scenario with defined inputs, execution steps, and expected outcomes.",
+          "relatedTerms": ["acceptance-criteria", "unit-test", "e2e-test"],
+          "applicablePhases": ["plan", "verify"]
+        },
+        {
+          "term": "Regression",
+          "definition": "A change that causes previously passing behavior to fail.",
+          "relatedTerms": ["regression-harness", "checkpoint", "rollback"],
+          "applicablePhases": ["verify", "release"]
+        },
+        {
+          "term": "Validation",
+          "definition": "Confirming that the system does what the user needs.",
+          "relatedTerms": ["verification", "acceptance-criteria", "e2e-test"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Verification",
+          "definition": "Confirming that the system was built correctly against its specification.",
+          "relatedTerms": ["validation", "typecheck", "verification-command-set"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Fault Injection",
+          "definition": "Deliberately introducing failures to test system resilience.",
+          "relatedTerms": ["regression-harness", "e2e-test", "fault-tolerance"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Battle Testing",
+          "definition": "Running the system under realistic or stressful conditions to expose weaknesses.",
+          "relatedTerms": ["fault-injection", "smoke-test", "reliability"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "Release Gate",
+          "definition": "A required check that must pass before a release can proceed.",
+          "relatedTerms": ["verification-command-set", "checkpoint", "smoke-test"],
+          "applicablePhases": ["verify", "release"]
+        },
+        {
+          "term": "Change Set",
+          "definition": "The collection of changes included in a single commit or release.",
+          "relatedTerms": ["diff", "branch", "build-artifact"],
+          "applicablePhases": ["plan", "implement"]
+        },
+        {
+          "term": "Diff",
+          "definition": "The textual difference between two versions of a file or set of files.",
+          "relatedTerms": ["change-set", "attribute-diff", "branch"],
+          "applicablePhases": ["plan", "implement", "verify"]
+        },
+        {
+          "term": "SOP",
+          "definition": "Standard Operating Procedure: a documented set of steps for a recurring task.",
+          "relatedTerms": ["runbook", "handoff-docs", "workflow"],
+          "applicablePhases": ["plan", "release", "operate"]
+        },
+        {
+          "term": "Runbook",
+          "definition": "An operational guide documenting how to perform specific tasks or respond to incidents.",
+          "relatedTerms": ["sop", "handoff-docs", "postmortem"],
+          "applicablePhases": ["release", "operate"]
+        },
+        {
+          "term": "Integration Test",
+          "definition": "Tests that validate multiple components working together.",
+          "relatedTerms": ["unit-test", "e2e-test", "regression-harness"],
+          "applicablePhases": ["verify"]
+        },
+        {
+          "term": "HTML Fixture Audit",
+          "definition": "Validating selectors and fallback logic against saved page fragments.",
+          "relatedTerms": ["fixture-replay", "selector-brittleness", "regression-harness"],
+          "applicablePhases": ["verify"]
+        }
+      ]
+    },
+    {
+      "id": "platform-and-automation",
+      "name": "Platform & Automation",
+      "description": "Platform-specific adapters, provider registries, and automation capability concepts",
+      "terms": [
+        {
+          "term": "Blue Notary Provider",
+          "definition": "The Blue Notary-specific implementation of detection and claim logic.",
+          "relatedTerms": ["platform-adapter", "platform-registry", "domain-watch-adapter"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Proof Provider",
+          "definition": "The Proof-specific platform implementation of detection and claim logic.",
+          "relatedTerms": ["platform-adapter", "platform-registry", "domain-watch-adapter"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Platform Registry",
+          "definition": "A mapping of supported platforms to their provider implementations.",
+          "relatedTerms": ["registry", "platform-adapter", "platform-manager"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Multi-Platform UI",
+          "definition": "A shared operator shell that can control multiple platforms such as Blue Notary and Proof.",
+          "relatedTerms": ["platform-registry", "operator-console", "sidepanel"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Platform Manager",
+          "definition": "A service that instantiates and routes to the correct platform implementation.",
+          "relatedTerms": ["platform-registry", "manager", "provider"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "DOM-Delta Logger",
+          "definition": "A general-purpose change logger for any page that records DOM changes over time.",
+          "relatedTerms": ["dom-delta-capture", "mutation-record", "structured-logging"],
+          "applicablePhases": ["implement", "operate", "diagnose"]
+        },
+        {
+          "term": "Open-Call Capability",
+          "definition": "The set of mechanisms by which a platform exposes claimable sessions.",
+          "relatedTerms": ["open-call-api-event-strategy", "candidate-discovery", "watch-mode"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Open-Call API Event Strategy",
+          "definition": "A direct API-based claim path rather than UI button clicking.",
+          "relatedTerms": ["open-call-capability", "claim-executor", "api-polling"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Platform Adapter",
+          "definition": "Platform-specific implementation behind a shared provider interface.",
+          "relatedTerms": ["adapter", "provider", "platform-registry"],
+          "applicablePhases": ["architect", "implement"]
+        }
+      ]
+    },
+    {
+      "id": "visualization-techniques",
+      "name": "Visualization Techniques",
+      "description": "Diagram types and visual modeling strategies for representing system structure, flow, and behavior",
+      "terms": [
+        {
+          "term": "System Context Diagram",
+          "definition": "Shows the system as one box and everything external that interacts with it.",
+          "relatedTerms": ["container-diagram", "integration-map", "trust-boundary-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Container Diagram",
+          "definition": "Shows major deployable or runtime units such as browser extension, service worker, sidepanel, popup, content script, backend, and websocket source.",
+          "relatedTerms": ["system-context-diagram", "component-diagram", "runtime-topology-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Component Diagram",
+          "definition": "Breaks a container into internal modules and responsibilities.",
+          "relatedTerms": ["container-diagram", "subsystem-map", "dependency-graph"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Subsystem Map",
+          "definition": "Groups related components into larger functional domains.",
+          "relatedTerms": ["component-diagram", "capability-map", "domain-map"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Capability Map",
+          "definition": "Shows what the system can do, independent of implementation.",
+          "relatedTerms": ["subsystem-map", "domain-map", "responsibility-matrix"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Domain Map",
+          "definition": "Shows business or platform domains and how they connect.",
+          "relatedTerms": ["capability-map", "subsystem-map", "integration-map"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Interface Map",
+          "definition": "Shows how components communicate through contracts, APIs, messages, events, or shared state.",
+          "relatedTerms": ["integration-map", "dependency-graph", "component-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Integration Map",
+          "definition": "Shows all external systems, protocols, and connection points.",
+          "relatedTerms": ["system-context-diagram", "interface-map", "trust-boundary-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Trust Boundary Diagram",
+          "definition": "Shows where privileges, permissions, authentication, or security assumptions change.",
+          "relatedTerms": ["system-context-diagram", "integration-map", "trust-boundary"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Responsibility Matrix",
+          "definition": "Maps which component owns state, execution, logging, UI, and recovery.",
+          "relatedTerms": ["ownership-map", "capability-map", "responsibility-boundary"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Data Flow Diagram",
+          "definition": "Shows how data moves, transforms, and is stored through the system.",
+          "relatedTerms": ["control-flow-diagram", "sequence-diagram", "pipeline"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Control Flow Diagram",
+          "definition": "Shows how decisions and execution paths move through the system.",
+          "relatedTerms": ["data-flow-diagram", "activity-diagram", "decision-tree"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Sequence Diagram",
+          "definition": "Shows step-by-step interaction over time between components.",
+          "relatedTerms": ["swimlane-diagram", "message-sequence-chart", "trace-view"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Message Sequence Chart",
+          "definition": "Similar to a sequence diagram, focused on messages and timing between components.",
+          "relatedTerms": ["sequence-diagram", "event-flow-diagram", "message-routing"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Activity Diagram",
+          "definition": "Shows process steps, branches, loops, waits, and completion.",
+          "relatedTerms": ["workflow-diagram", "control-flow-diagram", "state-machine-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Workflow Diagram",
+          "definition": "Shows the business or operator process from start to finish.",
+          "relatedTerms": ["activity-diagram", "swimlane-diagram", "state-machine-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "State Machine Diagram",
+          "definition": "Shows valid states and transitions such as idle, watching, paused, claiming, in-session, and failed.",
+          "relatedTerms": ["state-machine", "activity-diagram", "watch-state"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Event Flow Diagram",
+          "definition": "Shows emitted events, listeners, reactions, and propagation paths.",
+          "relatedTerms": ["sequence-diagram", "message-sequence-chart", "event-path"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Request Lifecycle Diagram",
+          "definition": "Shows one request from trigger to completion, including retries and errors.",
+          "relatedTerms": ["sequence-diagram", "failure-path-diagram", "trace-view"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Execution Timeline",
+          "definition": "Shows what happens over time, including delays, waits, overlap, and completion order.",
+          "relatedTerms": ["sequence-diagram", "swimlane-diagram", "flame-chart"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Swimlane Diagram",
+          "definition": "Shows execution by actor or component lane, useful for separating sidepanel, worker, and content runtime.",
+          "relatedTerms": ["sequence-diagram", "workflow-diagram", "execution-timeline"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Decision Tree",
+          "definition": "Shows branching logic and rule-based outcomes.",
+          "relatedTerms": ["control-flow-diagram", "activity-diagram", "fallback-strategy"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Call Graph",
+          "definition": "Shows which functions call which other functions.",
+          "relatedTerms": ["dependency-graph", "component-diagram", "hot-path"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Trace View",
+          "definition": "Shows a single end-to-end execution path with causality.",
+          "relatedTerms": ["trace", "sequence-diagram", "flame-chart"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Runtime Topology Diagram",
+          "definition": "Shows live running parts and how they connect during execution.",
+          "relatedTerms": ["container-diagram", "deployment-diagram", "thread-model-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Deployment Diagram",
+          "definition": "Shows where components run: browser tab, extension worker, popup window, sidepanel, backend, websocket endpoint.",
+          "relatedTerms": ["runtime-topology-diagram", "container-diagram", "topology"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Thread Model Diagram",
+          "definition": "Shows parallel execution contexts and how they interact.",
+          "relatedTerms": ["runtime-topology-diagram", "swimlane-diagram", "concurrency"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Queue and Buffer Diagram",
+          "definition": "Shows event queues, work queues, buffers, batching, and flush paths.",
+          "relatedTerms": ["scheduler-diagram", "backpressure-map", "buffer"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Scheduler Diagram",
+          "definition": "Shows how tasks are selected, delayed, paused, resumed, and prioritized.",
+          "relatedTerms": ["queue-and-buffer-diagram", "load-distribution-diagram", "priority-scheduling"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Load Distribution Diagram",
+          "definition": "Shows how work is spread across workers, endpoints, or execution paths.",
+          "relatedTerms": ["scheduler-diagram", "load-balancing", "hot-path"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Failure-Path Diagram",
+          "definition": "Shows how errors, retries, backoff, and fallback behave.",
+          "relatedTerms": ["recovery-diagram", "request-lifecycle-diagram", "fallback"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Recovery Diagram",
+          "definition": "Shows how the system rehydrates, reconnects, restores state, or resumes execution.",
+          "relatedTerms": ["failure-path-diagram", "rehydration", "recovery"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Observability Map",
+          "definition": "Shows where logs, metrics, events, traces, and exports are generated.",
+          "relatedTerms": ["observability", "instrumentation", "diagnostic-bundle"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Backpressure Map",
+          "definition": "Shows where overload occurs and how it is slowed or shed.",
+          "relatedTerms": ["backpressure", "load-distribution-diagram", "queue-and-buffer-diagram"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Upstream/Downstream Map",
+          "definition": "Shows who produces data and who consumes it.",
+          "relatedTerms": ["producer-consumer-diagram", "data-flow-diagram", "dependency-graph"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Producer-Consumer Diagram",
+          "definition": "Shows event or data producers and the workers or listeners that process them.",
+          "relatedTerms": ["upstream-downstream-map", "publish-subscribe", "event-bus"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Ownership Map",
+          "definition": "Shows which component owns each kind of state or action.",
+          "relatedTerms": ["responsibility-matrix", "ownership", "source-of-truth"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Read/Write Matrix",
+          "definition": "Shows which components can read or write which resources.",
+          "relatedTerms": ["ownership-map", "responsibility-matrix", "boundary"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Sync/Async Interaction Map",
+          "definition": "Shows which calls block and which return immediately.",
+          "relatedTerms": ["sequence-diagram", "synchronous-execution", "asynchronous-execution"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Hot Path Map",
+          "definition": "Shows the most performance-sensitive execution route.",
+          "relatedTerms": ["critical-path-diagram", "hot-path", "bottleneck"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Critical Path Diagram",
+          "definition": "Shows the minimum sequence that determines total completion time.",
+          "relatedTerms": ["hot-path-map", "critical-path", "execution-timeline"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Blast Radius Map",
+          "definition": "Shows what breaks if one component fails.",
+          "relatedTerms": ["blast-radius", "failure-path-diagram", "coupling-map"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Coupling Map",
+          "definition": "Shows tightly connected versus loosely connected components.",
+          "relatedTerms": ["blast-radius-map", "change-impact-map", "coupling"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Change Impact Map",
+          "definition": "Shows what parts are affected by modifying one module.",
+          "relatedTerms": ["coupling-map", "blast-radius-map", "dependency-graph"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Synchronous Execution",
+          "definition": "One step waits for the previous step to finish before proceeding.",
+          "relatedTerms": ["asynchronous-execution", "blocking", "sequential-execution"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Asynchronous Execution",
+          "definition": "A task starts and completion happens later without blocking the caller.",
+          "relatedTerms": ["synchronous-execution", "non-blocking", "event-driven-execution"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Blocking",
+          "definition": "Execution waits and cannot proceed until the operation completes.",
+          "relatedTerms": ["synchronous-execution", "non-blocking", "deadlock"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Non-Blocking",
+          "definition": "Execution continues without waiting for the operation to complete.",
+          "relatedTerms": ["blocking", "asynchronous-execution", "event-driven-execution"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Concurrent Execution",
+          "definition": "Multiple tasks are in progress during the same time window.",
+          "relatedTerms": ["parallel-execution", "sequential-execution", "event-loop"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Parallel Execution",
+          "definition": "Multiple tasks run literally at the same time on different processors, threads, or contexts.",
+          "relatedTerms": ["concurrent-execution", "thread-model-diagram", "worker-pool"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Sequential Execution",
+          "definition": "Tasks run one after another in a defined order.",
+          "relatedTerms": ["concurrent-execution", "synchronous-execution", "pipeline"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Event-Driven Execution",
+          "definition": "Work happens because an event occurs rather than on a schedule.",
+          "relatedTerms": ["polling-based-execution", "reactive-execution", "event-loop"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Polling-Based Execution",
+          "definition": "Work happens because the system checks repeatedly on a timer.",
+          "relatedTerms": ["event-driven-execution", "scheduled-execution", "polling"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Reactive Execution",
+          "definition": "Work reacts to state changes, streams, or events.",
+          "relatedTerms": ["event-driven-execution", "mutation-first-detection", "observer"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Deferred Execution",
+          "definition": "Work is scheduled for later rather than executed immediately.",
+          "relatedTerms": ["scheduled-execution", "lazy-evaluation", "task-queue"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Scheduled Execution",
+          "definition": "Work runs on a timer or cadence.",
+          "relatedTerms": ["deferred-execution", "polling-based-execution", "scheduler"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Batched Execution",
+          "definition": "Multiple items are processed together in a single operation.",
+          "relatedTerms": ["batching", "queue-driven-execution", "coalescing"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Stream Processing",
+          "definition": "Data is processed continuously as it arrives.",
+          "relatedTerms": ["event-stream", "reactive-execution", "event-driven-execution"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Queue-Driven Execution",
+          "definition": "Tasks are pulled from a queue and processed in order.",
+          "relatedTerms": ["batched-execution", "task-queue", "scheduler"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Speculative Execution",
+          "definition": "Work starts before certainty, to reduce latency if the speculation proves correct.",
+          "relatedTerms": ["eager-evaluation", "latency", "parallel-execution"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Lazy Evaluation",
+          "definition": "Work happens only when the result is actually needed.",
+          "relatedTerms": ["eager-evaluation", "deferred-execution", "caching"],
+          "applicablePhases": ["visualize"]
+        },
+        {
+          "term": "Eager Evaluation",
+          "definition": "Work happens immediately when triggered, without deferral.",
+          "relatedTerms": ["lazy-evaluation", "speculative-execution", "event-driven-execution"],
+          "applicablePhases": ["visualize"]
+        }
+      ]
+    },
+    {
+      "id": "memory-and-runtime",
+      "name": "Memory & Runtime Concepts",
+      "description": "Memory management, garbage collection, allocation, leaks, and diagnostics",
+      "terms": [
+        {
+          "term": "Memory Management",
+          "definition": "How a system allocates, uses, tracks, reuses, and frees memory.",
+          "relatedTerms": ["garbage-collection", "allocation", "memory-leak"],
+          "applicablePhases": ["implement", "verify", "diagnose"]
+        },
+        {
+          "term": "Garbage Collection",
+          "definition": "Automatic reclamation of memory that is no longer reachable by the program.",
+          "relatedTerms": ["mark-and-sweep", "generational-garbage-collection", "gc-pause"],
+          "applicablePhases": ["implement", "verify", "diagnose"]
+        },
+        {
+          "term": "Heap",
+          "definition": "Memory area used for dynamically allocated objects.",
+          "relatedTerms": ["stack", "heap-growth", "javascript-heap"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Stack",
+          "definition": "Memory area used for function calls, local variables, and execution frames.",
+          "relatedTerms": ["heap", "stack-frame", "call-stack"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Stack Frame",
+          "definition": "The memory record for one function call.",
+          "relatedTerms": ["stack", "call-stack", "execution-context"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Call Stack",
+          "definition": "The active chain of function calls.",
+          "relatedTerms": ["stack-frame", "stack", "trace"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Allocation",
+          "definition": "Reserving memory for an object, buffer, array, or structure.",
+          "relatedTerms": ["deallocation", "allocation-rate", "allocation-pressure"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Deallocation",
+          "definition": "Releasing memory back to the runtime or operating system.",
+          "relatedTerms": ["allocation", "garbage-collection", "finalization"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Object Lifetime",
+          "definition": "How long an object remains alive in memory.",
+          "relatedTerms": ["reachability", "retained-object", "garbage-collection"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Reachability",
+          "definition": "Whether an object can still be accessed from active program state.",
+          "relatedTerms": ["object-lifetime", "garbage-collection", "reference"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Reference",
+          "definition": "A handle or pointer to an object in memory.",
+          "relatedTerms": ["strong-reference", "weak-reference", "pointer"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Pointer",
+          "definition": "A memory address reference, common in lower-level languages.",
+          "relatedTerms": ["reference", "aliasing", "strong-reference"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Strong Reference",
+          "definition": "A reference that keeps an object alive and prevents garbage collection.",
+          "relatedTerms": ["weak-reference", "reference", "retained-object"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Weak Reference",
+          "definition": "A reference that does not prevent garbage collection.",
+          "relatedTerms": ["strong-reference", "reference", "garbage-collection"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Retained Object",
+          "definition": "An object still kept alive because something still references it.",
+          "relatedTerms": ["orphaned-object", "strong-reference", "retention-path"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Orphaned Object",
+          "definition": "An object that is no longer useful but is still retained accidentally.",
+          "relatedTerms": ["retained-object", "memory-leak", "orphaned-state"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Retained Memory",
+          "definition": "Memory still held after the work that needed it has finished.",
+          "relatedTerms": ["memory-leak", "retained-object", "retention-path"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Transient Memory",
+          "definition": "Short-lived memory used briefly and released quickly.",
+          "relatedTerms": ["ephemeral-state", "object-churn", "allocation"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Long-Lived Object",
+          "definition": "An object that survives for a long time and may move into older GC generations.",
+          "relatedTerms": ["old-generation", "retained-object", "generational-garbage-collection"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Allocation Rate",
+          "definition": "How quickly new memory is being created.",
+          "relatedTerms": ["allocation-pressure", "object-churn", "gc-pressure"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Object Churn",
+          "definition": "Rapid creation and disposal of many short-lived objects.",
+          "relatedTerms": ["allocation-pressure", "gc-pressure", "churn"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Unbounded Growth",
+          "definition": "Memory usage continuing to rise without a ceiling.",
+          "relatedTerms": ["memory-leak", "heap-growth", "memory-ceiling"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Memory Ceiling",
+          "definition": "An intentional limit on memory use.",
+          "relatedTerms": ["resource-ceiling", "unbounded-growth", "pruning"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Memory Footprint",
+          "definition": "Total amount of memory the process or component uses.",
+          "relatedTerms": ["resident-set-size", "memory-usage", "heap"],
+          "applicablePhases": ["verify", "operate"]
+        },
+        {
+          "term": "Resident Set Size",
+          "definition": "Amount of memory the process currently holds in physical RAM.",
+          "relatedTerms": ["memory-footprint", "virtual-memory", "memory-usage"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Virtual Memory",
+          "definition": "Memory space the process can address, not all of which is necessarily in physical RAM.",
+          "relatedTerms": ["resident-set-size", "paging", "swapping"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Fragmentation",
+          "definition": "Memory becoming inefficiently laid out, making reuse harder.",
+          "relatedTerms": ["compaction", "heap-compaction", "memory-management"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Compaction",
+          "definition": "Moving objects to reduce fragmentation and create contiguous free space.",
+          "relatedTerms": ["heap-compaction", "fragmentation", "garbage-collection"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Heap Compaction",
+          "definition": "A GC phase that rearranges live objects to create contiguous free space.",
+          "relatedTerms": ["compaction", "mark-and-compact", "garbage-collection"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Copying Collector",
+          "definition": "A GC strategy that moves live objects from one region to another.",
+          "relatedTerms": ["garbage-collection", "generational-garbage-collection", "mark-and-sweep"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Mark-and-Sweep",
+          "definition": "A GC strategy that marks reachable objects, then frees unmarked ones.",
+          "relatedTerms": ["mark-and-compact", "garbage-collection", "reachability"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Mark-and-Compact",
+          "definition": "A GC strategy that marks live objects, frees dead ones, and compacts survivors.",
+          "relatedTerms": ["mark-and-sweep", "heap-compaction", "garbage-collection"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Generational Garbage Collection",
+          "definition": "A GC strategy that treats young and old objects differently to reduce collection cost.",
+          "relatedTerms": ["young-generation", "old-generation", "minor-gc"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Young Generation",
+          "definition": "The memory region for newly allocated objects.",
+          "relatedTerms": ["old-generation", "generational-garbage-collection", "minor-gc"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Old Generation",
+          "definition": "The memory region for objects that survive longer than the young generation.",
+          "relatedTerms": ["young-generation", "generational-garbage-collection", "major-gc"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Minor GC",
+          "definition": "Garbage collection focused on younger objects only.",
+          "relatedTerms": ["major-gc", "generational-garbage-collection", "young-generation"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Major GC",
+          "definition": "Broader garbage collection involving older memory regions.",
+          "relatedTerms": ["minor-gc", "gc-pause", "stop-the-world"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "GC Pause",
+          "definition": "Application slowdown or stop while garbage collection runs.",
+          "relatedTerms": ["stop-the-world", "pause-time", "jank"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Stop-the-World",
+          "definition": "Execution pauses completely while the GC performs certain work.",
+          "relatedTerms": ["gc-pause", "incremental-gc", "concurrent-gc"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Incremental GC",
+          "definition": "Garbage collection work spread across smaller steps to reduce pause time.",
+          "relatedTerms": ["concurrent-gc", "stop-the-world", "gc-pause"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Concurrent GC",
+          "definition": "Garbage collection work performed alongside application execution.",
+          "relatedTerms": ["incremental-gc", "stop-the-world", "gc-pause"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Finalization",
+          "definition": "Cleanup logic tied to object destruction in some runtimes.",
+          "relatedTerms": ["destructor", "garbage-collection", "teardown"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Destructor",
+          "definition": "A cleanup method invoked when an object is destroyed, common in non-GC languages.",
+          "relatedTerms": ["finalization", "cleanup", "deallocation"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Reference Counting",
+          "definition": "Tracking how many references point to an object to decide when to free it.",
+          "relatedTerms": ["cycle-leak", "garbage-collection", "reference"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Cycle",
+          "definition": "A group of objects referencing each other, potentially preventing collection.",
+          "relatedTerms": ["cycle-leak", "reference-counting", "reachability"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Cycle Leak",
+          "definition": "A memory leak caused by circular references in systems that rely on reference counting.",
+          "relatedTerms": ["cycle", "reference-counting", "memory-leak"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Borrowing",
+          "definition": "Temporary access to memory owned elsewhere, without taking ownership.",
+          "relatedTerms": ["ownership", "reference", "aliasing"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Aliasing",
+          "definition": "Multiple references pointing to the same memory location.",
+          "relatedTerms": ["reference", "borrowing", "shared-mutable-state"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Deep Copy",
+          "definition": "Creating a full independent duplicate of data including all nested structures.",
+          "relatedTerms": ["shallow-copy", "serialization", "structured-clone"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Shallow Copy",
+          "definition": "Copying only top-level structure while sharing nested references.",
+          "relatedTerms": ["deep-copy", "aliasing", "reference"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Shared Mutable State",
+          "definition": "Memory that multiple parts of the program can modify.",
+          "relatedTerms": ["race-condition", "aliasing", "consistency"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Immutable Object",
+          "definition": "An object whose value cannot change after creation.",
+          "relatedTerms": ["shared-mutable-state", "deep-copy", "determinism"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Cache Invalidation",
+          "definition": "Removing or refreshing cached data when it becomes stale.",
+          "relatedTerms": ["cache", "stale-state", "eviction"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Memory Pool",
+          "definition": "A preallocated block of memory reused for similar objects.",
+          "relatedTerms": ["object-pool", "arena-allocator", "allocation"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Object Pool",
+          "definition": "A reusable set of objects to reduce repeated allocations.",
+          "relatedTerms": ["memory-pool", "allocation-pressure", "object-churn"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Arena Allocator",
+          "definition": "A region-based allocation strategy where many objects are freed together.",
+          "relatedTerms": ["memory-pool", "slab-allocator", "deallocation"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Slab Allocator",
+          "definition": "An allocator optimized for fixed-size objects.",
+          "relatedTerms": ["arena-allocator", "memory-pool", "allocation"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Free List",
+          "definition": "A list of memory blocks available for reuse.",
+          "relatedTerms": ["memory-pool", "deallocation", "allocation"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Page",
+          "definition": "A unit of memory managed by the operating system.",
+          "relatedTerms": ["paging", "virtual-memory", "swapping"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Paging",
+          "definition": "Moving memory pages between RAM and disk as needed.",
+          "relatedTerms": ["page", "swapping", "virtual-memory"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Swapping",
+          "definition": "OS moving process memory out of RAM due to memory pressure.",
+          "relatedTerms": ["paging", "virtual-memory", "thrashing"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Out-of-Memory",
+          "definition": "Failure because the process or system cannot allocate more memory.",
+          "relatedTerms": ["oom-killer", "memory-ceiling", "memory-leak"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "OOM Killer",
+          "definition": "OS mechanism that terminates processes under severe memory pressure.",
+          "relatedTerms": ["out-of-memory", "swapping", "memory-management"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "CPU-Memory Tradeoff",
+          "definition": "Using more memory to reduce CPU work, or more CPU to save memory.",
+          "relatedTerms": ["performance", "caching", "memory-footprint"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Pause Time",
+          "definition": "How long execution is delayed during GC or memory cleanup.",
+          "relatedTerms": ["gc-pause", "stop-the-world", "jank"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Latency Spike",
+          "definition": "A sudden increase in response time, often caused by GC or memory contention.",
+          "relatedTerms": ["gc-pause", "jank", "tail-latency"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Throughput Loss",
+          "definition": "Reduced work completed because time is spent allocating or collecting memory.",
+          "relatedTerms": ["gc-pressure", "thrashing", "throughput"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Jank",
+          "definition": "Visible stutter or sluggishness, often caused by GC pauses or excessive allocations.",
+          "relatedTerms": ["gc-pause", "main-thread-blocking", "thrashing"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Leak Source",
+          "definition": "The code path that causes memory to stay retained.",
+          "relatedTerms": ["retention-path", "memory-leak", "teardown-failure"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Retention Path",
+          "definition": "The chain of references keeping an object alive.",
+          "relatedTerms": ["leak-source", "retainer-tree", "reachability"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Detached DOM Node",
+          "definition": "A DOM element removed from the document but still referenced in memory.",
+          "relatedTerms": ["listener-leak", "memory-leak", "dom-memory"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Listener Leak",
+          "definition": "Memory retained because an event listener was not removed.",
+          "relatedTerms": ["detached-dom-node", "teardown-failure", "observer-leak"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Timer Leak",
+          "definition": "Memory retained because intervals or timeouts continue running.",
+          "relatedTerms": ["listener-leak", "teardown-failure", "memory-leak"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Closure Retention",
+          "definition": "A closure keeping variables alive longer than intended.",
+          "relatedTerms": ["memory-leak", "listener-leak", "retention-path"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Global Retention",
+          "definition": "Objects accidentally stored in global or module-level state.",
+          "relatedTerms": ["global-state", "memory-leak", "retention-path"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Cache Leak",
+          "definition": "A cache that keeps growing without expiration or limits.",
+          "relatedTerms": ["memory-leak", "cache-invalidation", "unbounded-growth"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Observer Leak",
+          "definition": "A MutationObserver, ResizeObserver, or similar object left connected after use.",
+          "relatedTerms": ["listener-leak", "teardown-failure", "mutation-observer-retention"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Subscription Leak",
+          "definition": "A stream or subscription not unsubscribed when no longer needed.",
+          "relatedTerms": ["listener-leak", "observer-leak", "teardown-failure"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Teardown Failure",
+          "definition": "Cleanup path did not release listeners, timers, observers, buffers, or references.",
+          "relatedTerms": ["teardown", "memory-leak", "listener-leak"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Heap Snapshot",
+          "definition": "A captured view of memory objects and references at a point in time.",
+          "relatedTerms": ["retainer-tree", "allocation-profile", "memory-timeline"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Allocation Profile",
+          "definition": "A record of where allocations are coming from.",
+          "relatedTerms": ["heap-snapshot", "sampling-profiler", "allocation-sampling"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Retainer Tree",
+          "definition": "A view showing why objects remain reachable.",
+          "relatedTerms": ["heap-snapshot", "retention-path", "reachability"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Flame Chart",
+          "definition": "A timeline visualization of runtime work and time spent per function.",
+          "relatedTerms": ["trace-view", "sampling-profiler", "execution-timeline"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Memory Timeline",
+          "definition": "A graph of memory use over time.",
+          "relatedTerms": ["heap-snapshot", "heap-growth", "baseline"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Sampling Profiler",
+          "definition": "A profiler that periodically inspects execution to estimate hotspots.",
+          "relatedTerms": ["allocation-sampling", "flame-chart", "hot-path"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Allocation Sampling",
+          "definition": "Tracking memory allocation patterns statistically.",
+          "relatedTerms": ["sampling-profiler", "allocation-profile", "allocation-rate"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Leak Reproduction Loop",
+          "definition": "A repeatable set of actions used to make a leak visible.",
+          "relatedTerms": ["heap-snapshot", "memory-leak", "canary-test"],
+          "applicablePhases": ["diagnose"]
+        },
+        {
+          "term": "Baseline",
+          "definition": "The normal expected memory level used as a reference for comparison.",
+          "relatedTerms": ["steady-state-memory", "delta", "memory-timeline"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Delta",
+          "definition": "The difference between two memory measurements.",
+          "relatedTerms": ["baseline", "steady-state-memory", "attribute-diff"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Steady-State Memory",
+          "definition": "The stable memory level after startup and warm-up.",
+          "relatedTerms": ["baseline", "warm-up", "memory-footprint"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "Warm-Up",
+          "definition": "The initial period where caches, JIT compilation, and allocations settle.",
+          "relatedTerms": ["steady-state-memory", "baseline", "gc-pressure"],
+          "applicablePhases": ["verify", "operate"]
+        },
+        {
+          "term": "Canary Test",
+          "definition": "A small targeted test used to catch a specific memory or GC issue.",
+          "relatedTerms": ["leak-reproduction-loop", "regression", "heap-snapshot"],
+          "applicablePhases": ["verify", "diagnose"]
+        },
+        {
+          "term": "JavaScript Heap",
+          "definition": "The memory used for JavaScript objects and values.",
+          "relatedTerms": ["heap", "heap-growth", "garbage-collection"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "DOM Memory",
+          "definition": "Memory used by document elements and browser-managed page structures.",
+          "relatedTerms": ["detached-dom-node", "javascript-heap", "dom"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Closure",
+          "definition": "A function that retains access to variables from its outer scope.",
+          "relatedTerms": ["closure-retention", "memory-leak", "listener-leak"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Promise Chain Retention",
+          "definition": "Objects held longer because they remain referenced through unresolved async chains.",
+          "relatedTerms": ["closure-retention", "memory-leak", "promise"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "MutationObserver Retention",
+          "definition": "DOM-related memory kept alive by an active MutationObserver.",
+          "relatedTerms": ["observer-leak", "detached-dom-node", "mutation-observer"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Interval Churn",
+          "definition": "Repeated setInterval activity causing continued allocations and callbacks.",
+          "relatedTerms": ["timer-leak", "churn", "object-churn"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Detached Window Leak",
+          "definition": "Memory retained from closed popups, tabs, or frames still being referenced.",
+          "relatedTerms": ["detached-dom-node", "memory-leak", "teardown-failure"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Structured Clone",
+          "definition": "The browser mechanism for copying objects across workers, storage, or message boundaries.",
+          "relatedTerms": ["deep-copy", "serialization", "serialization-overhead"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Serialization Overhead",
+          "definition": "Extra memory and CPU used when converting objects for storage or messaging.",
+          "relatedTerms": ["structured-clone", "storage-write-amplification", "serialization"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Storage Write Amplification",
+          "definition": "Repeated large writes causing memory and CPU churn around serialization.",
+          "relatedTerms": ["write-amplification", "serialization-overhead", "log-churn"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Promise",
+          "definition": "An object representing the eventual completion or failure of an async operation.",
+          "relatedTerms": ["microtask", "promise-chain-retention", "asynchronous-execution"],
+          "applicablePhases": ["implement"]
+        }
+      ]
+    },
+    {
+      "id": "concurrency-and-coordination",
+      "name": "Concurrency & Coordination",
+      "description": "Threads, tasks, scheduling, locks, and coordination primitives",
+      "terms": [
+        {
+          "term": "Thread",
+          "definition": "An independent sequence of execution within a process.",
+          "relatedTerms": ["process", "worker", "execution-context"],
+          "applicablePhases": ["implement", "verify", "diagnose"]
+        },
+        {
+          "term": "Process",
+          "definition": "An independent program instance with its own memory space.",
+          "relatedTerms": ["thread", "worker", "isolation"],
+          "applicablePhases": ["implement", "verify"]
+        },
+        {
+          "term": "Worker",
+          "definition": "A background execution context that runs scripts separately from the main thread.",
+          "relatedTerms": ["thread", "service-worker", "worker-pool"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Execution Context",
+          "definition": "The environment in which JavaScript code is evaluated, including scope and this binding.",
+          "relatedTerms": ["context", "stack-frame", "runtime"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Background Thread",
+          "definition": "A thread running separately from the main UI thread.",
+          "relatedTerms": ["main-thread", "worker", "service-worker"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Task Queue",
+          "definition": "The queue of macrotasks waiting to be executed by the event loop.",
+          "relatedTerms": ["microtask-queue", "event-loop", "macrotask"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Microtask Queue",
+          "definition": "The queue of high-priority tasks processed before the next macrotask.",
+          "relatedTerms": ["task-queue", "microtask", "event-loop"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Scheduler",
+          "definition": "A component that decides when and in what order tasks execute.",
+          "relatedTerms": ["priority-scheduling", "task-queue", "scheduler-diagram"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Work Stealing",
+          "definition": "A scheduling strategy where idle workers take tasks from busy workers' queues.",
+          "relatedTerms": ["scheduler", "worker-pool", "load-balancing"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Cooperative Multitasking",
+          "definition": "Tasks voluntarily yield control to allow others to run.",
+          "relatedTerms": ["preemptive-scheduling", "event-loop", "async-execution"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Preemptive Scheduling",
+          "definition": "The scheduler forcibly interrupts a task to run another.",
+          "relatedTerms": ["cooperative-multitasking", "scheduler", "thread"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Thread Pool",
+          "definition": "A set of pre-created threads reused for task execution.",
+          "relatedTerms": ["worker-pool", "scheduler", "concurrency"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Worker Pool",
+          "definition": "A set of workers available to execute tasks in parallel.",
+          "relatedTerms": ["thread-pool", "work-stealing", "load-balancing"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Affinity",
+          "definition": "A preference for a task to run on a specific thread or processor.",
+          "relatedTerms": ["scheduler", "thread", "context-switch"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Context Switch",
+          "definition": "Saving the state of one execution context and restoring another.",
+          "relatedTerms": ["thread", "scheduler", "affinity"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Fork/Join",
+          "definition": "A pattern that forks work into parallel subtasks then joins their results.",
+          "relatedTerms": ["parallel-execution", "fan-out", "fan-in"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Fan-Out",
+          "definition": "Distributing one input to multiple workers or paths simultaneously.",
+          "relatedTerms": ["fan-in", "parallel-execution", "fork-join"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Fan-In",
+          "definition": "Collecting results from multiple parallel paths into one.",
+          "relatedTerms": ["fan-out", "fork-join", "aggregation"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Barrier",
+          "definition": "A synchronization point where all threads must arrive before any can proceed.",
+          "relatedTerms": ["semaphore", "mutex", "fork-join"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Semaphore",
+          "definition": "A synchronization primitive that controls access by counting available permits.",
+          "relatedTerms": ["mutex", "barrier", "lock"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Mutex",
+          "definition": "A mutual exclusion lock ensuring only one thread accesses a resource at a time.",
+          "relatedTerms": ["semaphore", "lock", "critical-section"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Lock",
+          "definition": "A mechanism preventing concurrent access to a shared resource.",
+          "relatedTerms": ["mutex", "read-write-lock", "lock-contention"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Read/Write Lock",
+          "definition": "A lock allowing multiple concurrent readers but only one writer.",
+          "relatedTerms": ["lock", "mutex", "shared-mutable-state"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Atomic Operation",
+          "definition": "An operation that completes entirely or not at all, with no partial state visible.",
+          "relatedTerms": ["critical-section", "mutex", "consistency"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Critical Section",
+          "definition": "Code that must not be executed concurrently by more than one thread.",
+          "relatedTerms": ["mutex", "atomic-operation", "lock"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Lock Contention",
+          "definition": "Multiple threads competing for the same lock, causing delays.",
+          "relatedTerms": ["mutex", "lock", "contention"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Ordering Guarantee",
+          "definition": "An assurance that operations will be observed in a specific order.",
+          "relatedTerms": ["causality", "happens-before-relationship", "consistency"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Causality",
+          "definition": "The relationship where one event is caused by or depends on another.",
+          "relatedTerms": ["ordering-guarantee", "happens-before-relationship", "traceability"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Happens-Before Relationship",
+          "definition": "A guarantee that one operation's effects are visible before another begins.",
+          "relatedTerms": ["causality", "ordering-guarantee", "atomic-operation"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Concurrency",
+          "definition": "Managing multiple tasks that are in progress at overlapping times.",
+          "relatedTerms": ["parallelism", "thread", "race-condition"],
+          "applicablePhases": ["architect", "implement", "verify", "diagnose"]
+        },
+        {
+          "term": "Parallelism",
+          "definition": "Multiple tasks executing simultaneously on different processors or threads.",
+          "relatedTerms": ["concurrency", "parallel-execution", "worker-pool"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Await Point",
+          "definition": "A position in async code where execution suspends until a promise resolves.",
+          "relatedTerms": ["asynchronous-execution", "promise", "microtask"],
+          "applicablePhases": ["implement"]
+        },
+        {
+          "term": "Future",
+          "definition": "A placeholder for a value that will be available at some point, similar to a Promise.",
+          "relatedTerms": ["promise", "asynchronous-execution", "await-point"],
+          "applicablePhases": ["implement"]
+        }
+      ]
+    },
+    {
+      "id": "race-and-timing",
+      "name": "Race & Timing Concepts",
+      "description": "Time-dependent failures, ordering hazards, and concurrency bugs",
+      "terms": [
+        {
+          "term": "Timing Window",
+          "definition": "The brief period where the ordering of operations matters for correctness.",
+          "relatedTerms": ["race-condition", "lost-update", "double-execution"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Lost Update",
+          "definition": "One write overwrites another unexpectedly, causing data loss.",
+          "relatedTerms": ["timing-window", "write-skew", "race-condition"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Double Execution",
+          "definition": "The same action occurs more than once due to a race or retry.",
+          "relatedTerms": ["duplicate-event", "idempotency", "timing-window"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Duplicate Event",
+          "definition": "The same event is processed more than once.",
+          "relatedTerms": ["double-execution", "deduplication", "idempotency"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Out-of-Order Execution",
+          "definition": "Events complete in a different order than expected.",
+          "relatedTerms": ["ordering-guarantee", "race-condition", "nondeterminism"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Stale Read",
+          "definition": "A component reads outdated data that no longer reflects current state.",
+          "relatedTerms": ["stale-state", "eventual-consistency", "state-drift"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Write Skew",
+          "definition": "Multiple valid writes combine into an invalid overall result.",
+          "relatedTerms": ["lost-update", "consistency", "race-condition"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Split-Brain State",
+          "definition": "Two components both think they are the authority for the same resource.",
+          "relatedTerms": ["source-of-truth", "consistency", "session-lease"],
+          "applicablePhases": ["architect", "implement", "diagnose"]
+        },
+        {
+          "term": "Hydration Race",
+          "definition": "UI or local state is overwritten by later persisted state arriving asynchronously.",
+          "relatedTerms": ["race-in-hydration", "hydration", "state-drift"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Observer Race",
+          "definition": "Detection and action compete with DOM updates causing incorrect behavior.",
+          "relatedTerms": ["mutation-observer", "race-condition", "stale-element"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Teardown Race",
+          "definition": "A component is stopping while another path still emits events.",
+          "relatedTerms": ["teardown", "race-condition", "cleanup"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Navigation Race",
+          "definition": "The page changes before execution completes.",
+          "relatedTerms": ["navigation-unmount", "teardown-race", "race-condition"],
+          "applicablePhases": ["implement", "diagnose"]
+        },
+        {
+          "term": "Retry Race",
+          "definition": "A retry collides with a delayed success or another retry.",
+          "relatedTerms": ["double-execution", "retry", "race-condition"],
+          "applicablePhases": ["implement", "diagnose"]
+        }
+      ]
+    },
+    {
+      "id": "load-and-scaling",
+      "name": "Load, Scaling & Balancing",
+      "description": "Load distribution, capacity limits, rate control, and scaling patterns",
+      "terms": [
+        {
+          "term": "Load Balancing",
+          "definition": "Distributing work across paths, workers, or targets.",
+          "relatedTerms": ["round-robin", "least-connections", "worker-pool"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Round Robin",
+          "definition": "Work distributed in sequence across available targets.",
+          "relatedTerms": ["load-balancing", "weighted-round-robin", "worker-pool"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Weighted Round Robin",
+          "definition": "Distribution based on assigned weights for each target.",
+          "relatedTerms": ["round-robin", "load-balancing", "priority-scheduling"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Least Connections",
+          "definition": "Route work to the least busy worker or target.",
+          "relatedTerms": ["load-balancing", "round-robin", "least-latency"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Least Latency",
+          "definition": "Route work to the fastest current path or worker.",
+          "relatedTerms": ["least-connections", "load-balancing", "latency"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Priority Scheduling",
+          "definition": "Higher-priority work runs before lower-priority work.",
+          "relatedTerms": ["scheduler", "starvation", "load-balancing"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Rate Limiting",
+          "definition": "A hard cap on how much work can happen in a time window.",
+          "relatedTerms": ["throttle", "token-bucket", "backpressure"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Throttling",
+          "definition": "Reducing execution frequency to stay within resource limits.",
+          "relatedTerms": ["rate-limiting", "debounce", "backpressure"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Queue Depth",
+          "definition": "The amount of work waiting in a queue.",
+          "relatedTerms": ["backlog", "backpressure", "throughput"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Tail Latency",
+          "definition": "Worst-case or near-worst-case response time experienced by some requests.",
+          "relatedTerms": ["latency", "latency-spike", "throughput"],
+          "applicablePhases": ["verify", "operate", "diagnose"]
+        },
+        {
+          "term": "Capacity Planning",
+          "definition": "Estimating safe operational limits before hitting saturation.",
+          "relatedTerms": ["capacity", "resource-ceiling", "saturation"],
+          "applicablePhases": ["architect", "operate"]
+        },
+        {
+          "term": "Resource Saturation",
+          "definition": "A resource is maxed out and cannot handle more work.",
+          "relatedTerms": ["saturation", "bottleneck", "backpressure"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Hotspot",
+          "definition": "One overloaded part of the system drawing disproportionate traffic or load.",
+          "relatedTerms": ["bottleneck", "hot-path", "resource-saturation"],
+          "applicablePhases": ["operate", "diagnose"]
+        },
+        {
+          "term": "Burst Handling",
+          "definition": "Managing sudden spikes in incoming work without dropping requests.",
+          "relatedTerms": ["backpressure", "token-bucket", "queue-depth"],
+          "applicablePhases": ["architect", "implement", "operate"]
+        },
+        {
+          "term": "Token Bucket",
+          "definition": "A rate-control model using a refillable bucket of tokens.",
+          "relatedTerms": ["leaky-bucket", "rate-limiting", "burst-handling"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Leaky Bucket",
+          "definition": "A steady-drain rate-control model where requests are processed at a fixed rate.",
+          "relatedTerms": ["token-bucket", "rate-limiting", "throttle"],
+          "applicablePhases": ["architect", "implement"]
+        },
+        {
+          "term": "Load Shedding",
+          "definition": "Dropping low-priority work under stress to protect system stability.",
+          "relatedTerms": ["backpressure", "shedding", "circuit-breaker"],
+          "applicablePhases": ["implement", "operate"]
+        }
+      ]
+    },
+    {
+      "id": "workflow-states",
+      "name": "Workflow States",
+      "description": "Named states in the watch and claim workflow lifecycle",
+      "terms": [
+        {
+          "term": "Idle",
+          "definition": "The system is not actively watching or claiming.",
+          "relatedTerms": ["watching", "state-machine", "watch-state"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Initializing",
+          "definition": "The system is starting up and setting up its runtime.",
+          "relatedTerms": ["hydration", "lifecycle", "watch-state"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Hydrating",
+          "definition": "The system is restoring state from persisted storage.",
+          "relatedTerms": ["hydration", "rehydration", "initializing"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Ready",
+          "definition": "The system has completed initialization and is prepared to begin watching.",
+          "relatedTerms": ["idle", "watching", "state-machine"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Active",
+          "definition": "The system is running and processing.",
+          "relatedTerms": ["watching", "claiming", "state-machine"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Watching",
+          "definition": "The system is actively monitoring for claimable opportunities.",
+          "relatedTerms": ["watch-mode", "detecting", "idle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Detecting",
+          "definition": "The system has found a candidate and is evaluating it.",
+          "relatedTerms": ["watching", "claiming", "candidate-discovery"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Claiming",
+          "definition": "The system is executing the claim action.",
+          "relatedTerms": ["detecting", "claim-executor", "claim-latency"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Verifying",
+          "definition": "The system is confirming the result of an action.",
+          "relatedTerms": ["eligibility-check", "claim-verification-hop", "claiming"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Paused",
+          "definition": "Watching is temporarily suspended by the operator or system.",
+          "relatedTerms": ["watch-state", "idle", "cooldown"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Cooling Down",
+          "definition": "The system is waiting a defined period before resuming.",
+          "relatedTerms": ["cooldown", "paused", "cooldown-suppression"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Waiting",
+          "definition": "The system is blocked waiting for an external condition.",
+          "relatedTerms": ["paused", "timeout", "blocking"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Retrying",
+          "definition": "The system is attempting an action again after a previous failure.",
+          "relatedTerms": ["retry", "backoff", "recovery-path"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Degraded",
+          "definition": "The system is operating with reduced capability.",
+          "relatedTerms": ["degraded-mode", "graceful-degradation", "partial-failure"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Failed",
+          "definition": "The system has encountered an unrecoverable error.",
+          "relatedTerms": ["failure-mode", "recovery", "crash-loop"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Recovering",
+          "definition": "The system is restoring normal operation after a failure.",
+          "relatedTerms": ["recovery", "rehydration", "failed"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Stopped",
+          "definition": "The watch session has been intentionally terminated.",
+          "relatedTerms": ["teardown", "cleanup", "idle"],
+          "applicablePhases": ["implement", "operate"]
+        },
+        {
+          "term": "Teardown Complete",
+          "definition": "All observers, timers, overlays, and leases have been fully released.",
+          "relatedTerms": ["teardown", "stopped", "cleanup"],
+          "applicablePhases": ["implement", "operate"]
+        }
+      ]
+    }
+  ]
+}

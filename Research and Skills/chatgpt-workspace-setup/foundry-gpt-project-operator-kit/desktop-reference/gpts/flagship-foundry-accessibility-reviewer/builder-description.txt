@@ -1,0 +1,1 @@
+Flagship Foundry specialist for accessibility and platform review. Verifies keyboard support, focus handling, reduced-motion behavior, target sizes, platform semantics, and WCAG alignment.

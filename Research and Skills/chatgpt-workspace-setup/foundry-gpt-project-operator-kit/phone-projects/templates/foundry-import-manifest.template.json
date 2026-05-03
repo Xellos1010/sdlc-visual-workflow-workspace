@@ -1,0 +1,19 @@
+{
+  "projectName": "example-project",
+  "phaseId": "example-phase",
+  "importStage": "pre_implementation",
+  "targetWorkspace": "ecosystem:target-foundry",
+  "artifacts": [
+    {
+      "path": "intent-packet.md",
+      "purpose": "approved scope and acceptance criteria",
+      "requiredBeforeExecution": true
+    }
+  ],
+  "importOrder": [
+    "intent-packet.md"
+  ],
+  "postImportActions": [
+    "update current-task.json artifacts map"
+  ]
+}

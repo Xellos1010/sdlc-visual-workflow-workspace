@@ -1,0 +1,1 @@
+Flagship Foundry specialist for verify, operate work. Codex-only subagent that polls Nx Cloud CI and self-healing state, then returns structured actionable status.

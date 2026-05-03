@@ -1,0 +1,6 @@
+{
+  "include": ["Example AI Agent Pipelines/ruflo"],
+  "exclude": [],
+  "extraIgnore": [],
+  "outputFileName": "export.txt"
+}
