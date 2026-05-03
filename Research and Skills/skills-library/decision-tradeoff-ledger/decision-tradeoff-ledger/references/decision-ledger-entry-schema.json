@@ -1,0 +1,46 @@
+{
+  "decision_id": "decision-YYYYMMDD-short-slug",
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "project_slug": "unknown",
+  "work_order": "unknown",
+  "decision": "one sentence decision",
+  "decision_type": "architecture | abstraction | schema | performance | persistence | integration | tool | workflow | codegen | human_override | other",
+  "materiality": "adr_required | ledger_only | defer",
+  "adr": {
+    "required": false,
+    "id": "ADR-XXX or null",
+    "path": "docs/adr/adr-xxx-title.md or null",
+    "status": "Proposed | Accepted | Superseded | Rejected | Unknown | null"
+  },
+  "chosen_option": "selected option",
+  "rejected_options": [
+    {
+      "option": "alternative option",
+      "reason_rejected": "specific tradeoff or constraint"
+    }
+  ],
+  "accepted_tradeoffs": {
+    "positive": [],
+    "negative": [],
+    "neutral": []
+  },
+  "assumptions": [],
+  "evidence": [
+    {
+      "type": "test | review | benchmark | human_note | adr | diff | other",
+      "handle": "path, id, command, commit, pr, or note",
+      "status": "verified | unverified | missing"
+    }
+  ],
+  "human_overrides": [],
+  "source_confidence": "explicit | high_inference | low_inference | unknown",
+  "reversal_conditions": [],
+  "inspection_handles": [],
+  "parity_implications": [],
+  "followup_actions": [],
+  "next_skill_handoff": {
+    "next_skill": "parity-sync-manager",
+    "reason": "ensure requirements, schemas, pseudocode, code, tests, ADRs, evidence, and memory reflect the recorded decision",
+    "inputs": ["decision_ledger_entry.json", "adr_index_patch.json", "artifact_diffs", "validation_report", "current_memory_state"]
+  }
+}

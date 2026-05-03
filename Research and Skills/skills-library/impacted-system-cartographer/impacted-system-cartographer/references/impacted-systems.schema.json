@@ -1,0 +1,25 @@
+{
+  "artifact": "impacted_systems.json",
+  "required_fields": [
+    "direct_targets",
+    "impact_graph",
+    "runtime_surfaces",
+    "contract_surfaces",
+    "sibling_patterns",
+    "owner_boundaries",
+    "evidence_gaps",
+    "blast_radius_seed",
+    "next_skill_handoff"
+  ],
+  "impact_graph_node": {
+    "id": "stable path, symbol, route, package, schema, or system identifier",
+    "category": "direct_target | upstream_dependency | downstream_dependent | runtime_surface | contract_surface | sibling_pattern | owner_boundary | evidence_gap",
+    "relationship": "why this item is connected to the request",
+    "evidence": "file path, import, test, doc, route, schema, issue, or observed behavior",
+    "confidence": "high | medium | low"
+  },
+  "next_skill_handoff": {
+    "primary": "blast-radius-preflight-analyzer",
+    "secondary": "architecture-snapshot-reader"
+  }
+}

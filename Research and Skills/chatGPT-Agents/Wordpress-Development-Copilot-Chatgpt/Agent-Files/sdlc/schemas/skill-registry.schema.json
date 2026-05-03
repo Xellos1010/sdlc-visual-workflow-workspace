@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cloud Agent Skill Registry",
+  "type": "object",
+  "required": ["skills"],
+  "properties": {
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "priority", "mode", "description", "triggers"],
+        "properties": {
+          "name": { "type": "string" },
+          "priority": { "enum": ["P0", "P1", "P2", "P3"] },
+          "mode": { "enum": ["required", "default-on", "default-off", "human-approved"] },
+          "description": { "type": "string" },
+          "triggers": { "type": "array", "items": { "type": "string" } },
+          "dependencies": { "type": "array", "items": { "type": "string" } },
+          "outputs": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

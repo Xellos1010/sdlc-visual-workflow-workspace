@@ -1,0 +1,5 @@
+interface:
+  display_name: Complexity Notation Assessor
+  short_description: Estimates time and space complexity, budgets, hotspots, and benchmark needs.
+  icon: code
+  color: blue

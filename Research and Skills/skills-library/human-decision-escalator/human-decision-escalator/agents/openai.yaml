@@ -1,0 +1,5 @@
+interface:
+  display_name: "Human Decision Escalator"
+  short_description: "Escalates blocked decisions to humans with options and impact."
+  icon: "alert-triangle"
+  color: blue

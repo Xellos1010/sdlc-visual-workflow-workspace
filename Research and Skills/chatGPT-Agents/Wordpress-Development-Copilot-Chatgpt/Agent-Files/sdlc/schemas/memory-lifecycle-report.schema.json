@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MemoryLifecycleReport",
+  "type": "object",
+  "required": ["workOrderId", "stateOwnership", "lifecycleRisks"],
+  "properties": {
+    "workOrderId": {"type": "string"},
+    "stateOwnership": {"type": "array"},
+    "allocationNotes": {"type": "array"},
+    "borrowingOrReferenceNotes": {"type": "array"},
+    "cleanupPlan": {"type": "array"},
+    "lifecycleRisks": {"type": "array"}
+  }
+}

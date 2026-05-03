@@ -1,0 +1,3 @@
+interface:
+  display_name: "Domain Context Locator"
+  short_description: "Finds relevant files, docs, tests, runbooks, decisions, and missing context for SDLC work."

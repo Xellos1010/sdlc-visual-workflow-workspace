@@ -1,0 +1,5 @@
+interface:
+  display_name: Contract First IO Schema Writer
+  short_description: Defines input, output, error, examples, and compatibility schemas before code.
+  icon: code
+  color: blue

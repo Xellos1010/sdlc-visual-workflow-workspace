@@ -1,0 +1,23 @@
+{
+  "artifact": "insertion_point_map.json",
+  "required_fields": [
+    "approved_insertion_points",
+    "owned_files",
+    "forbidden_files",
+    "integration_points",
+    "test_targets",
+    "validation_commands",
+    "blocked_paths",
+    "human_review_required",
+    "next_skill_handoff"
+  ],
+  "insertion_point": {
+    "type": "file | symbol | class | function | component | hook | command | route | block | adapter | interface | schema | migration | fixture | test | config | doc | build_deploy",
+    "path": "repository-relative path when available",
+    "symbol": "symbol name when applicable",
+    "purpose": "why this is the right place",
+    "allowed_changes": "specific edit boundary",
+    "evidence": "architecture, test, route, owner, or code evidence"
+  },
+  "next_skill_handoff": "abstraction-opportunity-finder"
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Problem Type Router"
+  short_description: "Chooses the SDLC route, required skills, blocked paths, and handoffs for classified work."

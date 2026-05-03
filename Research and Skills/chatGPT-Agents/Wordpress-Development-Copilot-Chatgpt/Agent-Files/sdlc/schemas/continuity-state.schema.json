@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cloud Agent Continuity State",
+  "type": "object",
+  "required": ["schemaVersion", "repo", "project", "lifecycleStage", "currentPhase", "activeLane", "workOrders", "memory", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "type": "string" },
+    "repo": { "type": "string" },
+    "project": {
+      "type": "object",
+      "required": ["slug", "baseBranch"],
+      "properties": {
+        "slug": { "type": "string" },
+        "path": { "type": "string" },
+        "baseBranch": { "type": "string", "default": "main" },
+        "technicalBaseBranch": { "type": "string", "default": "main" }
+      }
+    },
+    "lifecycleStage": { "enum": ["intake", "discover", "define", "design", "plan", "implement", "verify", "integrate", "release", "operate"] },
+    "currentPhase": {
+      "type": "object",
+      "required": ["id", "status"],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "enum": ["unscoped", "scoped", "queued", "in_progress", "blocked_requires_human_decision", "blocked_runtime_validation", "ready_for_review", "verified", "integrated", "released", "superseded"] },
+        "branch": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "activeLane": {
+      "type": "object",
+      "properties": {
+        "featureSetId": { "type": "string" },
+        "branch": { "type": "string" },
+        "prUrl": { "type": ["string", "null"] },
+        "singleActivePrRequired": { "type": "boolean", "default": true }
+      }
+    },
+    "workOrders": { "type": "array", "items": { "$ref": "./work-order.schema.json" } },
+    "locks": { "type": "array", "items": { "$ref": "./file-lock.schema.json" } },
+    "memory": { "$ref": "./agent-memory.schema.json" },
+    "blockedBy": { "type": "array", "items": { "type": "object" } },
+    "artifacts": { "type": "object" },
+    "updatedAt": { "type": "string" }
+  }
+}

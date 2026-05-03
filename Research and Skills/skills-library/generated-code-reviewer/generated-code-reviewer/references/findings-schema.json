@@ -1,0 +1,18 @@
+{
+  "verdict": "ready_for_validation | fixes_required | blocked | needs_human_review",
+  "ready_for_validation": false,
+  "findings": [
+    {
+      "id": "review-001",
+      "severity": "blocker | high | medium | low",
+      "category": "correctness | contract | scope | security | performance | observability | tests | maintainability | architecture",
+      "file": "string",
+      "finding": "string",
+      "evidence": ["string"],
+      "required_fix": "string",
+      "blocking": true
+    }
+  ],
+  "validation_commands": [],
+  "next_skill_handoff": {}
+}

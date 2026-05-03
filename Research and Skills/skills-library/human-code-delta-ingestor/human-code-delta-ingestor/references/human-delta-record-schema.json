@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "required": [
+    "delta_id",
+    "provenance",
+    "approval_state",
+    "scope_alignment",
+    "changed_artifacts",
+    "semantic_summary",
+    "reverse_sync_targets",
+    "required_adr_updates",
+    "open_questions"
+  ],
+  "properties": {
+    "delta_id": {"type": "string"},
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "source": {"enum": ["commit", "pull_request", "local_diff", "patch", "review_note", "unknown"]},
+        "author": {"type": "string"},
+        "commit_ids": {"type": "array", "items": {"type": "string"}},
+        "pr": {"type": "string"},
+        "branch": {"type": "string"},
+        "timestamp": {"type": "string"}
+      }
+    },
+    "approval_state": {"enum": ["accepted", "approved", "review_required", "unknown", "rejected"]},
+    "scope_alignment": {
+      "type": "object",
+      "properties": {
+        "active_work_order": {"type": "string"},
+        "in_scope_files": {"type": "array", "items": {"type": "string"}},
+        "out_of_scope_files": {"type": "array", "items": {"type": "string"}},
+        "scope_notes": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "changed_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "change_type", "artifact_type", "semantic_category", "risk"],
+        "properties": {
+          "path": {"type": "string"},
+          "change_type": {"enum": ["added", "modified", "deleted", "renamed", "unknown"]},
+          "artifact_type": {"enum": ["code", "test", "schema", "config", "docs", "infra", "diagram", "memory", "unknown"]},
+          "semantic_category": {"type": "string"},
+          "risk": {"enum": ["low", "medium", "high", "unknown"]},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "semantic_summary": {"type": "string"},
+    "reverse_sync_targets": {"type": "array", "items": {"type": "string"}},
+    "required_adr_updates": {"type": "array", "items": {"type": "string"}},
+    "open_questions": {"type": "array", "items": {"type": "string"}}
+  }
+}

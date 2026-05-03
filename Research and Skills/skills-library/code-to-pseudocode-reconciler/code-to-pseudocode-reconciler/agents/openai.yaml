@@ -1,0 +1,3 @@
+interface:
+  display_name: "Code To Pseudocode Reconciler"
+  short_description: "Reverse-syncs accepted code changes into pseudocode, schemas, diagrams, and parity gaps."

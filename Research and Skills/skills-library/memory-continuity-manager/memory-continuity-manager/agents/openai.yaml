@@ -1,0 +1,3 @@
+interface:
+  display_name: "Memory Continuity Manager"
+  short_description: "Keeps durable cloud-agent memory, continuity state, evidence, locks, and handoffs resumable."

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Abstraction Opportunity Finder"
+  short_description: "Choose direct implementation or justified abstractions."

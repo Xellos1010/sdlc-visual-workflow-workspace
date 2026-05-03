@@ -1,0 +1,5 @@
+interface:
+  display_name: Scheduler Cadence Runner
+  short_description: Turns recurring schedules into safe, idempotent agent behavior.
+  icon: clock
+  color: blue

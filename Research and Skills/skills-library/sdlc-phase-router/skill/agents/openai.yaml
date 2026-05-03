@@ -1,0 +1,5 @@
+interface:
+  display_name: SDLC Phase Router
+  short_description: Maps requests, events, and state to the correct lifecycle stage.
+  icon: git-branch
+  color: blue

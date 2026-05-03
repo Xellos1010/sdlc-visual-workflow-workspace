@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CodegenPlan",
+  "type": "object",
+  "required": ["workOrderId", "files", "sequence", "validationCommands"],
+  "properties": {
+    "workOrderId": {"type": "string"},
+    "files": {"type": "array"},
+    "sequence": {"type": "array"},
+    "languageRules": {"type": "array"},
+    "validationCommands": {"type": "array"},
+    "rollbackPlan": {"type": "array"}
+  }
+}

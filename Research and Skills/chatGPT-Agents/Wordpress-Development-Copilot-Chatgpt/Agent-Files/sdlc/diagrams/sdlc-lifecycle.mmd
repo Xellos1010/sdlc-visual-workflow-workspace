@@ -1,0 +1,16 @@
+flowchart LR
+  A[Intake] --> B[Discover]
+  B --> C[Define]
+  C --> D[Design]
+  D --> E[Plan]
+  E --> F[Implement]
+  F --> G[Verify]
+  G --> H[Integrate]
+  H --> I[Release]
+  I --> J[Operate]
+  J --> B
+  G -- fail --> K[Corrective Work Order]
+  K --> F
+  C -- human decision --> L[Human Decision Issue]
+  D -- optional --> M[Visual Diagrams Default Off]
+  M --> E

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fix Memory",
+  "type": "object",
+  "required": ["id", "problem", "rootCause", "solution", "testEvidence", "principle", "timestamp"],
+  "properties": {
+    "id": { "type": "string" },
+    "repo": { "type": "string" },
+    "component": { "type": "string" },
+    "problem": { "type": "string" },
+    "rootCause": { "type": "string" },
+    "solution": { "type": "string" },
+    "testEvidence": { "type": "string" },
+    "principle": { "type": "string" },
+    "guardrailCandidate": { "type": "string" },
+    "skillUpdateCandidate": { "type": "string" },
+    "timestamp": { "type": "string" }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "required": ["request_id", "normalized_summary", "trigger", "actor", "requested_outcomes", "facts", "assumptions", "missing_inputs", "next_skill_handoff"],
+  "properties": {
+    "request_id": {"type": "string"},
+    "normalized_summary": {"type": "string"},
+    "trigger": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {"enum": ["human_request", "scheduled_run", "issue_event", "pr_event", "commit_event", "ci_event", "repository_event", "unknown"]},
+        "source": {"type": "string"},
+        "cadence_or_event": {"type": "string"}
+      }
+    },
+    "actor": {"type": "object"},
+    "repository_context": {"type": "object"},
+    "requested_outcomes": {"type": "array", "items": {"type": "object"}},
+    "deliverables": {"type": "array", "items": {"type": "string"}},
+    "facts": {"type": "array", "items": {"type": "string"}},
+    "constraints_stated_by_user": {"type": "array", "items": {"type": "string"}},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "missing_inputs": {"type": "array", "items": {"type": "string"}},
+    "continuity_lookup_needed": {"type": "boolean"},
+    "available_connectors": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object"}
+  }
+}

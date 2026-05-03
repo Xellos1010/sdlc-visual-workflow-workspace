@@ -1,0 +1,5 @@
+interface:
+  display_name: Pseudocode To Language Plan Compiler
+  short_description: Compiles pseudocode into a language-specific implementation plan.
+  icon: code
+  color: blue

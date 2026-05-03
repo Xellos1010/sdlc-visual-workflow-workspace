@@ -1,0 +1,5 @@
+interface:
+  display_name: "Branch Bloat Reconciler"
+  short_description: "Detects duplicate, stale, and sprawling branches or PR lanes."
+  icon: "git-branch"
+  color: blue

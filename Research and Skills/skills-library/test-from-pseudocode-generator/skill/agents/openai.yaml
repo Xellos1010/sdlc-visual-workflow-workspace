@@ -1,0 +1,5 @@
+interface:
+  display_name: Test From Pseudocode Generator
+  short_description: Creates test specifications from pseudocode and acceptance criteria.
+  icon: code
+  color: blue

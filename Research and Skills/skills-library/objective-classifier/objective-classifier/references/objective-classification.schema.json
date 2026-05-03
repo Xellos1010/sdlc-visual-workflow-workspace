@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": ["primary_objective", "secondary_objectives", "route_family", "risk_class", "risk_drivers", "mandatory_controls", "next_skill_handoff"],
+  "properties": {
+    "primary_objective": {"enum": ["new_system", "new_feature", "refactor", "bug_fix", "migration", "external_library", "experiment", "diagnosis", "documentation", "release", "operations"]},
+    "secondary_objectives": {"type": "array", "items": {"type": "string"}},
+    "route_family": {"enum": ["implementation", "reverse_sync", "review", "diagnosis", "documentation", "release_ops", "planning"]},
+    "risk_class": {"enum": ["low", "medium", "high", "critical"]},
+    "risk_drivers": {"type": "array", "items": {"type": "string"}},
+    "mandatory_controls": {"type": "array", "items": {"type": "string"}},
+    "blocked_until": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"type": "number"},
+    "next_skill_handoff": {"type": "object"}
+  }
+}

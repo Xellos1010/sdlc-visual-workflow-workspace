@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InsertionPointMap",
+  "type": "object",
+  "required": ["workOrderId", "ownedFiles", "integrationPoints", "forbiddenFiles"],
+  "properties": {
+    "workOrderId": {"type": "string"},
+    "ownedFiles": {"type": "array", "items": {"type": "string"}},
+    "integrationPoints": {"type": "array"},
+    "forbiddenFiles": {"type": "array", "items": {"type": "string"}},
+    "testTargets": {"type": "array"}
+  }
+}

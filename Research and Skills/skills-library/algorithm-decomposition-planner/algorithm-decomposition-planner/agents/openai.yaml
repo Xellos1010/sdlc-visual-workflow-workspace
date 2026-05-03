@@ -1,0 +1,5 @@
+interface:
+  display_name: Algorithm Decomposition Planner
+  short_description: Breaks pseudocode into functions, modules, tasks, handlers, and call graphs.
+  icon: code
+  color: blue

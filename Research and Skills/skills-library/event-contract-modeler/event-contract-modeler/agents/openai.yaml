@@ -1,0 +1,5 @@
+interface:
+  display_name: Event Contract Modeler
+  short_description: Models event names, payloads, producers, consumers, ordering, and idempotency.
+  icon: code
+  color: blue

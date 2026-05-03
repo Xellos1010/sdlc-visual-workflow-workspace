@@ -1,0 +1,15 @@
+{
+  "verdict": "within_budget | at_risk | violation | measurement_required | blocked",
+  "findings": [
+    {
+      "dimension": "latency | throughput | memory | cpu | database | network | bundle | render | startup | background_job | cache | complexity",
+      "budget": "string | unknown",
+      "actual_or_expected": "string | unknown",
+      "status": "within_budget | at_risk | violation | unknown | measurement_required",
+      "evidence": ["string"],
+      "mitigation": "string | none"
+    }
+  ],
+  "mitigation_work_orders": [],
+  "next_skill_handoff": {}
+}

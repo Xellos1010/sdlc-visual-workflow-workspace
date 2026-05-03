@@ -1,0 +1,5 @@
+interface:
+  display_name: Codegen Contract Builder
+  short_description: Builds the bounded contract for safe code generation.
+  icon: code
+  color: blue

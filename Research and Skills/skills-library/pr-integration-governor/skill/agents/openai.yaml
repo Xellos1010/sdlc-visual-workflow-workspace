@@ -1,0 +1,5 @@
+interface:
+  display_name: PR Integration Governor
+  short_description: Enforces one active PR lane and merge-readiness gates.
+  icon: git-pull-request
+  color: blue

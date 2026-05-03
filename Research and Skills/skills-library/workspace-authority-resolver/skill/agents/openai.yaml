@@ -1,0 +1,5 @@
+interface:
+  display_name: "Workspace Authority Resolver"
+  short_description: "Resolves source-of-truth hierarchy, permissions, human authority, and safe action boundaries."
+  icon: "shield"
+  color: blue

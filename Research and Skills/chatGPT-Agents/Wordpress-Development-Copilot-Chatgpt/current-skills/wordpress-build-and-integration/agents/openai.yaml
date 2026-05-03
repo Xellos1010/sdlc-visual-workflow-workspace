@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress Build and Integration"
+  short_description: "Guides WordPress implementation, repo changes, and integrations"
+  default_prompt: "Use $wordpress-build-and-integration to plan and implement WordPress-compatible themes, blocks, patterns, pages, and integrations."

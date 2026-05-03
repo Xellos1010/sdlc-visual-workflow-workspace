@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "required": [
+    "patch_id",
+    "source_delta_id",
+    "acceptance_state",
+    "pseudocode_updates",
+    "schema_patch_candidates",
+    "diagram_patch_candidates",
+    "parity_gaps"
+  ],
+  "properties": {
+    "patch_id": {"type": "string"},
+    "source_delta_id": {"type": "string"},
+    "acceptance_state": {"enum": ["accepted", "review_required", "blocked", "unknown"]},
+    "pseudocode_updates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target_artifact", "operation", "reason", "evidence"],
+        "properties": {
+          "target_artifact": {"type": "string"},
+          "operation": {"enum": ["add", "modify", "remove", "split", "rename", "review_only"]},
+          "current_text_or_node": {"type": "string"},
+          "proposed_text_or_node": {"type": "string"},
+          "reason": {"type": "string"},
+          "evidence": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "schema_patch_candidates": {"type": "array", "items": {"type": "object"}},
+    "diagram_patch_candidates": {"type": "array", "items": {"type": "object"}},
+    "parity_gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["artifact", "gap", "severity", "owner_skill"],
+        "properties": {
+          "artifact": {"type": "string"},
+          "gap": {"type": "string"},
+          "severity": {"enum": ["low", "medium", "high", "blocking"]},
+          "owner_skill": {"type": "string"}
+        }
+      }
+    }
+  }
+}

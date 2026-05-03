@@ -1,0 +1,231 @@
+version: 1
+name: cloud-agent-sdlc-lifecycle-schedules
+applies_to: any_repository
+state_contracts:
+  continuity: .foundry/projects/<project>/current-task.json
+  work_orders: .foundry/projects/<project>/work-orders/*.json
+  locks: .foundry/projects/<project>/locks/*.json
+  decisions: .foundry/projects/<project>/decision-ledger.jsonl
+  evidence: runs/evidence/<project>/
+  fix_memory: .foundry/memory/fix-memories/*.json
+
+global_rules:
+  - main_is_canonical_trunk
+  - client_or_product_identity_lives_in_overlays_not_long_lived_branches
+  - one_active_integration_pr_per_lane
+  - scheduled_runs_are_idempotent
+  - every_run_reads_continuity_first
+  - every_meaningful_run_patches_continuity
+  - work_orders_have_file_scope_locks_before_mutation
+  - evidence_required_before_done
+  - human_decisions_open_or_update_one_issue
+  - diagramming_optional_default_off
+  - no_merge_deploy_publish_or_ambiguous_delete_without_human_approval
+
+skill_pipeline_default:
+  - cloud-agent-ops-sentinel
+  - cloud-agent-sdlc-orchestrator
+  - scheduler-cadence-runner
+  - sdlc-phase-router
+  - memory-continuity-manager
+  - workspace-authority-resolver
+  - repository-intake-auditor
+  - roadmap-feature-factory
+  - scope-chunker
+  - file-lock-coordinator
+  - context-curator
+  - pr-integration-governor
+  - risk-blast-radius-analyzer
+  - test-strategy-generator
+  - independent-verifier
+  - trace-evidence-collector
+  - continuity-writer
+
+optional_visual_skills_default_off:
+  - c4-diagram-generator
+  - uml-component-modeler
+  - sequence-flow-generator
+  - state-machine-modeler
+  - dataflow-event-modeler
+  - work-order-dag-visualizer
+  - blast-radius-graph-visualizer
+  - memory-state-diagrammer
+
+tasks:
+  - id: sdlc-hourly-active-work-improvement
+    title: Improve active in-progress work
+    cadence: every_1_hour
+    rrule: FREQ=HOURLY;INTERVAL=1
+    github_actions_cron_utc: "0 * * * *"
+    recommended_runtime_limit_minutes: 30
+    mutation_allowed: true
+    merge_allowed: false
+    deploy_allowed: false
+    publish_allowed: false
+    branch_delete_allowed: false
+    primary_goal: >
+      Inspect current in-progress work, continue the active PR if one exists,
+      optimize and improve the active feature set, update durable memory, and
+      move to the next unblocked feature only when current work is blocked or done.
+    required_skills:
+      - cloud-agent-ops-sentinel
+      - memory-continuity-manager
+      - pr-integration-governor
+      - file-lock-coordinator
+      - context-curator
+      - risk-blast-radius-analyzer
+      - test-strategy-generator
+      - trace-evidence-collector
+      - continuity-writer
+      - human-decision-escalator
+    prompt: |
+      You are the Hourly Active Work Improvement Agent for <repo>.
+
+      Run protocol:
+      1. Read .foundry/projects/<project>/current-task.json.
+      2. Read open PRs and identify the active integration lane.
+      3. Read active locks and work orders.
+      4. If a current PR exists, build on top of that PR.
+      5. Do not create sibling PRs.
+      6. Select the smallest unblocked improvement in the current feature set.
+      7. Acquire file locks before mutation.
+      8. Improve performance, observability, organization, modularity, clarity, safety, or testability.
+      9. Run targeted validation.
+      10. Record evidence or no-op rationale.
+      11. Patch continuity state.
+      12. If human input is required and no independent safe work remains, mark blocked_requires_human_decision and open/update one issue with pasteable resume instructions.
+      13. If the current feature is blocked or complete, choose the next scoped unblocked feature.
+
+      Prohibited:
+      - merging
+      - deploying
+      - publishing external content
+      - deleting branches
+      - creating a second PR for the same lane
+      - claiming runtime validation passed without running runtime validation
+
+      Required output:
+      - repo/project
+      - active PR/branch
+      - active feature set
+      - locks acquired/released
+      - work performed
+      - files changed
+      - validation commands/results
+      - continuity patch summary
+      - human decision issue, if any
+      - next action
+
+  - id: sdlc-four-hour-validation-integration
+    title: Validate and consolidate active work
+    cadence: every_4_hours
+    rrule: FREQ=HOURLY;INTERVAL=4
+    github_actions_cron_utc: "0 */4 * * *"
+    recommended_runtime_limit_minutes: 60
+    mutation_allowed: true
+    merge_allowed: false
+    deploy_allowed: false
+    publish_allowed: false
+    branch_delete_allowed: false
+    primary_goal: >
+      Run broader validation, reconcile locks and PR state, refresh evidence,
+      detect integration risks, and create corrective work orders when validation fails.
+    required_skills:
+      - cloud-agent-ops-sentinel
+      - memory-continuity-manager
+      - pr-integration-governor
+      - work-order-dag-resolver
+      - risk-blast-radius-analyzer
+      - nx-monorepo-verifier
+      - ci-failure-diagnoser
+      - independent-verifier
+      - trace-evidence-collector
+      - continuity-writer
+    prompt: |
+      You are the Four-Hour Validation and Integration Agent for <repo>.
+
+      Run protocol:
+      1. Read continuity, active work orders, lock files, active PRs, open issues, and latest evidence.
+      2. Confirm only one active PR exists for each lane.
+      3. Reconcile stale locks and overlapping work.
+      4. Run configured verification commands when available.
+      5. Run blast-radius analysis for changed shared files and contract/interface changes.
+      6. If validation fails, create a corrective work order in the same active PR lane.
+      7. If runtime validation is unavailable, mark blocked_runtime_validation.
+      8. Update roadmap and continuity with real status.
+      9. Produce an evidence bundle.
+
+      Required output:
+      - PR inventory
+      - lock inventory
+      - validation commands/results
+      - blast-radius verdict
+      - evidence path
+      - corrective work orders created
+      - blocked runtime or human decisions
+      - next four-hour action
+
+  - id: sdlc-daily-reconciliation-governance
+    title: Reconcile branches, roadmap, memory, and release posture
+    cadence: daily
+    rrule: FREQ=DAILY;BYHOUR=8;BYMINUTE=0;BYSECOND=0
+    github_actions_cron_utc: "0 8 * * *"
+    recommended_runtime_limit_minutes: 90
+    mutation_allowed: true
+    merge_allowed: false
+    deploy_allowed: false
+    publish_allowed: false
+    branch_delete_allowed: limited_merged_agent_branches_only
+    primary_goal: >
+      Reconcile repository state, refresh feature roadmap, safely reduce branch bloat,
+      promote learning into guardrails, and produce the daily operator digest.
+    required_skills:
+      - cloud-agent-ops-sentinel
+      - memory-continuity-manager
+      - branch-bloat-reconciler
+      - roadmap-feature-factory
+      - knowledge-ingestion-curator
+      - issue-triage-and-blocker-router
+      - fix-memory-curator
+      - guardrail-promoter
+      - release-readiness-governor
+      - handoff-generator
+      - docs-release-agent
+      - continuity-writer
+    prompt: |
+      You are the Daily SDLC Reconciliation and Governance Agent for <repo>.
+
+      Run protocol:
+      1. Read repository state, continuity, work orders, locks, PRs, issues, branches, evidence, fix-memory, docs, and runbooks.
+      2. Confirm main/trunk remains canonical.
+      3. Confirm one active PR per lane.
+      4. Identify stale branches.
+      5. Delete only merged, unprotected, non-main, non-open-PR agent branches.
+      6. Recommend deletion for ambiguous branches instead of deleting them.
+      7. Refresh roadmap from audit findings, issues, validation gaps, and operator goals.
+      8. Promote repeated lessons into guardrails or skill update candidates.
+      9. Produce release readiness summaries only for verified work.
+      10. Produce draft blog/release content only for merged and verified changes; do not publish.
+      11. Patch continuity and write daily operator digest.
+
+      Required output:
+      - active PRs by lane
+      - branches deleted
+      - branches recommended for deletion
+      - stale locks resolved/reported
+      - roadmap changes
+      - human decision digest
+      - evidence gaps
+      - guardrails promoted
+      - next feature selected
+      - daily operator summary
+
+stop_conditions:
+  - missing_required_connector_for_requested_action
+  - dirty_unowned_worktree
+  - overlapping_write_lock
+  - duplicate_active_pr_for_lane
+  - secret_or_credential_detected
+  - destructive_action_requires_approval
+  - runtime_claim_without_runtime_evidence
+  - all_work_blocked_by_human_decisions

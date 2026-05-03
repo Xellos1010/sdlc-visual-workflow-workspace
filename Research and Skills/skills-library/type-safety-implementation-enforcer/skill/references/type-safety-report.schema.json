@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "type_safety_report",
+  "type": "object",
+  "required": ["schema_version", "violations", "fix_plan", "typecheck_commands", "next_skill_handoff"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "violations": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "fix_plan": {"type": "array", "items": {"type": "string"}},
+    "typecheck_commands": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

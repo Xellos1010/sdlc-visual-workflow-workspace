@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "workspace_authority_resolution",
+  "type": "object",
+  "required": ["schema_version", "authority_order", "allowed_actions", "blocked_actions", "escalations", "next_skill_handoff"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "run_id": {"type": "string"},
+    "project": {"type": "string"},
+    "repository": {"type": "string"},
+    "source_inputs": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "confidence": {"type": "string"},
+    "blocking_gaps": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

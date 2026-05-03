@@ -1,0 +1,5 @@
+interface:
+  display_name: "Test Strategy Generator"
+  short_description: "Creates validation strategy, test coverage matrix, commands, fixtures, and evidence plan."
+  icon: "test-tube"
+  color: blue

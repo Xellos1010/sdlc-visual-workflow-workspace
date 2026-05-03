@@ -1,0 +1,3 @@
+interface:
+  display_name: "Decision Tradeoff Ledger"
+  short_description: "Records durable decision ledger entries, tradeoffs, and reversal conditions."

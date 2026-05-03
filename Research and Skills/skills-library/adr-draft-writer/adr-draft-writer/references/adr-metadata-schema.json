@@ -1,0 +1,26 @@
+{
+  "adr_id": "ADR-XXX",
+  "title": "short decision title",
+  "status": "Proposed | Accepted | Superseded | Rejected",
+  "date": "YYYY-MM-DD",
+  "decision_type": "architecture | abstraction | schema | performance | persistence | integration | tool | workflow | codegen | other",
+  "chosen_option": "option name",
+  "rejected_options": ["option name"],
+  "affected_artifacts": {
+    "work_orders": [],
+    "pseudocode": [],
+    "schemas": [],
+    "code": [],
+    "tests": [],
+    "evidence": [],
+    "prior_adrs": []
+  },
+  "risk_level": "low | medium | high | unknown",
+  "reversal_triggers": [],
+  "followup_actions": [],
+  "next_skill_handoff": {
+    "next_skill": "adr-indexer",
+    "reason": "index the ADR, cross-link affected artifacts, and update the decision ledger",
+    "inputs": ["adr.md", "adr_metadata.json", "work_order", "evidence_bundle"]
+  }
+}

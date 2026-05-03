@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "required": [
+    "candidate_id",
+    "title",
+    "status",
+    "decision_type",
+    "evidence_level",
+    "decision_context",
+    "chosen_or_implied_option",
+    "consequences",
+    "affected_artifacts",
+    "questions"
+  ],
+  "properties": {
+    "candidate_id": {"type": "string"},
+    "title": {"type": "string"},
+    "status": {"enum": ["ready_for_adr", "needs_confirmation", "covered_by_existing_adr", "blocked"]},
+    "decision_type": {"type": "string"},
+    "evidence_level": {"enum": ["explicit", "strongly_implied", "unclear"]},
+    "decision_context": {"type": "string"},
+    "chosen_or_implied_option": {"type": "string"},
+    "alternatives": {"type": "array", "items": {"type": "string"}},
+    "consequences": {"type": "array", "items": {"type": "string"}},
+    "affected_artifacts": {"type": "array", "items": {"type": "string"}},
+    "existing_adr_coverage": {"type": "string"},
+    "questions": {"type": "array", "items": {"type": "string"}},
+    "next_skill": {"type": "string"}
+  }
+}

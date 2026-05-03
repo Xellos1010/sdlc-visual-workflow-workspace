@@ -1,0 +1,23 @@
+{
+  "artifact": "architecture_snapshot.json",
+  "required_fields": [
+    "scope",
+    "current_boundaries",
+    "runtime_flow",
+    "state_and_data_ownership",
+    "public_contracts",
+    "extension_points",
+    "existing_patterns",
+    "known_tradeoffs",
+    "architecture_gaps",
+    "evidence",
+    "next_skill_handoff"
+  ],
+  "evidence_item": {
+    "source": "path, ADR, diagram, test, schema, or command",
+    "claim_supported": "specific architecture claim",
+    "freshness": "current | stale | unknown",
+    "confidence": "high | medium | low"
+  },
+  "next_skill_handoff": "insertion-point-locator"
+}

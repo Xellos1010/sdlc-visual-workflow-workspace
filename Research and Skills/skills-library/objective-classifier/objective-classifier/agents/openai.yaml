@@ -1,0 +1,3 @@
+interface:
+  display_name: "Objective Classifier"
+  short_description: "Classifies request envelopes into objective type, route family, and risk precheck."

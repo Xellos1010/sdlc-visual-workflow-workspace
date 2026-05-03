@@ -838,6 +838,70 @@
         "implicitDependencies": []
       }
     },
+    "foundry-cli": {
+      "name": "foundry-cli",
+      "type": "lib",
+      "data": {
+        "root": "apps/foundry-cli",
+        "name": "foundry-cli",
+        "tags": [
+          "npm:private"
+        ],
+        "metadata": {
+          "targetGroups": {
+            "NPM Scripts": [
+              "build",
+              "typecheck",
+              "dev"
+            ]
+          },
+          "js": {
+            "packageName": "foundry-cli",
+            "isInPackageManagerWorkspaces": true
+          }
+        },
+        "targets": {
+          "build": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build"
+            },
+            "metadata": {
+              "scriptContent": "tsc -p tsconfig.json",
+              "runCommand": "pnpm run build"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "typecheck": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "typecheck"
+            },
+            "metadata": {
+              "scriptContent": "tsc -p tsconfig.json --noEmit",
+              "runCommand": "pnpm run typecheck"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "dev": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "dev"
+            },
+            "metadata": {
+              "scriptContent": "tsx src/bin.ts",
+              "runCommand": "pnpm run dev"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "cache": false
+          }
+        },
+        "implicitDependencies": []
+      }
+    },
     "platform-dev": {
       "name": "platform-dev",
       "type": "app",
@@ -2156,10 +2220,27 @@
         "source": "ts-to-rust-foundry-starter",
         "target": "npm:typescript",
         "type": "static"
+      },
+      {
+        "source": "ts-to-rust-foundry-starter",
+        "target": "npm:open",
+        "type": "static"
       }
     ],
     "flagship-foundry": [],
     "ai-context": [],
+    "foundry-cli": [
+      {
+        "source": "foundry-cli",
+        "target": "npm:@types/node",
+        "type": "static"
+      },
+      {
+        "source": "foundry-cli",
+        "target": "npm:typescript",
+        "type": "static"
+      }
+    ],
     "platform-dev": [],
     "npm:@emnapi/core": [
       {
@@ -3149,5 +3230,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1776567689737
+  "computedAt": 1777770124096
 }

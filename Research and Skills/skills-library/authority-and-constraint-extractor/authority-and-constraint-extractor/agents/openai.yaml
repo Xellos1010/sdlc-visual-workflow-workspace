@@ -1,0 +1,3 @@
+interface:
+  display_name: "Authority And Constraint Extractor"
+  short_description: "Extracts source-of-truth order, hard constraints, approval boundaries, and quality bars."

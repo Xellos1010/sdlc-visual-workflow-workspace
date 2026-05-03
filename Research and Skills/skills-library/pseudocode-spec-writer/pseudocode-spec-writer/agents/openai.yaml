@@ -1,0 +1,5 @@
+interface:
+  display_name: Pseudocode Spec Writer
+  short_description: Writes contract-first, language-neutral pseudocode for code generation.
+  icon: code
+  color: blue

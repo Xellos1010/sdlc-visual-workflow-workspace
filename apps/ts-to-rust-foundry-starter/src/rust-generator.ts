@@ -100,14 +100,33 @@ function emitClass(type: TypeModel): string[] {
   return lines;
 }
 
+function emitPseudocodeBlock(
+  name: string,
+  kind: string,
+  returns: string,
+  params: string,
+  steps: string[],
+  indent: string
+): string[] {
+  const sep = '─'.repeat(Math.max(0, 56 - name.length));
+  const out = [
+    `${indent}// PSEUDOCODE [${name}] ${sep}`,
+    `${indent}// Kind: ${kind}`,
+    `${indent}// Returns: ${returns}`,
+  ];
+  if (params) out.push(`${indent}// Params: ${params}`);
+  if (steps.length) {
+    out.push(`${indent}//`);
+    out.push(`${indent}// Steps:`);
+    for (const step of steps) out.push(`${indent}//   - ${step}`);
+  }
+  out.push(`${indent}// ${'─'.repeat(70)}`);
+  return out;
+}
+
 function emitImplMethod(method: FunctionModel, hasFields: boolean): string[] {
   const lines: string[] = [];
   const isCtor = method.kind === 'constructor';
-  if (method.pseudocode?.length) {
-    for (const step of method.pseudocode) {
-      lines.push(`    // ${step}`);
-    }
-  }
   if (isCtor) {
     lines.push('    pub fn new() -> Self {');
     lines.push('        Self {');
@@ -129,18 +148,18 @@ function emitImplMethod(method: FunctionModel, hasFields: boolean): string[] {
   if (method.kind === 'component' || method.jsxLike) {
     lines.push('        // TSX/JSX component detected. Choose an explicit Rust UI target before implementation.');
   }
-  lines.push('        todo!("Implement translated logic from pseudocode ledger");');
+  lines.push(...emitPseudocodeBlock(
+    method.name, method.kind, method.returnType,
+    method.parameters.map((p) => `${p.name}: ${p.type}`).join(', '),
+    method.pseudocode ?? [], '        '
+  ));
+  lines.push(`        todo!("implement: ${snakeCase(method.name)}");`);
   lines.push('    }');
   return lines;
 }
 
 function emitTopLevelFunction(fn: FunctionModel): string[] {
   const lines: string[] = [];
-  if (fn.pseudocode?.length) {
-    for (const step of fn.pseudocode) {
-      lines.push(`// ${step}`);
-    }
-  }
   const params = fn.parameters
     .map((p) => `${snakeCase(cleanOptional(p.name))}: ${wrapOptional(mapType(p.type), p.name.endsWith('?'))}`)
     .join(', ');
@@ -148,7 +167,12 @@ function emitTopLevelFunction(fn: FunctionModel): string[] {
   if (fn.kind === 'component' || fn.jsxLike) {
     lines.push('    // Component-like function detected. This should target a Rust UI framework explicitly.');
   }
-  lines.push('    todo!("Implement translated logic from pseudocode ledger");');
+  lines.push(...emitPseudocodeBlock(
+    fn.name, fn.kind, fn.returnType,
+    fn.parameters.map((p) => `${p.name}: ${p.type}`).join(', '),
+    fn.pseudocode ?? [], '    '
+  ));
+  lines.push(`    todo!("implement: ${snakeCase(fn.name)}");`);
   lines.push('}');
   return lines;
 }

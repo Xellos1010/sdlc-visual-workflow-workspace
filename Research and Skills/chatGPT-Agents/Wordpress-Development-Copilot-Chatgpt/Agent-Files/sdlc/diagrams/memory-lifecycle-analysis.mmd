@@ -1,0 +1,16 @@
+flowchart TD
+  A[Input Schema] --> B[Type System Plan]
+  B --> C[Pseudocode Steps]
+  C --> D[State Ownership Map]
+  D --> E{Language Runtime}
+  E -->|Rust| F[Ownership Borrowing Lifetimes]
+  E -->|TypeScript| G[Object Lifetime Async Closures Caches]
+  E -->|React| H[State Memoization Effects Re-renders]
+  E -->|Node| I[Streams Timers Listeners Cleanup]
+  E -->|Python| J[References Generators Context Managers]
+  F --> K[Memory Lifecycle Report]
+  G --> K
+  H --> K
+  I --> K
+  J --> K
+  K --> L[Complexity and Performance Budget]

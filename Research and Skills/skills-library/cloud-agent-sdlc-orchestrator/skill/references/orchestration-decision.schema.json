@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "orchestration_decision",
+  "type": "object",
+  "required": ["schema_version", "selected_stage", "required_skills", "allowed_actions", "blocked_actions", "next_skill_handoff"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "run_id": {"type": "string"},
+    "project": {"type": "string"},
+    "repository": {"type": "string"},
+    "lifecycle_stage": {"type": "string"},
+    "task_status": {"type": "string"},
+    "source_inputs": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "blocked_actions": {"type": "array", "items": {"type": "string"}},
+    "allowed_actions": {"type": "array", "items": {"type": "string"}},
+    "blocking_gaps": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

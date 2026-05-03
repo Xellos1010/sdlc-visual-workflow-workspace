@@ -1,0 +1,5 @@
+interface:
+  display_name: File Lock Coordinator
+  short_description: Coordinates file and work-order locks for parallel agent safety.
+  icon: lock
+  color: blue

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "test_specification",
+  "type": "object",
+  "required": ["schema_version", "test_files_to_create", "fixtures", "expected_results", "coverage_matrix", "next_skill_handoff"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"type": "string"},
+    "work_order_id": {"type": "string"},
+    "source_inputs": {"type": "array", "items": {"type": "string"}},
+    "evidence": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "confidence": {"type": "string", "enum": ["high", "medium", "low", "mixed"]},
+    "blocking_gaps": {"type": "array", "items": {"type": "string"}},
+    "next_skill_handoff": {"type": "object", "additionalProperties": true}
+  }
+}

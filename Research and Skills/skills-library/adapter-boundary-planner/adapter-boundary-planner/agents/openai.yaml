@@ -1,0 +1,5 @@
+interface:
+  display_name: Adapter Boundary Planner
+  short_description: Defines ports, adapters, integration seams, retries, errors, and observability.
+  icon: code
+  color: blue

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ObjectiveClassification",
+  "type": "object",
+  "required": ["requestId", "primaryType", "riskLevel", "route"],
+  "properties": {
+    "requestId": {"type": "string"},
+    "primaryType": {"enum": ["new_system", "new_feature", "refactor", "bug_fix", "migration", "external_library", "experiment", "diagnosis", "documentation", "release", "operations"]},
+    "secondaryTypes": {"type": "array", "items": {"type": "string"}},
+    "riskLevel": {"enum": ["low", "medium", "high", "critical"]},
+    "route": {"type": "array", "items": {"type": "string"}}
+  }
+}

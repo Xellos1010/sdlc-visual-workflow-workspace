@@ -1,0 +1,5 @@
+interface:
+  display_name: Memory Lifecycle Analyzer
+  short_description: Analyzes state ownership, retention, cleanup, lifetimes, and memory risks.
+  icon: code
+  color: blue

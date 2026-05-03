@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress SDLC and Validation"
+  short_description: "Scopes work, defines stages, and validates delivery quality"
+  default_prompt: "Use $wordpress-sdlc-and-validation to define scope, stage work, and validate WordPress delivery against the initiative SDLC."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "WordPress Request Router"
+  short_description: "Routes WordPress work by category and execution mode"
+  default_prompt: "Use $wordpress-request-router to classify the request, identify the right WordPress workstream, and define the execution path."

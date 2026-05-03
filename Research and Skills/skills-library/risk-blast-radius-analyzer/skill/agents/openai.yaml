@@ -1,0 +1,5 @@
+interface:
+  display_name: "Risk Blast Radius Analyzer"
+  short_description: "Analyzes proposed or changed files for hidden risk, affected systems, and review gates."
+  icon: "alert-triangle"
+  color: blue
