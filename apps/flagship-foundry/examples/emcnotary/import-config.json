@@ -1,8 +1,0 @@
-{
-  "ecosystemId": "emcnotary-website",
-  "name": "EMC Notary Website",
-  "source": {
-    "type": "filesystem",
-    "workspaceRoot": "/Users/evanmccall/Projects/emcnotary-website"
-  }
-}

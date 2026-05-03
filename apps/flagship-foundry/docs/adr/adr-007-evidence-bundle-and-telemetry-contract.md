@@ -76,13 +76,13 @@ Milestone alignment:
 - Over-collecting telemetry could produce noise unless the contract distinguishes required summaries from optional detail.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/README.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/evidence-bundle.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/run-timeline.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/packages/core/src/evidence-bundle.mjs`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/packages/core/src/runs.mjs`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/guardrails/telemetry-and-observability.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/runbooks/telemetry-driven-improvement.runbook.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/personas/independent-verifier.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-telemetry-observability.json`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/README.md`
+- `apps/flagship-foundry/schemas/evidence-bundle.schema.json`
+- `apps/flagship-foundry/schemas/run-timeline.schema.json`
+- `apps/flagship-foundry/packages/core/src/evidence-bundle.mjs`
+- `apps/flagship-foundry/packages/core/src/runs.mjs`
+- `apps/flagship-foundry/guardrails/telemetry-and-observability.json`
+- `apps/flagship-foundry/runbooks/telemetry-driven-improvement.runbook.json`
+- `apps/flagship-foundry/personas/independent-verifier.json`
+- `apps/flagship-foundry/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-telemetry-observability.json`

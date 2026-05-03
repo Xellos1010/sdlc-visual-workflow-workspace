@@ -41,7 +41,7 @@ This guide gets you from zero to a running project graph in about five minutes. 
 ## Section 2: 5-Minute Setup
 
 ```bash
-cd flagship-foundry-work
+cd apps/flagship-foundry
 npm install
 
 # Ingest your project
@@ -58,17 +58,17 @@ The `import` command reads your project directory, builds a graph, and writes th
 
 ---
 
-## Section 3: Import Config for emcnotary-website
+## Section 3: Sample import config
 
-The import config is a small JSON file that tells the ingestion pipeline which project to read and what to call it. The config for the EMC Notary Website project is at `examples/emcnotary/import-config.json`:
+The import config is a small JSON file that tells the ingestion pipeline which project to read and what to call it. A placeholder config you can copy is at `examples/sample-import/import-config.json` (set `workspaceRoot` to an absolute path on your machine):
 
 ```json
 {
-  "ecosystemId": "emcnotary-website",
-  "name": "EMC Notary Website",
+  "ecosystemId": "sample-app",
+  "name": "Sample Application",
   "source": {
     "type": "filesystem",
-    "workspaceRoot": "/Users/evanmccall/Projects/emcnotary-website"
+    "workspaceRoot": "/absolute/path/to/your/project"
   }
 }
 ```
@@ -76,7 +76,7 @@ The import config is a small JSON file that tells the ingestion pipeline which p
 Run it with:
 
 ```bash
-node apps/orchestrator-cli/src/main.mjs import examples/emcnotary/import-config.json
+node apps/orchestrator-cli/src/main.mjs import examples/sample-import/import-config.json
 ```
 
 ### Generic template
@@ -101,7 +101,7 @@ Use this template as the starting point for any other project:
 
 ## Section 4: Using the SDLC Workflow in Claude Code
 
-1. Open Claude Code in the workspace root (`SDLC - Visual - Workflow - SoftwareEngineering-NewAge/`).
+1. Open Claude Code in this monorepo root (the directory that contains `apps/` and `package.json`).
 2. Say "I want to add a feature to my-project." The orchestrator reads the continuity state, determines the current phase, and routes you to `discover` if this is a new feature.
 3. Use `/define-intent` to walk through structured intent capture: problem statement, scope, acceptance criteria, C4 diagrams, and principle cards. This produces an intent packet.
 4. Use `/scope-chunker` to decompose the intent packet into typed work orders with explicit file scope, model routing, and acceptance criteria for each slice.
@@ -114,7 +114,7 @@ Each phase transition writes to `.codex/projects/<project>/current-task.json`, s
 
 ## Section 5: CLI Command Reference
 
-All commands are run from the `flagship-foundry-work/` directory:
+All commands are run from the `apps/flagship-foundry/` directory:
 
 ```
 node apps/orchestrator-cli/src/main.mjs <command> [args]
@@ -122,26 +122,26 @@ node apps/orchestrator-cli/src/main.mjs <command> [args]
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `import` | Ingest a project from the filesystem into the Foundry graph. Reads an import config JSON and writes ecosystem state to `state/ecosystems/`. | `node apps/orchestrator-cli/src/main.mjs import examples/emcnotary/import-config.json` |
-| `visualize` | Run import and return the visualization data (Mermaid diagrams, graph views) for the ingested ecosystem. | `node apps/orchestrator-cli/src/main.mjs visualize examples/emcnotary/import-config.json` |
-| `profiles` | Run import and return the component profiles (tags, types, scopes, platform assignments) for the ecosystem. | `node apps/orchestrator-cli/src/main.mjs profiles examples/emcnotary/import-config.json` |
+| `import` | Ingest a project from the filesystem into the Foundry graph. Reads an import config JSON and writes ecosystem state to `state/ecosystems/`. | `node apps/orchestrator-cli/src/main.mjs import examples/sample-import/import-config.json` |
+| `visualize` | Run import and return the visualization data (Mermaid diagrams, graph views) for the ingested ecosystem. | `node apps/orchestrator-cli/src/main.mjs visualize examples/sample-import/import-config.json` |
+| `profiles` | Run import and return the component profiles (tags, types, scopes, platform assignments) for the ecosystem. | `node apps/orchestrator-cli/src/main.mjs profiles examples/sample-import/import-config.json` |
 | `blast` | Compute the blast radius for a given change query against an already-imported ecosystem. Reads a blast-request JSON with `ecosystemId` and `query`. | `node apps/orchestrator-cli/src/main.mjs blast path/to/blast-request.json` |
 | `knowledge` | Ingest a knowledge manifest (documentation, runbooks, ADRs) into the knowledge base for a project. Reads a manifest JSON that lists source documents. | `node apps/orchestrator-cli/src/main.mjs knowledge path/to/knowledge-manifest.json` |
 | `gap` | Analyze gaps between the project graph and the knowledge base — surfaces undocumented components, missing ADRs, and unknown dependencies. Reads a gap-request JSON with `ecosystemId` and optional `knowledgeBaseId`. | `node apps/orchestrator-cli/src/main.mjs gap path/to/gap-request.json` |
 | `focus` | Generate a focus view — a filtered slice of the graph scoped to a specific query. Reads a focus-request JSON with `ecosystemId` and `query`. | `node apps/orchestrator-cli/src/main.mjs focus path/to/focus-request.json` |
 | `plan` | Create an implementation plan from a change request. Reads a change-request JSON and produces a structured plan with work orders. | `node apps/orchestrator-cli/src/main.mjs plan path/to/change-request.json` |
-| `bootstrap` | One-shot command that runs import, optional knowledge ingestion, and optional plan creation in sequence. Useful for cold-starting a new project. | `node apps/orchestrator-cli/src/main.mjs bootstrap examples/emcnotary/import-config.json` |
+| `bootstrap` | One-shot command that runs import, optional knowledge ingestion, and optional plan creation in sequence. Useful for cold-starting a new project. | `node apps/orchestrator-cli/src/main.mjs bootstrap examples/sample-import/import-config.json` |
 | `run` | Execute a plan in simulate mode. Takes a plan ID (from a previous `plan` command) and runs through all work orders, reporting outcomes without applying changes. | `node apps/orchestrator-cli/src/main.mjs run <planId>` |
 | `show-plan` | Print a previously created plan in full. Takes a plan ID. | `node apps/orchestrator-cli/src/main.mjs show-plan <planId>` |
 | `scaffold-env` | Scaffold a new environment configuration from a named preset. Use `--dry-run` to preview the output without writing files. | `node apps/orchestrator-cli/src/main.mjs scaffold-env node-ts ./my-new-service --dry-run` |
-| `init-project` | Initialize a new project with SDLC continuity state. Creates `.codex/projects/<name>/current-task.json` and a project charter. | `node apps/orchestrator-cli/src/main.mjs init-project emcnotary "Notary website SDLC"` |
-| `status` | Show the current SDLC phase, blockers, and done criteria for a project. | `node apps/orchestrator-cli/src/main.mjs status emcnotary` |
-| `resume` | Print a resume checklist for interrupted work — current phase, next commands, blockers, and done criteria. | `node apps/orchestrator-cli/src/main.mjs resume emcnotary` |
-| `transition` | Transition a project to a new SDLC phase. Validates the transition and updates continuity state. | `node apps/orchestrator-cli/src/main.mjs transition emcnotary define "Scope defined"` |
-| `add-blocker` | Record a blocker on the current phase. Sets the phase status to blocked. | `node apps/orchestrator-cli/src/main.mjs add-blocker emcnotary "Waiting on API keys"` |
-| `resolve-blocker` | Resolve a blocker by index (0-based). Restores the phase to in-progress if no blockers remain. | `node apps/orchestrator-cli/src/main.mjs resolve-blocker emcnotary 0` |
+| `init-project` | Initialize a new project with SDLC continuity state. Creates `.codex/projects/<name>/current-task.json` and a project charter. | `node apps/orchestrator-cli/src/main.mjs init-project my-project "Sample SDLC objective"` |
+| `status` | Show the current SDLC phase, blockers, and done criteria for a project. | `node apps/orchestrator-cli/src/main.mjs status my-project` |
+| `resume` | Print a resume checklist for interrupted work — current phase, next commands, blockers, and done criteria. | `node apps/orchestrator-cli/src/main.mjs resume my-project` |
+| `transition` | Transition a project to a new SDLC phase. Validates the transition and updates continuity state. | `node apps/orchestrator-cli/src/main.mjs transition my-project define "Scope defined"` |
+| `add-blocker` | Record a blocker on the current phase. Sets the phase status to blocked. | `node apps/orchestrator-cli/src/main.mjs add-blocker my-project "Waiting on API keys"` |
+| `resolve-blocker` | Resolve a blocker by index (0-based). Restores the phase to in-progress if no blockers remain. | `node apps/orchestrator-cli/src/main.mjs resolve-blocker my-project 0` |
 | `compile-ralph` | Compile a Foundry plan into a Ralph-compatible PRD (prd.json) for autonomous execution. | `node apps/orchestrator-cli/src/main.mjs compile-ralph state/ecosystems/my-project/plans/plan-001.json` |
-| `sync-ralph` | Sync Ralph execution progress back to Foundry continuity state. | `node apps/orchestrator-cli/src/main.mjs sync-ralph ./ralph-prd.json emcnotary` |
+| `sync-ralph` | Sync Ralph execution progress back to Foundry continuity state. | `node apps/orchestrator-cli/src/main.mjs sync-ralph ./ralph-prd.json my-project` |
 
 Pass no arguments or `--help` to print the command list and usage summary.
 
@@ -198,5 +198,5 @@ This loop answers "is it working in production, and what do we learn?" The perfo
 - **CHARTER.md** (`.claude/CHARTER.md`) — The authority document for the Foundry system. Defines operating principles, agent hierarchy, and what humans own versus what agents own.
 - **RUNBOOK.md** (`.claude/RUNBOOK.md`) — Operational procedures for agent orchestration: how to resume interrupted work, how to recover from context collapse, how to escalate blockers.
 - **Flagship Handbook** (`docs/flagship_systems_sdlc_handbook.docx.md`) — The full reference for the SDLC system: phase definitions, artifact schemas, guardrail conventions, and the reasoning behind the design.
-- **Schemas** (`flagship-foundry-work/schemas/`) — JSON schemas for continuity state, work orders, and agent outputs. Useful when integrating external tools or writing custom scripts.
+- **Schemas** (`apps/flagship-foundry/schemas/`) — JSON schemas for continuity state, work orders, and agent outputs. Useful when integrating external tools or writing custom scripts.
 - **Cursor Rules** (`.cursor/rules/`) — The guardrail packs applied during code review and agent execution. Start with `03-workflow/ai-sdlc-orchestrator.mdc` and the `nx-sdlc/RULE.md` for module boundary rules.

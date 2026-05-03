@@ -56,5 +56,5 @@ Retention policy:
 - Archive volume can grow if cleanup discipline slips.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/docs/REPOSITORY_LAYOUT.md`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/docs/REPOSITORY_LAYOUT.md`

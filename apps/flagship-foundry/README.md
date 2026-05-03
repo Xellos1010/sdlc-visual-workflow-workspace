@@ -28,13 +28,13 @@ npm test
 
 ## CI and release gates
 
-Blocking automation and the release evidence threshold are documented in **[docs/ci-release-gates.md](docs/ci-release-gates.md)** (ADR-009). GitHub Actions runs **`npm test`** plus **`npm run ci:targeted`** (orchestrator visualize smoke) from `flagship-foundry-work/`; workflow definition lives at **`.github/workflows/flagship-foundry-ci.yml`** in the parent workspace repository.
+Blocking automation and the release evidence threshold are documented in **[docs/ci-release-gates.md](docs/ci-release-gates.md)** (ADR-009). GitHub Actions runs **`npm test`** plus **`npm run ci:targeted`** (orchestrator visualize smoke) from **`apps/flagship-foundry/`**; workflow definition lives at **`.github/workflows/flagship-foundry-ci.yml`** in this monorepo.
 
 Rollout, rollback, and incident documentation (how operator records link to plans, runs, and evidence) are defined in **[docs/rollout-rollback-incident-model.md](docs/rollout-rollback-incident-model.md)** (ADR-010).
 
 ## Continuity and `.foundry`
 
-Per **ADR-011**, machine-readable **project continuity** (task state) lives under **`.foundry/projects/<project>/current-task.json`** at the **workspace root** you choose when running `init-project`—not under `flagship-foundry-work/state/`. See **[docs/guides/ecosystem-onboarding.md](docs/guides/ecosystem-onboarding.md)** for a full import → knowledge → gap → plan → continuity walkthrough.
+Per **ADR-011**, machine-readable **project continuity** (task state) lives under **`.foundry/projects/<project>/current-task.json`** at the **workspace root** you choose when running `init-project`—not under `apps/flagship-foundry/state/`. See **[docs/guides/ecosystem-onboarding.md](docs/guides/ecosystem-onboarding.md)** for a full import → knowledge → gap → plan → continuity walkthrough.
 
 - **Docker (optional):** [docs/docker-and-local-dev.md](docs/docker-and-local-dev.md)
 - **Cursor extension init patterns:** [docs/guides/cursor-extension-foundry-init.md](docs/guides/cursor-extension-foundry-init.md)

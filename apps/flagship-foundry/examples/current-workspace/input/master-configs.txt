@@ -9,7 +9,7 @@
 
 # main-directory Configuration Files
 # Generated on: Fri Mar 20 22:25:40 EDT 2026
-# Source: /Users/evanmccall/Workspaces/Web Automation Workspace
+# Source: <SANITIZED_WEB_AUTOMATION_WORKSPACE>
 # 
 # This file contains all configuration files from the main-directory component.
 #
@@ -1756,7 +1756,7 @@ For issues or questions:
 
 # tools Configuration Files
 # Generated on: Fri Mar 20 22:25:48 EDT 2026
-# Source: /Users/evanmccall/Workspaces/Web Automation Workspace/tools
+# Source: <SANITIZED_WEB_AUTOMATION_WORKSPACE>/tools
 # 
 # This file contains all configuration files from the tools component.
 #

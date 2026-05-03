@@ -75,12 +75,12 @@ Milestone alignment:
 - Canonical downstream linkage for active packs is enforced through SME profile `knowledgePackIds` references.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/docs/adr/README.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/docs/adr/ADR_DECISION_PACKET_PREBUILD.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/docs/adr/NEXT_AGENT_EXECUTION_STEPS.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/knowledge-pack.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/state/knowledge/foundry-foundational-docs/coverage-report.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/state/knowledge/foundry-foundational-docs/manifest.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-knowledge-ingestion-and-rag.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-environment-parity-and-tooling.json`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/docs/adr/README.md`
+- `apps/flagship-foundry/docs/adr/ADR_DECISION_PACKET_PREBUILD.md`
+- `apps/flagship-foundry/docs/adr/NEXT_AGENT_EXECUTION_STEPS.md`
+- `apps/flagship-foundry/schemas/knowledge-pack.schema.json`
+- `apps/flagship-foundry/state/knowledge/foundry-foundational-docs/coverage-report.md`
+- `apps/flagship-foundry/state/knowledge/foundry-foundational-docs/manifest.json`
+- `apps/flagship-foundry/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-knowledge-ingestion-and-rag.json`
+- `apps/flagship-foundry/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-environment-parity-and-tooling.json`

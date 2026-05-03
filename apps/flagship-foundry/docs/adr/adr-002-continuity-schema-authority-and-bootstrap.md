@@ -59,6 +59,6 @@ Choose **Option C**.
 The **runtime instance authority** path **`.codex/projects/<project>/current-task.json`** described in **Option C** is superseded for Flagship Foundry by **ADR-011**: continuity instances are stored at **`.foundry/projects/<project>/current-task.json`** (agent-neutral root). The **contract authority** is unchanged.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/continuity-state.schema.json`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/schemas/continuity-state.schema.json`
 - `docs/adr/adr-011-foundry-directory-layout-and-continuity-instance.md`

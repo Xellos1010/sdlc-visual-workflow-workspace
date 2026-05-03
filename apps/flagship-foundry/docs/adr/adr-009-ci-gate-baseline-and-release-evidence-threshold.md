@@ -69,13 +69,13 @@ Operational rule:
 - If evidence artifacts are produced but not retained, release audits may become non-reproducible.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/docs/adr/README.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/docs/adr/NEXT_AGENT_EXECUTION_STEPS.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/package.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/README.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/evidence-bundle.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/run-timeline.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/runbooks/feature-delivery.runbook.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/personas/independent-verifier.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-verification-and-quality-gates.json`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/docs/adr/README.md`
+- `apps/flagship-foundry/docs/adr/NEXT_AGENT_EXECUTION_STEPS.md`
+- `apps/flagship-foundry/package.json`
+- `apps/flagship-foundry/README.md`
+- `apps/flagship-foundry/schemas/evidence-bundle.schema.json`
+- `apps/flagship-foundry/schemas/run-timeline.schema.json`
+- `apps/flagship-foundry/runbooks/feature-delivery.runbook.json`
+- `apps/flagship-foundry/personas/independent-verifier.json`
+- `apps/flagship-foundry/state/ecosystems/web-automation-workspace/profiles/sme-web-automation-workspace-verification-and-quality-gates.json`

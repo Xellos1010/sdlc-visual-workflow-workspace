@@ -58,3 +58,11 @@ npm run plan:sample
 ## Current direction
 
 Start with the Cursor companion and terminal adapters while keeping the control plane framework-agnostic. Use import plus knowledge plus gap analysis to identify where doctrine, skills, runbooks, personas, and environment parity are still incomplete before wiring a real executor.
+
+## Community
+
+- [Contributing](CONTRIBUTING.md) — setup, verification, and PR expectations
+- [Security policy](SECURITY.md) — report vulnerabilities privately
+- [Code of conduct](CODE_OF_CONDUCT.md)
+- [License](LICENSE)
+- [Public release checklist](docs/PUBLIC_RELEASE.md) and [commit history overview template](docs/COMMIT_HISTORY_OVERVIEW.md) for history squashes or external handoffs

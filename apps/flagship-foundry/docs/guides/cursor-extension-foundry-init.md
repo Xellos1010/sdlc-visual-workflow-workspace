@@ -5,14 +5,14 @@ This document describes how a **local VS Code–compatible extension** (runs in 
 ## Feasible capabilities
 
 - **Commands** registered in `package.json` (e.g. “Foundry: Init project”, “Foundry: Import ecosystem”, “Foundry: Start control plane”).
-- **Spawn terminal or subprocess**: `node flagship-foundry-work/apps/orchestrator-cli/src/main.mjs init-project my-project "objective"` with `cwd` set to the **workspace folder** where `.foundry` should appear.
+- **Spawn terminal or subprocess**: `node apps/flagship-foundry/apps/orchestrator-cli/src/main.mjs init-project my-project "objective"` with `cwd` set to the **monorepo root** (parent of `apps/`) so paths resolve, and the **workspace folder** where `.foundry` should appear as the logical project root.
 - **Configuration**: `flagshipFoundry.controlPlaneUrl`, `flagshipFoundry.foundryRoot`, paths to import configs.
 - **Health check**: `fetch` to `GET /health` on the control plane before actions that require the API.
 
 ## Integration points
 
 - **CLI**: `apps/orchestrator-cli/src/main.mjs` — same surface as `npm run` scripts in `package.json`.
-- **Control plane**: `npm run api` from `flagship-foundry-work/`.
+- **Control plane**: `npm run api` from `apps/flagship-foundry/`.
 - **Existing extension**: `apps/cursor-companion/` — extend with new commands rather than forking unrelated code.
 
 ## Non-goals

@@ -9,7 +9,7 @@
 
 # main-directory Rules and Standards
 # Generated on: Fri Mar 20 22:25:40 EDT 2026
-# Source: /Users/evanmccall/Workspaces/Web Automation Workspace
+# Source: <SANITIZED_WEB_AUTOMATION_WORKSPACE>
 # 
 # This file contains all rules, standards, and guidelines from the main-directory component.
 #
@@ -13735,7 +13735,7 @@ For issues or questions:
 
 # tools Rules and Standards
 # Generated on: Fri Mar 20 22:25:45 EDT 2026
-# Source: /Users/evanmccall/Workspaces/Web Automation Workspace/tools
+# Source: <SANITIZED_WEB_AUTOMATION_WORKSPACE>/tools
 # 
 # This file contains all rules, standards, and guidelines from the tools component.
 #

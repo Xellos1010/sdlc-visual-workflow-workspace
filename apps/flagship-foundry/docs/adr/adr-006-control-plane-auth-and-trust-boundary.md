@@ -51,6 +51,6 @@ Security policy:
 - Token leakage risk if logging/redaction is weak.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/apps/control-plane/src/server.mjs`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/configs/approval-policies/default.json`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/apps/control-plane/src/server.mjs`
+- `apps/flagship-foundry/configs/approval-policies/default.json`

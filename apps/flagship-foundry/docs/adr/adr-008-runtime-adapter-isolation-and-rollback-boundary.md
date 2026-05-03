@@ -79,12 +79,12 @@ Promotion policy:
 - [x] Tests cover isolation metadata and rollback semantics.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/README.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/packages/core/src/run-executor.mjs`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/packages/core/src/runs.mjs`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/packages/runtime-adapters/src/registry.mjs`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/run.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/run-timeline.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/configs/approval-policies/default.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/guardrails/terminal-agent-adapters.json`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/README.md`
+- `apps/flagship-foundry/packages/core/src/run-executor.mjs`
+- `apps/flagship-foundry/packages/core/src/runs.mjs`
+- `apps/flagship-foundry/packages/runtime-adapters/src/registry.mjs`
+- `apps/flagship-foundry/schemas/run.schema.json`
+- `apps/flagship-foundry/schemas/run-timeline.schema.json`
+- `apps/flagship-foundry/configs/approval-policies/default.json`
+- `apps/flagship-foundry/guardrails/terminal-agent-adapters.json`

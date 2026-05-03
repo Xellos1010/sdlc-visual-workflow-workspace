@@ -1,0 +1,8 @@
+{
+  "ecosystemId": "sample-app",
+  "name": "Sample Application",
+  "source": {
+    "type": "filesystem",
+    "workspaceRoot": "/absolute/path/to/your/project"
+  }
+}

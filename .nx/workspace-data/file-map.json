@@ -5,397 +5,6 @@
   "nxJsonPlugins": [],
   "fileMap": {
     "projectFileMap": {
-      "import-bridge": [
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/bin/foundry-bridge.mjs",
-          "hash": "16573707497174796410"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/package.json",
-          "hash": "15558655700254153671"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/project.json",
-          "hash": "4149768626120063064"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/artifact-router.test.mjs",
-          "hash": "5853189305169448605"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/cli.test.mjs",
-          "hash": "15498048551784397397"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/conflict-detector.test.mjs",
-          "hash": "7818971889050009787"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/continuity-writer.test.mjs",
-          "hash": "668097781363632302"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/export-packager.test.mjs",
-          "hash": "3370261652442798539"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/fixtures/bad-manifest.json",
-          "hash": "9429594284243144505"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/export-verification.test.mjs",
-          "hash": "5448747606915458358"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-architecture.test.mjs",
-          "hash": "15204940590931139505"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-intake.test.mjs",
-          "hash": "16488127882727801337"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-workorders.test.mjs",
-          "hash": "6475980051520707483"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/round-trip.test.mjs",
-          "hash": "5866122418274146398"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/manifest-parser.test.mjs",
-          "hash": "8288824859903832699"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/provenance.test.mjs",
-          "hash": "15042105257811223250"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/schema-validity.test.mjs",
-          "hash": "15410108312066971752"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/transforms.test.mjs",
-          "hash": "4065164937054306145"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/validator.test.mjs",
-          "hash": "17780890609134152876"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/wo-activator.test.mjs",
-          "hash": "13695680130184700826"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/artifact-router.mjs",
-          "hash": "15003545227242666961"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/artifact-router.mts",
-          "hash": "178269474204647649"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/cli.mjs",
-          "hash": "530247537997639609"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/cli.mts",
-          "hash": "5313586371345167823"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/codegen/schema-diff.mjs",
-          "hash": "14983489214300128067"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/codegen/schema-diff.mts",
-          "hash": "13664694706183028641"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/dry-run.mts",
-          "hash": "11825937400734618038"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/export.mts",
-          "hash": "15447684579223023215"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/import.mts",
-          "hash": "3660270391633575979"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/validate.mts",
-          "hash": "3983213661902532463"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/conflict-detector.mjs",
-          "hash": "3370141933162719052"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/conflict-detector.mts",
-          "hash": "8872474834770860696"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/continuity-writer.mjs",
-          "hash": "16314308935249842662"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/continuity-writer.mts",
-          "hash": "12847957106720646098"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/dependency-resolver.mjs",
-          "hash": "11105396954251013466"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/dependency-resolver.mts",
-          "hash": "15799049460821147248"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/diff-merge.mjs",
-          "hash": "6217641364182414199"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/diff-merge.mts",
-          "hash": "3457664629141462760"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/export-packager.mjs",
-          "hash": "16004031687590554850"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/export-packager.mts",
-          "hash": "15009240320048890133"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/manifest-parser.mjs",
-          "hash": "1190232575836489588"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/manifest-parser.mts",
-          "hash": "8387585774879978810"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/provenance.mjs",
-          "hash": "8576293478922600787"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/provenance.mts",
-          "hash": "17280953876525694352"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/staging.mjs",
-          "hash": "15535979180782938293"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/staging.mts",
-          "hash": "5147253608265454301"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/architecture-packet.transform.mts",
-          "hash": "5226775549451363779"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/import-manifest.transform.mjs",
-          "hash": "10821521676993989067"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/import-manifest.transform.mts",
-          "hash": "2283390139036247977"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/index.mts",
-          "hash": "6026684842448375980"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/intent-packet.transform.mts",
-          "hash": "16280278663563400229"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/verification-bundle.transform.mts",
-          "hash": "4873526797617753398"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/work-order-batch.transform.mjs",
-          "hash": "18334032791427640895"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/work-order-batch.transform.mts",
-          "hash": "15007828102110495572"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/types.mts",
-          "hash": "16644755641827521215"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/validator.mjs",
-          "hash": "9465345289661567283"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/validator.mts",
-          "hash": "18168056670620168342"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/wo-activator.mjs",
-          "hash": "13585444348519821613"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/src/wo-activator.mts",
-          "hash": "8937310396763492189"
-        },
-        {
-          "file": "apps/flagship-foundry/packages/import-bridge/tsconfig.json",
-          "hash": "15166311189154451060"
-        }
-      ],
-      "ts-to-rust-foundry-starter": [
-        {
-          "file": "apps/ts-to-rust-foundry-starter/.gitignore",
-          "hash": "7769229407871958127"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/README.md",
-          "hash": "8318742917347588443"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/out.svg",
-          "hash": "4929316002171600868"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/package-lock.json",
-          "hash": "15975814174161654465"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/package.json",
-          "hash": "15940657103211672200",
-          "deps": [
-            "npm:@types/node",
-            "npm:typescript",
-            "npm:open"
-          ]
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/cli.ts",
-          "hash": "6696285562238156855"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/extract-model.ts",
-          "hash": "8327701721555324415"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/pipeline.ts",
-          "hash": "15555976730804412815"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/pseudocode.ts",
-          "hash": "11971477120012009623"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/render-uml.ts",
-          "hash": "1042614473429390143"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/rust-generator.ts",
-          "hash": "5276061393814396963"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/scan.ts",
-          "hash": "5034780090212463314"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/src/types.ts",
-          "hash": "16376102096769539409"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/tsconfig.json",
-          "hash": "16429133855067056496"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/viewer-server.mjs",
-          "hash": "11997991236879439831"
-        },
-        {
-          "file": "apps/ts-to-rust-foundry-starter/viewer.html",
-          "hash": "7663589913009012126"
-        }
-      ],
-      "platform-dev": [
-        {
-          "file": "tools/system/dev.sh",
-          "hash": "17783527656544530121"
-        },
-        {
-          "file": "tools/system/project.json",
-          "hash": "11425320446903954490"
-        },
-        {
-          "file": "tools/system/setup.sh",
-          "hash": "14494095874766575439"
-        }
-      ],
-      "ai-context": [
-        {
-          "file": "tools/ai-context/README.md",
-          "hash": "879393752637350590"
-        },
-        {
-          "file": "tools/ai-context/chunk-export.mjs",
-          "hash": "9257958076463718484"
-        },
-        {
-          "file": "tools/ai-context/exporter.mjs",
-          "hash": "6440552238918179164"
-        },
-        {
-          "file": "tools/ai-context/generate-profile.mjs",
-          "hash": "13049109533647596046"
-        },
-        {
-          "file": "tools/ai-context/profiles/current-project.json",
-          "hash": "17096737595311052128"
-        },
-        {
-          "file": "tools/ai-context/profiles/default-ignore.json",
-          "hash": "16145079501181117260"
-        },
-        {
-          "file": "tools/ai-context/profiles/example-agent-pipelines-ralph.json",
-          "hash": "14717169397332724055"
-        },
-        {
-          "file": "tools/ai-context/profiles/example-agent-pipelines-ruflo.json",
-          "hash": "851500701914907670"
-        },
-        {
-          "file": "tools/ai-context/profiles/full-repo.json",
-          "hash": "4084947604348170756"
-        },
-        {
-          "file": "tools/ai-context/profiles/latest.json",
-          "hash": "6603408680051193847"
-        },
-        {
-          "file": "tools/ai-context/project.json",
-          "hash": "94991551809072170"
-        }
-      ],
-      "foundry-cli": [
-        {
-          "file": "apps/foundry-cli/package.json",
-          "hash": "3218905422623683378",
-          "deps": [
-            "npm:@types/node",
-            "npm:typescript"
-          ]
-        },
-        {
-          "file": "apps/foundry-cli/src/bin.ts",
-          "hash": "9455846334393970479"
-        },
-        {
-          "file": "apps/foundry-cli/tsconfig.json",
-          "hash": "5629964990866780686"
-        }
-      ],
       "flagship-foundry": [
         {
           "file": "apps/flagship-foundry/.dockerignore",
@@ -1902,6 +1511,351 @@
           "hash": "5455785303283733333"
         }
       ],
+      "import-bridge": [
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/bin/foundry-bridge.mjs",
+          "hash": "16573707497174796410"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/package.json",
+          "hash": "15558655700254153671"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/project.json",
+          "hash": "4149768626120063064"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/artifact-router.test.mjs",
+          "hash": "5853189305169448605"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/cli.test.mjs",
+          "hash": "15498048551784397397"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/conflict-detector.test.mjs",
+          "hash": "7818971889050009787"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/continuity-writer.test.mjs",
+          "hash": "668097781363632302"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/export-packager.test.mjs",
+          "hash": "3370261652442798539"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/fixtures/bad-manifest.json",
+          "hash": "9429594284243144505"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/export-verification.test.mjs",
+          "hash": "5448747606915458358"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-architecture.test.mjs",
+          "hash": "15204940590931139505"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-intake.test.mjs",
+          "hash": "16488127882727801337"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/import-workorders.test.mjs",
+          "hash": "6475980051520707483"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/integration/round-trip.test.mjs",
+          "hash": "5866122418274146398"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/manifest-parser.test.mjs",
+          "hash": "8288824859903832699"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/provenance.test.mjs",
+          "hash": "15042105257811223250"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/schema-validity.test.mjs",
+          "hash": "15410108312066971752"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/transforms.test.mjs",
+          "hash": "4065164937054306145"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/validator.test.mjs",
+          "hash": "17780890609134152876"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/__tests__/wo-activator.test.mjs",
+          "hash": "13695680130184700826"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/artifact-router.mjs",
+          "hash": "15003545227242666961"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/artifact-router.mts",
+          "hash": "178269474204647649"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/cli.mjs",
+          "hash": "530247537997639609"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/cli.mts",
+          "hash": "5313586371345167823"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/codegen/schema-diff.mjs",
+          "hash": "14983489214300128067"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/codegen/schema-diff.mts",
+          "hash": "13664694706183028641"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/dry-run.mts",
+          "hash": "11825937400734618038"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/export.mts",
+          "hash": "15447684579223023215"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/import.mts",
+          "hash": "3660270391633575979"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/commands/validate.mts",
+          "hash": "3983213661902532463"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/conflict-detector.mjs",
+          "hash": "3370141933162719052"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/conflict-detector.mts",
+          "hash": "8872474834770860696"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/continuity-writer.mjs",
+          "hash": "16314308935249842662"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/continuity-writer.mts",
+          "hash": "12847957106720646098"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/dependency-resolver.mjs",
+          "hash": "11105396954251013466"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/dependency-resolver.mts",
+          "hash": "15799049460821147248"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/diff-merge.mjs",
+          "hash": "6217641364182414199"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/diff-merge.mts",
+          "hash": "3457664629141462760"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/export-packager.mjs",
+          "hash": "16004031687590554850"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/export-packager.mts",
+          "hash": "15009240320048890133"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/manifest-parser.mjs",
+          "hash": "1190232575836489588"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/manifest-parser.mts",
+          "hash": "8387585774879978810"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/provenance.mjs",
+          "hash": "8576293478922600787"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/provenance.mts",
+          "hash": "17280953876525694352"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/staging.mjs",
+          "hash": "15535979180782938293"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/staging.mts",
+          "hash": "5147253608265454301"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/architecture-packet.transform.mts",
+          "hash": "5226775549451363779"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/import-manifest.transform.mjs",
+          "hash": "10821521676993989067"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/import-manifest.transform.mts",
+          "hash": "2283390139036247977"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/index.mts",
+          "hash": "6026684842448375980"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/intent-packet.transform.mts",
+          "hash": "16280278663563400229"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/verification-bundle.transform.mts",
+          "hash": "4873526797617753398"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/work-order-batch.transform.mjs",
+          "hash": "18334032791427640895"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/transforms/work-order-batch.transform.mts",
+          "hash": "15007828102110495572"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/types.mts",
+          "hash": "16644755641827521215"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/validator.mjs",
+          "hash": "9465345289661567283"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/validator.mts",
+          "hash": "18168056670620168342"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/wo-activator.mjs",
+          "hash": "13585444348519821613"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/src/wo-activator.mts",
+          "hash": "8937310396763492189"
+        },
+        {
+          "file": "apps/flagship-foundry/packages/import-bridge/tsconfig.json",
+          "hash": "15166311189154451060"
+        }
+      ],
+      "ts-to-rust-foundry-starter": [
+        {
+          "file": "apps/ts-to-rust-foundry-starter/.gitignore",
+          "hash": "7769229407871958127"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/README.md",
+          "hash": "8318742917347588443"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/out.svg",
+          "hash": "4929316002171600868"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/package-lock.json",
+          "hash": "15975814174161654465"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/package.json",
+          "hash": "15940657103211672200",
+          "deps": [
+            "npm:@types/node",
+            "npm:typescript",
+            "npm:open"
+          ]
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/cli.ts",
+          "hash": "6696285562238156855"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/extract-model.ts",
+          "hash": "8327701721555324415"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/pipeline.ts",
+          "hash": "15555976730804412815"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/pseudocode.ts",
+          "hash": "11971477120012009623"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/render-uml.ts",
+          "hash": "1042614473429390143"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/rust-generator.ts",
+          "hash": "5276061393814396963"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/scan.ts",
+          "hash": "5034780090212463314"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/src/types.ts",
+          "hash": "16376102096769539409"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/tsconfig.json",
+          "hash": "16429133855067056496"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/viewer-server.mjs",
+          "hash": "11997991236879439831"
+        },
+        {
+          "file": "apps/ts-to-rust-foundry-starter/viewer.html",
+          "hash": "7663589913009012126"
+        }
+      ],
+      "foundry-cli": [
+        {
+          "file": "apps/foundry-cli/package.json",
+          "hash": "3218905422623683378",
+          "deps": [
+            "npm:@types/node",
+            "npm:typescript"
+          ]
+        },
+        {
+          "file": "apps/foundry-cli/src/bin.ts",
+          "hash": "9455846334393970479"
+        },
+        {
+          "file": "apps/foundry-cli/tsconfig.json",
+          "hash": "5629964990866780686"
+        }
+      ],
+      "platform-dev": [
+        {
+          "file": "tools/system/dev.sh",
+          "hash": "17783527656544530121"
+        },
+        {
+          "file": "tools/system/project.json",
+          "hash": "11425320446903954490"
+        },
+        {
+          "file": "tools/system/setup.sh",
+          "hash": "14494095874766575439"
+        }
+      ],
       "cursor-companion": [
         {
           "file": "apps/flagship-foundry/apps/cursor-companion/README.md",
@@ -2018,6 +1972,52 @@
         {
           "file": "apps/flagship-foundry/apps/cursor-companion/workspace-target.js",
           "hash": "13719294272650892408"
+        }
+      ],
+      "ai-context": [
+        {
+          "file": "tools/ai-context/README.md",
+          "hash": "879393752637350590"
+        },
+        {
+          "file": "tools/ai-context/chunk-export.mjs",
+          "hash": "9257958076463718484"
+        },
+        {
+          "file": "tools/ai-context/exporter.mjs",
+          "hash": "6440552238918179164"
+        },
+        {
+          "file": "tools/ai-context/generate-profile.mjs",
+          "hash": "13049109533647596046"
+        },
+        {
+          "file": "tools/ai-context/profiles/current-project.json",
+          "hash": "17096737595311052128"
+        },
+        {
+          "file": "tools/ai-context/profiles/default-ignore.json",
+          "hash": "16145079501181117260"
+        },
+        {
+          "file": "tools/ai-context/profiles/example-agent-pipelines-ralph.json",
+          "hash": "14717169397332724055"
+        },
+        {
+          "file": "tools/ai-context/profiles/example-agent-pipelines-ruflo.json",
+          "hash": "851500701914907670"
+        },
+        {
+          "file": "tools/ai-context/profiles/full-repo.json",
+          "hash": "4084947604348170756"
+        },
+        {
+          "file": "tools/ai-context/profiles/latest.json",
+          "hash": "6603408680051193847"
+        },
+        {
+          "file": "tools/ai-context/project.json",
+          "hash": "94991551809072170"
         }
       ]
     },

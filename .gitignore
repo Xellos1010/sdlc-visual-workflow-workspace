@@ -19,32 +19,44 @@ out/
 .vercel_build_output/
 *.tsbuildinfo
 .eslintcache
+*.map
 
-# Environment and secrets
+# Environment and secrets (avoid overly broad *token* patterns that ignore source files)
 .env
 .env.*
 !.env.example
 !.env.sample
+!.env.template
 *.pem
 *.key
 *.p12
 *.pfx
 *.crt
 *.cer
-*secret*
-*credential*
-*token*
+.secrets/
+secrets/
+*-secrets.json
+*-credentials.json
 .aws/credentials
 .aws/config
+.direnv/
+.envrc
 
 # macOS
 .DS_Store
 .DS_Store?
 ._*
-.Spotlight-V7
+.Spotlight-V100
 .Trashes
 Icon?
 Thumbs.db
+Desktop.ini
+
+# Windows
+$RECYCLE.BIN/
+
+# Linux
+*~
 
 # Editors and IDEs
 .idea/
@@ -53,6 +65,8 @@ Thumbs.db
 *~
 .vscode/settings.json
 .vscode/launch.json
+.vscode/*.code-workspace
+*.sublime-*
 
 # Logs
 *.log
@@ -66,18 +80,25 @@ lerna-debug.log*
 coverage/
 .nyc_output/
 *.lcov
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
 
-# Local app state
+# Nx
+.nx/cache/
+.nx/workspace-data/
+
+# Local app / agent state
 .claude/settings.local.json
 .claude/settings.local.*
-.cursor/
 .cursor/cursor-experiments/
+.cursor/plans/
+.cursor/chat/
 .foundry/staging/
 .foundry/projects/
 Example/AI Agent Pipelines/
-.nx/cache/
-.nx/workspace-data/
-.nx/workspace-data/*
+.superpowers/
 
 # Runtime and temp
 tmp/
@@ -87,3 +108,29 @@ logs/
 exports/
 *.pid
 archive.zip
+*.orig
+*.rej
+
+# Python (if used by tools/)
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Rust (if present)
+target/
+**/target/
+
+# Databases and dumps (local only)
+*.sqlite
+*.sqlite3
+*.db
+
+# OS / misc
+*.tgz
+*.tar.gz
+*.zip
+!.github/**/*.zip

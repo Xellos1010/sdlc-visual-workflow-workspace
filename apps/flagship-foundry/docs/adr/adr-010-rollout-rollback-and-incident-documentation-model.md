@@ -73,14 +73,14 @@ Milestone alignment:
 - If incident records do not link to evidence and learning outputs, the model may become procedural rather than improving system quality.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/docs/adr/NEXT_AGENT_EXECUTION_STEPS.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/runbook.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/run.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/run-timeline.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/schemas/continuity-state.schema.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/runbooks/feature-delivery.runbook.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/runbooks/telemetry-driven-improvement.runbook.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/runbooks/task-handoff.runbook.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/guardrails/telemetry-and-observability.json`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/flagship-foundry-work/configs/approval-policies/default.json`
+- `.cursor/plans/foundry-gap-analysis-intent_d20ed327.plan.md`
+- `apps/flagship-foundry/docs/adr/NEXT_AGENT_EXECUTION_STEPS.md`
+- `apps/flagship-foundry/schemas/runbook.schema.json`
+- `apps/flagship-foundry/schemas/run.schema.json`
+- `apps/flagship-foundry/schemas/run-timeline.schema.json`
+- `apps/flagship-foundry/schemas/continuity-state.schema.json`
+- `apps/flagship-foundry/runbooks/feature-delivery.runbook.json`
+- `apps/flagship-foundry/runbooks/telemetry-driven-improvement.runbook.json`
+- `apps/flagship-foundry/runbooks/task-handoff.runbook.json`
+- `apps/flagship-foundry/guardrails/telemetry-and-observability.json`
+- `apps/flagship-foundry/configs/approval-policies/default.json`

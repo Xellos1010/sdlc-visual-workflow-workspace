@@ -16,7 +16,7 @@ This playbook assumes the blocker ADRs are accepted through **M4** (including AD
 ## Verification commands (ongoing)
 
 ```bash
-cd flagship-foundry-work
+cd apps/flagship-foundry
 npm test
 npm run ci:targeted
 ```

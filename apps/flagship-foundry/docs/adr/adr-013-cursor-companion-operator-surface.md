@@ -80,8 +80,8 @@ Normative rules:
 - [ ] Approved execution still routes through the control plane and existing approval model.
 
 ## References
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/docs/intent/intent-cursor-companion-sdlc-operator-2026-04-02.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/docs/plan/work-orders-cursor-companion-sdlc-operator-2026-04-02.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/apps/flagship-foundry/apps/cursor-companion/extension.js`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/apps/flagship-foundry/docs/IDE_ENVIRONMENT_SPEC.md`
-- `/Users/evanmccall/Projects/SDLC - Visual - Workflow - SoftwareEngineering-NewAge/docs/imported/work-order-summary.md`
+- `docs/intent/intent-cursor-companion-sdlc-operator-2026-04-02.md`
+- `docs/plan/work-orders-cursor-companion-sdlc-operator-2026-04-02.md`
+- `apps/flagship-foundry/apps/cursor-companion/extension.js`
+- `apps/flagship-foundry/docs/IDE_ENVIRONMENT_SPEC.md`
+- `docs/imported/work-order-summary.md`
