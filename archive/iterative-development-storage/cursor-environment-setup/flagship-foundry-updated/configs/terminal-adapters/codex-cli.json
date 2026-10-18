@@ -1,8 +1,0 @@
-{
-  "id": "adapter:codex-cli",
-  "name": "Codex CLI Adapter",
-  "kind": "terminal-agent",
-  "transport": "cli",
-  "entrypointTemplate": "codex",
-  "notes": "Translate work orders into deterministic prompt plus file-scope envelopes."
-}

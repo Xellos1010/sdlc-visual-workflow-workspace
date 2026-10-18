@@ -1,7 +1,0 @@
-{
-  "id": "provider:vllm-remote",
-  "name": "vLLM Remote Server",
-  "protocol": "openai-compatible",
-  "baseUrl": "http://MODEL-HOST:8000/v1",
-  "intendedUse": "remote high-throughput local inference"
-}

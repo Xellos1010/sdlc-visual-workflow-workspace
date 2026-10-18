@@ -1,6 +1,0 @@
-node_modules/
-.DS_Store
-state/graph.runtime.json
-*.log
-coverage/
-dist/
