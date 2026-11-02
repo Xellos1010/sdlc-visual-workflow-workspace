@@ -1,7 +1,0 @@
-{
-  "id": "provider:local-ollama",
-  "name": "Local Ollama",
-  "protocol": "openai-compatible",
-  "baseUrl": "http://localhost:11434/v1",
-  "intendedUse": "low-cost local execution and bounded repair tasks"
-}

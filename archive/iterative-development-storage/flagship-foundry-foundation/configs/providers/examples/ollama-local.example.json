@@ -1,9 +1,0 @@
-{
-  "providerId": "provider:ollama-local",
-  "protocol": "openai-compatible",
-  "baseUrl": "http://localhost:11434/v1",
-  "apiKey": "ollama",
-  "preferredModels": {
-    "low_cost_executor": "gpt-oss:20b"
-  }
-}
